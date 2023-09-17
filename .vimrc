@@ -1,3 +1,7 @@
+"-------------------------
+" [General configurations](https://missing-semester-cn.github.io/2020/files/vimrc)
+"-------------------------
+
 " Comments in Vimscript start with a `"`.
 
 " If you open this file in Vim, it'll be syntax highlighted for you.
@@ -16,10 +20,6 @@ syntax on
 
 " Disable the default Vim startup message.
 set shortmess+=I
-
-" Set list to see tabs and non-breakable spaces
-set list
-set listchars=tab:>-,nbsp:.
 
 " Show line numbers.
 set number          " same as `set nu`
@@ -57,12 +57,8 @@ set smartcase
 " Enable searching as you type, rather than waiting till you press enter.
 set incsearch
 
-" Enable highlight search
-set hlsearch        " same as `set hls`
-
 " Unbind some useless/annoying default key bindings.
-" 'Q' in normal mode enters Ex mode. You almost never want this.
-nmap Q <Nop>
+nmap Q <Nop>        " 'Q' in normal mode enters Ex mode. You almost never want this.
 
 " Disable audible bell because it's annoying.
 set noerrorbells visualbell t_vb=
@@ -70,12 +66,6 @@ set noerrorbells visualbell t_vb=
 " Enable mouse support. You should avoid relying on this too much, but it can
 " sometimes be convenient.
 set mouse+=a
-
-" Spaces & Tabs
-set expandtab       " tabs are spaces, mainly because of python
-set tabstop=4       " number of visual spaces per TAB
-set shiftwidth=4    " Insert 4 spaces on a tab
-set softtabstop=4   " number of spaces in tab when editing
 
 " Try to prevent bad habits like using the arrow keys for movement. This is
 " not the only possible bad habit. For example, holding down the h/j/k/l keys
@@ -97,8 +87,41 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " Misc configurations
 "--------------------
 
+" Enhance command-line completion
+set wildmenu
+
+" Set list to see tabs and non-breakable spaces
+set list
+set listchars=tab:>-,nbsp:.
+" set listchars=tab:>-,trail:·,eol:¬,nbsp:_
+
+" Spaces & Tabs
+set expandtab       " tabs are spaces, mainly because of python
+set tabstop=4       " number of visual spaces per TAB
+set shiftwidth=4    " Insert 4 spaces on a tab
+set softtabstop=4   " number of spaces in tab when editing
+
+" Seaerch
+set incsearch       " search as characters are entered
+set hlsearch        " highlight matches
+set ignorecase      " ignore case in searches by default
+" set smartcase       " but make it case sensitive if an uppercase is entered
+" turn off search highlight
+vnoremap <C-h> :nohlsearch<CR>
+nnoremap <C-h> :nohlsearch<CR>
+
+" Undo
+set undofile         " maintain undo history between sessions
+set undodir=~/.vim/undodir
+
 " Use Sudow to save read-only files, see <https://www.cnblogs.com/dylanchu/p/11345675.html>
-command -nargs=0 Sudow w !sudo tee % >/dev/null
+" command -nargs=0 Sudow w !sudo tee % >/dev/null
+
+" Leader
+let mapleader=" "   " leader is space
+
+" save read-only files, see <https://www.cnblogs.com/dylanchu/p/11345675.html>
+noremap <leader>W :w !sudo tee % >/dev/null<CR>
 
 "------------------
 " Syntax and indent
@@ -140,10 +163,10 @@ endif
 filetype plugin indent on
 set autoindent
 
-"---------------------
+"---------------
 " Plugin install
 " [Vim plugin manager](https://github.com/junegunn/vim-plug)
-"---------------------
+"---------------
 
 call plug#begin()
 " The default plugin directory will be as follows:
@@ -165,7 +188,8 @@ Plug 'altercation/vim-colors-solarized'
 " GUI enhancements
 Plug 'scrooloose/nerdtree'          " File explorer
 
-Plug 'ctrlpvim/ctrlp.vim'           " fuzzy finder
+" fuzzy finder
+Plug 'ctrlpvim/ctrlp.vim'
 
 " Syntactic language support
 Plug 'w0rp/ale'                     " Linting engine
@@ -219,3 +243,12 @@ let g:ale_fixers = {
 " Navigate between errors quickly
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+"---------------------
+" Local customizations
+"---------------------
+
+let $LOCALFILE=expand("~/.vimrc_local")
+if filereadable($LOCALFILE)
+    source $LOCALFILE
+endif
