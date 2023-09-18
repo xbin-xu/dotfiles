@@ -1,0 +1,42 @@
+# [.gitignore templates](https://github.com/github/gitignore/tree/main)
+
+# General
+#-----------------------------
+
+# Vim swap
+.sw[a-p]
+
+# Log and backup
+*.txt
+*.log
+*.tmp
+*.bak
+
+# C/C++
+#-----------------------------
+*.cache/            # clangd
+!CMakeLists.txt     # CMake
+
+# Executables
+*.exe
+*.out
+
+# Python
+#-----------------------------
+*.pyc
+*.sqlite
+
+# Visual Studio Code
+#-----------------------------
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix

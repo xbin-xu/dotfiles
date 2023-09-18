@@ -105,7 +105,7 @@ set softtabstop=4   " number of spaces in tab when editing
 set incsearch       " search as characters are entered
 set hlsearch        " highlight matches
 set ignorecase      " ignore case in searches by default
-" set smartcase       " but make it case sensitive if an uppercase is entered
+set smartcase       " but make it case sensitive if an uppercase is entered
 " turn off search highlight
 vnoremap <C-h> :nohlsearch<CR>
 nnoremap <C-h> :nohlsearch<CR>
@@ -117,11 +117,20 @@ set undodir=~/.vim/undodir
 " Use Sudow to save read-only files, see <https://www.cnblogs.com/dylanchu/p/11345675.html>
 " command -nargs=0 Sudow w !sudo tee % >/dev/null
 
+" Use the sys clipboard by default (on versions compiled with `+clipboard`)
+" [Vim 使用系统剪切板](https://harttle.land/2020/09/04/vim-clipboard.html)
+" todo: not work
+set clipboard=unnamed
+
 " Leader
 let mapleader=" "   " leader is space
 
-" save read-only files, see <https://www.cnblogs.com/dylanchu/p/11345675.html>
+" To save read-only files, see https://www.cnblogs.com/dylanchu/p/11345675.html
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
+" To `set paste` for tmux
+noremap <leader>p :set paste<CR>
+noremap <leader>np :set nopaste<CR>
+"
 
 "------------------
 " Syntax and indent
@@ -188,7 +197,7 @@ Plug 'altercation/vim-colors-solarized'
 " GUI enhancements
 Plug 'scrooloose/nerdtree'          " File explorer
 
-" fuzzy finder
+" Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Syntactic language support
