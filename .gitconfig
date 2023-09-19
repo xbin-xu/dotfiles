@@ -23,10 +23,11 @@
 	# View history graph
 	graph = log --graph --decorate --oneline --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
 
-	# Show verbose output about tags, branches or remotes
+	# Show verbose output about tags, branches, remotes or stashs
 	tags = tag -l
 	branches = branch --all
 	remotes = remote --verbose
+	stashs = stash list
 
 	# List aliases
 	aliases = config --get-regexp alias
@@ -37,8 +38,8 @@
 [core]
 	editor = vim
 
-	# Use custom `.gitignore_global`
-	excludesfile = ~/.gitignore_global
+	# Use custom `.gitignore`
+	excludesfile = ~/.gitignore
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
@@ -57,6 +58,10 @@
 	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
 	ui = auto
 
+[commit]
+	# Configure commit template
+	template = ~/.git-commit-template.txt
+
 [push]
 	# https://git-scm.com/docs/git-config#git-config-pushdefault
 	default = simple
@@ -65,7 +70,7 @@
 	followTags = true
 
 [pull]
-	# rebase = true
+	rebase = false
 
 [apply]
 	# Detect whitespace errors when applying a patch
@@ -94,9 +99,9 @@
 	insteadOf = "gh:"
 	insteadOf = "github:"
 
-	# use https to pull ssh url
+	# Use https to pull ssh url
 	insteadOf = "git@github.com:"
 
-[url "http://github.com/"]
-	# use http to pull https url
-	insteadOf = "https://github.com/"
+#[url "http://github.com/"]
+#	# Use http to pull https url
+#	insteadOf = "https://github.com/"
