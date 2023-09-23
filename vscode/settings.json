@@ -1,0 +1,445 @@
+{
+    // -- Geneal
+    "workbench.colorTheme": "Default Dark+",
+    "window.commandCenter": true,
+    "files.exclude": {
+        "**/.exe": true,
+    },
+    "files.autoGuessEncoding": true,
+    "files.autoSave": "onFocusChange",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [80],
+    "editor.mouseWheelZoom": true,
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.guides.bracketPairsHorizontal": "active",
+    "diffEditor.renderSideBySide": false,
+    "terminal.integrated.defaultProfile.linux": "fish",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+
+    // -- Markdown
+    "markdown-preview-enhanced.previewTheme": "atom-dark.css",
+    "markdown-preview-enhanced.codeBlockTheme": "one-dark.css",
+
+    // -- Project Manager
+    //--------------------------------------------------------------------------
+    "projectManager.git.baseFolders": ["D:/Studies"],
+    "projectManager.sortList": "Recent",
+
+    // -- Vim
+    //--------------------------------------------------------------------------
+    "editor.lineNumbers": "relative",
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.surround": true,
+    "vim.camelCaseMotion.enable": true,
+    "vim.useSystemClipboard": true,
+    // "vim.vimrc.enable": true,
+    // "vim.vimrc.path": "$HOME/.config/vim/.vimrc",
+    "vim.useCtrlKeys": true,
+    "vim.handleKeys": {
+        "<C-c>": false,
+        // "<C-v>": false,
+        "<C-x>": false,
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-s>": false,
+        "<C-w>": false,
+        "<C-p>": false,
+    },
+    "vim.foldfix": true,
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.leader": "<space>",
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["j","k"],
+            "after": ["<esc>"]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        // ---- which key
+        {
+            "before": [";"],
+            "commands": ["whichkey.show"]
+        },
+        // ---- general
+        {
+            "before": ["L"],
+            "after": ["$"]
+        },
+        {
+            "before": ["H"],
+            "after": ["^"]
+        },
+        {
+            "before": ["<C-n>"],
+            "commands": [":nohl"]
+        },
+        {
+            "before": ["n"],
+            "after": ["n", "z", "z", "z", "v"]
+        },
+        {
+            "before": ["N"],
+            "after": ["N", "z", "z", "z", "v"]
+        },
+        {
+            "before": ["J"],
+            "after": ["m", "z", "z", "J", "`", "z"],
+        },
+        {
+            "before": ["<leader>", "w"],
+            "commands": [":w"]
+        },
+        {
+            "before": ["<leader>", "q"],
+            "after": [":q!"]
+        },
+        {
+            "before": ["<leader>", "r"],
+            "commands": ["editor.action.rename"]
+        },
+        {
+            "before": ["<leader>", "f"],
+            "commands": ["editor.action.formatDocument"]
+        },
+        // ---- git
+        {
+            "before": ["<leader>", "j"],
+            "commands": [
+                "workbench.action.editor.nextChange",
+                "workbench.action.compareEditor.nextChange",
+                // "editor.action.dirtydiff.next"
+            ]
+        },
+        {
+            "before": ["<leader>", "k"],
+            "commands": [
+                "workbench.action.editor.previousChange",
+                "workbench.action.compareEditor.previousChange",
+                // "editor.action.dirtydiff.previous"
+            ]
+        },
+        // ---- problems
+        {
+            "before": ["<leader>", "p", "k"],
+            "commands": ["editor.action.marker.prev"]
+        },
+        {
+            "before": ["<leader>", "p", "j"],
+            "commands": ["editor.action.marker.next"]
+        },
+        {
+            "before": ["<leader>", "p", "a"],
+            "commands": ["editor.action.quickFix"]
+        },
+        // ---- code
+        {
+            "before": ["<leader>", "g", "r"],
+            "commands": ["references-view.findReferences"]
+        },
+        {
+            "before": ["<leader>", "r"],
+            "commands": ["editor.action.referenceSearch.trigger"]
+        },
+        {
+            "before": ["<leader>", "c", "h"],
+            "commands": ["references-view.showCallHierarchy"]
+        },
+        {
+            "before": ["<leader>", "c", "r"],
+            "commands": ["workbench.action.files.save", "workbench.action.debug.run"]
+        },
+        // ---- debug
+        {
+            "before": ["<leader>", "d", "b"],
+            "commands": ["editor.debug.action.toggleBreakpoint"]
+        },
+        {
+            "before": ["<leader>", "d", "c"],
+            "commands": ["editor.debug.action.conditionalBreakpoint"]
+        },
+        {
+            "before": ["<leader>", "d", "r"],
+            "commands": ["workbench.action.files.save", "workbench.action.debug.start"]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["E"],
+            "after": ["g", "T"]
+        },
+        {
+            "before": ["R"],
+            "after": ["g", "t"]
+        },
+        // undo & redo
+        {
+            "before": ["u"],
+            "commands": ["undo"]
+        },
+        {
+            "before": ["C-r"],
+            "commands": ["redo"]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [";"],
+            "commands": ["whichkey.show"]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [">"],
+            "commands": ["editor.action.indentLines"]
+        },
+        {
+            "before": ["<"],
+            "commands": ["editor.action.outdentLines"]
+        },
+        {
+            "before": ["<leader>", "f"],
+            "commands": ["editor.action.formatSelection"]
+        }
+    ],
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
+
+    // -- Which Key
+    //--------------------------------------------------------------------------
+    "whichkey.sortOrder": "alphabetically",
+    "whichkey.bindings": [
+        {
+            "key": "e",
+            "name": "Toggle Explorer",
+            "type": "command",
+            "command": "workbench.action.toggleSidebarVisibility"
+        },
+        {
+            "key": "o",
+            "name": "Toggle Outline",
+            "type": "command",
+            "command": "workbench.action.toggleAuxiliaryBar"
+        },
+        {
+            "key": "t",
+            "name": "Toggle Terminal",
+            "type": "command",
+            "command": "workbench.action.togglePanel"
+        },
+        {
+            "key": "f",
+            "name": "Search",
+            "type": "command",
+            "command": "workbench.view.search"
+        },
+        {
+            "key": "w",
+            "name": "New Search Editor",
+            "type": "command",
+            "command": "search.action.openEditor"
+        },
+        {
+            "key": "p",
+            "name": "Toggle Project Manager",
+            "type": "command",
+            "command": "projectManager.listProjects"
+        },
+        {
+            "key": "h",
+            "name": "Split Horizontal",
+            "type": "command",
+            "command": "workbench.action.splitEditorDown"
+        },
+        {
+            "key": "v",
+            "name": "Split Vertical",
+            "type": "command",
+            "command": "workbench.action.splitEditor"
+        },
+        {
+            "key": "m",
+            "name": "Markdown Preview To The Side",
+            "type": "command",
+            "command": "markdown-preview-enhanced.openPreviewToTheSide",
+            "when": "editorLangId == 'markdown'"
+        },
+        {
+            "key": "T",
+            "name": "UI toggles...",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "g",
+                    "name": "Show source control",
+                    "type": "command",
+                    "command": "workbench.view.scm"
+                },
+                {
+                    "key": "x",
+                    "name": "Show extensions",
+                    "type": "command",
+                    "command": "workbench.view.extensions"
+                },
+                {
+                    "key": "r",
+                    "name": "Show remote explorer",
+                    "type": "command",
+                    "command": "workbench.view.remote"
+                },
+                {
+                    "key": "p",
+                    "name": "Show problem",
+                    "type": "command",
+                    "command": "workbench.actions.view.problems"
+                },
+                {
+                    "key": "o",
+                    "name": "Show output",
+                    "type": "command",
+                    "command": "workbench.action.output.toggleOutput"
+                },
+                {
+                    "key": "d",
+                    "name": "Show debug console",
+                    "type": "command",
+                    "command": "workbench.debug.action.toggleRepl"
+                },
+                {
+                    "key": "m",
+                    "name": "minimap",
+                    "type": "command",
+                    "command": "editor.action.toggleMinimap"
+                },
+                {
+                    "key": "b",
+                    "name": "Toggle side bar visibility",
+                    "type": "command",
+                    "command": "workbench.action.toggleSidebarVisibility"
+                },
+                {
+                    "key": "F",
+                    "name": "Toggle full screen",
+                    "type": "command",
+                    "command": "workbench.action.toggleFullScreen"
+                },
+                {
+                    "key": "s",
+                    "name": "Select theme",
+                    "type": "command",
+                    "command": "workbench.action.selectTheme"
+                }
+            ]
+        }
+    ],
+
+    // -- Better Comments
+    //--------------------------------------------------------------------------
+    "better-comments.tags": [
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": false,
+            "italic": false
+        }
+    ],
+
+    // -- Error Lens
+    // "errorLens.gutterIconsEnabled": true,
+    "errorLens.enabledDiagnosticLevels": [
+        "error",
+        "warning",
+        "info",
+        // "hint"
+    ],
+
+    // -- C/C++
+
+    // -- clangd
+    // "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.detectExtensionConflicts": false,
+    "clangd.path": "clangd",
+    "clangd.arguments": [
+        "--compile-commands-dir=${workspaceFolder}/build",
+        "--query-driver=**",
+        "--log=verbose",
+        "--background-index",
+        "--pch-storage=memory",
+        "--clang-tidy",
+        "--all-scopes-completion",
+        "--completion-style=detailed",
+        "--header-insertion=iwyu",
+        "-j=6"
+    ],
+
+    // -- CodeLLDB
+    "lldb.commandCompletions": true,
+    "lldb.dereferencePointers": true,
+    "lldb.evaluateForHovers": true,
+    "lldb.launch.expressions": "native",
+    "lldb.showDisassembly": "never",
+    "lldb.verboseLogging": true,
+
+    // -- CMake
+    "cmake.cmakePath": "cmake",
+    "cmake.configureOnOpen": false,
+    "cmake.generator": "Unix Makefiles", // Unix Makefiles or Ninja
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+
+    // -- Remote SSH
+    "remote.SSH.remotePlatform": {
+        "djangoserver": "linux",
+        "ubuntu_docker": "linux",
+        "ubuntu_20": "linux",
+        "aliyserver": "linux"
+    },
+
+    "security.workspace.trust.untrustedFiles": "open",
+}

@@ -87,6 +87,16 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " Misc configurations
 "--------------------
 
+" Map esc to jk in insert mode
+inoremap jk <ESC>
+
+" Focus center
+nnoremap n nzzzv
+nnoremap N Nzzzv
+"nnoremap J mzJ`z
+"nnoremap j jzz
+"nnoremap k kzz
+
 " Enhance command-line completion
 set wildmenu
 
@@ -106,7 +116,7 @@ set incsearch       " search as characters are entered
 set hlsearch        " highlight matches
 set ignorecase      " ignore case in searches by default
 set smartcase       " but make it case sensitive if an uppercase is entered
-" turn off search highlight
+" Turn off search highlight
 vnoremap <C-h> :nohlsearch<CR>
 nnoremap <C-h> :nohlsearch<CR>
 
@@ -122,15 +132,26 @@ set undodir=~/.vim/undodir
 " todo: not work
 set clipboard=unnamed
 
+" Line head & tail
+map H ^
+map L $
+
 " Leader
+nnoremap <SPACE> <Nop>
 let mapleader=" "   " leader is space
 
+" Reload ~/.vimrc: not work
+map <leader>r :source ~/.vimrc<CR>
+
+" Quit & Save
+nmap <Leader>q :q!<CR>
+nmap <Leader>w :w<CR>
 " To save read-only files, see https://www.cnblogs.com/dylanchu/p/11345675.html
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
+
 " To `set paste` for tmux
 noremap <leader>p :set paste<CR>
 noremap <leader>np :set nopaste<CR>
-"
 
 "------------------
 " Syntax and indent
@@ -221,7 +242,7 @@ nnoremap <Leader>f :NERDTreeFind<CR>
 " CtrlP https://github.com/ctrlpvim/ctrlp.vim
 "---------------------------------------------------------
 " Change the default mapping and the default command to invoke CtrlP
-let g:ctrlp_map = '<c-p>'
+let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 " Ale https://github.com/dense-analysis/ale
