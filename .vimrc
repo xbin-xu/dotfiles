@@ -93,6 +93,11 @@ inoremap jk <ESC>
 " Focus center
 nnoremap n nzzzv
 nnoremap N Nzzzv
+nnoremap * *zzzv
+nnoremap # #zzzv
+nnoremap g* g*zzzv
+noremap <C-o> <C-o>zz
+noremap <C-i> <C-i>zz
 "nnoremap J mzJ`z
 "nnoremap j jzz
 "nnoremap k kzz
@@ -121,7 +126,7 @@ vnoremap <C-h> :nohlsearch<CR>
 nnoremap <C-h> :nohlsearch<CR>
 
 " Undo
-set undofile         " maintain undo history between sessions
+set undofile        " maintain undo history between sessions
 set undodir=~/.vim/undodir
 
 " Use Sudow to save read-only files, see <https://www.cnblogs.com/dylanchu/p/11345675.html>
