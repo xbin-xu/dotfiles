@@ -96,11 +96,17 @@ nnoremap N Nzzzv
 nnoremap * *zzzv
 nnoremap # #zzzv
 nnoremap g* g*zzzv
-noremap <C-o> <C-o>zz
-noremap <C-i> <C-i>zz
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
 "nnoremap J mzJ`z
 "nnoremap j jzz
 "nnoremap k kzz
+
+" Set the anchor line at 80 characters
+set colorcolumn=80
+
+" Set cursor with at least 5 lines at the top or bottom
+set scrolloff=5
 
 " Enhance command-line completion
 set wildmenu
@@ -126,8 +132,17 @@ vnoremap <C-h> :nohlsearch<CR>
 nnoremap <C-h> :nohlsearch<CR>
 
 " Undo
-set undofile        " maintain undo history between sessions
-set undodir=~/.vim/undodir
+if has("persistent_undo")       " Check if vim support it
+    " maintain undo history between sessions
+    set undofile
+
+    " set the path to store undo files
+    let target_path = expand('$HOME/.vim/undo')
+    if !isdirectory(target_path)
+        call system('mkdir -p ' . target_path)
+    endif
+    let &undodir = target_path
+endif
 
 " Use Sudow to save read-only files, see <https://www.cnblogs.com/dylanchu/p/11345675.html>
 " command -nargs=0 Sudow w !sudo tee % >/dev/null
@@ -154,9 +169,8 @@ nmap <Leader>w :w<CR>
 " To save read-only files, see https://www.cnblogs.com/dylanchu/p/11345675.html
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
 
-" To `set paste` for tmux
-noremap <leader>p :set paste<CR>
-noremap <leader>np :set nopaste<CR>
+" Toggle paste mode, and also can use plugin vim-paste-easy
+noremap <leader>p :set paste!<CR>
 
 "------------------
 " Syntax and indent
@@ -221,17 +235,30 @@ call plug#begin()
 Plug 'altercation/vim-colors-solarized'
 
 " GUI enhancements
-Plug 'scrooloose/nerdtree'          " File explorer
+Plug 'scrooloose/nerdtree'          " file explorer
+Plug 'sjl/gundo.vim'                " visualize undo tree
+Plug 'kshenoy/vim-signature'        " show marks in the gutter
 
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
 
 " Syntactic language support
-Plug 'w0rp/ale'                     " Linting engine
+Plug 'w0rp/ale'                     " linting engine
+" Plug 'gabrielelana/vim-markdown'
 
 " Tmux GUI
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
+
+" Movement
+Plug 'justinmk/vim-sneak'
+Plug 'easymotion/vim-easymotion'
+
+" Text manipulation
+Plug 'tpope/vim-surround'
+
+" Other
+Plug 'roxma/vim-paste-easy'         " automatically `set paste`
 
 call plug#end()
 
@@ -244,13 +271,25 @@ call plug#end()
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>f :NERDTreeFind<CR>
 
-" CtrlP https://github.com/ctrlpvim/ctrlp.vim
+" gundo https://github.com/sjl/gundo.vim
+"---------------------------------------------------------
+nnoremap <Leader>u :GundoToggle<CR>
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
+
+" signature https://github.com/kshenoy/vim-signature
+"---------------------------------------------------------
+" Enable confirm while delete all tags
+let g:SignaturePurgeConfirmation = 1
+
+" ctrlp https://github.com/ctrlpvim/ctrlp.vim
 "---------------------------------------------------------
 " Change the default mapping and the default command to invoke CtrlP
 let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" Ale https://github.com/dense-analysis/ale
+" ale https://github.com/dense-analysis/ale
 "---------------------------------------------------------
 " Enable completion where available.
 let g:ale_enabled = 1
@@ -278,6 +317,23 @@ let g:ale_fixers = {
 " Navigate between errors quickly
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+" sneak https://github.com/justinmk/vim-sneak
+"---------------------------------------------------------
+" Enable label-mode to motion(just like easymotion)
+let g:sneak#label = 1
+
+" easymotion https://github.com/easymotion/vim-easymotion
+"---------------------------------------------------------
+" map <Space> <Plug>(easymotion-prefix)
+
+" Surround https://github.com/tpope/vim-surround
+"---------------------------------------------------------
+" None
+
+" paste-easy https://github.com/roxma/vim-paste-easy
+"---------------------------------------------------------
+let g:paste_easy_enable = 1
 
 "---------------------
 " Local customizations

@@ -4,7 +4,7 @@
 #-----------------------------
 
 # Vim swap
-.sw[a-p]
+*.sw[a-p]
 
 # Log and backup
 *.txt
