@@ -1,6 +1,6 @@
 {
     // -- Geneal
-    "workbench.colorTheme": "Default Dark+",
+    "workbench.colorTheme": "One Dark Pro",
     "window.commandCenter": true,
     "files.exclude": {
         "**/.exe": true,
@@ -21,6 +21,7 @@
     "diffEditor.renderSideBySide": false,
     "terminal.integrated.defaultProfile.linux": "fish",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
 
     // -- Markdown
     "markdown-preview-enhanced.previewTheme": "atom-dark.css",
@@ -102,7 +103,7 @@
             "after": [":q!"]
         },
         {
-            "before": ["<leader>", "r"],
+            "before": ["<leader>", "r", "n"],
             "commands": ["editor.action.rename"]
         },
         {
@@ -128,15 +129,15 @@
         },
         // ---- problems
         {
-            "before": ["<leader>", "p", "k"],
+            "before": ["<leader>", "-"],
             "commands": ["editor.action.marker.prev"]
         },
         {
-            "before": ["<leader>", "p", "j"],
+            "before": ["<leader>", "+"],
             "commands": ["editor.action.marker.next"]
         },
         {
-            "before": ["<leader>", "p", "a"],
+            "before": ["<leader>", "q", "f"],
             "commands": ["editor.action.quickFix"]
         },
         // ---- code

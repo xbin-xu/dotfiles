@@ -160,12 +160,12 @@ map L $
 nnoremap <SPACE> <Nop>
 let mapleader=" "   " leader is space
 
-" Reload ~/.vimrc: not work
-map <leader>r :source ~/.vimrc<CR>
+" Reload .vimrc
+map <leader>r :source $MYVIMRC<CR>
 
 " Quit & Save
-nmap <Leader>q :q!<CR>
-nmap <Leader>w :w<CR>
+nmap <leader>q :q!<CR>
+nmap <leader>w :w<CR>
 " To save read-only files, see https://www.cnblogs.com/dylanchu/p/11345675.html
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
 
@@ -217,6 +217,12 @@ set autoindent
 " [Vim plugin manager](https://github.com/junegunn/vim-plug)
 "---------------
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+    :exe '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    au VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin()
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
@@ -241,6 +247,8 @@ Plug 'kshenoy/vim-signature'        " show marks in the gutter
 
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+Plug 'junegunn/fzf.vim'
 
 " Syntactic language support
 Plug 'w0rp/ale'                     " linting engine
@@ -256,9 +264,15 @@ Plug 'easymotion/vim-easymotion'
 
 " Text manipulation
 Plug 'tpope/vim-surround'
-
-" Other
 Plug 'roxma/vim-paste-easy'         " automatically `set paste`
+Plug 'tpope/vim-commentary'         " quick (un)comment line(s)
+
+" LSP
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'octol/vim-cpp-enhanced-highlight'
+
+" DAP
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enable-python'}
 
 call plug#end()
 
@@ -268,12 +282,12 @@ call plug#end()
 
 " nerdtree https://github.com/preservim/nerdtree
 "---------------------------------------------------------
-nnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <Leader>f :NERDTreeFind<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeFind<CR>
 
 " gundo https://github.com/sjl/gundo.vim
 "---------------------------------------------------------
-nnoremap <Leader>u :GundoToggle<CR>
+nnoremap <leader>u :GundoToggle<CR>
 if has('python3')
     let g:gundo_prefer_python3 = 1
 endif
@@ -288,6 +302,14 @@ let g:SignaturePurgeConfirmation = 1
 " Change the default mapping and the default command to invoke CtrlP
 let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" fzf https://github.com/junegunn/fzf.vim
+"---------------------------------------------------------
+let g:fzf_layout = {'down': '~40%'}
+
+nnoremap <leader>fg :Rg<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fh :History<CR>
 
 " ale https://github.com/dense-analysis/ale
 "---------------------------------------------------------
@@ -305,14 +327,14 @@ let g:ale_float_preview = 1
 
 " Configure fixers
 let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-    \   'javascript': ['prettier'],
-    \   'css': ['prettier'],
-    \   'html': ['prettier'],
-    \   'markdown': ['prettier'],
-    \   'json': ['prettier'],
-    \   'yaml': ['prettier'],
-    \}
+      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+      \   'javascript': ['prettier'],
+      \   'css': ['prettier'],
+      \   'html': ['prettier'],
+      \   'markdown': ['prettier'],
+      \   'json': ['prettier'],
+      \   'yaml': ['prettier'],
+      \}
 
 " Navigate between errors quickly
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -325,15 +347,151 @@ let g:sneak#label = 1
 
 " easymotion https://github.com/easymotion/vim-easymotion
 "---------------------------------------------------------
-" map <Space> <Plug>(easymotion-prefix)
+map <Space> <Plug>(easymotion-prefix)
 
-" Surround https://github.com/tpope/vim-surround
+" surround https://github.com/tpope/vim-surround
 "---------------------------------------------------------
 " None
 
 " paste-easy https://github.com/roxma/vim-paste-easy
 "---------------------------------------------------------
 let g:paste_easy_enable = 1
+
+" vim-commentary https://github.com/tpope/vim-commentary
+"---------------------------------------------------------
+" None
+
+" coc.nvim https://github.com/neoclide/coc.nvim
+"---------------------------------------------------------
+" coc extensions
+let g:coc_global_extensions = [
+      \ 'coc-json',
+      \ 'coc-vimlsp',
+      \ 'coc-highlight',
+      \ 'coc-markdownlint',
+      \ 'coc-sh',
+      \ 'coc-cmake',
+      \ 'coc-pyright',
+      \ ]
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Show all diagnostics
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Use `-` and `=` to navigate diagnostics
+nmap <silent> <leader>- <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>= <Plug>(coc-diagnostic-next)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call ShowDocumentation()<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s)
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap <C-f> and <C-b> to scroll float windows/popups
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Add `:Format` command to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+
+" Add `:Fold` command to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer
+command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" vim-cpp-enhanced-highlight https://github.com/octol/vim-cpp-enhanced-highlight
+"---------------------------------------------------------
+" None
+
+" vimspector https://github.com/puremourning/vimspector
+"---------------------------------------------------------
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+function! s:generate_vimspector_conf()
+  if empty(glob('.vimspector.json'))
+    if &filetype == 'c' || &filetype == 'cpp'
+      !cp ~/.vim/vimspector_config/c.json ./.vimspector.json
+    elseif &filetype == 'python'
+      !cp ~/.vim/vimspector_config/python.json ./.vimspector.json
+    endif
+  endif
+  e .vimspector.json
+endfunction
+command! -nargs=0 Gvimspector :call s:generate_vimspector_conf()
 
 "---------------------
 " Local customizations
