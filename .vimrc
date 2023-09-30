@@ -244,6 +244,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'          " file explorer
 Plug 'sjl/gundo.vim'                " visualize undo tree
 Plug 'kshenoy/vim-signature'        " show marks in the gutter
+Plug 'vim-airline/vim-airline'      " beautify statusline
+Plug 'vim-airline/vim-airline-themes'
 
 " Fuzzy finder
 Plug 'ctrlpvim/ctrlp.vim'
@@ -297,6 +299,15 @@ endif
 " Enable confirm while delete all tags
 let g:SignaturePurgeConfirmation = 1
 
+" airline https://github.com/vim-airline/vim-airline
+"---------------------------------------------------------
+" Set theme for airline
+let g:airline_theme = 'solarized'
+" Enable airline
+let g:airline#extensions#tabline#enabled = 1
+" How file paths are displayed
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+
 " ctrlp https://github.com/ctrlpvim/ctrlp.vim
 "---------------------------------------------------------
 " Change the default mapping and the default command to invoke CtrlP
@@ -327,14 +338,14 @@ let g:ale_float_preview = 1
 
 " Configure fixers
 let g:ale_fixers = {
-      \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \   'javascript': ['prettier'],
-      \   'css': ['prettier'],
-      \   'html': ['prettier'],
-      \   'markdown': ['prettier'],
-      \   'json': ['prettier'],
-      \   'yaml': ['prettier'],
-      \}
+            \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \ 'javascript': ['prettier'],
+            \ 'css': ['prettier'],
+            \ 'html': ['prettier'],
+            \ 'markdown': ['prettier'],
+            \ 'json': ['prettier'],
+            \ 'yaml': ['prettier'],
+            \ }
 
 " Navigate between errors quickly
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -365,14 +376,14 @@ let g:paste_easy_enable = 1
 "---------------------------------------------------------
 " coc extensions
 let g:coc_global_extensions = [
-      \ 'coc-json',
-      \ 'coc-vimlsp',
-      \ 'coc-highlight',
-      \ 'coc-markdownlint',
-      \ 'coc-sh',
-      \ 'coc-cmake',
-      \ 'coc-pyright',
-      \ ]
+            \ 'coc-json',
+            \ 'coc-vimlsp',
+            \ 'coc-highlight',
+            \ 'coc-markdownlint',
+            \ 'coc-sh',
+            \ 'coc-cmake',
+            \ 'coc-pyright',
+            \ ]
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved
@@ -384,26 +395,26 @@ set signcolumn=yes
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
+            \ coc#pum#visible() ? coc#pum#next(1) :
+            \ CheckBackspace() ? "\<Tab>" :
+            \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion
 if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
+    inoremap <silent><expr> <c-space> coc#refresh()
 else
-  inoremap <silent><expr> <c-@> coc#refresh()
+    inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 " Show all diagnostics
@@ -412,7 +423,7 @@ nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
 nmap <silent> <leader>- <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>= <Plug>(coc-diagnostic-next)
 " Apply the most preferred quickfix action to fix diagnostic on the current line
-nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>ca <Plug>(coc-fix-current)
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -424,11 +435,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
+    if CocAction('hasProvider', 'hover')
+        call CocActionAsync('doHover')
+    else
+        call feedkeys('K', 'in')
+    endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor
@@ -442,21 +453,21 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s)
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    autocmd!
+    " Setup formatexpr specified filetype(s)
+    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+    " Update signature help on jump placeholder
+    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap <C-f> and <C-b> to scroll float windows/popups
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+    nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+    inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+    vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+    vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
 
 " Add `:Format` command to format current buffer
@@ -482,14 +493,14 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
 function! s:generate_vimspector_conf()
-  if empty(glob('.vimspector.json'))
-    if &filetype == 'c' || &filetype == 'cpp'
-      !cp ~/.vim/vimspector_config/c.json ./.vimspector.json
-    elseif &filetype == 'python'
-      !cp ~/.vim/vimspector_config/python.json ./.vimspector.json
+    if empty(glob('.vimspector.json'))
+        if &filetype == 'c' || &filetype == 'cpp'
+            !cp ~/.vim/vimspector_config/c.json ./.vimspector.json
+        elseif &filetype == 'python'
+            !cp ~/.vim/vimspector_config/python.json ./.vimspector.json
+        endif
     endif
-  endif
-  e .vimspector.json
+    e .vimspector.json
 endfunction
 command! -nargs=0 Gvimspector :call s:generate_vimspector_conf()
 

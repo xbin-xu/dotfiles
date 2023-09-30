@@ -137,7 +137,7 @@
             "commands": ["editor.action.marker.next"]
         },
         {
-            "before": ["<leader>", "q", "f"],
+            "before": ["<leader>", "c", "a"],
             "commands": ["editor.action.quickFix"]
         },
         // ---- code
