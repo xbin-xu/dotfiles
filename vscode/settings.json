@@ -3,7 +3,7 @@
     "workbench.colorTheme": "One Dark Pro",
     "window.commandCenter": true,
     "files.exclude": {
-        "**/.exe": true,
+        "**/.exe": true
     },
     "files.autoGuessEncoding": true,
     "files.autoSave": "onFocusChange",
@@ -51,7 +51,7 @@
         "<C-f>": false,
         "<C-s>": false,
         "<C-w>": false,
-        "<C-p>": false,
+        "<C-p>": false
     },
     "vim.foldfix": true,
     "vim.hlsearch": true,
@@ -100,7 +100,7 @@
         },
         {
             "before": ["<leader>", "q"],
-            "after": [":q!"]
+            "commands": [":q!"]
         },
         {
             "before": ["<leader>", "r", "n"],
@@ -115,7 +115,7 @@
             "before": ["<leader>", "j"],
             "commands": [
                 "workbench.action.editor.nextChange",
-                "workbench.action.compareEditor.nextChange",
+                "workbench.action.compareEditor.nextChange"
                 // "editor.action.dirtydiff.next"
             ]
         },
@@ -123,7 +123,7 @@
             "before": ["<leader>", "k"],
             "commands": [
                 "workbench.action.editor.previousChange",
-                "workbench.action.compareEditor.previousChange",
+                "workbench.action.compareEditor.previousChange"
                 // "editor.action.dirtydiff.previous"
             ]
         },
@@ -133,7 +133,7 @@
             "commands": ["editor.action.marker.prev"]
         },
         {
-            "before": ["<leader>", "+"],
+            "before": ["<leader>", "="],
             "commands": ["editor.action.marker.next"]
         },
         {
@@ -202,7 +202,7 @@
         {
             "before": ["<"],
             "commands": ["editor.action.outdentLines"]
-        },
+        }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
@@ -272,6 +272,78 @@
             "type": "command",
             "command": "markdown-preview-enhanced.openPreviewToTheSide",
             "when": "editorLangId == 'markdown'"
+        },
+        {
+            "key": "g",
+            "name": "Git",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "g",
+                    "name": "Show Source Code Manager",
+                    "type": "command",
+                    "command": "workbench.view.scm"
+                },
+                {
+                    "key": "j",
+                    "name": "Next Change",
+                    "type": "command",
+                    "commands": [
+                        "workbench.action.editor.nextChange",
+                        "workbench.action.compareEditor.nextChange"
+                        // "editor.action.dirtydiff.next"
+                    ]
+                },
+                {
+                    "key": "k",
+                    "name": "Previous Change",
+                    "type": "command",
+                    "commands": [
+                        "workbench.action.editor.previousChange",
+                        "workbench.action.compareEditor.previousChange"
+                        // "editor.action.dirtydiff.previous"
+                    ]
+                },
+                {
+                    "key": "c",
+                    "name": "Open Change",
+                    "type": "command",
+                    "command": "git.openChange"
+                },
+                {
+                    "key": "f",
+                    "name": "Open File",
+                    "type": "command",
+                    "command": "git.openFile"
+                },
+                {
+                    "key": "r",
+                    "name": "revert selected range",
+                    "type": "command",
+                    "command": "git.revertSelectedRanges",
+                    "when": "isInDiffEditor && !operationInProgress"
+                },
+                {
+                    "key": "s",
+                    "name": "Stage Selected Ranges",
+                    "type": "command",
+                    "command": "git.stageSelectedRanges",
+                    "when": "isInDiffEditor && !operationInProgress"
+                },
+                {
+                    "key": "S",
+                    "name": "Unstage Selected Ranges",
+                    "type": "command",
+                    "command": "git.unstageSelectedRanges",
+                    "when": "isInDiffEditor && !operationInProgress"
+                },
+                {
+                    "key": "d",
+                    "name": "Toggle Diff",
+                    "type": "command",
+                    "command": "toggle.diff.renderSideBySide"
+                }
+            ]
         },
         {
             "key": "T",
@@ -442,7 +514,7 @@
                     "command": "editor.debug.action.selectionToWatch"
                 }
             ]
-        },
+        }
     ],
 
     // -- Better Comments
@@ -500,7 +572,7 @@
     "errorLens.enabledDiagnosticLevels": [
         "error",
         "warning",
-        "info",
+        "info"
         // "hint"
     ],
 
@@ -545,5 +617,5 @@
         "aliyserver": "linux"
     },
 
-    "security.workspace.trust.untrustedFiles": "open",
+    "security.workspace.trust.untrustedFiles": "open"
 }
