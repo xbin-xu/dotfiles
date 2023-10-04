@@ -1,5 +1,6 @@
 {
     // -- Geneal
+    "oneDarkPro.italic": false,
     "workbench.colorTheme": "One Dark Pro",
     "window.commandCenter": true,
     "files.exclude": {
