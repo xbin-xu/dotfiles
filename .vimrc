@@ -157,7 +157,7 @@ map H ^
 map L $
 
 " Leader
-nnoremap <SPACE> <Nop>
+nnoremap <space> <Nop>
 let mapleader=" "   " leader is space
 
 " Reload .vimrc
@@ -169,8 +169,10 @@ nmap <leader>w :w<CR>
 " To save read-only files, see https://www.cnblogs.com/dylanchu/p/11345675.html
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
 
-" Toggle paste mode, and also can use plugin vim-paste-easy
-noremap <leader>p :set paste!<CR>
+" Buffer
+nmap <leader>n  :bn<CR>     " next buffer
+nmap <leader>p  :bp<CR>     " previous buffer
+nmap <Leader>bd :bd<CR>     " close buffer
 
 "------------------
 " Syntax and indent
@@ -370,7 +372,8 @@ let g:paste_easy_enable = 1
 
 " vim-commentary https://github.com/tpope/vim-commentary
 "---------------------------------------------------------
-" None
+" C and C++ use "//" to comment, rather than "/**/"
+autocmd FileType c,cpp set commentstring=//\ %s
 
 " coc.nvim https://github.com/neoclide/coc.nvim
 "---------------------------------------------------------
