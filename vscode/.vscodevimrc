@@ -1,0 +1,60 @@
+" Map jk to <Esc> in insert mode
+" inoremap jk <Esc>
+
+" Leader key
+"---------------------------------------------------------
+let mapleader="\<space>"
+
+" Quit & Save
+"---------------------------------------------------------
+nmap <leader>q :q!<CR>
+nmap <leader>w :w<CR>
+" Save read-only files
+noremap <leader>W :w !sudo tee % >/dev/null<CR>
+
+" Traversing the buffer list
+"---------------------------------------------------------
+nmap <leader>n  :bnext<CR>
+nmap <leader>p  :bprevious<CR>
+nmap <leader>bd :bdelete<CR>
+
+" Movement
+"---------------------------------------------------------
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
+" Line head & tail
+map H ^
+map L $
+
+" Focus center
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap * *zzzv
+nnoremap # #zzzv
+nnoremap g* g*zzzv
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
+"nnoremap J mzJ`z
+"nnoremap j jzz
+"nnoremap k kzz
+
+" Prevent bad habits(using the arrow keys for movement)
+"---------------------------------------------------------
+" nnoremap <Left>  :echoe "Use h"<CR>
+" nnoremap <Right> :echoe "Use l"<CR>
+" nnoremap <Up>    :echoe "Use k"<CR>
+" nnoremap <Down>  :echoe "Use j"<CR>
+
+" inoremap <Left>  <ESC>:echoe "Use h"<CR>
+" inoremap <Right> <ESC>:echoe "Use l"<CR>
+" inoremap <Up>    <ESC>:echoe "Use k"<CR>
+" inoremap <Down>  <ESC>:echoe "Use j"<CR>
+
+" vnoremap <Left>  <ESC>:echoe "Use h"<CR>
+" vnoremap <Right> <ESC>:echoe "Use l"<CR>
+" vnoremap <Up>    <ESC>:echoe "Use k"<CR>
+" vnoremap <Down>  <ESC>:echoe "Use j"<CR>

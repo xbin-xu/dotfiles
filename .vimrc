@@ -1,94 +1,160 @@
-"-------------------------
-" [General configurations](https://missing-semester-cn.github.io/2020/files/vimrc)
-"-------------------------
+set nocompatible    " disable Vi compatible
+set shortmess+=I    " disable the default Vim startup message.
 
-" Comments in Vimscript start with a `"`.
+"-----------------------
+" General configurations
+"-----------------------
 
-" If you open this file in Vim, it'll be syntax highlighted for you.
+" Encoding
+"---------------------------------------------------------
+set encoding=utf8
 
-" Vim is based on Vi. Setting `nocompatible` switches from the default
-" Vi-compatibility mode and enables useful Vim functionality. This
-" configuration option turns out not to be necessary for the file named
-" '~/.vimrc', because Vim automatically enters nocompatible mode if that file
-" is present. But we're including it here just in case this config file is
-" loaded some other way (e.g. saved as `foo`, and then Vim started with
-" `vim -u foo`).
-set nocompatible
+" Font
+"---------------------------------------------------------
+" set guifont=JetBrainsMono\ Nerd\ Font\ 11
 
-" Turn on syntax highlighting.
-syntax on
+" Colorscheme
+"---------------------------------------------------------
+colorscheme onedark
 
-" Disable the default Vim startup message.
-set shortmess+=I
+" Syntax
+"---------------------------------------------------------
+syntax on           " turn on syntax highlighting
 
-" Show line numbers.
-set number          " same as `set nu`
+" Indent
+"---------------------------------------------------------
+filetype plugin on  " load filetype's plugin file
+filetype indent on  " load filetype's indent file
+set autoindent      " set automatically indented
 
-" This enables relative line numbering mode. With both number and
-" relativenumber enabled, the current line shows the true line number, while
-" all other lines (above and below) are numbered relative to the current line.
-" This is useful because you can tell, at a glance, what count is needed to
-" jump up or down to a particular line, by {count}k to go up or {count}j to go
-" down.
-set relativenumber  " same as `set rnu`
+" (Shift)Tab (de)indents code
+vnoremap <Tab> >
+vnoremap <S-Tab> <
 
-" Always show the status line at the bottom, even if you only have one window open.
-set laststatus=2
+" UI
+"---------------------------------------------------------
+set mouse+=a        " enable mouse support
+set ttimeout        " set the timeout of the escape sequence
+set ttimeoutlen=50
 
-" The backspace key has slightly unintuitive behavior by default. For example,
-" by default, you can't backspace before the insertion point set with 'i'.
-" This configuration makes backspace behave more reasonably, in that you can
-" backspace over anything.
+set number          " show line numbers
+set relativenumber  " show relative numbering
+set laststatus=2    " show the status line at the bottom
+set showcmd         " show command in bottom bar
+set wildmenu        " enhance command completion
+set showmatch       " show matching braces when text indicator is over them
+set colorcolumn=80  " set the anchor line at 80 characters
+set scrolloff=5     " set cursor with at least 5 lines at the top or bottom
+set hidden          " allow having hidden buffers(not displayed in any window)
+
+" Disable annoying audible bell(error noises)
+set noerrorbells visualbell t_vb=
+" Make backspace behave in a more intuitive way
 set backspace=indent,eol,start
 
-" By default, Vim doesn't let you hide a buffer (i.e. have a buffer that isn't
-" shown in any window) that has unsaved changes. This is to prevent you from "
-" forgetting about unsaved changes and then quitting e.g. via `:qa!`. We find
-" hidden buffers helpful enough to disable this protection. See `:help hidden`
-" for more information on this.
-set hidden
+" Highlight current line, but only in active window
+augroup CursorLineOnlyInActiveWindow
+    autocmd!
+    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+    autocmd WinLeave * setlocal nocursorline
+augroup END
 
-" This setting makes search case-insensitive when all characters in the string
-" being searched are lowercase. However, the search becomes case-sensitive if
-" it contains any capital letters. This makes searching more convenient.
-set ignorecase
-set smartcase
+" Spaces & Tabs
+"---------------------------------------------------------
+set expandtab       " tabs are spaces, mainly because of python
+set tabstop=4       " number of visual spaces per TAB
+set shiftwidth=4    " insert 4 spaces on a tab
+set softtabstop=4   " number of spaces in tab when editing
 
-" Enable searching as you type, rather than waiting till you press enter.
-set incsearch
+set list            " set list to see tabs and non-breakable spaces
+set listchars=tab:>-,nbsp:.
+" set listchars=tab:>-,trail:·,eol:¬,nbsp:_
 
-" Unbind some useless/annoying default key bindings.
-nmap Q <Nop>        " 'Q' in normal mode enters Ex mode. You almost never want this.
+" Seaerch
+"---------------------------------------------------------
+set incsearch       " search as characters are entered
+set hlsearch        " highlight matches
+set ignorecase      " ignore case in searches by default
+set smartcase       " but make it case sensitive if an uppercase is entered
+" Turn off search highlight
+" nnoremap <silent> <C-h> :nohlsearch<CR>
 
-" Disable audible bell because it's annoying.
-set noerrorbells visualbell t_vb=
+" History
+"---------------------------------------------------------
+set history=200     " set the number of history
+" Scroll history
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
-" Enable mouse support. You should avoid relying on this too much, but it can
-" sometimes be convenient.
-set mouse+=a
+" Folding
+"---------------------------------------------------------
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
+set foldmethod=indent   " fold based on indent level
 
-" Try to prevent bad habits like using the arrow keys for movement. This is
-" not the only possible bad habit. For example, holding down the h/j/k/l keys
-" for movement, rather than using more efficient movement commands, is also a
-" bad habit. The former is enforceable through a .vimrc, while we don't know
-" how to prevent the latter.
-" Do this in normal mode...
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
-" ...and in insert mode
-inoremap <Left>  <ESC>:echoe "Use h"<CR>
-inoremap <Right> <ESC>:echoe "Use l"<CR>
-inoremap <Up>    <ESC>:echoe "Use k"<CR>
-inoremap <Down>  <ESC>:echoe "Use j"<CR>
+" Clipboard
+"---------------------------------------------------------
+" Use the sys clipboard by default (on versions compiled with `+clipboard`)
+" [Vim 使用系统剪切板](https://harttle.land/2020/09/04/vim-clipboard.html)
+" todo: not work
+set clipboard=unnamed
 
-"--------------------
-" Misc configurations
-"--------------------
+" Undo
+"---------------------------------------------------------
+" Check Vim support undo
+if has("persistent_undo")
+    " maintain undo history between sessions
+    set undofile
 
-" Map esc to jk in insert mode
-inoremap jk <ESC>
+    " set the path to store undo files
+    let target_path = expand('$HOME/.vim/undo')
+    if !isdirectory(target_path)
+        call system('mkdir -p ' . target_path)
+    endif
+    let &undodir = target_path
+endif
+
+" Leader key
+"---------------------------------------------------------
+nnoremap <space> <Nop>
+let mapleader="\<space>"
+
+"-------------
+" Key bindings
+"-------------
+
+" Map jk to <Esc> in insert mode
+" inoremap jk <Esc>
+
+" Reload .vimrc
+"---------------------------------------------------------
+map <leader>r :source $MYVIMRC<CR>
+
+" Quit & Save
+"---------------------------------------------------------
+nmap <leader>q :q!<CR>
+nmap <leader>w :w<CR>
+" Save read-only files
+noremap <leader>W :w !sudo tee % >/dev/null<CR>
+
+" Traversing the buffer list
+"---------------------------------------------------------
+nmap <leader>n  :bnext<CR>
+nmap <leader>p  :bprevious<CR>
+nmap <leader>bd :bdelete<CR>
+
+" Movement
+"---------------------------------------------------------
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
+" Line head & tail
+map H ^
+map L $
 
 " Focus center
 nnoremap n nzzzv
@@ -102,181 +168,107 @@ nnoremap <C-i> <C-i>zz
 "nnoremap j jzz
 "nnoremap k kzz
 
-" Set the anchor line at 80 characters
-set colorcolumn=80
+" Replace vim's built-in visual * and # behavior
+xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<C-u>call <SID>VSetSearch()<CR>?<C-R>=@/<CR><CR>
 
-" Set cursor with at least 5 lines at the top or bottom
-set scrolloff=5
+function! s:VSetSearch()
+    let temp = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, '/\'), '\n', '\\n', 'g')
+    let @s = temp
+endfunction
 
-" Enhance command-line completion
-set wildmenu
+" Prevent bad habits(using the arrow keys for movement)
+"---------------------------------------------------------
+nnoremap <Left>  :echoe "Use h"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+nnoremap <Up>    :echoe "Use k"<CR>
+nnoremap <Down>  :echoe "Use j"<CR>
 
-" Set list to see tabs and non-breakable spaces
-set list
-set listchars=tab:>-,nbsp:.
-" set listchars=tab:>-,trail:·,eol:¬,nbsp:_
+inoremap <Left>  <ESC>:echoe "Use h"<CR>
+inoremap <Right> <ESC>:echoe "Use l"<CR>
+inoremap <Up>    <ESC>:echoe "Use k"<CR>
+inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
-" Spaces & Tabs
-set expandtab       " tabs are spaces, mainly because of python
-set tabstop=4       " number of visual spaces per TAB
-set shiftwidth=4    " Insert 4 spaces on a tab
-set softtabstop=4   " number of spaces in tab when editing
+vnoremap <Left>  <ESC>:echoe "Use h"<CR>
+vnoremap <Right> <ESC>:echoe "Use l"<CR>
+vnoremap <Up>    <ESC>:echoe "Use k"<CR>
+vnoremap <Down>  <ESC>:echoe "Use j"<CR>
 
-" Seaerch
-set incsearch       " search as characters are entered
-set hlsearch        " highlight matches
-set ignorecase      " ignore case in searches by default
-set smartcase       " but make it case sensitive if an uppercase is entered
-" Turn off search highlight
-vnoremap <C-h> :nohlsearch<CR>
-nnoremap <C-h> :nohlsearch<CR>
-
-" Undo
-if has("persistent_undo")       " Check if vim support it
-    " maintain undo history between sessions
-    set undofile
-
-    " set the path to store undo files
-    let target_path = expand('$HOME/.vim/undo')
-    if !isdirectory(target_path)
-        call system('mkdir -p ' . target_path)
-    endif
-    let &undodir = target_path
-endif
-
-" Use Sudow to save read-only files, see <https://www.cnblogs.com/dylanchu/p/11345675.html>
-" command -nargs=0 Sudow w !sudo tee % >/dev/null
-
-" Use the sys clipboard by default (on versions compiled with `+clipboard`)
-" [Vim 使用系统剪切板](https://harttle.land/2020/09/04/vim-clipboard.html)
-" todo: not work
-set clipboard=unnamed
-
-" Line head & tail
-map H ^
-map L $
-
-" Leader
-nnoremap <space> <Nop>
-let mapleader=" "   " leader is space
-
-" Reload .vimrc
-map <leader>r :source $MYVIMRC<CR>
-
-" Quit & Save
-nmap <leader>q :q!<CR>
-nmap <leader>w :w<CR>
-" To save read-only files, see https://www.cnblogs.com/dylanchu/p/11345675.html
-noremap <leader>W :w !sudo tee % >/dev/null<CR>
-
-" Buffer
-nmap <leader>n  :bn<CR>     " next buffer
-nmap <leader>p  :bp<CR>     " previous buffer
-nmap <Leader>bd :bd<CR>     " close buffer
-
-"------------------
-" Syntax and indent
-"------------------
-syntax on           " turn on syntax highlighting
-set showmatch       " show matching braces when text indicator is over them
-
-" Highlight current line, but only in active window
-augroup CursorLineOnlyInActiveWindow
-    autocmd!
-    autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    autocmd WinLeave * setlocal nocursorline
-augroup END
-
-" Vim can autodetect this based on $TERM (e.g. 'xterm-256color')
-" but it can be set to force 256 colors
-" set t_Co=256
-if has('gui_running')
-    colorscheme solarized
-    let g:lightline = {'colorscheme': 'solarized'}
-elseif &t_Co < 256
-    colorscheme default
-    set nocursorline                " looks bad in this mode
-else
-    set background=dark
-    let g:solarized_termcolors=256  " instead of 16 color with mapping in terminal
-    colorscheme solarized
-    " Customized colors
-    highlight SignColumn ctermbg=234
-    highlight StatusLine cterm=bold ctermfg=245 ctermbg=235
-    highlight StatusLineNC cterm=bold ctermfg=245 ctermbg=235
-    let g:lightline = {'colorscheme': 'dark'}
-    highlight SpellBad cterm=underline
-    " Patches
-    highlight CursorLineNr cterm=NONE
-endif
-
-" Enable file type detection
-filetype plugin indent on
-set autoindent
+" Unbind some useless/annoying default key bindings
+"---------------------------------------------------------
+" 'Q' in normal mode enters Ex mode. You almost never want this.
+nmap Q <Nop>
+" Unbind for tmux
+map <C-a> <Nop>
 
 "---------------
 " Plugin install
-" [Vim plugin manager](https://github.com/junegunn/vim-plug)
 "---------------
 
+" Auto install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
     :exe '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    au VimEnter * PlugInstall --sync | source $MYVIMRC
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin()
-" The default plugin directory will be as follows:
-"   - Vim (Linux/macOS): '~/.vim/plugged'
-"   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
-" You can specify a custom plugin directory by passing it as the argument
-"   - e.g. `call plug#begin('~/.vim/plugged')`
-"   - Avoid using standard Vim directory names like 'plugin'
-
-" Make sure you use single quotes
+call plug#begin('~/.vim/plugged')
 
 " Colorschemes
-" vim-colors-solarized need run next command
-" `mkdir -p ~/.vim/colors`
-" `mv ~/.vim/plugged/vim-colors-solarized/colors/solarized.vim ~/.vim/colors/`
-Plug 'altercation/vim-colors-solarized'
+"---------------------------------------------------------
+Plug 'joshdick/onedark.vim'
 
 " GUI enhancements
+"---------------------------------------------------------
 Plug 'scrooloose/nerdtree'          " file explorer
 Plug 'sjl/gundo.vim'                " visualize undo tree
 Plug 'kshenoy/vim-signature'        " show marks in the gutter
 Plug 'vim-airline/vim-airline'      " beautify statusline
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'       " icon for vim plugins
 
 " Fuzzy finder
+"---------------------------------------------------------
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 
 " Syntactic language support
+"---------------------------------------------------------
 Plug 'w0rp/ale'                     " linting engine
 " Plug 'gabrielelana/vim-markdown'
 
 " Tmux GUI
+"---------------------------------------------------------
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
+Plug 'christoomey/vim-tmux-navigator'
 
 " Movement
-Plug 'justinmk/vim-sneak'
+"---------------------------------------------------------
+" Plug 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 
 " Text manipulation
+"---------------------------------------------------------
 Plug 'tpope/vim-surround'
 Plug 'roxma/vim-paste-easy'         " automatically `set paste`
 Plug 'tpope/vim-commentary'         " quick (un)comment line(s)
 
 " LSP
+"---------------------------------------------------------
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'octol/vim-cpp-enhanced-highlight'
 
 " DAP
+"---------------------------------------------------------
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enable-python'}
+
+" Other
+"---------------------------------------------------------
+Plug 'liuchengxu/vim-which-key'     " which key
 
 call plug#end()
 
@@ -284,39 +276,38 @@ call plug#end()
 " Plugin configuration
 "---------------------
 
-" nerdtree https://github.com/preservim/nerdtree
+" nerdtree
 "---------------------------------------------------------
 nnoremap <leader>e :NERDTreeToggle<CR>
-nnoremap <leader>f :NERDTreeFind<CR>
 
-" gundo https://github.com/sjl/gundo.vim
+" gundo
 "---------------------------------------------------------
 nnoremap <leader>u :GundoToggle<CR>
 if has('python3')
     let g:gundo_prefer_python3 = 1
 endif
 
-" signature https://github.com/kshenoy/vim-signature
+" signature
 "---------------------------------------------------------
 " Enable confirm while delete all tags
 let g:SignaturePurgeConfirmation = 1
 
-" airline https://github.com/vim-airline/vim-airline
+" airline
 "---------------------------------------------------------
 " Set theme for airline
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'onedark'
 " Enable airline
 let g:airline#extensions#tabline#enabled = 1
 " How file paths are displayed
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-" ctrlp https://github.com/ctrlpvim/ctrlp.vim
+" ctrlp
 "---------------------------------------------------------
 " Change the default mapping and the default command to invoke CtrlP
 let g:ctrlp_map = '<C-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" fzf https://github.com/junegunn/fzf.vim
+" fzf
 "---------------------------------------------------------
 let g:fzf_layout = {'down': '~40%'}
 
@@ -324,7 +315,7 @@ nnoremap <leader>fg :Rg<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fh :History<CR>
 
-" ale https://github.com/dense-analysis/ale
+" ale
 "---------------------------------------------------------
 " Enable completion where available.
 let g:ale_enabled = 1
@@ -350,32 +341,42 @@ let g:ale_fixers = {
             \ }
 
 " Navigate between errors quickly
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap [a <Plug>(ale_previous_wrap)
+nmap ]a <Plug>(ale_next_wrap)
 
-" sneak https://github.com/justinmk/vim-sneak
+" sneak
 "---------------------------------------------------------
 " Enable label-mode to motion(just like easymotion)
-let g:sneak#label = 1
+" let g:sneak#label = 1
 
-" easymotion https://github.com/easymotion/vim-easymotion
+" easymotion
 "---------------------------------------------------------
-map <Space> <Plug>(easymotion-prefix)
+map <leader> <Plug>(easymotion-prefix)
 
-" surround https://github.com/tpope/vim-surround
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" Use 2-characters to search, just like vim-sneak
+nmap s <Plug>(easymotion-overwin-f2)
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" surround
 "---------------------------------------------------------
 " None
 
-" paste-easy https://github.com/roxma/vim-paste-easy
+" paste-easy
 "---------------------------------------------------------
 let g:paste_easy_enable = 1
 
-" vim-commentary https://github.com/tpope/vim-commentary
+" commentary
 "---------------------------------------------------------
 " C and C++ use "//" to comment, rather than "/**/"
 autocmd FileType c,cpp set commentstring=//\ %s
 
-" coc.nvim https://github.com/neoclide/coc.nvim
+" coc
 "---------------------------------------------------------
 " coc extensions
 let g:coc_global_extensions = [
@@ -487,11 +488,11 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " provide custom statusline: lightline.vim, vim-airline
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" vim-cpp-enhanced-highlight https://github.com/octol/vim-cpp-enhanced-highlight
+" cpp-enhanced-highlight
 "---------------------------------------------------------
 " None
 
-" vimspector https://github.com/puremourning/vimspector
+" vimspector
 "---------------------------------------------------------
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
@@ -506,6 +507,26 @@ function! s:generate_vimspector_conf()
     e .vimspector.json
 endfunction
 command! -nargs=0 Gvimspector :call s:generate_vimspector_conf()
+
+" which key
+"---------------------------------------------------------
+" Use leader key to trigger which key
+nnoremap <silent> <leader> :<C-u>WhichKey '<space>'<CR>
+vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<space>'<CR>
+
+" Register the description dictionary for the prefix to pop up the guide menu
+call which_key#register('<space>', "g:which_key_map")
+
+" Pop up the guide menu after no further keystrokes within `timeoutlen`
+set timeoutlen=400
+
+" Define prefix dictionary
+let g:which_key_map =  {}
+
+" =======================================================
+" Create menus not based on existing mappings:
+" =======================================================
+" None
 
 "---------------------
 " Local customizations

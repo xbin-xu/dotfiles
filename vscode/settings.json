@@ -1,10 +1,12 @@
 {
     // -- Geneal
+    //--------------------------------------------------------------------------
     "oneDarkPro.italic": false,
     "workbench.colorTheme": "One Dark Pro",
     "window.commandCenter": true,
+    "security.workspace.trust.untrustedFiles": "open",
     "files.exclude": {
-        "**/.exe": true
+        "**/*.exe": true
     },
     "files.autoGuessEncoding": true,
     "files.autoSave": "onFocusChange",
@@ -17,36 +19,47 @@
     "editor.minimap.enabled": false,
     "editor.stickyScroll.enabled": true,
     "editor.bracketPairColorization.enabled": true,
+    "editor.inlayHints.enabled": "offUnlessPressed",
     "editor.guides.bracketPairs": true,
     "editor.guides.bracketPairsHorizontal": "active",
+    "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas",
+    "editor.fontLigatures": false,
     "diffEditor.renderSideBySide": false,
+    "terminal.integrated.profiles.windows": {
+        "Git Bash": {
+            "source": "Git Bash",
+            "path": ["D:\\Software\\Scoop\\apps\\git\\current\\bin\\bash.exe"],
+            "icon": "terminal-bash"
+        }
+    },
     "terminal.integrated.defaultProfile.linux": "fish",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.enableMultiLinePasteWarning": false,
 
     // -- Markdown
+    //--------------------------------------------------------------------------
     "markdown-preview-enhanced.previewTheme": "atom-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "one-dark.css",
 
     // -- Project Manager
     //--------------------------------------------------------------------------
-    "projectManager.git.baseFolders": ["D:/Studies"],
+    "projectManager.git.baseFolders": ["d:/Workbench/"],
     "projectManager.sortList": "Recent",
 
     // -- Vim
     //--------------------------------------------------------------------------
     "editor.lineNumbers": "relative",
     "vim.easymotion": true,
-    "vim.sneak": true,
+    // "vim.sneak": true,
     "vim.surround": true,
     "vim.camelCaseMotion.enable": true,
     "vim.useSystemClipboard": true,
-    // "vim.vimrc.enable": true,
-    // "vim.vimrc.path": "$HOME/.config/vim/.vimrc",
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "$HOME/.vscodevimrc",
     "vim.useCtrlKeys": true,
     "vim.handleKeys": {
         "<C-c>": false,
-        // "<C-v>": false,
+        "<C-v>": false,
         "<C-x>": false,
         "<C-a>": false,
         "<C-f>": false,
@@ -58,51 +71,7 @@
     "vim.hlsearch": true,
     "vim.incsearch": true,
     "vim.leader": "<space>",
-    "vim.insertModeKeyBindings": [
-        {
-            "before": ["j", "k"],
-            "after": ["<esc>"]
-        }
-    ],
     "vim.normalModeKeyBindings": [
-        // ---- which key
-        {
-            "before": [";"],
-            "commands": ["whichkey.show"]
-        },
-        // ---- general
-        {
-            "before": ["L"],
-            "after": ["$"]
-        },
-        {
-            "before": ["H"],
-            "after": ["^"]
-        },
-        {
-            "before": ["<C-n>"],
-            "commands": [":nohl"]
-        },
-        {
-            "before": ["n"],
-            "after": ["n", "z", "z", "z", "v"]
-        },
-        {
-            "before": ["N"],
-            "after": ["N", "z", "z", "z", "v"]
-        },
-        // {
-        //     "before": ["J"],
-        //     "after": ["m", "z", "z", "J", "`", "z"],
-        // },
-        {
-            "before": ["<leader>", "w"],
-            "commands": [":w"]
-        },
-        {
-            "before": ["<leader>", "q"],
-            "commands": [":q!"]
-        },
         {
             "before": ["<leader>", "r", "n"],
             "commands": ["editor.action.rename"]
@@ -111,13 +80,17 @@
             "before": ["<leader>", "f"],
             "commands": ["editor.action.formatDocument"]
         },
+        // ---- which key
+        {
+            "before": [";"],
+            "commands": ["whichkey.show"]
+        },
         // ---- git
         {
             "before": ["<leader>", "j"],
             "commands": [
                 "workbench.action.editor.nextChange",
                 "workbench.action.compareEditor.nextChange"
-                // "editor.action.dirtydiff.next"
             ]
         },
         {
@@ -125,7 +98,6 @@
             "commands": [
                 "workbench.action.editor.previousChange",
                 "workbench.action.compareEditor.previousChange"
-                // "editor.action.dirtydiff.previous"
             ]
         },
         // ---- problems
@@ -173,14 +145,6 @@
         }
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": ["E"],
-            "after": ["g", "T"]
-        },
-        {
-            "before": ["R"],
-            "after": ["g", "t"]
-        },
         // undo & redo
         {
             "before": ["u"],
@@ -211,211 +175,102 @@
             "commands": ["editor.action.formatSelection"]
         }
     ],
+    // "vim.autoSwitchInputMethod.enable": true,
+    // "vim.autoSwitchInputMethod.defaultIM": "1033",
+    // "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe",
+    // "vim.autoSwitchInputMethod.switchIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe {im}",
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1
     },
 
     // -- Which Key
     //--------------------------------------------------------------------------
-    "whichkey.sortOrder": "alphabetically",
+    "whichkey.delay": 0,
+    // "whichkey.sortOrder": "alphabetically",
     "whichkey.bindings": [
         {
-            "key": "e",
-            "name": "Toggle Explorer",
+            "key": ";",
+            "name": "Commands",
             "type": "command",
-            "command": "workbench.action.toggleSidebarVisibility"
+            // "command": "workbench.action.showCommands"
+            "command": "vim.showQuickpickCmdLine"
         },
         {
-            "key": "o",
-            "name": "Toggle Outline",
+            "key": "/",
+            "name": "Comment",
             "type": "command",
-            "command": "workbench.action.toggleAuxiliaryBar"
+            "command": "editor.action.commentLine"
         },
         {
-            "key": "t",
-            "name": "Toggle Terminal",
-            "type": "command",
-            "command": "workbench.action.togglePanel"
-        },
-        {
-            "key": "f",
-            "name": "Search",
-            "type": "command",
-            "command": "workbench.view.search"
-        },
-        {
-            "key": "w",
-            "name": "New Search Editor",
-            "type": "command",
-            "command": "search.action.openEditor"
-        },
-        {
-            "key": "p",
-            "name": "Toggle Project Manager",
-            "type": "command",
-            "command": "projectManager.listProjects"
-        },
-        {
-            "key": "h",
-            "name": "Split Horizontal",
-            "type": "command",
-            "command": "workbench.action.splitEditorDown"
-        },
-        {
-            "key": "v",
-            "name": "Split Vertical",
-            "type": "command",
-            "command": "workbench.action.splitEditor"
-        },
-        {
-            "key": "m",
-            "name": "Markdown Preview To The Side",
-            "type": "command",
-            "command": "markdown-preview-enhanced.openPreviewToTheSide",
-            "when": "editorLangId == 'markdown'"
-        },
-        {
-            "key": "g",
-            "name": "Git",
+            "key": "b",
+            "name": "+Buffers/Editors",
             "type": "bindings",
             "bindings": [
                 {
-                    "key": "g",
-                    "name": "Show Source Code Manager",
+                    "key": "b",
+                    "name": "Show all buffers/editors",
                     "type": "command",
-                    "command": "workbench.view.scm"
+                    "command": "workbench.action.showAllEditors"
                 },
                 {
-                    "key": "j",
-                    "name": "Next Change",
+                    "key": "n",
+                    "name": "Next editor",
                     "type": "command",
-                    "commands": [
-                        "workbench.action.editor.nextChange",
-                        "workbench.action.compareEditor.nextChange"
-                        // "editor.action.dirtydiff.next"
-                    ]
-                },
-                {
-                    "key": "k",
-                    "name": "Previous Change",
-                    "type": "command",
-                    "commands": [
-                        "workbench.action.editor.previousChange",
-                        "workbench.action.compareEditor.previousChange"
-                        // "editor.action.dirtydiff.previous"
-                    ]
-                },
-                {
-                    "key": "c",
-                    "name": "Open Change",
-                    "type": "command",
-                    "command": "git.openChange"
-                },
-                {
-                    "key": "f",
-                    "name": "Open File",
-                    "type": "command",
-                    "command": "git.openFile"
-                },
-                {
-                    "key": "r",
-                    "name": "revert selected range",
-                    "type": "command",
-                    "command": "git.revertSelectedRanges",
-                    "when": "isInDiffEditor && !operationInProgress"
-                },
-                {
-                    "key": "s",
-                    "name": "Stage Selected Ranges",
-                    "type": "command",
-                    "command": "git.stageSelectedRanges",
-                    "when": "isInDiffEditor && !operationInProgress"
-                },
-                {
-                    "key": "S",
-                    "name": "Unstage Selected Ranges",
-                    "type": "command",
-                    "command": "git.unstageSelectedRanges",
-                    "when": "isInDiffEditor && !operationInProgress"
-                },
-                {
-                    "key": "d",
-                    "name": "Toggle Diff",
-                    "type": "command",
-                    "command": "toggle.diff.renderSideBySide"
-                }
-            ]
-        },
-        {
-            "key": "T",
-            "name": "UI toggles...",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "g",
-                    "name": "Show source control",
-                    "type": "command",
-                    "command": "workbench.view.scm"
-                },
-                {
-                    "key": "x",
-                    "name": "Show extensions",
-                    "type": "command",
-                    "command": "workbench.view.extensions"
-                },
-                {
-                    "key": "r",
-                    "name": "Show remote explorer",
-                    "type": "command",
-                    "command": "workbench.view.remote"
+                    "command": "workbench.action.nextEditor"
                 },
                 {
                     "key": "p",
-                    "name": "Show problem",
+                    "name": "Previous editor",
                     "type": "command",
-                    "command": "workbench.actions.view.problems"
-                },
-                {
-                    "key": "o",
-                    "name": "Show output",
-                    "type": "command",
-                    "command": "workbench.action.output.toggleOutput"
+                    "command": "workbench.action.previousEditor"
                 },
                 {
                     "key": "d",
-                    "name": "Show debug console",
+                    "name": "Close active editor",
                     "type": "command",
-                    "command": "workbench.debug.action.toggleRepl"
+                    "command": "workbench.action.closeActiveEditor"
                 },
                 {
                     "key": "m",
-                    "name": "minimap",
+                    "name": "Close other editors",
                     "type": "command",
-                    "command": "editor.action.toggleMinimap"
+                    "command": "workbench.action.closeOtherEditors"
                 },
                 {
-                    "key": "b",
-                    "name": "Toggle side bar visibility",
+                    "key": "u",
+                    "name": "Reopen closed editor",
                     "type": "command",
-                    "command": "workbench.action.toggleSidebarVisibility"
+                    "command": "workbench.action.reopenClosedEditor"
                 },
                 {
-                    "key": "F",
-                    "name": "Toggle full screen",
+                    "key": "h",
+                    "name": "Move editor into left group",
                     "type": "command",
-                    "command": "workbench.action.toggleFullScreen"
+                    "command": "workbench.action.moveEditorToLeftGroup"
                 },
                 {
-                    "key": "s",
-                    "name": "Select theme",
+                    "key": "j",
+                    "name": "Move editor into below group",
                     "type": "command",
-                    "command": "workbench.action.selectTheme"
+                    "command": "workbench.action.moveEditorToBelowGroup"
+                },
+                {
+                    "key": "k",
+                    "name": "Move editor into above group",
+                    "type": "command",
+                    "command": "workbench.action.moveEditorToAboveGroup"
+                },
+                {
+                    "key": "l",
+                    "name": "Move editor into right group",
+                    "type": "command",
+                    "command": "workbench.action.moveEditorToRightGroup"
                 }
             ]
         },
         {
             "key": "d",
-            "name": "Debug...",
+            "name": "+Debug",
             "type": "bindings",
             "bindings": [
                 {
@@ -423,12 +278,6 @@
                     "name": "Start debug",
                     "type": "command",
                     "command": "workbench.action.debug.start"
-                },
-                {
-                    "key": "d",
-                    "name": "Start debug",
-                    "before": ["<leader>", "d", "c"],
-                    "commands": "editor.debug.action.conditionalBreakpoint"
                 },
                 {
                     "key": "S",
@@ -479,6 +328,12 @@
                     "command": "workbench.action.debug.stepOut"
                 },
                 {
+                    "key": "j",
+                    "name": "Jump to cursor",
+                    "type": "command",
+                    "command": "debug.jumpToCursor"
+                },
+                {
                     "key": "b",
                     "name": "Toggle breakpoint",
                     "type": "command",
@@ -491,14 +346,14 @@
                     "command": "editor.debug.action.toggleInlineBreakpoint"
                 },
                 {
-                    "key": "j",
-                    "name": "Jump to cursor",
+                    "key": "C",
+                    "name": "Toggle conditional break point",
                     "type": "command",
-                    "command": "debug.jumpToCursor"
+                    "commands": "editor.debug.action.conditionalBreakpoint"
                 },
                 {
                     "key": "v",
-                    "name": "REPL",
+                    "name": "Toggle Repl",
                     "type": "command",
                     "command": "workbench.debug.action.toggleRepl"
                 },
@@ -515,6 +370,266 @@
                     "command": "editor.debug.action.selectionToWatch"
                 }
             ]
+        },
+        {
+            "key": "e",
+            "name": "Toggle Explorer",
+            "type": "command",
+            "command": "workbench.action.toggleSidebarVisibility"
+        },
+        {
+            "key": "f",
+            "name": "+Find",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "f",
+                    "name": "File",
+                    "type": "command",
+                    "command": "editor.action.startFindReplaceAction"
+                },
+                {
+                    "key": "p",
+                    "name": "Project",
+                    "type": "command",
+                    "command": "workbench.action.replaceInFiles"
+                },
+                {
+                    "key": "w",
+                    "name": "New search editor",
+                    "type": "command",
+                    "command": "search.action.openEditor"
+                }
+            ]
+        },
+        {
+            "key": "g",
+            "name": "+Git",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "g",
+                    "name": "Show source code manager",
+                    "type": "command",
+                    "command": "workbench.view.scm"
+                },
+                {
+                    "key": "f",
+                    "name": "Open file",
+                    "type": "command",
+                    "command": "git.openFile"
+                },
+                {
+                    "key": "c",
+                    "name": "Open change",
+                    "type": "command",
+                    "command": "git.openChange"
+                },
+                {
+                    "key": "d",
+                    "name": "Toggle diff side by side",
+                    "type": "command",
+                    "command": "toggle.diff.renderSideBySide"
+                },
+                {
+                    "key": "j",
+                    "name": "Next change",
+                    "type": "command",
+                    "commands": [
+                        "workbench.action.editor.nextChange",
+                        "workbench.action.compareEditor.nextChange"
+                    ]
+                },
+                {
+                    "key": "l",
+                    "name": "File Blame",
+                    "type": "command",
+                    "command": "gitlens.toggleFileBlame"
+                },
+                {
+                    "key": "k",
+                    "name": "Previous change",
+                    "type": "command",
+                    "commands": [
+                        "workbench.action.editor.previousChange",
+                        "workbench.action.compareEditor.previousChange"
+                    ]
+                },
+                {
+                    "key": "r",
+                    "name": "revert selected range",
+                    "type": "command",
+                    "command": "git.revertSelectedRanges",
+                    "when": "isInDiffEditor && !operationInProgress"
+                },
+                {
+                    "key": "R",
+                    "name": "revert change",
+                    "type": "command",
+                    "command": "git.revertChange"
+                },
+                {
+                    "key": "s",
+                    "name": "Stage selected ranges",
+                    "type": "command",
+                    "command": "git.stageSelectedRanges",
+                    "when": "isInDiffEditor && !operationInProgress"
+                },
+                {
+                    "key": "S",
+                    "name": "Stage change",
+                    "type": "command",
+                    "command": "git.stage"
+                },
+                {
+                    "key": "u",
+                    "name": "Unstage selected ranges",
+                    "type": "command",
+                    "command": "git.unstageSelectedRanges",
+                    "when": "isInDiffEditor && !operationInProgress"
+                },
+                {
+                    "key": "U",
+                    "name": "Unstage file",
+                    "type": "command",
+                    "command": "git.unstage"
+                }
+            ]
+        },
+        {
+            "key": "h",
+            "name": "Split Horizontal",
+            "type": "command",
+            "command": "workbench.action.splitEditorDown"
+        },
+        {
+            "key": "m",
+            "name": "Markdown",
+            "type": "command",
+            "command": "markdown-preview-enhanced.openPreviewToTheSide",
+            "when": "editorLangId == 'markdown'"
+        },
+        {
+            "key": "p",
+            "name": "Toggle Project Manager",
+            "type": "command",
+            "command": "projectManager.listProjects"
+        },
+        {
+            "key": "s",
+            "name": "+Show UI",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "e",
+                    "name": "Show explorer",
+                    "type": "command",
+                    "command": "workbench.view.explorer"
+                },
+                {
+                    "key": "s",
+                    "name": "Show search",
+                    "type": "command",
+                    "command": "workbench.view.search"
+                },
+                {
+                    "key": "g",
+                    "name": "Show source control",
+                    "type": "command",
+                    "command": "workbench.view.scm"
+                },
+                {
+                    "key": "x",
+                    "name": "Show extensions",
+                    "type": "command",
+                    "command": "workbench.view.extensions"
+                },
+                {
+                    "key": "r",
+                    "name": "Show remote explorer",
+                    "type": "command",
+                    "command": "workbench.view.remote"
+                },
+                {
+                    "key": "p",
+                    "name": "Show problem",
+                    "type": "command",
+                    "command": "workbench.actions.view.problems"
+                },
+                {
+                    "key": "o",
+                    "name": "Show output",
+                    "type": "command",
+                    "command": "workbench.action.output.toggleOutput"
+                },
+                {
+                    "key": "d",
+                    "name": "Show debug console",
+                    "type": "command",
+                    "command": "workbench.debug.action.toggleRepl"
+                }
+            ]
+        },
+        {
+            "key": "t",
+            "name": "+Toggle UI",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "a",
+                    "name": "Toggle activity bar",
+                    "type": "command",
+                    "command": "workbench.action.toggleActivityBarVisibility"
+                },
+                {
+                    "key": "A",
+                    "name": "Toggle auxiliary bar",
+                    "type": "command",
+                    "command": "workbench.action.toggleAuxiliaryBar"
+                },
+                {
+                    "key": "e",
+                    "name": "Toggle explorer",
+                    "type": "command",
+                    "command": "workbench.action.toggleSidebarVisibility"
+                },
+                {
+                    "key": "j",
+                    "name": "Toggle panel",
+                    "type": "command",
+                    "command": "workbench.action.togglePanel"
+                },
+                {
+                    "key": "t",
+                    "name": "Toggle terminal",
+                    "type": "command",
+                    "command": "workbench.action.togglePanel"
+                },
+                {
+                    "key": "m",
+                    "name": "Toggle minimap",
+                    "type": "command",
+                    "command": "editor.action.toggleMinimap"
+                },
+                {
+                    "key": "M",
+                    "name": "Toggle maximized panel",
+                    "type": "command",
+                    "command": "workbench.action.toggleMaximizedPanel"
+                },
+                {
+                    "key": "z",
+                    "name": "Toggle zen mode",
+                    "type": "command",
+                    "command": "workbench.action.toggleZenMode"
+                }
+            ]
+        },
+        {
+            "key": "v",
+            "name": "Split Vertical",
+            "type": "command",
+            "command": "workbench.action.splitEditor"
         }
     ],
 
@@ -569,6 +684,7 @@
     ],
 
     // -- Error Lens
+    //--------------------------------------------------------------------------
     // "errorLens.gutterIconsEnabled": true,
     "errorLens.enabledDiagnosticLevels": [
         "error",
@@ -577,9 +693,24 @@
         // "hint"
     ],
 
-    // -- C/C++
+    // -- Comment Translate
+    //--------------------------------------------------------------------------
+    "commentTranslate.hover.enabled": true,
+    "commentTranslate.hover.content": true,
+    "commentTranslate.hover.nearShow": true,
+    "commentTranslate.sourceLanguage": "auto",
+    "commentTranslate.targetLanguage": "zh-CN",
+    "commentTranslate.source": "Google",
 
-    // -- clangd
+    // -- C/C++
+    //--------------------------------------------------------------------------
+    "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
+    "C_Cpp.inlayHints.parameterNames.enabled": true,
+    "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true,
+    "C_Cpp.inlayHints.referenceOperator.enabled": true,
+
+    // -- Clangd
+    //--------------------------------------------------------------------------
     // "C_Cpp.intelliSenseEngine": "disabled",
     "clangd.detectExtensionConflicts": false,
     "clangd.path": "clangd",
@@ -597,6 +728,7 @@
     ],
 
     // -- CodeLLDB
+    //--------------------------------------------------------------------------
     "lldb.commandCompletions": true,
     "lldb.dereferencePointers": true,
     "lldb.evaluateForHovers": true,
@@ -605,18 +737,22 @@
     "lldb.verboseLogging": true,
 
     // -- CMake
+    //--------------------------------------------------------------------------
     "cmake.cmakePath": "cmake",
     "cmake.configureOnOpen": false,
     "cmake.generator": "Unix Makefiles", // Unix Makefiles or Ninja
     "cmake.buildDirectory": "${workspaceFolder}/build",
 
-    // -- Remote SSH
-    "remote.SSH.remotePlatform": {
-        "djangoserver": "linux",
-        "ubuntu_docker": "linux",
-        "ubuntu_20": "linux",
-        "aliyserver": "linux"
+    // -- ESP-IDF
+    //--------------------------------------------------------------------------
+    "idf.gitPathWin": "d:\\Software\\Espressif\\tools\\idf-git\\2.39.2\\cmd\\git.exe",
+    "idf.espIdfPathWin": "d:\\Software\\Espressif\\esp-idf",
+    "idf.pythonBinPathWin": "d:\\Software\\Espressif\\python_env\\idf5.1_py3.11_env\\Scripts\\python.exe",
+    "idf.toolsPathWin": "d:\\Software\\Espressif",
+    "idf.customExtraPaths": "d:\\Software\\Espressif\\tools\\xtensa-esp-elf-gdb\\12.1_20221002\\xtensa-esp-elf-gdb\\bin;d:\\Software\\Espressif\\tools\\riscv32-esp-elf-gdb\\12.1_20221002\\riscv32-esp-elf-gdb\\bin;d:\\Software\\Espressif\\tools\\xtensa-esp32-elf\\esp-12.2.0_20230208\\xtensa-esp32-elf\\bin;d:\\Software\\Espressif\\tools\\xtensa-esp32s2-elf\\esp-12.2.0_20230208\\xtensa-esp32s2-elf\\bin;d:\\Software\\Espressif\\tools\\xtensa-esp32s3-elf\\esp-12.2.0_20230208\\xtensa-esp32s3-elf\\bin;d:\\Software\\Espressif\\tools\\riscv32-esp-elf\\esp-12.2.0_20230208\\riscv32-esp-elf\\bin;d:\\Software\\Espressif\\tools\\esp32ulp-elf\\2.35_20220830\\esp32ulp-elf\\bin;d:\\Software\\Espressif\\tools\\cmake\\3.24.0\\bin;d:\\Software\\Espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230419\\openocd-esp32\\bin;d:\\Software\\Espressif\\tools\\ninja\\1.10.2;d:\\Software\\Espressif\\tools\\idf-exe\\1.0.3;d:\\Software\\Espressif\\tools\\ccache\\4.8\\ccache-4.8-windows-x86_64;d:\\Software\\Espressif\\tools\\dfu-util\\0.11\\dfu-util-0.11-win64;d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320",
+    "idf.customExtraVars": {
+        "OPENOCD_SCRIPTS": "d:\\Software\\Espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230419/openocd-esp32/share/openocd/scripts",
+        "IDF_CCACHE_ENABLE": "1",
+        "ESP_ROM_ELF_DIR": "d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320/"
     },
-
-    "security.workspace.trust.untrustedFiles": "open"
 }

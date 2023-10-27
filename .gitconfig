@@ -21,7 +21,7 @@
 	dhw = diff HEAD --color-words
 
 	# View history graph
-	graph = log --graph --decorate --oneline --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%aN, %ar)'
+	graph = log --graph --decorate --oneline --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%an, %ar)'
 
 	# Show verbose output about tags, branches, remotes or stashs
 	tags = tag -l
@@ -105,3 +105,7 @@
 #[url "http://github.com/"]
 #	# Use http to pull https url
 #	insteadOf = "https://github.com/"
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local
