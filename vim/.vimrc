@@ -11,7 +11,7 @@ set encoding=utf8
 
 " Font
 "---------------------------------------------------------
-" set guifont=JetBrainsMono\ Nerd\ Font\ 11
+set guifont=JetBrainsMono\ Nerd\ Font\ 11
 
 " Colorscheme
 "---------------------------------------------------------
@@ -46,6 +46,8 @@ set showmatch       " show matching braces when text indicator is over them
 set colorcolumn=80  " set the anchor line at 80 characters
 set scrolloff=5     " set cursor with at least 5 lines at the top or bottom
 set hidden          " allow having hidden buffers(not displayed in any window)
+set splitbelow      " split window to below
+set splitright      " split window to right
 
 " Disable annoying audible bell(error noises)
 set noerrorbells visualbell t_vb=
@@ -138,11 +140,44 @@ nmap <leader>w :w<CR>
 " Save read-only files
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
 
-" Traversing the buffer list
+" Toggle terminal(require Vim-v8.1)
 "---------------------------------------------------------
-nmap <leader>n  :bnext<CR>
-nmap <leader>p  :bprevious<CR>
-nmap <leader>bd :bdelete<CR>
+" default is horizontal, can use to `:vert term` open in vertical
+map <C-t> :term ++close<cr>
+tmap <C-t> <C-w>:term ++close<cr>
+
+" Split windower
+"---------------------------------------------------------
+nnoremap <leader>- :sp<CR>
+nnoremap <leader>\| :vsp<CR>
+
+" Traversing the tab/buffer list
+"---------------------------------------------------------
+nnoremap <Leader>1 1gt<CR>
+nnoremap <Leader>2 2gt<CR>
+nnoremap <Leader>3 3gt<CR>
+nnoremap <Leader>4 4gt<CR>
+nnoremap <Leader>5 5gt<CR>
+nnoremap <Leader>6 6gt<CR>
+nnoremap <Leader>7 7gt<CR>
+nnoremap <Leader>8 8gt<CR>
+nnoremap <Leader>9 9gt<CR>
+nnoremap <Leader>n :tabnew<CR>
+nnoremap <Leader>x :tabclose<CR>
+nnoremap <leader>bn :bnext<CR>
+nnoremap <leader>bp :bprevious<CR>
+nnoremap <leader>bd :bdelete<CR>
+
+" Quick copy paste into system clipboard
+"---------------------------------------------------------
+nmap <leader>y "+y
+nmap <leader>d "+d
+nmap <leader>p "+p
+nmap <leader>P "+P
+vmap <leader>y "+y
+vmap <leader>d "+d
+vmap <leader>p "+p
+vmap <leader>P "+P
 
 " Movement
 "---------------------------------------------------------
@@ -151,6 +186,9 @@ nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
+
+" highlight last inserted text
+nnoremap gV `[v`]
 
 " Line head & tail
 map H ^
@@ -164,9 +202,9 @@ nnoremap # #zzzv
 nnoremap g* g*zzzv
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
-"nnoremap J mzJ`z
-"nnoremap j jzz
-"nnoremap k kzz
+" nnoremap J mzJ`z
+" nnoremap j jzz
+" nnoremap k kzz
 
 " Replace vim's built-in visual * and # behavior
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
@@ -356,12 +394,21 @@ map <leader> <Plug>(easymotion-prefix)
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 
-" Use 2-characters to search, just like vim-sneak
-nmap s <Plug>(easymotion-overwin-f2)
+" <leader>f{char} to move to {char}
+map <leader>f <Plug>(easymotion-bd-f)
+nmap <leader>f <Plug>(easymotion-overwin-f)
+
+" vim-sneak behaviour through easymotio
+map <leader>t <Plug>(easymotion-t2)
+map <leader>s <Plug>(easymotion-f2)
+nmap <leader>t <Plug>(easymotion-overwin-t2)
+nmap <leader>s <Plug>(easymotion-overwin-f2)
 
 " JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
+map <leader>h <Plug>(easymotion-linebackward)
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
+map <leader>l <Plug>(easymotion-lineforward)
 
 " surround
 "---------------------------------------------------------
@@ -453,8 +500,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
     autocmd!
@@ -515,7 +562,7 @@ nnoremap <silent> <leader> :<C-u>WhichKey '<space>'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<space>'<CR>
 
 " Register the description dictionary for the prefix to pop up the guide menu
-call which_key#register('<space>', "g:which_key_map")
+" call which_key#register('<space>', "g:which_key_map")
 
 " Pop up the guide menu after no further keystrokes within `timeoutlen`
 set timeoutlen=400

@@ -8,7 +8,8 @@
 	helper = store
 
 [alias]
-	st = status -s
+	st = status
+	sts = status -s
 	br = branch -vv
 	di = diff                       # stage --> workspace
 	dis = diff --stat
@@ -38,8 +39,8 @@
 [core]
 	editor = vim
 
-	# Use custom `.gitignore`
-	excludesfile = ~/.gitignore
+	# Use custom `.gitignore_global`
+	excludesfile = ~/.gitignore_global
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
