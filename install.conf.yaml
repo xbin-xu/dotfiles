@@ -1,0 +1,28 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    ~/.config/fish: fish
+    ~/.fonts: fonts
+    ~/.gitconfig: git/.gitconfig
+    ~/.gitignore_global: git/.gitignore_global
+    ~/.git-commit-template.txt: git/.git-commit-template.txt
+    ~/.pip: pip
+    ~/.tmux: tmux/.tmux
+    ~/.tmux.conf: tmux/.tmux.conf
+    ~/.vim: vim/.vim
+    ~/.vimrc: vim/.vimrc
+    ~/.vscode: vscode/.vscode
+    ~/.vscodevimrc: vscode/.vscodevimrc
+
+- shell:
+  - git submodule sync --recursive
+  - git submodule update --init --recursive
+  - >
+    git clean -fdx -f
+    tmux/.tmux/plugins/
+    vim/.vim/plugged/
