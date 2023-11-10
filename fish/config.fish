@@ -9,7 +9,9 @@ set -g async_prompt_functions _pure_prompt_git
 set -x SHELL fish
 set -x TERM screen-256color
 set -x EDITOR vim
-set -x LANG en_US.UTF-8
-set -x LC_ALL en_US.UTF-8
+# set -x LANGUAGE en_US:en
+# set -x LANG en_US.UTF-8
+# set -x LC_ALL en_US.UTF-8
+
 fish_vi_key_bindings            # vi-like key bindings for fish
 # fish_default_key_bindings

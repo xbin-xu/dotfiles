@@ -19,12 +19,11 @@
     "editor.minimap.enabled": false,
     "editor.stickyScroll.enabled": true,
     "editor.bracketPairColorization.enabled": true,
-    "editor.inlayHints.enabled": "offUnlessPressed",
     "editor.guides.bracketPairs": true,
     "editor.guides.bracketPairsHorizontal": "active",
     "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas",
     "editor.fontLigatures": false,
-    "diffEditor.renderSideBySide": false,
+    "editor.inlayHints.enabled": "offUnlessPressed",
     "terminal.integrated.profiles.windows": {
         "Git Bash": {
             "source": "Git Bash",
@@ -35,6 +34,13 @@
     "terminal.integrated.defaultProfile.linux": "fish",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.enableMultiLinePasteWarning": false,
+    "[markdown]": {
+        "editor.quickSuggestions":{
+            "other": "on",
+            "comments": "off",
+            "strings": "off"
+        }
+    },
 
     // -- Markdown
     //--------------------------------------------------------------------------
@@ -59,9 +65,9 @@
     "vim.useCtrlKeys": true,
     "vim.handleKeys": {
         "<C-c>": false,
-        "<C-v>": false,
+        // "<C-v>": false,
         "<C-x>": false,
-        "<C-a>": false,
+        // "<C-a>": false,
         "<C-f>": false,
         "<C-s>": false,
         "<C-w>": false,
@@ -72,46 +78,43 @@
     "vim.incsearch": true,
     "vim.leader": "<space>",
     "vim.normalModeKeyBindings": [
-        {
-            "before": ["<leader>", "r", "n"],
-            "commands": ["editor.action.rename"]
-        },
-        {
-            "before": ["<leader>", "f"],
-            "commands": ["editor.action.formatDocument"]
-        },
         // ---- which key
         {
             "before": [";"],
             "commands": ["whichkey.show"]
         },
-        // ---- git
+        // ---- navigate buffer
         {
-            "before": ["<leader>", "j"],
-            "commands": [
-                "workbench.action.editor.nextChange",
-                "workbench.action.compareEditor.nextChange"
-            ]
+            "before": ["[", "b"],
+            "commands": ["workbench.action.previousEditor"]
         },
         {
-            "before": ["<leader>", "k"],
+            "before": ["]", "b"],
+            "commands": ["workbench.action.nextEditor"]
+        },
+        // ---- navigate git hunk/change
+        {
+            "before": ["[", "c"],
             "commands": [
                 "workbench.action.editor.previousChange",
                 "workbench.action.compareEditor.previousChange"
             ]
         },
-        // ---- problems
         {
-            "before": ["<leader>", "-"],
+            "before": ["]", "c"],
+            "commands": [
+                "workbench.action.editor.nextChange",
+                "workbench.action.compareEditor.nextChange"
+            ]
+        },
+        // ---- navigate diagnostic/problem
+        {
+            "before": ["[", "d"],
             "commands": ["editor.action.marker.prev"]
         },
         {
-            "before": ["<leader>", "="],
+            "before": ["]", "d"],
             "commands": ["editor.action.marker.next"]
-        },
-        {
-            "before": ["<leader>", "c", "a"],
-            "commands": ["editor.action.quickFix"]
         },
         // ---- code
         {
@@ -127,22 +130,17 @@
             "commands": ["references-view.showCallHierarchy"]
         },
         {
-            "before": ["<leader>", "c", "r"],
-            "commands": ["workbench.action.files.save", "workbench.action.debug.run"]
-        },
-        // ---- debug
-        {
-            "before": ["<leader>", "d", "b"],
-            "commands": ["editor.debug.action.toggleBreakpoint"]
+            "before": ["<leader>", "c", "a"],
+            "commands": ["editor.action.quickFix"]
         },
         {
-            "before": ["<leader>", "d", "c"],
-            "commands": ["editor.debug.action.conditionalBreakpoint"]
+            "before": ["<leader>", "c", "f"],
+            "commands": ["editor.action.formatDocument"]
         },
         {
-            "before": ["<leader>", "d", "r"],
-            "commands": ["workbench.action.files.save", "workbench.action.debug.start"]
-        }
+            "before": ["<leader>", "r", "n"],
+            "commands": ["editor.action.rename"]
+        },
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         // undo & redo
@@ -159,19 +157,11 @@
         {
             "before": [";"],
             "commands": ["whichkey.show"]
-        },
-        {
-            "before": [">"],
-            "commands": ["editor.action.indentLines"]
-        },
-        {
-            "before": ["<"],
-            "commands": ["editor.action.outdentLines"]
         }
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": ["<leader>", "f"],
+            "before": ["<leader>", "c", "f"],
             "commands": ["editor.action.formatSelection"]
         }
     ],
@@ -202,6 +192,62 @@
             "command": "editor.action.commentLine"
         },
         {
+            "key": "[",
+            "name": "+Prev",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "b",
+                    "name": "Prev buffer/editor",
+                    "type": "command",
+                    "command": "workbench.action.previousEditor"
+                },
+                {
+                    "key": "c",
+                    "name": "Prev git hunk/change",
+                    "type": "command",
+                    "command": [
+                        "workbench.action.editor.previousChange",
+                        "workbench.action.compareEditor.previousChange"
+                    ],
+                },
+                {
+                    "key": "d",
+                    "name": "Prev diagnostics/problem",
+                    "type": "command",
+                    "command": "editor.action.marker.prev"
+                }
+            ]
+        },
+        {
+            "key": "]",
+            "name": "+Next",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "b",
+                    "name": "Next buffer/editor",
+                    "type": "command",
+                    "command": "workbench.action.nextEditor"
+                },
+                {
+                    "key": "c",
+                    "name": "Next git hunk/change",
+                    "type": "command",
+                    "command": [
+                        "workbench.action.editor.nextChange",
+                        "workbench.action.compareEditor.nextChange"
+                    ],
+                },
+                {
+                    "key": "d",
+                    "name": "Next diagnostics/problem",
+                    "type": "command",
+                    "command": "editor.action.marker.next"
+                }
+            ]
+        },
+        {
             "key": "b",
             "name": "+Buffers/Editors",
             "type": "bindings",
@@ -213,25 +259,19 @@
                     "command": "workbench.action.showAllEditors"
                 },
                 {
-                    "key": "n",
-                    "name": "Next editor",
-                    "type": "command",
-                    "command": "workbench.action.nextEditor"
-                },
-                {
-                    "key": "p",
-                    "name": "Previous editor",
-                    "type": "command",
-                    "command": "workbench.action.previousEditor"
-                },
-                {
                     "key": "d",
                     "name": "Close active editor",
                     "type": "command",
                     "command": "workbench.action.closeActiveEditor"
                 },
                 {
-                    "key": "m",
+                    "key": "n",
+                    "name": "New editor",
+                    "type": "command",
+                    "command": "workbench.action.files.newUntitledFile"
+                },
+                {
+                    "key": "o",
                     "name": "Close other editors",
                     "type": "command",
                     "command": "workbench.action.closeOtherEditors"
@@ -242,30 +282,68 @@
                     "type": "command",
                     "command": "workbench.action.reopenClosedEditor"
                 },
-                {
-                    "key": "h",
-                    "name": "Move editor into left group",
-                    "type": "command",
-                    "command": "workbench.action.moveEditorToLeftGroup"
-                },
-                {
-                    "key": "j",
-                    "name": "Move editor into below group",
-                    "type": "command",
-                    "command": "workbench.action.moveEditorToBelowGroup"
-                },
+            ]
+        },
+        {
+            // require CMake Tools
+            "key": "c",
+            "name": "+CMake",
+            "type": "bindings",
+            "bindings": [
                 {
                     "key": "k",
-                    "name": "Move editor into above group",
+                    "name": "Select kit",
                     "type": "command",
-                    "command": "workbench.action.moveEditorToAboveGroup"
+                    "command": "cmake.selectKit"
                 },
                 {
-                    "key": "l",
-                    "name": "Move editor into right group",
+                    "key": "v",
+                    "name": "Select build type",
                     "type": "command",
-                    "command": "workbench.action.moveEditorToRightGroup"
-                }
+                    "command": "cmake.setVariant"
+                },
+                {
+                    "key": "g",
+                    "name": "CMake configure/generate",
+                    "type": "command",
+                    "command": "cmake.configure"
+                },
+                {
+                    "key": "t",
+                    "name": "Select default target",
+                    "type": "command",
+                    "command": "cmake.setDefaultTarget"
+                },
+                {
+                    "key": "b",
+                    "name": "Build",
+                    "type": "command",
+                    "command": "cmake.build"
+                },
+                {
+                    "key": "i",
+                    "name": "Install",
+                    "type": "command",
+                    "command": "cmake.install"
+                },
+                {
+                    "key": "d",
+                    "name": "Debug",
+                    "type": "command",
+                    "command": "cmake.debugTarget"
+                },
+                {
+                    "key": "r",
+                    "name": "Run target",
+                    "type": "command",
+                    "command": "cmake.launchTarget"
+                },
+                {
+                    "key": "c",
+                    "name": "Clean",
+                    "type": "command",
+                    "command": "cmake.clean"
+                },
             ]
         },
         {
@@ -275,63 +353,9 @@
             "bindings": [
                 {
                     "key": "d",
-                    "name": "Start debug",
+                    "name": "Start",
                     "type": "command",
                     "command": "workbench.action.debug.start"
-                },
-                {
-                    "key": "S",
-                    "name": "Stop debug",
-                    "type": "command",
-                    "command": "workbench.action.debug.stop"
-                },
-                {
-                    "key": "c",
-                    "name": "Continue debug",
-                    "type": "command",
-                    "command": "workbench.action.debug.continue"
-                },
-                {
-                    "key": "p",
-                    "name": "Pause debug",
-                    "type": "command",
-                    "command": "workbench.action.debug.pause"
-                },
-                {
-                    "key": "r",
-                    "name": "Run without debugging",
-                    "type": "command",
-                    "command": "workbench.action.debug.run"
-                },
-                {
-                    "key": "R",
-                    "name": "Restart debug",
-                    "type": "command",
-                    "command": "workbench.action.debug.restart"
-                },
-                {
-                    "key": "i",
-                    "name": "Step into",
-                    "type": "command",
-                    "command": "workbench.action.debug.stepInto"
-                },
-                {
-                    "key": "s",
-                    "name": "Step over",
-                    "type": "command",
-                    "command": "workbench.action.debug.stepOver"
-                },
-                {
-                    "key": "o",
-                    "name": "Step out",
-                    "type": "command",
-                    "command": "workbench.action.debug.stepOut"
-                },
-                {
-                    "key": "j",
-                    "name": "Jump to cursor",
-                    "type": "command",
-                    "command": "debug.jumpToCursor"
                 },
                 {
                     "key": "b",
@@ -346,16 +370,70 @@
                     "command": "editor.debug.action.toggleInlineBreakpoint"
                 },
                 {
+                    "key": "c",
+                    "name": "Continue debug",
+                    "type": "command",
+                    "command": "workbench.action.debug.continue"
+                },
+                {
                     "key": "C",
                     "name": "Toggle conditional break point",
                     "type": "command",
                     "commands": "editor.debug.action.conditionalBreakpoint"
                 },
                 {
-                    "key": "v",
-                    "name": "Toggle Repl",
+                    "key": "g",
+                    "name": "Jump to cursor",
+                    "type": "command",
+                    "command": "debug.jumpToCursor"
+                },
+                {
+                    "key": "i",
+                    "name": "Step into",
+                    "type": "command",
+                    "command": "workbench.action.debug.stepInto"
+                },
+                {
+                    "key": "l",
+                    "name": "Restart",
+                    "type": "command",
+                    "command": "workbench.action.debug.restart"
+                },
+                {
+                    "key": "o",
+                    "name": "Step out",
+                    "type": "command",
+                    "command": "workbench.action.debug.stepOut"
+                },
+                {
+                    "key": "O",
+                    "name": "Step over",
+                    "type": "command",
+                    "command": "workbench.action.debug.stepOver"
+                },
+                {
+                    "key": "p",
+                    "name": "Pause",
+                    "type": "command",
+                    "command": "workbench.action.debug.pause"
+                },
+                {
+                    "key": "r",
+                    "name": "Toggle repl",
                     "type": "command",
                     "command": "workbench.debug.action.toggleRepl"
+                },
+                {
+                    "key": "R",
+                    "name": "Run without debugging",
+                    "type": "command",
+                    "command": "workbench.action.debug.run"
+                },
+                {
+                    "key": "t",
+                    "name": "Terminate",
+                    "type": "command",
+                    "command": "workbench.action.debug.stop"
                 },
                 {
                     "key": "w",
@@ -383,23 +461,30 @@
             "type": "bindings",
             "bindings": [
                 {
-                    "key": "f",
-                    "name": "File",
+                    "key": "b",
+                    "name": "Buffers/Editors",
                     "type": "command",
-                    "command": "editor.action.startFindReplaceAction"
+                    "command": "workbench.action.showAllEditors"
+                },
+                {
+                    "key": "f",
+                    "name": "Files",
+                    "type": "command",
+                    "command": "workbench.action.quickOpen"
                 },
                 {
                     "key": "p",
-                    "name": "Project",
+                    "name": "Projects",
                     "type": "command",
-                    "command": "workbench.action.replaceInFiles"
+                    "command": "projectManager.listProjects"
                 },
                 {
-                    "key": "w",
-                    "name": "New search editor",
+                    "key": "r",
+                    "name": "Recent open",
                     "type": "command",
-                    "command": "search.action.openEditor"
-                }
+                    "command": "workbench.action.openRecent"
+                    // "command": "workbench.action.showAllEditorsByMostRecentlyUsed"
+                },
             ]
         },
         {
@@ -420,13 +505,13 @@
                     "command": "git.openFile"
                 },
                 {
-                    "key": "c",
-                    "name": "Open change",
+                    "key": "d",
+                    "name": "Open change(Diff this)",
                     "type": "command",
                     "command": "git.openChange"
                 },
                 {
-                    "key": "d",
+                    "key": "D",
                     "name": "Toggle diff side by side",
                     "type": "command",
                     "command": "toggle.diff.renderSideBySide"
@@ -441,12 +526,6 @@
                     ]
                 },
                 {
-                    "key": "l",
-                    "name": "File Blame",
-                    "type": "command",
-                    "command": "gitlens.toggleFileBlame"
-                },
-                {
                     "key": "k",
                     "name": "Previous change",
                     "type": "command",
@@ -456,15 +535,21 @@
                     ]
                 },
                 {
+                    "key": "l",
+                    "name": "File Blame",
+                    "type": "command",
+                    "command": "gitlens.toggleFileBlame"
+                },
+                {
                     "key": "r",
-                    "name": "revert selected range",
+                    "name": "Revert selected range",
                     "type": "command",
                     "command": "git.revertSelectedRanges",
                     "when": "isInDiffEditor && !operationInProgress"
                 },
                 {
                     "key": "R",
-                    "name": "revert change",
+                    "name": "Revert change",
                     "type": "command",
                     "command": "git.revertChange"
                 },
@@ -510,69 +595,39 @@
             "when": "editorLangId == 'markdown'"
         },
         {
-            "key": "p",
-            "name": "Toggle Project Manager",
-            "type": "command",
-            "command": "projectManager.listProjects"
-        },
-        {
             "key": "s",
-            "name": "+Show UI",
+            "name": "+Search",
             "type": "bindings",
             "bindings": [
                 {
-                    "key": "e",
-                    "name": "Show explorer",
+                    "key": "f",
+                    "name": "In current file",
                     "type": "command",
-                    "command": "workbench.view.explorer"
-                },
-                {
-                    "key": "s",
-                    "name": "Show search",
-                    "type": "command",
-                    "command": "workbench.view.search"
-                },
-                {
-                    "key": "g",
-                    "name": "Show source control",
-                    "type": "command",
-                    "command": "workbench.view.scm"
-                },
-                {
-                    "key": "x",
-                    "name": "Show extensions",
-                    "type": "command",
-                    "command": "workbench.view.extensions"
-                },
-                {
-                    "key": "r",
-                    "name": "Show remote explorer",
-                    "type": "command",
-                    "command": "workbench.view.remote"
+                    "command": "editor.action.startFindReplaceAction"
                 },
                 {
                     "key": "p",
-                    "name": "Show problem",
+                    "name": "In project",
                     "type": "command",
-                    "command": "workbench.actions.view.problems"
+                    "command": "workbench.action.replaceInFiles"
                 },
                 {
-                    "key": "o",
-                    "name": "Show output",
+                    "key": "w",
+                    "name": "New search editor",
                     "type": "command",
-                    "command": "workbench.action.output.toggleOutput"
-                },
-                {
-                    "key": "d",
-                    "name": "Show debug console",
-                    "type": "command",
-                    "command": "workbench.debug.action.toggleRepl"
+                    "command": "search.action.openEditor"
                 }
             ]
         },
         {
-            "key": "t",
-            "name": "+Toggle UI",
+            "key": "v",
+            "name": "Split Vertical",
+            "type": "command",
+            "command": "workbench.action.splitEditor"
+        },
+        {
+            "key": "u",
+            "name": "+Toggle/Show UI",
             "type": "bindings",
             "bindings": [
                 {
@@ -586,6 +641,12 @@
                     "name": "Toggle auxiliary bar",
                     "type": "command",
                     "command": "workbench.action.toggleAuxiliaryBar"
+                },
+                {
+                    "key": "c",
+                    "name": "Preview colorscheme",
+                    "type": "command",
+                    "command": "workbench.action.selectTheme"
                 },
                 {
                     "key": "e",
@@ -622,17 +683,52 @@
                     "name": "Toggle zen mode",
                     "type": "command",
                     "command": "workbench.action.toggleZenMode"
+                },
+                {
+                    "key": "s",
+                    "name": "Show search",
+                    "type": "command",
+                    "command": "workbench.view.search"
+                },
+                {
+                    "key": "g",
+                    "name": "Show source control",
+                    "type": "command",
+                    "command": "workbench.view.scm"
+                },
+                {
+                    "key": "x",
+                    "name": "Show extensions",
+                    "type": "command",
+                    "command": "workbench.view.extensions"
+                },
+                {
+                    "key": "r",
+                    "name": "Show remote explorer",
+                    "type": "command",
+                    "command": "workbench.view.remote"
+                },
+                {
+                    "key": "p",
+                    "name": "Show problem",
+                    "type": "command",
+                    "command": "workbench.actions.problems.focus"
+                },
+                {
+                    "key": "o",
+                    "name": "Show output",
+                    "type": "command",
+                    "command": "workbench.action.output.toggleOutput"
+                },
+                {
+                    "key": "d",
+                    "name": "Show debug console",
+                    "type": "command",
+                    "command": "workbench.debug.action.toggleRepl"
                 }
             ]
         },
-        {
-            "key": "v",
-            "name": "Split Vertical",
-            "type": "command",
-            "command": "workbench.action.splitEditor"
-        }
     ],
-
     // -- Better Comments
     //--------------------------------------------------------------------------
     "better-comments.tags": [
@@ -682,7 +778,6 @@
             "italic": false
         }
     ],
-
     // -- Error Lens
     //--------------------------------------------------------------------------
     // "errorLens.gutterIconsEnabled": true,
@@ -692,7 +787,6 @@
         "info"
         // "hint"
     ],
-
     // -- Comment Translate
     //--------------------------------------------------------------------------
     "commentTranslate.hover.enabled": true,
@@ -701,14 +795,12 @@
     "commentTranslate.sourceLanguage": "auto",
     "commentTranslate.targetLanguage": "zh-CN",
     "commentTranslate.source": "Google",
-
     // -- C/C++
     //--------------------------------------------------------------------------
     "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
     "C_Cpp.inlayHints.parameterNames.enabled": true,
     "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true,
     "C_Cpp.inlayHints.referenceOperator.enabled": true,
-
     // -- Clangd
     //--------------------------------------------------------------------------
     // "C_Cpp.intelliSenseEngine": "disabled",
@@ -726,7 +818,6 @@
         "--header-insertion=iwyu",
         "-j=6"
     ],
-
     // -- CodeLLDB
     //--------------------------------------------------------------------------
     "lldb.commandCompletions": true,
@@ -735,13 +826,13 @@
     "lldb.launch.expressions": "native",
     "lldb.showDisassembly": "never",
     "lldb.verboseLogging": true,
-
     // -- CMake
     //--------------------------------------------------------------------------
     "cmake.cmakePath": "cmake",
     "cmake.configureOnOpen": false,
     "cmake.generator": "Unix Makefiles", // Unix Makefiles or Ninja
     "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.options.statusBarVisibility": "visible",
 
     // -- ESP-IDF
     //--------------------------------------------------------------------------

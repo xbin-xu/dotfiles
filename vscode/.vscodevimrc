@@ -1,64 +1,109 @@
+" Leader key
+"---------------------------------------------------------
+nnoremap <space> <Nop>
+let mapleader="\<space>"
+
+" Escap
+"---------------------------------------------------------
 " Map jk to <Esc> in insert mode
 " inoremap jk <Esc>
 
-" Leader key
-"---------------------------------------------------------
-let mapleader="\<space>"
-
 " Quit & Save
 "---------------------------------------------------------
-nmap <leader>q :q!<CR>
-nmap <leader>w :w<CR>
-" Save read-only files
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>w :w<CR><Esc>
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
+inoremap <C-s> :w<CR><Esc>
+xnoremap <C-s> :w<CR><Esc>
+nnoremap <C-s> :w<CR><Esc>
+snoremap <C-s> :w<CR><Esc>
 
-" Split windower 
+" Terminal
 "---------------------------------------------------------
+" Toggle terminal, default is horizontal, use `:vert term` tp open in vertical
+noremap <C-t> :term ++close<CR>
+tnoremap <C-t> <C-w>:close<CR>
+
+" Navigate window
+tnoremap <C-h> <C-w>h
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-l> <C-w>l
+
+" Tab
+"---------------------------------------------------------
+nnoremap <leader><tab>n :tabnew<CR>
+nnoremap <leader><tab>d :tabclose<CR>
+
+" Navigate tab
+nnoremap [<tab> :tabprevious<CR>
+nnoremap ]<tab> :tabnext<CR>
+
+" Window
+"---------------------------------------------------------
+" Split window
 nnoremap <leader>- :sp<CR>
 nnoremap <leader>\| :vsp<CR>
 
-" Traversing the tab/buffer list
-"---------------------------------------------------------
-nnoremap <Leader>1 1gt<CR>
-nnoremap <Leader>2 2gt<CR>
-nnoremap <Leader>3 3gt<CR>
-nnoremap <Leader>4 4gt<CR>
-nnoremap <Leader>5 5gt<CR>
-nnoremap <Leader>6 6gt<CR>
-nnoremap <Leader>7 7gt<CR>
-nnoremap <Leader>8 8gt<CR>
-nnoremap <Leader>9 9gt<CR>
-nnoremap <Leader>n :tabnew<CR>
-nnoremap <Leader>x :tabclose<CR>
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>bd :bdelete<CR>
+" Navigate window
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-" Quick copy paste into system clipboard
+" Resize window, todo: not work
+nnoremap <C-Up> :resize +2<CR>
+nnoremap <C-Down> :resize -2<CR>
+nnoremap <C-Left> :vertial resize -2<CR>
+nnoremap <C-Right> :vertial resize +2<CR>
+
+" Buffer
 "---------------------------------------------------------
-nmap <leader>y "+y
-nmap <leader>d "+d
-nmap <leader>p "+p
-nmap <leader>P "+P
-vmap <leader>y "+y
-vmap <leader>d "+d
-vmap <leader>p "+p
-vmap <leader>P "+P
+noremap <leader>bn :enew<CR>
+noremap <leader>bd :bdelete<CR>
+
+" Navigate buffer
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+" nnoremap <S-h> :bprevious<CR>
+" nnoremap <S-l> :bnext<CR>
+
+" Clipboard
+"---------------------------------------------------------
+" Quick copy paste into system clipboard
+nnoremap <leader>y "+y
+nnoremap <leader>d "+d
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>y "+y
+vnoremap <leader>d "+d
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 " Movement
 "---------------------------------------------------------
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
-
-" highlight last inserted text
-nnoremap gV `[v`]
-
 " Line head & tail
-map H ^
-map L $
+noremap H ^
+noremap L $
+
+" Move vertically by visual line
+nnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
+
+" Move line: `<A-j>`, `<M-j>` and `^]j` are not work
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Search
+"---------------------------------------------------------
+" Turn off highlight search
+" noremap <leader>nh :noh<CR>
 
 " Focus center
 nnoremap n nzzzv
@@ -66,25 +111,66 @@ nnoremap N Nzzzv
 nnoremap * *zzzv
 nnoremap # #zzzv
 nnoremap g* g*zzzv
-nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
-" nnoremap J mzJ`z
-" nnoremap j jzz
-" nnoremap k kzz
+nnoremap <C-o> <C-o>zz
+
+" Quickfix
+"---------------------------------------------------------
+" Location list
+nnoremap <leader>xl :lopen<CR>
+
+" Quickfix list
+nnoremap <leader>xq :copen<CR>
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
+
+" Other
+"---------------------------------------------------------
+" Scroll cmd-line history
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+
+" Scroll history
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+" Highlight last inserted text
+nnoremap gV `[v`]
+
+" Enable continuous indent
+vnoremap > >gv
+vnoremap < <gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Increment / Decrement
+nnoremap <C-a> ggVG
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+" Add undo break-points
+inoremap , ,<C-g>u
+inoremap . .<C-g>u
+inoremap ; ;<C-g>u
+
+" Unbind some useless/annoying default key bindings
+"---------------------------------------------------------
+" 'Q' in normal mode enters Ex mode. You almost never want this.
+nmap Q <Nop>
 
 " Prevent bad habits(using the arrow keys for movement)
 "---------------------------------------------------------
 " nnoremap <Left>  :echoe "Use h"<CR>
-" nnoremap <Right> :echoe "Use l"<CR>
-" nnoremap <Up>    :echoe "Use k"<CR>
 " nnoremap <Down>  :echoe "Use j"<CR>
+" nnoremap <Up>    :echoe "Use k"<CR>
+" nnoremap <Right> :echoe "Use l"<CR>
 
-" inoremap <Left>  <ESC>:echoe "Use h"<CR>
-" inoremap <Right> <ESC>:echoe "Use l"<CR>
-" inoremap <Up>    <ESC>:echoe "Use k"<CR>
-" inoremap <Down>  <ESC>:echoe "Use j"<CR>
+" inoremap <Left>  <Esc>:echoe "Use h"<CR>
+" inoremap <Down>  <Esc>:echoe "Use j"<CR>
+" inoremap <Up>    <Esc>:echoe "Use k"<CR>
+" inoremap <Right> <Esc>:echoe "Use l"<CR>
 
-" vnoremap <Left>  <ESC>:echoe "Use h"<CR>
-" vnoremap <Right> <ESC>:echoe "Use l"<CR>
-" vnoremap <Up>    <ESC>:echoe "Use k"<CR>
-" vnoremap <Down>  <ESC>:echoe "Use j"<CR>
+" vnoremap <Left>  <Esc>:echoe "Use h"<CR>
+" vnoremap <Down>  <Esc>:echoe "Use j"<CR>
+" vnoremap <Up>    <Esc>:echoe "Use k"<CR>
+" vnoremap <Right> <Esc>:echoe "Use l"<CR>

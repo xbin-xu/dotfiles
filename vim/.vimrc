@@ -7,7 +7,7 @@ set shortmess+=I    " disable the default Vim startup message.
 
 " Encoding
 "---------------------------------------------------------
-set encoding=utf8
+set encoding=utf-8
 
 " Font
 "---------------------------------------------------------
@@ -25,29 +25,29 @@ syntax on           " turn on syntax highlighting
 "---------------------------------------------------------
 filetype plugin on  " load filetype's plugin file
 filetype indent on  " load filetype's indent file
-set autoindent      " set automatically indented
-
-" (Shift)Tab (de)indents code
-vnoremap <Tab> >
-vnoremap <S-Tab> <
+" set autoindent      " set automatically indented
+set smartindent     " set smart indent
 
 " UI
 "---------------------------------------------------------
 set mouse+=a        " enable mouse support
-set ttimeout        " set the timeout of the escape sequence
-set ttimeoutlen=50
+set timeoutlen=300  " timeout of keystrokes
+set updatetime=100  " set updatetime, default is 4000
 
 set number          " show line numbers
 set relativenumber  " show relative numbering
 set laststatus=2    " show the status line at the bottom
 set showcmd         " show command in bottom bar
-set wildmenu        " enhance command completion
+set wildmenu        " enhance command-line completion
+set wildmode=longest:full,full  " command-line completion mode
 set showmatch       " show matching braces when text indicator is over them
 set colorcolumn=80  " set the anchor line at 80 characters
 set scrolloff=5     " set cursor with at least 5 lines at the top or bottom
 set hidden          " allow having hidden buffers(not displayed in any window)
 set splitbelow      " split window to below
 set splitright      " split window to right
+set signcolumn=yes  " always show thw signcolumn, otherwise it would shift the text each time
+set completeopt=menu,menuone,noselect   " completion for insert mode
 
 " Disable annoying audible bell(error noises)
 set noerrorbells visualbell t_vb=
@@ -72,21 +72,18 @@ set list            " set list to see tabs and non-breakable spaces
 set listchars=tab:>-,nbsp:.
 " set listchars=tab:>-,trail:·,eol:¬,nbsp:_
 
-" Seaerch
+" Search
 "---------------------------------------------------------
 set incsearch       " search as characters are entered
 set hlsearch        " highlight matches
 set ignorecase      " ignore case in searches by default
 set smartcase       " but make it case sensitive if an uppercase is entered
-" Turn off search highlight
-" nnoremap <silent> <C-h> :nohlsearch<CR>
+" Ignore files for completion
+set wildignore+=*/.git/*,*/tmp/*
 
 " History
 "---------------------------------------------------------
-set history=200     " set the number of history
-" Scroll history
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
+set history=2000    " set the number of history
 
 " Folding
 "---------------------------------------------------------
@@ -117,82 +114,120 @@ if has("persistent_undo")
     let &undodir = target_path
 endif
 
+"-------------
+" Key bindings
+"-------------
+
 " Leader key
 "---------------------------------------------------------
 nnoremap <space> <Nop>
 let mapleader="\<space>"
 
-"-------------
-" Key bindings
-"-------------
+" Reload .vimrc
+"---------------------------------------------------------
+noremap <leader>r :source $MYVIMRC<CR>
 
+" Escap
+"---------------------------------------------------------
 " Map jk to <Esc> in insert mode
 " inoremap jk <Esc>
 
-" Reload .vimrc
-"---------------------------------------------------------
-map <leader>r :source $MYVIMRC<CR>
-
 " Quit & Save
 "---------------------------------------------------------
-nmap <leader>q :q!<CR>
-nmap <leader>w :w<CR>
-" Save read-only files
+nnoremap <leader>q :q!<CR>
+nnoremap <leader>w :w<CR><Esc>
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
+inoremap <C-s> :w<CR><Esc>
+xnoremap <C-s> :w<CR><Esc>
+nnoremap <C-s> :w<CR><Esc>
+snoremap <C-s> :w<CR><Esc>
 
-" Toggle terminal(require Vim-v8.1)
+" Terminal
 "---------------------------------------------------------
-" default is horizontal, can use to `:vert term` open in vertical
-map <C-t> :term ++close<cr>
-tmap <C-t> <C-w>:term ++close<cr>
+" Toggle terminal, default is horizontal, use `:vert term` tp open in vertical
+noremap <C-t> :term ++close<CR>
+tnoremap <C-t> <C-w>:close<CR>
 
-" Split windower
+" Navigate window
+tnoremap <C-h> <C-w>h
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-l> <C-w>l
+
+" Tab
 "---------------------------------------------------------
+nnoremap <leader><tab>n :tabnew<CR>
+nnoremap <leader><tab>d :tabclose<CR>
+
+" Navigate tab
+nnoremap [<tab> :tabprevious<CR>
+nnoremap ]<tab> :tabnext<CR>
+
+" Window
+"---------------------------------------------------------
+" Split window
 nnoremap <leader>- :sp<CR>
 nnoremap <leader>\| :vsp<CR>
 
-" Traversing the tab/buffer list
-"---------------------------------------------------------
-nnoremap <Leader>1 1gt<CR>
-nnoremap <Leader>2 2gt<CR>
-nnoremap <Leader>3 3gt<CR>
-nnoremap <Leader>4 4gt<CR>
-nnoremap <Leader>5 5gt<CR>
-nnoremap <Leader>6 6gt<CR>
-nnoremap <Leader>7 7gt<CR>
-nnoremap <Leader>8 8gt<CR>
-nnoremap <Leader>9 9gt<CR>
-nnoremap <Leader>n :tabnew<CR>
-nnoremap <Leader>x :tabclose<CR>
-nnoremap <leader>bn :bnext<CR>
-nnoremap <leader>bp :bprevious<CR>
-nnoremap <leader>bd :bdelete<CR>
+" Navigate window
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
-" Quick copy paste into system clipboard
+" Resize window, todo: not work
+nnoremap <C-Up> :resize +2<CR>
+nnoremap <C-Down> :resize -2<CR>
+nnoremap <C-Left> :vertial resize -2<CR>
+nnoremap <C-Right> :vertial resize +2<CR>
+
+" Buffer
 "---------------------------------------------------------
-nmap <leader>y "+y
-nmap <leader>d "+d
-nmap <leader>p "+p
-nmap <leader>P "+P
-vmap <leader>y "+y
-vmap <leader>d "+d
-vmap <leader>p "+p
-vmap <leader>P "+P
+noremap <leader>bn :enew<CR>
+noremap <leader>bd :bdelete<CR>
+
+" Navigate buffer
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+" nnoremap <S-h> :bprevious<CR>
+" nnoremap <S-l> :bnext<CR>
+
+" Clipboard
+"---------------------------------------------------------
+" Quick copy paste into system clipboard
+nnoremap <leader>y "+y
+nnoremap <leader>d "+d
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P
+vnoremap <leader>y "+y
+vnoremap <leader>d "+d
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 " Movement
 "---------------------------------------------------------
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-nnoremap gj j
-nnoremap gk k
-
-" highlight last inserted text
-nnoremap gV `[v`]
-
 " Line head & tail
-map H ^
-map L $
+noremap H ^
+noremap L $
+
+" Move vertically by visual line
+nnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
+
+" Move line: `<A-j>`, `<M-j>` and `^]j` are not work
+" nnoremap <A-j> :m .+1<CR>==
+" nnoremap <A-k> :m .-2<CR>==
+" inoremap <A-j> <Esc>:m .+1<CR>==gi
+" inoremap <A-k> <Esc>:m .-2<CR>==gi
+" vnoremap <A-j> :m '>+1<CR>gv=gv
+" vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" Search
+"---------------------------------------------------------
+" Turn off highlight search
+" noremap <leader>nh :noh<CR>
 
 " Focus center
 nnoremap n nzzzv
@@ -200,11 +235,8 @@ nnoremap N Nzzzv
 nnoremap * *zzzv
 nnoremap # #zzzv
 nnoremap g* g*zzzv
-nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
-" nnoremap J mzJ`z
-" nnoremap j jzz
-" nnoremap k kzz
+nnoremap <C-o> <C-o>zz
 
 " Replace vim's built-in visual * and # behavior
 xnoremap * :<C-u>call <SID>VSetSearch()<CR>/<C-R>=@/<CR><CR>
@@ -217,29 +249,62 @@ function! s:VSetSearch()
     let @s = temp
 endfunction
 
-" Prevent bad habits(using the arrow keys for movement)
+" Quickfix
 "---------------------------------------------------------
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
+" Location list
+nnoremap <leader>xl :lopen<CR>
 
-inoremap <Left>  <ESC>:echoe "Use h"<CR>
-inoremap <Right> <ESC>:echoe "Use l"<CR>
-inoremap <Up>    <ESC>:echoe "Use k"<CR>
-inoremap <Down>  <ESC>:echoe "Use j"<CR>
+" Quickfix list
+nnoremap <leader>xq :copen<CR>
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
 
-vnoremap <Left>  <ESC>:echoe "Use h"<CR>
-vnoremap <Right> <ESC>:echoe "Use l"<CR>
-vnoremap <Up>    <ESC>:echoe "Use k"<CR>
-vnoremap <Down>  <ESC>:echoe "Use j"<CR>
+" Other
+"---------------------------------------------------------
+" Scroll cmd-line history
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+
+" Highlight last inserted text
+nnoremap gV `[v`]
+
+" Enable continuous indent
+vnoremap > >gv
+vnoremap < <gv
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Increment / Decrement
+nnoremap <C-a> ggVG
+nnoremap + <C-a>
+nnoremap - <C-x>
+
+" Add undo break-points
+inoremap , ,<C-g>u
+inoremap . .<C-g>u
+inoremap ; ;<C-g>u
 
 " Unbind some useless/annoying default key bindings
 "---------------------------------------------------------
 " 'Q' in normal mode enters Ex mode. You almost never want this.
 nmap Q <Nop>
-" Unbind for tmux
-map <C-a> <Nop>
+
+" Prevent bad habits(using the arrow keys for movement)
+"---------------------------------------------------------
+nnoremap <Left>  :echoe "Use h"<CR>
+nnoremap <Down>  :echoe "Use j"<CR>
+nnoremap <Up>    :echoe "Use k"<CR>
+nnoremap <Right> :echoe "Use l"<CR>
+
+inoremap <Left>  <Esc>:echoe "Use h"<CR>
+inoremap <Down>  <Esc>:echoe "Use j"<CR>
+inoremap <Up>    <Esc>:echoe "Use k"<CR>
+inoremap <Right> <Esc>:echoe "Use l"<CR>
+
+vnoremap <Left>  <Esc>:echoe "Use h"<CR>
+vnoremap <Down>  <Esc>:echoe "Use j"<CR>
+vnoremap <Up>    <Esc>:echoe "Use k"<CR>
+vnoremap <Right> <Esc>:echoe "Use l"<CR>
 
 "---------------
 " Plugin install
@@ -260,29 +325,30 @@ Plug 'joshdick/onedark.vim'
 
 " GUI enhancements
 "---------------------------------------------------------
+Plug 'mhinz/vim-startify'           " start screen
 Plug 'scrooloose/nerdtree'          " file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'  " git status for nerdree
+Plug 'ryanoasis/vim-devicons'       " icon for vim plugins
 Plug 'sjl/gundo.vim'                " visualize undo tree
 Plug 'kshenoy/vim-signature'        " show marks in the gutter
 Plug 'vim-airline/vim-airline'      " beautify statusline
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'       " icon for vim plugins
 
 " Fuzzy finder
 "---------------------------------------------------------
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
-
-" Syntactic language support
-"---------------------------------------------------------
-Plug 'w0rp/ale'                     " linting engine
-" Plug 'gabrielelana/vim-markdown'
 
 " Tmux GUI
 "---------------------------------------------------------
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'christoomey/vim-tmux-navigator'
+
+" Git GUI
+"---------------------------------------------------------
+Plug 'tpope/vim-fugitive'           " git interface
+Plug 'airblade/vim-gitgutter'       " git gutter
 
 " Movement
 "---------------------------------------------------------
@@ -294,6 +360,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'roxma/vim-paste-easy'         " automatically `set paste`
 Plug 'tpope/vim-commentary'         " quick (un)comment line(s)
+Plug 'junegunn/vim-easy-align'      " easy align
 
 " LSP
 "---------------------------------------------------------
@@ -307,6 +374,8 @@ Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enab
 " Other
 "---------------------------------------------------------
 Plug 'liuchengxu/vim-which-key'     " which key
+" Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'romainl/vim-cool'             " auto enable/disable search highlight
 
 call plug#end()
 
@@ -316,7 +385,37 @@ call plug#end()
 
 " nerdtree
 "---------------------------------------------------------
-nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <C-e> :NERDTreeToggleVCS<CR>
+nnoremap <leader>e :NERDTreeFind<CR>
+
+" Show hidden files, but ignore .git, .idea, .history
+let NERDTreeShowHidden = 1
+let NERDTreeIgnore=['\.git$', '\.idea$', '\.history$']
+
+" Enable liine numbers
+let NERDTreeShowLineNumbers = 1
+" Make sure relative line numbers are used
+autocmd FileType nerdtree setlocal relativenumber
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endi
+
+" nerdtree-git-plugin
+"---------------------------------------------------------
+" Enable nerdfonts
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
 
 " gundo
 "---------------------------------------------------------
@@ -339,12 +438,6 @@ let g:airline#extensions#tabline#enabled = 1
 " How file paths are displayed
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-" ctrlp
-"---------------------------------------------------------
-" Change the default mapping and the default command to invoke CtrlP
-let g:ctrlp_map = '<C-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 " fzf
 "---------------------------------------------------------
 let g:fzf_layout = {'down': '~40%'}
@@ -353,34 +446,39 @@ nnoremap <leader>fg :Rg<CR>
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fh :History<CR>
 
-" ale
+" gitgutter
+" notes: can not unstage staged changes
 "---------------------------------------------------------
-" Enable completion where available.
-let g:ale_enabled = 1
+nmap [g :call GitGutterPrevHunkCycle()<CR>
+nmap ]g :call GitGutterNextHunkCycle()<CR>
+nmap <leader>gj :call GitGutterNextHunkCycle()<CR>
+nmap <leader>gk :call GitGutterPrevHunkCycle()<CR>
+nmap <leader>gs <Plug>(GitGutterStageHunk)
+nmap <leader>gu <Plug>(GitGutterUndoHunk)
+nmap <leader>gp <Plug>(GitGutterPreviewHunk)
+omap ih <Plug>(GitGutterTextObjectInnerPending)
+omap ah <Plug>(GitGutterTextObjectOuterPending)
+xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 
-" For quick startup
-" Run linters only when you save files.
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
+" Cycle through hunks in current buffer
+function! GitGutterNextHunkCycle()
+    let line = line('.')
+    silent! GitGutterNextHunk
+    if line('.') == line
+        1
+        GitGutterNextHunk
+    endif
+endfunction
 
-" Set this variable to 1 to fix files when you save them.
-let g:ale_fix_on_save = 1
-let g:ale_float_preview = 1
-
-" Configure fixers
-let g:ale_fixers = {
-            \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \ 'javascript': ['prettier'],
-            \ 'css': ['prettier'],
-            \ 'html': ['prettier'],
-            \ 'markdown': ['prettier'],
-            \ 'json': ['prettier'],
-            \ 'yaml': ['prettier'],
-            \ }
-
-" Navigate between errors quickly
-nmap [a <Plug>(ale_previous_wrap)
-nmap ]a <Plug>(ale_next_wrap)
+function! GitGutterPrevHunkCycle()
+    let line = line('.')
+    silent! GitGutterPrevHunk
+    if line('.') == line
+        normal! G
+        GitGutterPrevHunk
+    endif
+endfunction
 
 " sneak
 "---------------------------------------------------------
@@ -389,8 +487,6 @@ nmap ]a <Plug>(ale_next_wrap)
 
 " easymotion
 "---------------------------------------------------------
-map <leader> <Plug>(easymotion-prefix)
-
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 
@@ -399,9 +495,7 @@ map <leader>f <Plug>(easymotion-bd-f)
 nmap <leader>f <Plug>(easymotion-overwin-f)
 
 " vim-sneak behaviour through easymotio
-map <leader>t <Plug>(easymotion-t2)
 map <leader>s <Plug>(easymotion-f2)
-nmap <leader>t <Plug>(easymotion-overwin-t2)
 nmap <leader>s <Plug>(easymotion-overwin-f2)
 
 " JK motions: Line motions
@@ -423,6 +517,14 @@ let g:paste_easy_enable = 1
 " C and C++ use "//" to comment, rather than "/**/"
 autocmd FileType c,cpp set commentstring=//\ %s
 
+" easyalign
+"---------------------------------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 " coc
 "---------------------------------------------------------
 " coc extensions
@@ -432,13 +534,11 @@ let g:coc_global_extensions = [
             \ 'coc-highlight',
             \ 'coc-markdownlint',
             \ 'coc-sh',
+            \ 'coc-snippets',
+            \ 'coc-clangd',
             \ 'coc-cmake',
             \ 'coc-pyright',
             \ ]
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved
-set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -446,35 +546,37 @@ set signcolumn=yes
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
-            \ coc#pum#visible() ? coc#pum#next(1) :
-            \ CheckBackspace() ? "\<Tab>" :
-            \ coc#refresh()
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <C-j>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> to trigger completion
 if has('nvim')
-    inoremap <silent><expr> <c-space> coc#refresh()
+  inoremap <silent><expr> <c-space> coc#refresh()
 else
-    inoremap <silent><expr> <c-@> coc#refresh()
+  inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" Show all diagnostics
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Use `-` and `=` to navigate diagnostics
-nmap <silent> <leader>- <Plug>(coc-diagnostic-prev)
-nmap <silent> <leader>= <Plug>(coc-diagnostic-next)
-" Apply the most preferred quickfix action to fix diagnostic on the current line
-nmap <leader>ca <Plug>(coc-fix-current)
+" Use `[d` and `]d` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap <silent> [d <Plug>(coc-diagnostic-prev)
+nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -486,11 +588,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
-    if CocAction('hasProvider', 'hover')
-        call CocActionAsync('doHover')
-    else
-        call feedkeys('K', 'in')
-    endif
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
 endfunction
 
 " Highlight the symbol and its references when holding the cursor
@@ -500,26 +602,62 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cf  <Plug>(coc-format-selected)
 
 augroup mygroup
-    autocmd!
-    " Setup formatexpr specified filetype(s)
-    autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-    " Update signature help on jump placeholder
-    autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd!
+  " Setup formatexpr specified filetype(s)
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+" Applying code actions to the selected code block
+" Example: `<leader>aap` for current paragraph
+xmap <leader>ca  <Plug>(coc-codeaction-selected)
+" nmap <leader>ca  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying code actions at the cursor position
+nmap <leader>ca  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap <leader>cas  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>cqf  <Plug>(coc-fix-current)
+
+" Remap keys for applying refactor code actions
+nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+
+" Run the Code Lens action on the current line
+nmap <leader>cl  <Plug>(coc-codelens-action)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> to scroll float windows/popups
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-    nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-    nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-    inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-    inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-    vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-    vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
+
+" Use CTRL-S for selections ranges
+" Requires 'textDocument/selectionRange' support of language server
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
@@ -535,25 +673,23 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " provide custom statusline: lightline.vim, vim-airline
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" cpp-enhanced-highlight
-"---------------------------------------------------------
-" None
-
-" vimspector
-"---------------------------------------------------------
-let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-
-function! s:generate_vimspector_conf()
-    if empty(glob('.vimspector.json'))
-        if &filetype == 'c' || &filetype == 'cpp'
-            !cp ~/.vim/vimspector_config/c.json ./.vimspector.json
-        elseif &filetype == 'python'
-            !cp ~/.vim/vimspector_config/python.json ./.vimspector.json
-        endif
-    endif
-    e .vimspector.json
-endfunction
-command! -nargs=0 Gvimspector :call s:generate_vimspector_conf()
+" " Mappings for CoCList
+" " Show all diagnostics
+" nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" " Manage extensions
+" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" " Show commands
+" nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" " Find symbol of current document
+" nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" " Search workspace symbols
+" nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item
+" nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" " Do default action for previous item
+" nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" " Resume latest coc list
+" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " which key
 "---------------------------------------------------------
@@ -564,16 +700,22 @@ vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<space>'<CR>
 " Register the description dictionary for the prefix to pop up the guide menu
 " call which_key#register('<space>', "g:which_key_map")
 
-" Pop up the guide menu after no further keystrokes within `timeoutlen`
-set timeoutlen=400
-
 " Define prefix dictionary
 let g:which_key_map =  {}
 
 " =======================================================
 " Create menus not based on existing mappings:
 " =======================================================
-" None
+" let g:which_key_map.TAB = { 'name' : '+tab' }
+" let g:which_key_map.b = { 'name' : '+buffer' }
+" let g:which_key_map.c = { 'name' : '+code' }
+" let g:which_key_map.g = { 'name' : '+git' }
+" let g:which_key_map.x = { 'name' : '+diagnostics/quickfix' }
+" let g:which_key_map.x = {
+"       \ 'name' : '+diagnostics/quickfix'
+"       \ 'q' : 'open-quickfix'    ,
+"       \ 'l' : 'open-locationlist',
+"       \ }
 
 "---------------------
 " Local customizations

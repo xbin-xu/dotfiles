@@ -73,3 +73,21 @@
 [submodule "tmux/.tmux/plugins/vim-tmux-navigator"]
 	path = tmux/.tmux/plugins/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator
+[submodule "vim/.vim/plugged/vim-fugitive"]
+	path = vim/.vim/plugged/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/.vim/plugged/vim-gitgutter"]
+	path = vim/.vim/plugged/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "vim/.vim/plugged/nerdtree-git-plugin"]
+	path = vim/.vim/plugged/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin
+[submodule "vim/.vim/plugged/vim-cool"]
+	path = vim/.vim/plugged/vim-cool
+	url = https://github.com/romainl/vim-cool
+[submodule "vim/.vim/plugged/vim-easy-align"]
+	path = vim/.vim/plugged/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align
+[submodule "vim/.vim/plugged/vim-startify"]
+	path = vim/.vim/plugged/vim-startify
+	url = https://github.com/mhinz/vim-startify
