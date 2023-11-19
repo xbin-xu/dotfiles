@@ -110,3 +110,5 @@
 # Allow local customizations in the .gitconfig_local file
 [include]
 	path = ~/.gitconfig_local
+[https]
+	proxy = https://127.0.0.1:1080

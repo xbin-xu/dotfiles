@@ -1,8 +1,8 @@
 # Dotfiles
 
-> Reference: [anishathalye][anishathalye] | [JJGO][JJGO] | [mathiasbynens][mathiasbynens] | [ravenxrz][ravenxrz]
+> Reference: [anishathalye] | [JJGO] | [mathiasbynens] | [ravenxrz]
 
-Uses [Dotbot][dotbot] for installation.
+Uses [Dotbot] for installation.
 
 **Warning**: Try to backup your dotfiles first.
 

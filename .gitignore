@@ -1,1 +1,3 @@
 vim/.vim/undo
+undo
+*.un~
