@@ -14,8 +14,10 @@
     ~/.pip: pip
     ~/.tmux: tmux/.tmux
     ~/.tmux.conf: tmux/.tmux.conf
-    ~/.config/nvim: nvim
-    ~/AppData/Local/nvim: nvim
+    ~/.config/nvim: lazyvim
+    ~/AppData/Local/nvim: lazyvim
+    # ~/.config/nvim: nvim
+    # ~/AppData/Local/nvim: nvim
     ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
     ~/.vscode: vscode/.vscode
