@@ -15,6 +15,7 @@
     ~/.tmux: tmux/.tmux
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.config/nvim: nvim
+    ~/AppData/Local/nvim: nvim
     ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
     ~/.vscode: vscode/.vscode

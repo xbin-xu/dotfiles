@@ -51,10 +51,6 @@ opt.tabstop = 4      -- number of visual spaces per TAB
 opt.shiftwidth = 4   -- insert 4 spaces on a tab
 opt.softtabstop = 4  -- number of spaces in tab when editing
 
-opt.list = true      -- set list to see tabs and non-breakable spaces
-opt.listchars = 'tab:>-,nbsp:.'
--- set listchars = 'tab:>-,trail:·,eol:¬,nbsp:_'
-
 -- Search
 -----------------------------------------------------------
 opt.incsearch = true  -- search as characters are entered

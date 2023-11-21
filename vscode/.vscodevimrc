@@ -6,7 +6,7 @@ let mapleader="\<space>"
 " Escap
 "---------------------------------------------------------
 " Map jk to <Esc> in insert mode
-" inoremap jk <Esc>
+inoremap jk <Esc>
 
 " Quit & Save
 "---------------------------------------------------------
@@ -65,6 +65,8 @@ noremap <leader>bd :bdelete<CR>
 " Navigate buffer
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Tab> :bnext<CR>
 " nnoremap <S-h> :bprevious<CR>
 " nnoremap <S-l> :bnext<CR>
 
@@ -87,10 +89,14 @@ noremap H ^
 noremap L $
 
 " Move vertically by visual line
-nnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
-nnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
-xnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
-xnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
+" nnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
+" nnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
+" xnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
+" xnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
 
 " Move line: `<A-j>`, `<M-j>` and `^]j` are not work
 " nnoremap <A-j> :m .+1<CR>==

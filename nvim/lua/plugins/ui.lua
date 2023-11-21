@@ -70,7 +70,7 @@ return {
         opts = {
             options = {
                 -- numbers = 'ordinal',
-                diagnostics = 'nvim_lsp',                -- false | "nvim_lsp" | "coc",
+                diagnostics = 'nvim_lsp', -- false | "nvim_lsp" | "coc",
                 offsets = {
                     {
                         filetype = 'NvimTree',
@@ -223,8 +223,8 @@ return {
                 api.config.mappings.default_on_attach(bufnr)
 
                 -- custom mappings
-                vim.keymap.set('n', 'h',   api.node.navigate.parent_close,      opts('Close Directory'))
-                vim.keymap.set('n', 'l',   api.node.open.edit,                  opts('Open'))
+                vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
+                vim.keymap.set('n', 'l', api.node.open.edit, opts('Open'))
             end
 
             -- pass to setup along with your other options
@@ -232,7 +232,7 @@ return {
             require('nvim-tree').setup(opts)
 
             -- auto close while quit as last buffer
-            vim.api.nvim_create_autocmd({'QuitPre'}, {
+            vim.api.nvim_create_autocmd({ 'QuitPre' }, {
                 callback = function() vim.cmd('NvimTreeClose') end,
             })
         end

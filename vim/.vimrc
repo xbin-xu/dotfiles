@@ -189,6 +189,8 @@ noremap <leader>bd :bdelete<CR>
 " Navigate buffer
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <Tab> :bnext<CR>
 " nnoremap <S-h> :bprevious<CR>
 " nnoremap <S-l> :bnext<CR>
 

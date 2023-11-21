@@ -2,10 +2,9 @@ return {
     {
         'akinsho/toggleterm.nvim',
         version = '*',
-        event = 'VeryLazy',
-        -- keys = {
-        --     { '<C-t>', ':ToggleTerm<cr>', desc = 'Open terminal' }
-        -- },
+        keys = {
+            { '<C-t>', ':ToggleTerm<cr>', desc = 'Open terminal' }
+        },
         opts = {
             size = 20,
             open_mapping = [[<c-t>]],

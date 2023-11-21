@@ -82,6 +82,8 @@ map('n', '<leader>bd', '<cmd>bdelete<cr>', 'Close buffer')
 -- Navigate buffer
 map('n', '[b', '<cmd>bprevious<cr>', 'Prev buffer')
 map('n', ']b', '<cmd>bnext<cr>', 'Next buffer')
+map('n', '<S-tab>', '<cmd>bprevious<cr>', 'Prev buffer')
+map('n', '<tab>', '<cmd>bnext<cr>', 'Next buffer')
 -- map('n', '<S-h>', '<cmd>bprevious<cr>', 'Prev buffer')
 -- map('n', '<S-l>', '<cmd>bnext<cr>', 'Next buffer')
 
@@ -96,8 +98,8 @@ map({ 'n', 'v' }, '<leader>P', '"+P', 'Put the text [from register "] before the
 -- Movement
 -------------------------------------------------------------------------------
 -- Line head & tail
-map('', 'H', '^', 'Line head')
-map('', 'L', '$', 'Line tail')
+map({ 'n', 'v', 'o' }, 'H', '^', 'Line head')
+map({ 'n', 'v', 'o' }, 'L', '$', 'Line tail')
 
 -- Move vertically by visual line
 map({ 'n', 'x' }, 'j', [[v:count ? 'j' : 'gj']], '', { noremap = true, silent = true, expr = true })
@@ -168,7 +170,7 @@ map('v', '<Tab>', '>gv', 'Indent left')
 map('v', '<S-Tab>', '<gv', 'Indent right')
 
 -- Increment / Decrement
-map('n', '<C-a>', 'ggVG', 'Select All')
+map('n', '<C-a>', 'ggVG', 'Select all')
 map('n', '+', '<C-a>', 'Increase number')
 map('n', '-', '<C-x>', 'Decrease number')
 
@@ -183,5 +185,4 @@ map('n', '<leader>la', ':Lazy<cr>', 'Lazy')
 -- Unbind some useless/annoying default key bindings
 -------------------------------------------------------------------------------
 -- 'Q' in normal mode enters Ex mode. You almost never want this.
-map('n', 'Q', '<Nop>', '', { noremap = false })
 map('n', 'Q', '<Nop>', '', { noremap = false })

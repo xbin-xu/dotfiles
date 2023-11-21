@@ -46,29 +46,19 @@ return {
         }
     },
 
-    -- easymotion
+    -- flash
     {
-        'easymotion/vim-easymotion',
-        config = function()
-            vim.cmd([[
-                " Turn on case-insensitive feature
-                let g:EasyMotion_smartcase = 1
-
-                " <leader>f{char} to move to {char}
-                map <leader>f <Plug>(easymotion-bd-f)
-                nmap <leader>f <Plug>(easymotion-overwin-f)
-
-                " vim-sneak behaviour through easymotio
-                map <leader>s <Plug>(easymotion-f2)
-                nmap <leader>s <Plug>(easymotion-overwin-f2)
-
-                " JK motions: Line motions
-                map <leader>h <Plug>(easymotion-linebackward)
-                map <leader>j <Plug>(easymotion-j)
-                map <leader>k <Plug>(easymotion-k)
-                map <leader>l <Plug>(easymotion-lineforward)
-            ]])
-        end
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        cond = true,
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "S", mode = { "n", "o", "x" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+            { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+        },
+        opts = {},
     },
 
     -- move faster with unique `f`/`F` indicators for each word on the line

@@ -32,23 +32,27 @@ return {
             },
         },
     },
-    {
-        'nvimtools/none-ls.nvim',
-        optional = true,
-        opts = function(_, opts)
-            local nls = require('null-ls')
-            opts.sources = vim.list_extend(opts.sources or {}, {
-                nls.builtins.diagnostics.hadolint,
-            })
-        end,
-    },
-    {
-        'mfussenegger/nvim-lint',
-        optional = true,
-        opts = {
-            linters_by_ft = {
-                dockerfile = { 'hadolint' },
-            },
-        },
-    },
+
+    -- none-ls
+    -- {
+    --     'nvimtools/none-ls.nvim',
+    --     optional = true,
+    --     opts = function(_, opts)
+    --         local nls = require('null-ls')
+    --         opts.sources = vim.list_extend(opts.sources or {}, {
+    --             nls.builtins.diagnostics.hadolint,
+    --         })
+    --     end,
+    -- },
+
+    -- linter
+    -- {
+    --     'mfussenegger/nvim-lint',
+    --     optional = true,
+    --     opts = {
+    --         linters_by_ft = {
+    --             dockerfile = { 'hadolint' },
+    --         },
+    --     },
+    -- },
 }

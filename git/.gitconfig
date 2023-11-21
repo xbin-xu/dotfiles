@@ -10,15 +10,13 @@
 [alias]
 	st = status
 	sts = status -s
+	ci = commit
 	br = branch -vv
 	di = diff                       # stage --> workspace
-	dis = diff --stat
 	diw = diff --color-words
 	dc = diff --cached              # HEAD --> stage: `git add`
-	dcs = diff --cached --stat
 	dcw = diff --cached --color-words
 	dh = diff HEAD                  # HEAD --> worksapce
-	dhs = diff HEAD --stat
 	dhw = diff HEAD --color-words
 
 	# View history graph
@@ -110,5 +108,3 @@
 # Allow local customizations in the .gitconfig_local file
 [include]
 	path = ~/.gitconfig_local
-[https]
-	proxy = https://127.0.0.1:1080

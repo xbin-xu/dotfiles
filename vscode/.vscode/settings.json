@@ -116,36 +116,10 @@
             "before": ["]", "d"],
             "commands": ["editor.action.marker.next"]
         },
-        // ---- code
-        {
-            "before": ["<leader>", "g", "r"],
-            "commands": ["editor.action.referenceSearch.trigger"]
-        },
-        {
-            "before": ["<leader>", "g", "R"],
-            "commands": ["references-view.findReferences"]
-        },
-        {
-            "before": ["<leader>", "c", "h"],
-            "commands": ["references-view.showCallHierarchy"]
-        },
-        {
-            "before": ["<leader>", "c", "a"],
-            "commands": ["editor.action.quickFix"]
-        },
-        {
-            "before": ["<leader>", "c", "f"],
-            "commands": ["editor.action.formatDocument"]
-        },
-        {
-            "before": ["<leader>", "r", "n"],
-            "commands": ["editor.action.rename"]
-        },
     ],
     "vim.normalModeKeyBindingsNonRecursive": [
         // undo & redo
         {
-            "before": ["u"],
             "commands": ["undo"]
         },
         {
@@ -170,7 +144,7 @@
     // "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe",
     // "vim.autoSwitchInputMethod.switchIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe {im}",
     "extensions.experimental.affinity": {
-        "vscodevim.vim": 1
+        "vscodevim.vim": 1,
     },
 
     // -- Which Key
@@ -179,17 +153,31 @@
     // "whichkey.sortOrder": "alphabetically",
     "whichkey.bindings": [
         {
+            "key": " ",
+            "name": "Quick open",
+            "type": "command",
+            "command": "workbench.action.quickOpen"
+        },
+        {
             "key": ";",
             "name": "Commands",
             "type": "command",
-            // "command": "workbench.action.showCommands"
-            "command": "vim.showQuickpickCmdLine"
+            "command": "workbench.action.showCommands"
         },
         {
             "key": "/",
-            "name": "Comment",
+            "name": "Search in files",
             "type": "command",
-            "command": "editor.action.commentLine"
+            "command": "workbench.action.findInFiles"
+        },
+        {
+            "key": "*",
+            "name": "Secarch selected in project",
+            "type": "commands",
+            "commands": [
+                "editor.action.addSelectionToNextFindMatch",
+                "workbench.action.findInFiles",
+            ]
         },
         {
             "key": "[",
@@ -285,8 +273,58 @@
             ]
         },
         {
-            // require CMake Tools
             "key": "c",
+            "name": "+Code",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "a",
+                    "name": "Quick fix",
+                    "type": "command",
+                    "command": "editor.action.quickFix"
+                },
+                {
+                    "key": "f",
+                    "name": "Format",
+                    "type": "command",
+                    "command": "editor.action.formatDocument"
+                },
+                {
+                    "key": "h",
+                    "name": "Show call hierarchy",
+                    "type": "command",
+                    "command": "references-view.showCallHierarchy"
+                },
+                {
+                    "key": "p",
+                    "name": "Preview markdown",
+                    "type": "command",
+                    "command": "markdown-preview-enhanced.openPreviewToTheSide",
+                    "when": "editorLangId == 'markdown'"
+                },
+                {
+                    "key": "r",
+                    "name": "Rename",
+                    "type": "command",
+                    "command": "editor.action.rename"
+                },
+                {
+                    "key": "R",
+                    "name": "Reference",
+                    "type": "command",
+                    "command": "references-view.findReferences"
+                },
+                {
+                    "key": "s",
+                    "name": "Symbol outlien",
+                    "type": "command",
+                    // require `outline.toggleVisibility` and move it to auxiliarbar
+                    "command": "workbench.action.toggleAuxiliaryBar"
+                },
+            ]
+        },
+        {
+            "key": "C",
             "name": "+CMake",
             "type": "bindings",
             "bindings": [
@@ -457,7 +495,7 @@
         },
         {
             "key": "f",
-            "name": "+Find",
+            "name": "+Find file",
             "type": "bindings",
             "bindings": [
                 {
@@ -485,6 +523,12 @@
                     "command": "workbench.action.openRecent"
                     // "command": "workbench.action.showAllEditorsByMostRecentlyUsed"
                 },
+                {
+                    "key": "y",
+                    "name": "Copy active file path",
+                    "type": "command",
+                    "command": "workbench.action.files.copyPathOfActiveFile"
+                }
             ]
         },
         {
@@ -586,13 +630,6 @@
             "name": "Split Horizontal",
             "type": "command",
             "command": "workbench.action.splitEditorDown"
-        },
-        {
-            "key": "m",
-            "name": "Markdown",
-            "type": "command",
-            "command": "markdown-preview-enhanced.openPreviewToTheSide",
-            "when": "editorLangId == 'markdown'"
         },
         {
             "key": "s",
@@ -729,6 +766,7 @@
             ]
         },
     ],
+
     // -- Better Comments
     //--------------------------------------------------------------------------
     "better-comments.tags": [
@@ -778,6 +816,7 @@
             "italic": false
         }
     ],
+
     // -- Error Lens
     //--------------------------------------------------------------------------
     // "errorLens.gutterIconsEnabled": true,
@@ -787,6 +826,7 @@
         "info"
         // "hint"
     ],
+
     // -- Comment Translate
     //--------------------------------------------------------------------------
     "commentTranslate.hover.enabled": true,
@@ -795,12 +835,14 @@
     "commentTranslate.sourceLanguage": "auto",
     "commentTranslate.targetLanguage": "zh-CN",
     "commentTranslate.source": "Google",
+
     // -- C/C++
     //--------------------------------------------------------------------------
     "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
     "C_Cpp.inlayHints.parameterNames.enabled": true,
     "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true,
     "C_Cpp.inlayHints.referenceOperator.enabled": true,
+
     // -- Clangd
     //--------------------------------------------------------------------------
     // "C_Cpp.intelliSenseEngine": "disabled",
@@ -818,6 +860,7 @@
         "--header-insertion=iwyu",
         "-j=6"
     ],
+
     // -- CodeLLDB
     //--------------------------------------------------------------------------
     "lldb.commandCompletions": true,
@@ -826,13 +869,13 @@
     "lldb.launch.expressions": "native",
     "lldb.showDisassembly": "never",
     "lldb.verboseLogging": true,
+
     // -- CMake
     //--------------------------------------------------------------------------
     "cmake.cmakePath": "cmake",
     "cmake.configureOnOpen": false,
     "cmake.generator": "Unix Makefiles", // Unix Makefiles or Ninja
     "cmake.buildDirectory": "${workspaceFolder}/build",
-    "cmake.options.statusBarVisibility": "visible",
 
     // -- ESP-IDF
     //--------------------------------------------------------------------------
