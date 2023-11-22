@@ -52,9 +52,10 @@
     "projectManager.git.baseFolders": ["d:/Workbench/"],
     "projectManager.sortList": "Recent",
 
-    // -- Vim
+    // -- Vim or vscode-neovim
     //--------------------------------------------------------------------------
     "editor.lineNumbers": "relative",
+    // "vscode-neovim.useWSL": true,
     "vim.easymotion": true,
     // "vim.sneak": true,
     "vim.surround": true,
@@ -145,6 +146,7 @@
     // "vim.autoSwitchInputMethod.switchIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe {im}",
     "extensions.experimental.affinity": {
         "vscodevim.vim": 1,
+        // "asvetliakov.vscode-neovim": 1
     },
 
     // -- Which Key
@@ -889,4 +891,5 @@
         "IDF_CCACHE_ENABLE": "1",
         "ESP_ROM_ELF_DIR": "d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320/"
     },
+    "cmake.showOptionsMovedNotification": false,
 }

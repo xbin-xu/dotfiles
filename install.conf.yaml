@@ -3,7 +3,7 @@
       create: true
       relink: true
 
-- clean: ['~', '~/.config']
+- clean: ["~", "~/.config"]
 
 - link:
     ~/.config/fish: fish
@@ -24,9 +24,9 @@
     ~/.vscodevimrc: vscode/.vscodevimrc
 
 - shell:
-  - git submodule sync --recursive
-  - git submodule update --init --recursive
-  - >
-    git clean -fdx -f
-    tmux/.tmux/plugins/
-    vim/.vim/plugged/
+    - git submodule sync --recursive
+    - git submodule update --init --recursive
+    - >
+      git clean -fdx -f
+      tmux/.tmux/plugins/
+      vim/.vim/plugged/
