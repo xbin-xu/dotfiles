@@ -91,6 +91,3 @@
 [submodule "vim/.vim/plugged/vim-startify"]
 	path = vim/.vim/plugged/vim-startify
 	url = https://github.com/mhinz/vim-startify
-[submodule "alacritty/themes"]
-	path = alacritty/themes
-	url = https://github.com/alacritty/alacritty-theme/tree/master/themes
