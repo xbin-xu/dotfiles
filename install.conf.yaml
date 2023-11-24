@@ -6,6 +6,8 @@
 - clean: ["~", "~/.config"]
 
 - link:
+    ~/.config/alacritty: alacritty
+    ~/AppData/Roaming/alacritty: alacritty
     ~/.config/fish: fish
     ~/.fonts: fonts
     ~/.gitconfig: git/.gitconfig
