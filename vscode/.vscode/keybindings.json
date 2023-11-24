@@ -14,6 +14,29 @@
         "command": "whichkey.show",
         "when": "!inputFocus"
     },
+    {
+        "key": "backspace",
+        "command": "whichkey.undoKey",
+        "when": "whichkeyVisible"
+    },
+
+    // -- expand regin
+    //--------------------------------------------------------------------------
+    // {
+    //     "key": "v",
+    //     "command": "expand_region",
+    //     "when": "editorTextFocus && (vim.mode == 'Visual' || vim.mode == 'VisualLine)"
+    // },
+    {
+        "key": "ctrl+=",
+        "command": "expand_region",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "backspace",
+        "command": "undo_expand_region",
+        "when": "editorTextFocus && editorHasSelection"
+    },
 
     // -- file explorer
     //--------------------------------------------------------------------------
@@ -86,7 +109,6 @@
         "command": "list.expand",
         "when": "listFocus && !inputFocus"
     },
-
     // -- terminal
     //--------------------------------------------------------------------------
     {
@@ -118,7 +140,6 @@
         "command": "workbench.action.terminal.focusPrevious",
         "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
     },
-
     // -- navigation
     //--------------------------------------------------------------------------
     {

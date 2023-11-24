@@ -1,6 +1,5 @@
 " Leader key
 "---------------------------------------------------------
-nnoremap <space> <Nop>
 let mapleader="\<space>"
 
 " Escap

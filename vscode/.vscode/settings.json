@@ -24,6 +24,8 @@
     "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas",
     "editor.fontLigatures": false,
     "editor.inlayHints.enabled": "offUnlessPressed",
+    "diffEditor.renderSideBySide": false,
+    "explorer.compactFolders": false,
     "terminal.integrated.profiles.windows": {
         "Git Bash": {
             "source": "Git Bash",
@@ -56,13 +58,13 @@
     //--------------------------------------------------------------------------
     "editor.lineNumbers": "relative",
     // "vscode-neovim.useWSL": true,
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "$HOME/.vscodevimrc",
     "vim.easymotion": true,
     // "vim.sneak": true,
     "vim.surround": true,
     "vim.camelCaseMotion.enable": true,
     "vim.useSystemClipboard": true,
-    "vim.vimrc.enable": true,
-    "vim.vimrc.path": "$HOME/.vscodevimrc",
     "vim.useCtrlKeys": true,
     "vim.handleKeys": {
         "<C-c>": false,
@@ -77,9 +79,14 @@
     "vim.foldfix": true,
     "vim.hlsearch": true,
     "vim.incsearch": true,
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
+    "vim.visualstar": true,
+    "vim.timeout": 300,
     "vim.leader": "<space>",
-    "vim.normalModeKeyBindings": [
+    "vim.normalModeKeyBindingsNonRecursive": [
         // ---- which key
+        // TODO: use `<leader>` to toggle which key will cause easymotion and cameCaseMotion not work
         {
             "before": [";"],
             "commands": ["whichkey.show"]
@@ -117,10 +124,9 @@
             "before": ["]", "d"],
             "commands": ["editor.action.marker.next"]
         },
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
         // undo & redo
         {
+            "before": ["u"],
             "commands": ["undo"]
         },
         {
@@ -128,13 +134,11 @@
             "commands": ["redo"]
         }
     ],
-    "vim.visualModeKeyBindings": [
+    "vim.visualModeKeyBindingsNonRecursive": [
         {
             "before": [";"],
             "commands": ["whichkey.show"]
-        }
-    ],
-    "vim.visualModeKeyBindingsNonRecursive": [
+        },
         {
             "before": ["<leader>", "c", "f"],
             "commands": ["editor.action.formatSelection"]
@@ -179,62 +183,6 @@
             "commands": [
                 "editor.action.addSelectionToNextFindMatch",
                 "workbench.action.findInFiles",
-            ]
-        },
-        {
-            "key": "[",
-            "name": "+Prev",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "b",
-                    "name": "Prev buffer/editor",
-                    "type": "command",
-                    "command": "workbench.action.previousEditor"
-                },
-                {
-                    "key": "c",
-                    "name": "Prev git hunk/change",
-                    "type": "command",
-                    "command": [
-                        "workbench.action.editor.previousChange",
-                        "workbench.action.compareEditor.previousChange"
-                    ],
-                },
-                {
-                    "key": "d",
-                    "name": "Prev diagnostics/problem",
-                    "type": "command",
-                    "command": "editor.action.marker.prev"
-                }
-            ]
-        },
-        {
-            "key": "]",
-            "name": "+Next",
-            "type": "bindings",
-            "bindings": [
-                {
-                    "key": "b",
-                    "name": "Next buffer/editor",
-                    "type": "command",
-                    "command": "workbench.action.nextEditor"
-                },
-                {
-                    "key": "c",
-                    "name": "Next git hunk/change",
-                    "type": "command",
-                    "command": [
-                        "workbench.action.editor.nextChange",
-                        "workbench.action.compareEditor.nextChange"
-                    ],
-                },
-                {
-                    "key": "d",
-                    "name": "Next diagnostics/problem",
-                    "type": "command",
-                    "command": "editor.action.marker.next"
-                }
             ]
         },
         {
@@ -694,7 +642,7 @@
                     "command": "workbench.action.toggleSidebarVisibility"
                 },
                 {
-                    "key": "j",
+                    "key": "p",
                     "name": "Toggle panel",
                     "type": "command",
                     "command": "workbench.action.togglePanel"
@@ -703,7 +651,7 @@
                     "key": "t",
                     "name": "Toggle terminal",
                     "type": "command",
-                    "command": "workbench.action.togglePanel"
+                    "command": "workbench.action.terminal.toggleTerminal"
                 },
                 {
                     "key": "m",
@@ -748,20 +696,20 @@
                     "command": "workbench.view.remote"
                 },
                 {
-                    "key": "p",
-                    "name": "Show problem",
+                    "key": "d",
+                    "name": "Show problems/diagnostics",
                     "type": "command",
-                    "command": "workbench.actions.problems.focus"
+                    "command": "workbench.actions.view.problems"
                 },
                 {
                     "key": "o",
-                    "name": "Show output",
+                    "name": "Show outputs",
                     "type": "command",
                     "command": "workbench.action.output.toggleOutput"
                 },
                 {
                     "key": "d",
-                    "name": "Show debug console",
+                    "name": "Show console/repl",
                     "type": "command",
                     "command": "workbench.debug.action.toggleRepl"
                 }
@@ -891,5 +839,4 @@
         "IDF_CCACHE_ENABLE": "1",
         "ESP_ROM_ELF_DIR": "d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320/"
     },
-    "cmake.showOptionsMovedNotification": false,
 }
