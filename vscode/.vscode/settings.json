@@ -43,6 +43,9 @@
             "strings": "off"
         }
     },
+    "terminal.integrated.commandsToSkipShell": [
+        "-workbench.action.quickOpen"
+    ],
 
     // -- Markdown
     //--------------------------------------------------------------------------
@@ -82,13 +85,13 @@
     "vim.highlightedyank.enable": true,
     "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
     "vim.visualstar": true,
-    "vim.timeout": 300,
+    "vim.timeout": 100,
     "vim.leader": "<space>",
     "vim.normalModeKeyBindingsNonRecursive": [
         // ---- which key
         // TODO: use `<leader>` to toggle which key will cause easymotion and cameCaseMotion not work
         {
-            "before": [";"],
+            "before": [" "],
             "commands": ["whichkey.show"]
         },
         // ---- navigate buffer
@@ -100,16 +103,16 @@
             "before": ["]", "b"],
             "commands": ["workbench.action.nextEditor"]
         },
-        // ---- navigate git hunk/change
+        // ---- navigate git hunk
         {
-            "before": ["[", "c"],
+            "before": ["[", "h"],
             "commands": [
                 "workbench.action.editor.previousChange",
                 "workbench.action.compareEditor.previousChange"
             ]
         },
         {
-            "before": ["]", "c"],
+            "before": ["]", "h"],
             "commands": [
                 "workbench.action.editor.nextChange",
                 "workbench.action.compareEditor.nextChange"
@@ -136,7 +139,7 @@
     ],
     "vim.visualModeKeyBindingsNonRecursive": [
         {
-            "before": [";"],
+            "before": [" "],
             "commands": ["whichkey.show"]
         },
         {
@@ -178,11 +181,11 @@
         },
         {
             "key": "*",
-            "name": "Secarch selected in project",
+            "name": "Search selected in project",
             "type": "commands",
             "commands": [
                 "editor.action.addSelectionToNextFindMatch",
-                "workbench.action.findInFiles",
+                // "workbench.action.findInFiles",
             ]
         },
         {

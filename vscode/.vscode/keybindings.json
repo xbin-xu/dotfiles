@@ -115,18 +115,18 @@
         "key": "ctrl+t",
         "command": "workbench.action.terminal.toggleTerminal"
     },
+    // {
+    //     "key": "ctrl+n",
+    //     "command": "workbench.action.terminal.newInActiveWorkspace",
+    //     "when": "terminalFocus"
+    // },
     {
-        "key": "ctrl+n",
-        "command": "workbench.action.terminal.newInActiveWorkspace",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+z",
+        "key": "ctrl+m",
         "command": "workbench.action.toggleMaximizedPanel",
         "when": "terminalFocus"
     },
     {
-        "key": "ctrl+w",
+        "key": "ctrl+x",
         "command": "workbench.action.terminal.kill",
         "when": "terminalFocus"
     },

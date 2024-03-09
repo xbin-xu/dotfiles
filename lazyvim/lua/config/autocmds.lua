@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd({ "QuitPre" }, {
   group = augroup("quit_pre"),
   callback = function()
     vim.cmd("Neotree close")
-    vim.cmd("CMakeClose")
+    -- vim.cmd("CMakeCloseRunner")
   end,
 })
 

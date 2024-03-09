@@ -31,8 +31,8 @@ map("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
 map("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
 -- Navigate buffer
-map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+-- map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 -- Line head & tail
 map({ "n", "v", "o" }, "H", "^", { desc = "Line head" })

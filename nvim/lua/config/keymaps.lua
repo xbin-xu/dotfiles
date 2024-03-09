@@ -82,8 +82,8 @@ map('n', '<leader>bd', '<cmd>bdelete<cr>', 'Close buffer')
 -- Navigate buffer
 map('n', '[b', '<cmd>bprevious<cr>', 'Prev buffer')
 map('n', ']b', '<cmd>bnext<cr>', 'Next buffer')
-map('n', '<S-tab>', '<cmd>bprevious<cr>', 'Prev buffer')
-map('n', '<tab>', '<cmd>bnext<cr>', 'Next buffer')
+-- map('n', '<S-tab>', '<cmd>bprevious<cr>', 'Prev buffer')
+-- map('n', '<tab>', '<cmd>bnext<cr>', 'Next buffer')
 -- map('n', '<S-h>', '<cmd>bprevious<cr>', 'Prev buffer')
 -- map('n', '<S-l>', '<cmd>bnext<cr>', 'Next buffer')
 
@@ -91,7 +91,7 @@ map('n', '<tab>', '<cmd>bnext<cr>', 'Next buffer')
 -------------------------------------------------------------------------------
 -- Quick copy paste into system clipboard
 map({ 'n', 'v' }, '<leader>y', '"+y', 'Yank {motion} text [into register "]')
-map({ 'n', 'v' }, '<leader>d', '"+d', 'Delete text taht {motion} moves over [into register "]')
+map({ 'n', 'v' }, '<leader>d', '"+d', 'Delete text {motion} moves over [into register "]')
 map({ 'n', 'v' }, '<leader>p', '"+p', 'Put the text [from register "] after the cursorr')
 map({ 'n', 'v' }, '<leader>P', '"+P', 'Put the text [from register "] before the cursor')
 

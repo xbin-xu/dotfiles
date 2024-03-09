@@ -97,6 +97,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.api.nvim_create_autocmd({ "QuitPre" }, {
     group = augroup("quit_pre"),
     callback = function()
-        vim.cmd("CMakeClose")
+        -- vim.cmd("CMakeCloseRunner")
     end,
 })

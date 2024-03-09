@@ -64,8 +64,8 @@ noremap <leader>bd :bdelete<CR>
 " Navigate buffer
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-nnoremap <Tab> :bnext<CR>
+" nnoremap <S-Tab> :bprevious<CR>
+" nnoremap <Tab> :bnext<CR>
 " nnoremap <S-h> :bprevious<CR>
 " nnoremap <S-l> :bnext<CR>
 
@@ -131,6 +131,12 @@ nnoremap ]q :cnext<CR>
 
 " Other
 "---------------------------------------------------------
+" Navigate function
+nnoremap [f [[
+nnoremap [F []
+nnoremap ]f ]]
+nnoremap ]F ][
+
 " Scroll cmd-line history
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>

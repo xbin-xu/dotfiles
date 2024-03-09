@@ -32,8 +32,8 @@ return {
                 end
 
                 -- Naviation
-                map('n', ']c', gs.next_hunk, 'Next hunk')
-                map('n', '[c', gs.prev_hunk, 'Prev hunk')
+                map('n', ']h', gs.next_hunk, 'Next hunk')
+                map('n', '[h', gs.prev_hunk, 'Prev hunk')
                 map('n', '<leader>gj', gs.next_hunk, 'Next hunk')
                 map('n', '<leader>gk', gs.prev_hunk, 'Prev hunk')
 

@@ -189,8 +189,8 @@ noremap <leader>bd :bdelete<CR>
 " Navigate buffer
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
-nnoremap <Tab> :bnext<CR>
+" nnoremap <S-Tab> :bprevious<CR>
+" nnoremap <Tab> :bnext<CR>
 " nnoremap <S-h> :bprevious<CR>
 " nnoremap <S-l> :bnext<CR>
 
@@ -263,6 +263,12 @@ nnoremap ]q :cnext<CR>
 
 " Other
 "---------------------------------------------------------
+" Navigate function
+nnoremap [f [[
+nnoremap [F []
+nnoremap ]f ]]
+nnoremap ]F ][
+
 " Scroll cmd-line history
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
@@ -387,7 +393,7 @@ call plug#end()
 
 " nerdtree
 "---------------------------------------------------------
-nnoremap <C-e> :NERDTreeToggleVCS<CR>
+nnoremap <C-e> :NERDTreeToggle<CR>
 nnoremap <leader>e :NERDTreeFind<CR>
 
 " Show hidden files, but ignore .git, .idea, .history
@@ -444,20 +450,41 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 "---------------------------------------------------------
 let g:fzf_layout = {'down': '~40%'}
 
-nnoremap <leader>fg :Rg<CR>
+nnoremap <leader>, :Buffers<CR>
+nnoremap <leader>/ :Rg<CR>
+" nnoremap <leader>/ :History/<CR>
+nnoremap <leader>: :History:<CR>
+nnoremap <leader><space> :Files<CR>
+
+" find file/text/buffer/help/oldfile
 nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fh :History<CR>
+nnoremap <leader>fg :Rg<CR>
+nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>fh :Helptags<CR>
+nnoremap <leader>fr :History<CR>
+
+" git commit
+nnoremap <leader>gc :Commit<CR>
+
+" search command-history/text/help/key-map/mark/color-scheme
+nnoremap <leader>sc :History:<CR>
+nnoremap <leader>sg :Rg<CR>
+nnoremap <leader>sh :Helptags<CR>
+nnoremap <leader>sk :Maps<CR>
+nnoremap <leader>sm :Marks<CR>
+nnoremap <leader>uc :Colors<CR>
 
 " gitgutter
 " notes: can not unstage staged changes
 "---------------------------------------------------------
-nmap [g :call GitGutterPrevHunkCycle()<CR>
-nmap ]g :call GitGutterNextHunkCycle()<CR>
+nmap [h :call GitGutterPrevHunkCycle()<CR>
+nmap ]h :call GitGutterNextHunkCycle()<CR>
 nmap <leader>gj :call GitGutterNextHunkCycle()<CR>
 nmap <leader>gk :call GitGutterPrevHunkCycle()<CR>
 nmap <leader>gs <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
 nmap <leader>gp <Plug>(GitGutterPreviewHunk)
+nmap <leader>gd <Plug>(GitGutterhDiffOrig)
 omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
@@ -493,12 +520,14 @@ endfunction
 let g:EasyMotion_smartcase = 1
 
 " <leader>f{char} to move to {char}
-map <leader>f <Plug>(easymotion-bd-f)
-nmap <leader>f <Plug>(easymotion-overwin-f)
+" map <leader>f <Plug>(easymotion-bd-f)
+" nmap <leader>f <Plug>(easymotion-overwin-f)
 
 " vim-sneak behaviour through easymotio
-map <leader>s <Plug>(easymotion-f2)
-nmap <leader>s <Plug>(easymotion-overwin-f2)
+map s <Plug>(easymotion-f2)
+nmap s <Plug>(easymotion-overwin-f2)
+" map <leader>s <Plug>(easymotion-f2)
+" nmap <leader>s <Plug>(easymotion-overwin-f2)
 
 " JK motions: Line motions
 map <leader>h <Plug>(easymotion-linebackward)
@@ -628,9 +657,9 @@ nmap <leader>cas  <Plug>(coc-codeaction-source)
 nmap <leader>cqf  <Plug>(coc-fix-current)
 
 " Remap keys for applying refactor code actions
-nmap <silent> <leader>re <Plug>(coc-codeaction-refactor)
-xmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
-nmap <silent> <leader>r  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>cre <Plug>(coc-codeaction-refactor)
+xmap <silent> <leader>cr  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>cr  <Plug>(coc-codeaction-refactor-selected)
 
 " Run the Code Lens action on the current line
 nmap <leader>cl  <Plug>(coc-codelens-action)
@@ -675,17 +704,17 @@ command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.org
 " provide custom statusline: lightline.vim, vim-airline
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" " Mappings for CoCList
-" " Show all diagnostics
-" nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" " Manage extensions
-" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Mappings for CoCList
+" Show all diagnostics
+nnoremap <silent><nowait> <leader>cd  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent><nowait> <leader>ce  :<C-u>CocList extensions<cr>
 " " Show commands
 " nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" " Find symbol of current document
-" nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" " Search workspace symbols
-" nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Find symbol of current document
+nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 " " Do default action for next item
 " nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " " Do default action for previous item
@@ -700,24 +729,84 @@ nnoremap <silent> <leader> :<C-u>WhichKey '<space>'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<space>'<CR>
 
 " Register the description dictionary for the prefix to pop up the guide menu
-" call which_key#register('<space>', "g:which_key_map")
+call which_key#register('<Space>', "g:which_key_map", 'n')
+call which_key#register('<Space>', "g:which_key_map_visual", 'v')
 
 " Define prefix dictionary
 let g:which_key_map =  {}
+let g:which_key_map_visual =  {}
 
 " =======================================================
 " Create menus not based on existing mappings:
 " =======================================================
-" let g:which_key_map.TAB = { 'name' : '+tab' }
-" let g:which_key_map.b = { 'name' : '+buffer' }
-" let g:which_key_map.c = { 'name' : '+code' }
-" let g:which_key_map.g = { 'name' : '+git' }
-" let g:which_key_map.x = { 'name' : '+diagnostics/quickfix' }
-" let g:which_key_map.x = {
-"       \ 'name' : '+diagnostics/quickfix'
-"       \ 'q' : 'open-quickfix'    ,
-"       \ 'l' : 'open-locationlist',
-"       \ }
+let g:which_key_map = {
+    \ '-': 'Split pane below',
+    \ '|': 'Split pane right',
+    \ ',': 'Search buffers',
+    \ '/': 'Search grep text',
+    \ ':': 'Search command history',
+    \ 'r': 'Reload $MYVIMRC',
+    \ 'q': 'Quit',
+    \ 'w': 'Write file',
+    \ 'W': 'Write file by sudo',
+    \ 'e': 'Toggle NERDTree',
+    \ 'u': 'Toggle UndoTree',
+    \ 'y': 'Copy',
+    \ 'd': 'Cut',
+    \ 'p': 'Paste',
+    \ 'P': 'Paste prev line',
+    \ 'rn': 'Rename symbol',
+    \ 'uc': 'UI colorscheme',
+    \ }
+let g:which_key_map.b = {
+    \ 'name': '+buffer',
+    \ 'd': 'Close buffer',
+    \ 'n': 'New buffer',
+    \ }
+let g:which_key_map.c = {
+    \ 'name': '+code',
+    \ 'a': 'LSP: Code action',
+    \ 'd': 'LSP: Diagnostics',
+    \ 'e': 'LSP: Extensions',
+    \ 'f': 'LSP: Format',
+    \ 'l': 'LSP: Codelines action',
+    \ 'o': 'LSP: Symbol outline',
+    \ 's': 'LSP: Symbol outline workspace',
+    \ 'r': {
+        \ 'name': '+Refector',
+        \ },
+    \ }
+let g:which_key_map.f = {
+    \ 'name': '+file/find',
+    \ 'b': 'Buffers',
+    \ 'f': 'Files',
+    \ 'g': 'Grep text',
+    \ 'h': 'Help tags',
+    \ 'r': 'Recent files',
+    \ }
+let g:which_key_map.g = { 
+    \ 'name': '+git',
+    \ 'c': 'Commits',
+    \ 'j': 'Next hunk',
+    \ 'k': 'Prev hunk',
+    \ 's': 'Stage hunk',
+    \ 'u': 'Undo stage hunk',
+    \ 'p': 'Preview hunk',
+    \ 'd': 'Diff this',
+    \ }
+let g:which_key_map.s = {
+    \ 'name': '+search',
+    \ 'c': 'Command history',
+    \ 'g': 'Grep text',
+    \ 'h': 'Help tags',
+    \ 'k': 'Key maps',
+    \ 'm': 'Marks',
+    \ }
+let g:which_key_map.x = {
+    \ 'name': '+diagnostics/quickfix',
+    \ 'q': 'Quickfix',
+    \ 'l': 'Locationlist',
+    \ }
 
 "---------------------
 " Local customizations
