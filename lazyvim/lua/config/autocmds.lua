@@ -14,13 +14,3 @@ vim.api.nvim_create_autocmd({ "QuitPre" }, {
     -- vim.cmd("CMakeCloseRunner")
   end,
 })
-
--- commentstring
--- vim.api.nvim_create_autocmd({ "FileType" }, {
---   group = augroup("comment_string"),
---   callback = function()
---     vim.cmd([[
---       autocmd FileType c,cpp,json setlocal commentstring=//\ %s
---     ]])
---   end,
--- })

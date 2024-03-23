@@ -24,6 +24,7 @@ local kind_icons = {
     Event = '',
     Operator = '',
     TypeParameter = '󰉺',
+    Codeium = "",
 }
 
 local has_words_before = function()
@@ -122,6 +123,7 @@ return {
                     { name = 'luasnip' },
                     { name = 'buffer' },
                     { name = 'path' },
+                    { name = 'codeium' },
                 }),
                 formatting = {
                     fields = { 'kind', 'abbr', 'menu' },
@@ -142,6 +144,7 @@ return {
                             luasnip = '[Luasnip]',
                             buffer = '[File]',
                             path = '[Path]',
+                            codeium = '[Codeium]',
                         })[entry.source.name]
                         return vim_item
                     end,

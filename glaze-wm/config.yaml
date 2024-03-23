@@ -130,23 +130,23 @@ binding_modes:
 keybindings:
   # Shift focus in a given direction.
   - command: "focus left"
-    bindings: ["Alt+H", "Alt+Left"]
+    bindings: ["Alt+Shift+H", "Alt+Left"]
   - command: "focus right"
-    bindings: ["Alt+L", "Alt+Right"]
+    bindings: ["Alt+Shift+L", "Alt+Right"]
   - command: "focus up"
-    bindings: ["Alt+K", "Alt+Up"]
+    bindings: ["Alt+Shift+K", "Alt+Up"]
   - command: "focus down"
-    bindings: ["Alt+J", "Alt+Down"]
+    bindings: ["Alt+Shift+J", "Alt+Down"]
 
   # Move focused window in a given direction.
-  - command: "move left"
-    bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
-  - command: "move right"
-    bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
-  - command: "move up"
-    bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
-  - command: "move down"
-    bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
+  # - command: "move left"
+  #   bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
+  # - command: "move right"
+  #   bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
+  # - command: "move up"
+  #   bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
+  # - command: "move down"
+  #   bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
 
   # Resize focused window by a percentage or pixel amount.
   - command: "resize width -2%"
@@ -205,10 +205,10 @@ keybindings:
     binding: "Alt+Y"
 
   # Focus the next/previous workspace defined in `workspaces` config.
-  - command: "focus workspace next"
-    binding: "Alt+Tab"
-  - command: "focus workspace prev"
-    binding: "Alt+Shift+Tab"
+  # - command: "focus workspace next"
+  #   binding: "Alt+Tab"
+  # - command: "focus workspace prev"
+  #   binding: "Alt+Shift+Tab"
 
   # Change focus to a workspace defined in `workspaces` config.
   - command: "focus workspace 1"

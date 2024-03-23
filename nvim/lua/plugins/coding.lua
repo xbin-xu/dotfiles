@@ -132,4 +132,17 @@ return {
         },
         config = true,
     },
+    {
+        'Exafunction/codeium.vim',
+        event = 'BufEnter',
+        config = function()
+            -- Default Binding
+            -- <Tab> codeium#Clear()
+            -- <M-[> codeium#CycleCompletions(-1)
+            -- <M-]> codeium#CycleCompletions(1)
+            -- <C-]> codeium#Accept()
+            -- <M-Bslash> codeium#Complete()
+            vim.keymap.set('i', '<C-l>', function() return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
+        end
+    },
 }

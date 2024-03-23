@@ -14,6 +14,7 @@ map("i", "jk", "<esc>", { desc = "<Esc>" })
 
 -- Quit & Save
 map("n", "<leader>q", "<cmd>q!<cr>", { desc = "Quit" })
+-- map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Close file" })
 map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Wirte file" })
 map("n", "<leader>W", "<cmd>w !sudo tee % >/dev/null<cr>", { desc = "Write file by sudo" })
 
@@ -22,7 +23,7 @@ local lazyterm = function()
   Util.terminal(nil, { cwd = Util.root() })
 end
 map("n", "<c-/>", "<Nop>")
-map("t", "<C-/>", "<nop>")
+map("t", "<C-/>", "<Nop>")
 map("n", "<c-t>", lazyterm, { desc = "Terminal (root dir)" })
 map("t", "<C-t>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
@@ -39,10 +40,10 @@ map({ "n", "v", "o" }, "H", "^", { desc = "Line head" })
 map({ "n", "v", "o" }, "L", "$", { desc = "Line tail" })
 
 -- Quick copy paste into system clipboard
-map({ "n", "v" }, "<leader>y", '"+y', { desc = 'Yank {motion} text [into register "]' })
-map({ "n", "v" }, "<leader>d", '"+d', { desc = 'Delete text taht {motion} moves over [into register "]' })
-map({ "n", "v" }, "<leader>p", '"+p', { desc = 'Put the text [from register "] after the cursorr' })
-map({ "n", "v" }, "<leader>P", '"+P', { desc = 'Put the text [from register "] before the cursor' })
+map({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank" })
+map({ "n", "v" }, "<leader>d", '"+d', { desc = "Delete" })
+map({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste after the cursorr" })
+map({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste before the cursor" })
 
 -- better indenting
 map("v", ">", ">gv", { desc = "Indent left" })

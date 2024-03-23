@@ -135,6 +135,7 @@ noremap <leader>r :source $MYVIMRC<CR>
 " Quit & Save
 "---------------------------------------------------------
 nnoremap <leader>q :q!<CR>
+" nnoremap <leader>q :bdelete<CR>
 nnoremap <leader>w :w<CR><Esc>
 noremap <leader>W :w !sudo tee % >/dev/null<CR>
 inoremap <C-s> :w<CR><Esc>
@@ -384,6 +385,7 @@ Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enab
 Plug 'liuchengxu/vim-which-key'     " which key
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'romainl/vim-cool'             " auto enable/disable search highlight
+Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 
 call plug#end()
 
@@ -807,6 +809,16 @@ let g:which_key_map.x = {
     \ 'q': 'Quickfix',
     \ 'l': 'Locationlist',
     \ }
+
+" codeium
+"---------------------------------------------------------
+" Default Binding
+" <Tab> codeium#Clear()
+" <M-[> codeium#CycleCompletions(-1)
+" <M-]> codeium#CycleCompletions(1)
+" <C-]> codeium#Accept()
+" <M-Bslash> codeium#Complete()
+imap <script><silent><nowait><expr> <C-l> codeium#Accept()
 
 "---------------------
 " Local customizations

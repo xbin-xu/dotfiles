@@ -6,11 +6,10 @@
         "key": "ctrl+alt+v",
         "command": "toggleVim"
     },
-
     // -- which key
     //--------------------------------------------------------------------------
     {
-        "key": ";",
+        "key": " ",
         "command": "whichkey.show",
         "when": "!inputFocus"
     },
@@ -19,7 +18,6 @@
         "command": "whichkey.undoKey",
         "when": "whichkeyVisible"
     },
-
     // -- expand regin
     //--------------------------------------------------------------------------
     // {
@@ -37,7 +35,11 @@
         "command": "undo_expand_region",
         "when": "editorTextFocus && editorHasSelection"
     },
-
+    {
+        "key": "ctrl+w",
+        "command": "-expand_region",
+        "when": "editorTextFocus"
+    },
     // -- file explorer
     //--------------------------------------------------------------------------
     {
