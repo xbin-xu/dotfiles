@@ -2,9 +2,9 @@ return {
   -- Add colorscheme
   {
     "olimorris/onedarkpro.nvim",
-    -- 'joshdick/onedark.vim',
-    -- 'folke/tokyonight.nvim',
-    -- 'catppuccin/catppuccin',
+    -- "joshdick/onedark.vim",
+    -- "folke/tokyonight.nvim",
+    -- "catppuccin/catppuccin",
     -- Ensure it loads first
     priority = 1000,
   },
@@ -14,7 +14,7 @@ return {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "onedark",
-      -- colorscheme = "tokyonight-stome",
+      -- colorscheme = "tokyonight-storm",
     },
   },
 }

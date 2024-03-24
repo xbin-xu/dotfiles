@@ -91,3 +91,6 @@
 [submodule "vim/.vim/plugged/vim-startify"]
 	path = vim/.vim/plugged/vim-startify
 	url = https://github.com/mhinz/vim-startify
+[submodule "vim/.vim/plugged/codeium.vim"]
+	path = vim/.vim/plugged/codeium.vim
+	url = https://github.com/Exafunction/codeium.vim

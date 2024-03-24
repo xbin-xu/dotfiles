@@ -180,7 +180,7 @@ map("i", ".", ".<C-g>u")
 map("i", ";", ";<C-g>u")
 
 -- Lazy
-map("n", "<leader>la", ":Lazy<cr>", "Lazy")
+map("n", "<leader>l", ":Lazy<cr>", "Lazy")
 
 -- Unbind some useless/annoying default key bindings
 -------------------------------------------------------------------------------
