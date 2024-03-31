@@ -15,6 +15,19 @@ set guifont=JetBrainsMono\ Nerd\ Font\ 11
 
 " Colorscheme
 "---------------------------------------------------------
+" transparent
+" onedark.vim override: Don't set a background color when running in a terminal;
+" just use the terminal's background color
+" `gui` is the hex color code used in GUI mode/nvim true-color mode
+" `cterm` is the color code used in 256-color mode
+" `cterm16` is the color code used in 16-color mode
+if (has("autocmd") && !has("gui_running"))
+  augroup colorset
+    autocmd!
+    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+  augroup END
+endif
 colorscheme onedark
 
 " Syntax
@@ -59,6 +72,13 @@ augroup CursorLineOnlyInActiveWindow
     autocmd!
     autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
     autocmd WinLeave * setlocal nocursorline
+augroup END
+
+" Disable 'o' and 'O' toogle continue comment, but '<cr>' will
+augroup ContinueComment
+    autocmd!
+    autocmd FileType * setlocal formatoptions-=o
+    autocmd FileType * setlocal formatoptions+=r
 augroup END
 
 " Spaces & Tabs
@@ -147,7 +167,7 @@ snoremap <C-s> :w<CR><Esc>
 "---------------------------------------------------------
 " Toggle terminal, default is horizontal, use `:vert term` tp open in vertical
 noremap <C-t> :term ++close<CR>
-tnoremap <C-t> <C-w>:close<CR>
+tnoremap <C-t> <C-w>:q!<CR>
 
 " Navigate window
 tnoremap <C-h> <C-w>h
@@ -219,13 +239,14 @@ nnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
 xnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
 xnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
 
-" Move line: `<A-j>`, `<M-j>` and `^]j` are not work
-" nnoremap <A-j> :m .+1<CR>==
-" nnoremap <A-k> :m .-2<CR>==
-" inoremap <A-j> <Esc>:m .+1<CR>==gi
-" inoremap <A-k> <Esc>:m .-2<CR>==gi
-" vnoremap <A-j> :m '>+1<CR>gv=gv
-" vnoremap <A-k> :m '<-2<CR>gv=gv
+" Move line: `<A-j>` and `<M-j>` are not work
+" solve: press <C-v>, then press <Alt-j>
+nnoremap j :m .+1<CR>==
+nnoremap k :m .-2<CR>==
+inoremap j <Esc>:m .+1<CR>==gi
+inoremap k <Esc>:m .-2<CR>==gi
+vnoremap j :m '>+1<CR>gv=gv
+vnoremap k :m '<-2<CR>gv=gv
 
 " Search
 "---------------------------------------------------------
@@ -370,6 +391,14 @@ Plug 'tpope/vim-surround'
 Plug 'roxma/vim-paste-easy'         " automatically `set paste`
 Plug 'tpope/vim-commentary'         " quick (un)comment line(s)
 Plug 'junegunn/vim-easy-align'      " easy align
+Plug 'voldikss/vim-translator'      " translate
+
+" Markdown
+"---------------------------------------------------------
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+Plug 'mzlogin/vim-markdown-toc'
 
 " LSP
 "---------------------------------------------------------
@@ -395,8 +424,10 @@ call plug#end()
 
 " nerdtree
 "---------------------------------------------------------
-nnoremap <C-e> :NERDTreeToggle<CR>
-nnoremap <leader>e :NERDTreeFind<CR>
+" nnoremap <C-e> :NERDTreeToggle<CR>
+" nnoremap <leader>e :NERDTreeFind<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>E :NERDTreeFind<CR>
 
 " Show hidden files, but ignore .git, .idea, .history
 let NERDTreeShowHidden = 1
@@ -458,17 +489,17 @@ nnoremap <leader>/ :Rg<CR>
 nnoremap <leader>: :History:<CR>
 nnoremap <leader><space> :Files<CR>
 
-" find file/text/buffer/help/oldfile
+" Find file/text/buffer/help/oldfile
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :Rg<CR>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>fh :Helptags<CR>
 nnoremap <leader>fr :History<CR>
 
-" git commit
+" Git commit
 nnoremap <leader>gc :Commit<CR>
 
-" search command-history/text/help/key-map/mark/color-scheme
+" Search command-history/text/help/key-map/mark/color-scheme
 nnoremap <leader>sc :History:<CR>
 nnoremap <leader>sg :Rg<CR>
 nnoremap <leader>sh :Helptags<CR>
@@ -550,13 +581,59 @@ let g:paste_easy_enable = 1
 " C and C++ use "//" to comment, rather than "/**/"
 autocmd FileType c,cpp set commentstring=//\ %s
 
-" easyalign
+" easy align
 "---------------------------------------------------------
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" translator
+"---------------------------------------------------------
+let g:translator_target_lang='zh'
+" Available: 'bing', 'google', 'haici', 'sdcv', 'trans', 'youdao'
+let g:translator_default_engines=['bing', 'google', 'haici', 'youdao']
+" Available: 'popup'(use floatwin in nvim or popup in vim), 'preview'
+let g:translator_window_type='popup'
+
+" Echo translation in the cmdline
+nmap <silent> <leader>tt <Plug>Translate
+vmap <silent> <leader>tt <Plug>TranslateV
+" Display translation in a window
+nmap <silent> <leader>tw <Plug>TranslateW
+vmap <silent> <leader>tw <Plug>TranslateWV
+" Replace the text with translation
+nmap <silent> <leader>tr <Plug>TranslateR
+vmap <silent> <leader>tr <Plug>TranslateRV
+" Translate the text in clipboard
+nmap <silent> <leader>tx <Plug>TranslateX
+
+
+" vim-markdown
+"---------------------------------------------------------
+" Disable the folding configuration
+let g:vim_markdown_folding_disabled = 1
+" Disable conceal regardless of conceallevel setting
+let g:vim_markdown_conceal = 0
+" Disable math conceal with LaTeX math syntax enabled
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+
+" markdown-preview.nvim
+"---------------------------------------------------------
+" specify browser to open preview page
+let g:mkdp_browser = ''
+" use a custom location for images
+let g:mkdp_images_path = '$HOME/.markdown_images'
+" set default theme (dark or light)
+let g:mkdp_theme = 'dark'
+nnoremap <leader>cp <Plug>MarkdownPreviewToggle
+
+"---------------------------------------------------------
+" vim-markdown-toc
+ 
+"---------------------------------------------------------
 
 " coc
 "---------------------------------------------------------
@@ -773,6 +850,7 @@ let g:which_key_map.c = {
     \ 'f': 'LSP: Format',
     \ 'l': 'LSP: Codelines action',
     \ 'o': 'LSP: Symbol outline',
+    \ 'p': 'Toggle markdown preview',
     \ 's': 'LSP: Symbol outline workspace',
     \ 'r': {
         \ 'name': '+Refector',
@@ -803,6 +881,13 @@ let g:which_key_map.s = {
     \ 'h': 'Help tags',
     \ 'k': 'Key maps',
     \ 'm': 'Marks',
+    \ }
+let g:which_key_map.t = {
+    \ 'name': '+translate',
+    \ 't': 'Translate in the cmdline',
+    \ 'w': 'Translate in a window',
+    \ 'r': 'Replace the text with translator',
+    \ 'x': 'Translate the text in clipboard',
     \ }
 let g:which_key_map.x = {
     \ 'name': '+diagnostics/quickfix',

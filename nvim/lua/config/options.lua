@@ -12,7 +12,7 @@ opt.guifont = 'JetBrainsMono Nerd Font 11'
 -- UI
 -----------------------------------------------------------
 opt.mouse:append('a')                -- enable mouse support
-opt.timeoutlen = 300                 -- set the timeout of the escape sequence
+opt.timeoutlen = 200                 -- set the timeout of the escape sequence
 opt.updatetime = 200                 -- set the updatetime, default is 4000ms
 
 opt.number = true                    -- show line numbers
@@ -29,20 +29,9 @@ opt.splitright = true                -- split window to right
 opt.termguicolors = true             -- enable true color
 opt.signcolumn = 'yes'               -- always show the signcolumn, otherwise it would shift the text each time
 opt.completeopt = 'menuone,noselect' -- completion for insert mode
+opt.colorcolumn = '80'               -- set the anchor line at 80 characters
 opt.undofile = true
 opt.undolevels = 10000
-
--- Set the anchor line at 80 characters
--- vim.cmd([[ set colorcolumn=80 ]])
-
--- Highlight current line, but only in active window
-vim.cmd([[
-    augroup CursorLineOnlyInActiveWindow
-        autocmd!
-        autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-        autocmd WinLeave * setlocal nocursorline
-    augroup END
-]])
 
 -- Spaces & Tabs
 -----------------------------------------------------------

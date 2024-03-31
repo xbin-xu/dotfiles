@@ -94,3 +94,18 @@
 [submodule "vim/.vim/plugged/codeium.vim"]
 	path = vim/.vim/plugged/codeium.vim
 	url = https://github.com/Exafunction/codeium.vim
+[submodule "vim/.vim/plugged/vim-translator"]
+	path = vim/.vim/plugged/vim-translator
+	url = https://github.com/voldikss/vim-translator
+[submodule "vim/.vim/plugged/markdown-preview.nvim"]
+	path = vim/.vim/plugged/markdown-preview.nvim
+	url = https://github.com/iamcco/markdown-preview.nvim
+[submodule "vim/.vim/plugged/tabular"]
+	path = vim/.vim/plugged/tabular
+	url = https://github.com/godlygeek/tabular
+[submodule "vim/.vim/plugged/vim-markdown"]
+	path = vim/.vim/plugged/vim-markdown
+	url = https://github.com/preservim/vim-markdown
+[submodule "vim/.vim/plugged/vim-markdown-toc"]
+	path = vim/.vim/plugged/vim-markdown-toc
+	url = https://github.com/mzlogin/vim-markdown-toc

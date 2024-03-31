@@ -1,0 +1,4 @@
+# Keep connect alive for 1 minute
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 3

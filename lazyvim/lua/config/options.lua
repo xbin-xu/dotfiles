@@ -5,8 +5,11 @@
 local opt = vim.opt
 
 -- Timeout
-opt.timeoutlen = 300                 -- set the timeout of the escape sequence
-opt.updatetime = 200                 -- set the updatetime, default is 4000ms
+opt.timeoutlen = 200 -- set the timeout of the escape sequence
+opt.updatetime = 200 -- set the updatetime, default is 4000ms
+
+-- Set the anchor line at 80 characters
+opt.colorcolumn = "80"
 
 -- Font
 opt.guifont = "JetBrainsMono Nerd Font 11"

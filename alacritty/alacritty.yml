@@ -64,4 +64,4 @@ colors:
 
 key_bindings:
   - { key: Paste,                                       action: Paste          }
-  - { key: Copy,                                        action: Copy           }
+  - { key: Copy,                                        action: Copy           

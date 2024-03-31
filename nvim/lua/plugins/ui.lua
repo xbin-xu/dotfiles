@@ -169,7 +169,7 @@ return {
 		},
 		cmd = { "Nvimtree" },
 		keys = {
-			{ "<C-e>", ":NvimTreeFindFileToggle<cr>", desc = "Toggle nvimtree" },
+			-- { "<C-e>", ":NvimTreeFindFileToggle<cr>", desc = "Toggle nvimtree" },
 			{ "<leader>e", ":NvimTreeFindFileToggle<cr>", desc = "Toggle nvimtree" },
 		},
 		opts = {

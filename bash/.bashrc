@@ -4,9 +4,9 @@
 
 # Aliases
 function alias_if_exists() {
-    if command -v "$2" > /dev/null; then
-        alias "$1"="$2"
-    fi
+	if command -v "$2" >/dev/null; then
+		alias "$1"="$2"
+	fi
 }
 
 alias_if_exists cat bat
@@ -16,5 +16,5 @@ alias_if_exists ls eza
 # alias_if_exists vim nvim
 
 # CLI integration
-# zoxide 
+# zoxide
 eval "$(zoxide init bash)"
