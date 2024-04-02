@@ -14,17 +14,17 @@ set -x EDITOR vim
 # set -x LC_ALL en_US.UTF-8
 
 # Vi mode
-fish_vi_key_bindings            # vi-like key bindings for fish
-# fish_default_key_bindings
+# fish_vi_key_bindings # vi-like key bindings for fish
+fish_default_key_bindings
 
 # Aliases
 function alias_if_exists
-    if command -v $argv[2] > /dev/null
+    if command -v $argv[2] >/dev/null
         alias $argv[1] $argv[2]
     end
 end
 
-alias_if_exists cat bat
+# alias_if_exists cat bat
 alias_if_exists ls exa
 alias_if_exists ls eza
 # alias_if_exists find fd

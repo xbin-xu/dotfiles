@@ -1,28 +1,27 @@
 return {
     {
-        'kdheepak/lazygit.nvim',
+        "kdheepak/lazygit.nvim",
         dependencies = {
             -- optional for floating window border decoration
-            'nvim-lua/plenary.nvim',
+            "nvim-lua/plenary.nvim",
         },
         keys = {
-            { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'Open lazygit' },
+            { "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open lazygit" },
         },
-        config = function()
-        end
+        config = function() end,
     },
 
     {
-        'lewis6991/gitsigns.nvim',
-        event = 'VeryLazy',
+        "lewis6991/gitsigns.nvim",
+        event = "VeryLazy",
         opts = {
             signs = {
-                add = { text = '▎' },
-                change = { text = '▎' },
-                delete = { text = '' },
-                topdelete = { text = '' },
-                changedelete = { text = '▎' },
-                untracked = { text = '▎' },
+                add = { text = "▎" },
+                change = { text = "▎" },
+                delete = { text = "" },
+                topdelete = { text = "" },
+                changedelete = { text = "▎" },
+                untracked = { text = "▎" },
             },
             on_attach = function(buffer)
                 local gs = package.loaded.gitsigns
@@ -32,32 +31,36 @@ return {
                 end
 
                 -- Naviation
-                map('n', ']h', gs.next_hunk, 'Next hunk')
-                map('n', '[h', gs.prev_hunk, 'Prev hunk')
-                map('n', '<leader>gj', gs.next_hunk, 'Next hunk')
-                map('n', '<leader>gk', gs.prev_hunk, 'Prev hunk')
+                map("n", "]h", gs.next_hunk, "Next hunk")
+                map("n", "[h", gs.prev_hunk, "Prev hunk")
+                map("n", "<leader>gj", gs.next_hunk, "Next hunk")
+                map("n", "<leader>gk", gs.prev_hunk, "Prev hunk")
 
                 -- Actions
-                map({ 'n', 'v' }, '<leader>gs', ':Gitsigns stage_hunk<cr>', 'Stage hunk')
-                map({ 'n', 'v' }, '<leader>gr', ':Gitsigns reset_hunk<cr>', 'Reset hunk')
-                map('n', '<leader>gu', gs.undo_stage_hunk, 'Undo stage hunk')
-                map('n', '<leader>gS', gs.stage_buffer, 'Stage buffer')
-                map('n', '<leader>gR', gs.reset_buffer, 'Reset buffer')
-                map('n', '<leader>gp', gs.preview_hunk, 'Preview hunk')
-                map('n', '<leader>gl', function() gs.blame_line { full = true } end, 'Blame line')
-                map('n', '<leader>gd', gs.diffthis, 'Diff this')
+                map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<cr>", "Stage hunk")
+                map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<cr>", "Reset hunk")
+                map("n", "<leader>gu", gs.undo_stage_hunk, "Undo stage hunk")
+                map("n", "<leader>gS", gs.stage_buffer, "Stage buffer")
+                map("n", "<leader>gR", gs.reset_buffer, "Reset buffer")
+                map("n", "<leader>gp", gs.preview_hunk, "Preview hunk")
+                map("n", "<leader>gl", function()
+                    gs.blame_line({ full = true })
+                end, "Blame line")
+                map("n", "<leader>gd", gs.diffthis, "Diff this")
                 -- todo: not work
-                map('n', '<leader>gD', function() gs.diffthis('~') end, 'Diff this ~')
+                map("n", "<leader>gD", function()
+                    gs.diffthis("~")
+                end, "Diff this ~")
 
                 -- Text object
-                map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<cr>', 'GitSigns select hunk')
+                map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<cr>", "GitSigns select hunk")
             end,
         },
     },
 
     {
-        'rhysd/conflict-marker.vim',
-        event = 'VeryLazy',
+        "rhysd/conflict-marker.vim",
+        event = "VeryLazy",
         config = function()
             vim.cmd([[
                 " `[x` to previous conflict, `]x` to next conflict
@@ -77,7 +80,6 @@ return {
                 highlight ConflictMarkerEnd guibg=#2f628e
                 highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
             ]])
-        end
-
+        end,
     },
 }

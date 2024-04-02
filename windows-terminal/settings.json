@@ -51,11 +51,19 @@
         },
         {
             "command": "unbound",
-            "keys": "ctrl+alt+z"
+            "keys": "ctrl+shift+z"
         },
         {
             "command": "unbound",
-            "keys": "ctrl+shift+z"
+            "keys": "ctrl+v"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+tab"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+tab"
         },
         {
             "command": {
@@ -73,7 +81,11 @@
         },
         {
             "command": "paste",
-            "keys": "ctrl+v"
+            "keys": "ctrl+alt+v"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": {
@@ -82,10 +94,6 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
         },
         {
             "command": {
@@ -116,6 +124,10 @@
             "keys": "ctrl+alt+h"
         },
         {
+            "command": "togglePaneZoom",
+            "keys": "ctrl+alt+m"
+        },
+        {
             "command": {
                 "action": "newTab"
             },
@@ -130,10 +142,23 @@
             "keys": "ctrl+alt+q"
         },
         {
-            "command": "toggleFocusMode"
+            "command": "toggleFocusMode",
+            "keys": "ctrl+alt+z"
         },
         {
             "command": "closeWindow"
+        },
+        {
+            "command": {
+                "action": "prevTab"
+            },
+            "keys": "alt+h"
+        },
+        {
+            "command": {
+                "action": "nextTab"
+            },
+            "keys": "alt+l"
         }
     ],
     "alwaysShowTabs": true,
@@ -148,6 +173,7 @@
     "profiles": {
         "defaults": {
             "adjustIndistinguishableColors": "always",
+            "colorScheme": "One Half Dark",
             "elevate": false,
             "font": {
                 "face": "JetBrainsMono Nerd Font"

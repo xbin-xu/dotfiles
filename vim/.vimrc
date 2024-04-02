@@ -38,7 +38,7 @@ syntax on           " turn on syntax highlighting
 "---------------------------------------------------------
 filetype plugin on  " load filetype's plugin file
 filetype indent on  " load filetype's indent file
-" set autoindent      " set automatically indented
+set autoindent      " set automatically indented
 set smartindent     " set smart indent
 
 " UI
@@ -116,7 +116,6 @@ set foldmethod=indent   " fold based on indent level
 "---------------------------------------------------------
 " Use the sys clipboard by default (on versions compiled with `+clipboard`)
 " [Vim 使用系统剪切板](https://harttle.land/2020/09/04/vim-clipboard.html)
-" todo: not work
 set clipboard=unnamed
 
 " Undo
@@ -140,8 +139,8 @@ endif
 
 " Leader key
 "---------------------------------------------------------
-nnoremap <space> <Nop>
-let mapleader="\<space>"
+nnoremap <Space> <Nop>
+let mapleader="\<Space>"
 
 " Reload .vimrc
 "---------------------------------------------------------
@@ -196,11 +195,12 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Resize window, todo: not work
+" Resize window
+" Todo: not work
 nnoremap <C-Up> :resize +2<CR>
 nnoremap <C-Down> :resize -2<CR>
-nnoremap <C-Left> :vertial resize -2<CR>
-nnoremap <C-Right> :vertial resize +2<CR>
+nnoremap <C-Left> :vertical resize -2<CR>
+nnoremap <C-Right> :vertical resize +2<CR>
 
 " Buffer
 "---------------------------------------------------------
@@ -252,6 +252,7 @@ vnoremap k :m '<-2<CR>gv=gv
 "---------------------------------------------------------
 " Turn off highlight search
 " noremap <leader>nh :noh<CR>
+nnoremap <silent> <Esc> :noh<CR><Esc>
 
 " Focus center
 nnoremap n nzzzv
@@ -283,6 +284,34 @@ nnoremap <leader>xq :copen<CR>
 nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 
+" Markdown
+"---------------------------------------------------------
+autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
+autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
+autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
+autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
+autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
+autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
+autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,l ---<Enter>
+
+" Toggle
+"---------------------------------------------------------
+" Toggle wrap
+nnoremap <leader>uw :set wrap!<CR>
+
+" Toggle line numbers
+nnoremap <leader>ul :set norelativenumber number!<CR>
+nnoremap <leader>uL :set relativenumber!<CR>
+
 " Other
 "---------------------------------------------------------
 " Navigate function
@@ -307,7 +336,9 @@ vnoremap <S-Tab> <gv
 " Increment / Decrement
 nnoremap <C-a> ggVG
 nnoremap + <C-a>
+xnoremap + <C-a>
 nnoremap - <C-x>
+xnoremap - <C-x>
 
 " Add undo break-points
 inoremap , ,<C-g>u
@@ -356,8 +387,8 @@ Plug 'joshdick/onedark.vim'
 " GUI enhancements
 "---------------------------------------------------------
 Plug 'mhinz/vim-startify'           " start screen
-Plug 'scrooloose/nerdtree'          " file explorer
-Plug 'Xuyuanp/nerdtree-git-plugin'  " git status for nerdree
+" Plug 'scrooloose/nerdtree'          " file explorer
+" Plug 'Xuyuanp/nerdtree-git-plugin'  " git status for nerdree
 Plug 'ryanoasis/vim-devicons'       " icon for vim plugins
 Plug 'sjl/gundo.vim'                " visualize undo tree
 Plug 'kshenoy/vim-signature'        " show marks in the gutter
@@ -369,7 +400,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'junegunn/fzf.vim'
 
-" Tmux GUI
+" Tmux
 "---------------------------------------------------------
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
@@ -391,7 +422,9 @@ Plug 'tpope/vim-surround'
 Plug 'roxma/vim-paste-easy'         " automatically `set paste`
 Plug 'tpope/vim-commentary'         " quick (un)comment line(s)
 Plug 'junegunn/vim-easy-align'      " easy align
-Plug 'voldikss/vim-translator'      " translate
+Plug 'voldikss/vim-translator'      " translator
+Plug 'mg979/vim-visual-multi'
+Plug 'tpope/vim-repeat'             " enable repeating supported plugin maps with "."
 
 " Markdown
 "---------------------------------------------------------
@@ -399,6 +432,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'dhruvasagar/vim-table-mode'
 
 " LSP
 "---------------------------------------------------------
@@ -414,7 +448,7 @@ Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enab
 Plug 'liuchengxu/vim-which-key'     " which key
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'romainl/vim-cool'             " auto enable/disable search highlight
-Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+" Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 
 call plug#end()
 
@@ -422,45 +456,45 @@ call plug#end()
 " Plugin configuration
 "---------------------
 
-" nerdtree
+"" nerdtree
 "---------------------------------------------------------
-" nnoremap <C-e> :NERDTreeToggle<CR>
-" nnoremap <leader>e :NERDTreeFind<CR>
-nnoremap <leader>e :NERDTreeToggle<CR>
-nnoremap <leader>E :NERDTreeFind<CR>
+"" nnoremap <C-e> :NERDTreeToggle<CR>
+"" nnoremap <leader>e :NERDTreeFind<CR>
+"nnoremap <leader>e :NERDTreeToggle<CR>
+"nnoremap <leader>E :NERDTreeFind<CR>
 
-" Show hidden files, but ignore .git, .idea, .history
-let NERDTreeShowHidden = 1
-let NERDTreeIgnore=['\.git$', '\.idea$', '\.history$']
+"" Show hidden files, but ignore .git, .idea, .history
+"let NERDTreeShowHidden = 1
+"let NERDTreeIgnore=['\.git$', '\.idea$', '\.history$']
 
-" Enable liine numbers
-let NERDTreeShowLineNumbers = 1
-" Make sure relative line numbers are used
-autocmd FileType nerdtree setlocal relativenumber
+"" Enable liine numbers
+"let NERDTreeShowLineNumbers = 1
+"" Make sure relative line numbers are used
+"autocmd FileType nerdtree setlocal relativenumber
 
-" Close the tab if NERDTree is the only window remaining in it.
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endi
+"" Close the tab if NERDTree is the only window remaining in it.
+"autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endi
 
-" nerdtree-git-plugin
-"---------------------------------------------------------
-" Enable nerdfonts
-let g:NERDTreeGitStatusUseNerdFonts = 1
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
+"" nerdtree-git-plugin
+""---------------------------------------------------------
+"" Enable nerdfonts
+"let g:NERDTreeGitStatusUseNerdFonts = 1
+"let g:NERDTreeGitStatusIndicatorMapCustom = {
+"                \ 'Modified'  :'✹',
+"                \ 'Staged'    :'✚',
+"                \ 'Untracked' :'✭',
+"                \ 'Renamed'   :'➜',
+"                \ 'Unmerged'  :'═',
+"                \ 'Deleted'   :'✖',
+"                \ 'Dirty'     :'✗',
+"                \ 'Ignored'   :'☒',
+"                \ 'Clean'     :'✔︎',
+"                \ 'Unknown'   :'?',
+"                \ }
 
 " gundo
 "---------------------------------------------------------
-nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>uu :GundoToggle<CR>
 if has('python3')
     let g:gundo_prefer_python3 = 1
 endif
@@ -481,43 +515,51 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " fzf
 "---------------------------------------------------------
+" Initialize configuration dictionary
+let g:fzf_vim = {}
+" This is the default option:
+"   - Preview window on the right with 50% width
+"   - CTRL-/ will toggle preview window.
+" - Note that this array is passed as arguments to fzf#vim#with_preview function.
+" - To learn more about preview window options, see `--preview-window` section of `man fzf`.
+let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
 let g:fzf_layout = {'down': '~40%'}
 
 nnoremap <leader>, :Buffers<CR>
 nnoremap <leader>/ :Rg<CR>
-" nnoremap <leader>/ :History/<CR>
 nnoremap <leader>: :History:<CR>
-nnoremap <leader><space> :Files<CR>
+nnoremap <leader><Space> :Files<CR>
 
-" Find file/text/buffer/help/oldfile
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fg :Rg<CR>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>fh :Helptags<CR>
 nnoremap <leader>fr :History<CR>
 
-" Git commit
 nnoremap <leader>gc :Commit<CR>
 
-" Search command-history/text/help/key-map/mark/color-scheme
 nnoremap <leader>sc :History:<CR>
+nnoremap <leader>sf :Files<CR>
 nnoremap <leader>sg :Rg<CR>
+nnoremap <leader>sb :Buffers<CR>
 nnoremap <leader>sh :Helptags<CR>
 nnoremap <leader>sk :Maps<CR>
+nnoremap <leader>sr :History<CR>
 nnoremap <leader>sm :Marks<CR>
+
 nnoremap <leader>uc :Colors<CR>
 
 " gitgutter
 " notes: can not unstage staged changes
 "---------------------------------------------------------
-nmap [h :call GitGutterPrevHunkCycle()<CR>
-nmap ]h :call GitGutterNextHunkCycle()<CR>
-nmap <leader>gj :call GitGutterNextHunkCycle()<CR>
-nmap <leader>gk :call GitGutterPrevHunkCycle()<CR>
-nmap <leader>gs <Plug>(GitGutterStageHunk)
-nmap <leader>gu <Plug>(GitGutterUndoHunk)
-nmap <leader>gp <Plug>(GitGutterPreviewHunk)
-nmap <leader>gd <Plug>(GitGutterhDiffOrig)
+nmap <silent> [h :call GitGutterPrevHunkCycle()<CR>
+nmap <silent> ]h :call GitGutterNextHunkCycle()<CR>
+nmap <silent> <leader>gj :call GitGutterNextHunkCycle()<cr>
+nmap <silent> <leader>gk :call GitGutterPrevHunkCycle()<cr>
+nmap <silent> <leader>gs <plug>(GitGutterStageHunk)
+nmap <silent> <leader>gu <plug>(GitGutterUndoHunk)
+nmap <silent> <leader>gp <plug>(GitGutterPreviewHunk)
+nmap <silent> <leader>gd <plug>(GitGutterDiffOrig)
 omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
@@ -549,6 +591,8 @@ endfunction
 
 " easymotion
 "---------------------------------------------------------
+" Disable default mappings
+let g:EasyMotion_do_mapping = 0 
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 
@@ -556,11 +600,11 @@ let g:EasyMotion_smartcase = 1
 " map <leader>f <Plug>(easymotion-bd-f)
 " nmap <leader>f <Plug>(easymotion-overwin-f)
 
-" vim-sneak behaviour through easymotio
-map s <Plug>(easymotion-f2)
-nmap s <Plug>(easymotion-overwin-f2)
-" map <leader>s <Plug>(easymotion-f2)
-" nmap <leader>s <Plug>(easymotion-overwin-f2)
+" vim-sneak behaviour through easymotion
+" map s <Plug>(easymotion-f2)
+" nmap s <Plug>(easymotion-overwin-f2)
+map <leader>s <Plug>(easymotion-f2)
+nmap <leader>s <Plug>(easymotion-overwin-f2)
 
 " JK motions: Line motions
 map <leader>h <Plug>(easymotion-linebackward)
@@ -597,18 +641,27 @@ let g:translator_default_engines=['bing', 'google', 'haici', 'youdao']
 " Available: 'popup'(use floatwin in nvim or popup in vim), 'preview'
 let g:translator_window_type='popup'
 
-" Echo translation in the cmdline
-nmap <silent> <leader>tt <Plug>Translate
-vmap <silent> <leader>tt <Plug>TranslateV
 " Display translation in a window
-nmap <silent> <leader>tw <Plug>TranslateW
-vmap <silent> <leader>tw <Plug>TranslateWV
+nmap <silent> <leader>ts <Plug>TranslateW
+vmap <silent> <leader>ts <Plug>TranslateWV
 " Replace the text with translation
-nmap <silent> <leader>tr <Plug>TranslateR
 vmap <silent> <leader>tr <Plug>TranslateRV
+nmap <silent> <leader>tr <Plug>TranslateR
 " Translate the text in clipboard
 nmap <silent> <leader>tx <Plug>TranslateX
 
+" visual-multi
+"---------------------------------------------------------
+let g:vm_mouse_mappings = 1
+let g:VM_theme = 'iceblue'
+let g:VM_highlight_matches = 'underline'
+let g:VM_maps = {}
+let g:VM_maps['Undo'] = 'u'
+let g:VM_maps['Redo'] = '<C-r>'
+
+" repeat
+"---------------------------------------------------------
+" None
 
 " vim-markdown
 "---------------------------------------------------------
@@ -630,24 +683,38 @@ let g:mkdp_images_path = '$HOME/.markdown_images'
 let g:mkdp_theme = 'dark'
 nnoremap <leader>cp <Plug>MarkdownPreviewToggle
 
-"---------------------------------------------------------
 " vim-markdown-toc
- 
 "---------------------------------------------------------
+" None
+ 
+" vim-table-mode
+"---------------------------------------------------------
+let b:table_mode_corner = '|'
 
 " coc
 "---------------------------------------------------------
 " coc extensions
 let g:coc_global_extensions = [
-            \ 'coc-json',
-            \ 'coc-vimlsp',
+            \ 'coc-marketplace',
             \ 'coc-highlight',
-            \ 'coc-markdownlint',
-            \ 'coc-sh',
+            \ 'coc-yank',
+            \ 'coc-explorer',
+            \ 'coc-diagnostic',
+            \ 'coc-gitignore',
             \ 'coc-snippets',
+            \ 'coc-json',
+            \ 'coc-yaml',
+            \ 'coc-lua',
+            \ 'coc-vimlsp',
+            \ 'coc-markdownlint',
+            \ 'coc-markdown-preview-enhanced',
+            \ 'coc-ci',
+            \ 'coc-sh',
             \ 'coc-clangd',
             \ 'coc-cmake',
+            \ 'coc-python',
             \ 'coc-pyright',
+            \ 'coc-docker',
             \ ]
 
 " Use tab for trigger completion with characters ahead and navigate
@@ -676,12 +743,8 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" Use <c-o> to trigger completion
+inoremap <silent><expr> <c-o> coc#refresh()
 
 " Use `[d` and `]d` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
@@ -691,7 +754,7 @@ nmap <silent> ]d <Plug>(coc-diagnostic-next)
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gI <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
@@ -709,7 +772,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>cr <Plug>(coc-rename)
 
 " Formatting selected code
 xmap <leader>cf  <Plug>(coc-format-selected)
@@ -731,14 +794,14 @@ xmap <leader>ca  <Plug>(coc-codeaction-selected)
 " Remap keys for applying code actions at the cursor position
 nmap <leader>ca  <Plug>(coc-codeaction-cursor)
 " Remap keys for apply code actions affect whole buffer
-nmap <leader>cas  <Plug>(coc-codeaction-source)
+nmap <leader>cA  <Plug>(coc-codeaction-source)
 " Apply the most preferred quickfix action to fix diagnostic on the current line
 nmap <leader>cqf  <Plug>(coc-fix-current)
 
 " Remap keys for applying refactor code actions
 nmap <silent> <leader>cre <Plug>(coc-codeaction-refactor)
-xmap <silent> <leader>cr  <Plug>(coc-codeaction-refactor-selected)
-nmap <silent> <leader>cr  <Plug>(coc-codeaction-refactor-selected)
+xmap <silent> <leader>cre  <Plug>(coc-codeaction-refactor-selected)
+nmap <silent> <leader>cre  <Plug>(coc-codeaction-refactor-selected)
 
 " Run the Code Lens action on the current line
 nmap <leader>cl  <Plug>(coc-codelens-action)
@@ -755,7 +818,7 @@ xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> to scroll float windows/popups
-if has('nvim-0.4.0') || has('patch-8.2.0750')
+if has('nvim0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
@@ -789,23 +852,28 @@ nnoremap <silent><nowait> <leader>cd  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent><nowait> <leader>ce  :<C-u>CocList extensions<cr>
 " " Show commands
-" nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <Space>cc   :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
 " Search workspace symbols
 nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 " " Do default action for next item
-" nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent><nowait> <Space>j  :<C-u>CocNext<CR>
 " " Do default action for previous item
-" nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent><nowait> <Space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list
-" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <Space>p  :<C-u>CocListResume<CR>
+
+" coc-extention: explorer
+"---------------------------------------------------------
+nnoremap <leader>e :CocCommand explorer<CR>
+" TODO: when last buffer is close, exploer can not quit if explorer is open
 
 " which key
 "---------------------------------------------------------
 " Use leader key to trigger which key
-nnoremap <silent> <leader> :<C-u>WhichKey '<space>'<CR>
-vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<space>'<CR>
+nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
 
 " Register the description dictionary for the prefix to pop up the guide menu
 call which_key#register('<Space>', "g:which_key_map", 'n')
@@ -828,14 +896,11 @@ let g:which_key_map = {
     \ 'q': 'Quit',
     \ 'w': 'Write file',
     \ 'W': 'Write file by sudo',
-    \ 'e': 'Toggle NERDTree',
-    \ 'u': 'Toggle UndoTree',
+    \ 'e': 'Toggle explorer',
     \ 'y': 'Copy',
     \ 'd': 'Cut',
     \ 'p': 'Paste',
     \ 'P': 'Paste prev line',
-    \ 'rn': 'Rename symbol',
-    \ 'uc': 'UI colorscheme',
     \ }
 let g:which_key_map.b = {
     \ 'name': '+buffer',
@@ -844,17 +909,17 @@ let g:which_key_map.b = {
     \ }
 let g:which_key_map.c = {
     \ 'name': '+code',
-    \ 'a': 'LSP: Code action',
-    \ 'd': 'LSP: Diagnostics',
-    \ 'e': 'LSP: Extensions',
-    \ 'f': 'LSP: Format',
-    \ 'l': 'LSP: Codelines action',
-    \ 'o': 'LSP: Symbol outline',
+    \ 'a': 'Coc: Code action',
+    \ 'A': 'Coc: Source action',
+    \ 'c': 'Coc: Commands',
+    \ 'd': 'Coc: Diagnostics',
+    \ 'e': 'Coc: Extensions',
+    \ 'f': 'Coc: Format',
+    \ 'l': 'Coc: Codelines action',
+    \ 'o': 'Coc: Symbol outline',
     \ 'p': 'Toggle markdown preview',
-    \ 's': 'LSP: Symbol outline workspace',
-    \ 'r': {
-        \ 'name': '+Refector',
-        \ },
+    \ 'r': 'Coc: Rename',
+    \ 's': 'Coc: Symbol outline workspace',
     \ }
 let g:which_key_map.f = {
     \ 'name': '+file/find',
@@ -876,18 +941,30 @@ let g:which_key_map.g = {
     \ }
 let g:which_key_map.s = {
     \ 'name': '+search',
+    \ 'b': 'Buffers',
     \ 'c': 'Command history',
+    \ 'f': 'Files',
     \ 'g': 'Grep text',
     \ 'h': 'Help tags',
     \ 'k': 'Key maps',
     \ 'm': 'Marks',
+    \ 'r': 'Recent files',
     \ }
 let g:which_key_map.t = {
     \ 'name': '+translate',
-    \ 't': 'Translate in the cmdline',
-    \ 'w': 'Translate in a window',
+    \ 'm': 'Toggle table mode',
     \ 'r': 'Replace the text with translator',
+    \ 's': 'Translate in a window',
+    \ 't': 'Table mode tableize',
     \ 'x': 'Translate the text in clipboard',
+    \ }
+let g:which_key_map.u = {
+    \ 'name': '+UI',
+    \ 'c': 'Preview colorscheme',
+    \ 'l': 'Toggle line number', 
+    \ 'L': 'Toggle relative line number',
+    \ 'u': 'Toggle undotree',
+    \ 'w': 'Toggle word wrap',
     \ }
 let g:which_key_map.x = {
     \ 'name': '+diagnostics/quickfix',

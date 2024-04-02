@@ -60,5 +60,5 @@ map("n", "gV", "`[v`]", { desc = "Swith to VISUAL using last inserted" })
 
 -- Increment / Decrement
 map("n", "<C-a>", "ggVG", { desc = "Select all" })
-map("n", "+", "<C-a>", { desc = "Increase number" })
-map("n", "-", "<C-x>", { desc = "Decrease number" })
+map({ "n", "x" }, "+", "<C-a>", { desc = "Increase number" })
+map({ "n", "x" }, "-", "<C-x>", { desc = "Decrease number" })

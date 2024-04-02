@@ -1,9 +1,9 @@
 return {
     {
-        'akinsho/toggleterm.nvim',
-        version = '*',
+        "akinsho/toggleterm.nvim",
+        version = "*",
         keys = {
-            { '<C-t>', ':ToggleTerm<cr>', desc = 'Open terminal' }
+            { "<C-t>", ":ToggleTerm<cr>", desc = "Open terminal" },
         },
         opts = {
             size = 20,
@@ -12,12 +12,12 @@ return {
             shade_filetypes = {},
             persist_size = true,
             -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
-            direction = 'float',
+            direction = "float",
             close_on_exit = true,
             shell = vim.o.shell,
         },
         config = function(_, opts)
-            require('toggleterm').setup(opts)
-        end
+            require("toggleterm").setup(opts)
+        end,
     },
 }

@@ -14,11 +14,11 @@
 -- l[nore]map     |  -   | yes | yes |  -  |  -  |  -  |  -   | yes  |
 
 local function map(mode, lhs, rhs, desc, opts)
-	opts = opts or { noremap = true, silent = true }
-	if desc ~= "" then
-		opts.desc = desc
-	end
-	vim.keymap.set(mode, lhs, rhs, opts)
+    opts = opts or { noremap = true, silent = true }
+    if desc ~= "" then
+        opts.desc = desc
+    end
+    vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 vim.g.mapleader = " "
@@ -90,10 +90,10 @@ map("n", "]b", "<cmd>bnext<cr>", "Next buffer")
 -- Clipboard
 -------------------------------------------------------------------------------
 -- Quick copy paste into system clipboard
-map({ "n", "v" }, "<leader>y", '"+y', 'Yank {motion} text [into register "]')
-map({ "n", "v" }, "<leader>d", '"+d', 'Delete text {motion} moves over [into register "]')
-map({ "n", "v" }, "<leader>p", '"+p', 'Put the text [from register "] after the cursorr')
-map({ "n", "v" }, "<leader>P", '"+P', 'Put the text [from register "] before the cursor')
+map({ "n", "v" }, "<leader>y", '"+y', "Yank")
+map({ "n", "v" }, "<leader>d", '"+d', "Cut")
+map({ "n", "v" }, "<leader>p", '"+p', "Paste")
+map({ "n", "v" }, "<leader>P", '"+P', "Paste before cursor")
 
 -- Movement
 -------------------------------------------------------------------------------
@@ -106,8 +106,8 @@ map({ "n", "x" }, "j", [[v:count ? 'j' : 'gj']], "", { noremap = true, silent = 
 map({ "n", "x" }, "k", [[v:count ? 'k' : 'gk']], "", { noremap = true, silent = true, expr = true })
 
 -- Move line: `<cmd>:m '+1<cr>gv=gv` not work in visual_mode
-map("n", "<A-j>", "<cmd>m .+1<cr>==", "Move down")
 map("n", "<A-k>", "<cmd>m .-2<cr>==", "Move up")
+map("n", "<A-j>", "<cmd>m .+1<cr>==", "Move down")
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", "Move down")
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", "Move up")
 map("v", "<A-j>", ":m '>+1<cr>gv=gv", "Move down")
@@ -140,11 +140,11 @@ map("n", "]q", "<cmd>cnext<cr>", "Next quickfix")
 -- Diagnostic
 ------------------------------------------------------------------------------
 local diagnostic_goto = function(next, severity)
-	local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-	severity = severity and vim.diagnostic.severity[severity] or nil
-	return function()
-		go({ severity = severity })
-	end
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+        go({ severity = severity })
+    end
 end
 map("n", "<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
 map("n", "]d", diagnostic_goto(true), "Next diagnostic")
@@ -153,6 +153,12 @@ map("n", "]e", diagnostic_goto(true, "ERROR"), "Next error")
 map("n", "[e", diagnostic_goto(false, "ERROR"), "Prev error")
 map("n", "]w", diagnostic_goto(true, "WARN"), "Next warning")
 map("n", "[w", diagnostic_goto(false, "WARN"), "Prev warning")
+
+-- Toggle
+-------------------------------------------------------------------------------
+map("n", "leader>uw", "<cmd>set wrap!<cr>", "Toggle wrap")
+map("n", "leader>ul", "<cmd>set relativenumber number!<cr>", "Toggle wrap")
+map("n", "leader>uL", "<cmd>set relativenumber!<cr>", "Toggle wrap")
 
 -- Other
 -------------------------------------------------------------------------------
@@ -171,8 +177,8 @@ map("v", "<S-Tab>", "<gv", "Indent right")
 
 -- Increment / Decrement
 map("n", "<C-a>", "ggVG", "Select all")
-map("n", "+", "<C-a>", "Increase number")
-map("n", "-", "<C-x>", "Decrease number")
+map({ "n", "x" }, "+", "<C-a>", "Increase number")
+map({ "n", "x" }, "-", "<C-x>", "Decrease number")
 
 -- Add undo break-points
 map("i", ",", ",<C-g>u")

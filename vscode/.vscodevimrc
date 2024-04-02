@@ -18,12 +18,6 @@ xnoremap <C-s> :w<CR><Esc>
 nnoremap <C-s> :w<CR><Esc>
 snoremap <C-s> :w<CR><Esc>
 
-" Terminal
-"---------------------------------------------------------
-" Toggle terminal, default is horizontal, use `:vert term` tp open in vertical
-noremap <C-t> :term ++close<CR>
-tnoremap <C-t> <C-w>:close<CR>
-
 " Navigate window
 tnoremap <C-h> <C-w>h
 tnoremap <C-j> <C-w>j
@@ -51,7 +45,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Resize window, todo: not work
+" Resize window
+" TODO: not work
 nnoremap <C-Up> :resize +2<CR>
 nnoremap <C-Down> :resize -2<CR>
 nnoremap <C-Left> :vertial resize -2<CR>
@@ -89,27 +84,15 @@ noremap H ^
 noremap L $
 
 " Move vertically by visual line
-" nnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
-" nnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
-" xnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
-" xnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
 nnoremap j gj
 nnoremap k gk
 nnoremap gj j
 nnoremap gk k
 
-" Move line: `<A-j>`, `<M-j>` and `^]j` are not work
-" nnoremap <A-j> :m .+1<CR>==
-" nnoremap <A-k> :m .-2<CR>==
-" inoremap <A-j> <Esc>:m .+1<CR>==gi
-" inoremap <A-k> <Esc>:m .-2<CR>==gi
-" vnoremap <A-j> :m '>+1<CR>gv=gv
-" vnoremap <A-k> :m '<-2<CR>gv=gv
-
 " Search
 "---------------------------------------------------------
 " Turn off highlight search
-" noremap <leader>nh :noh<CR>
+nnoremap <silent> <Esc> :noh<CR><Esc>
 
 " Focus center
 nnoremap n nzzzv
@@ -159,6 +142,8 @@ vnoremap <S-Tab> <gv
 nnoremap <C-a> ggVG
 nnoremap + <C-a>
 nnoremap - <C-x>
+xnoremap + <C-a>
+xnoremap - <C-x>
 
 " Add undo break-points
 inoremap , ,<C-g>u
@@ -169,20 +154,3 @@ inoremap ; ;<C-g>u
 "---------------------------------------------------------
 " 'Q' in normal mode enters Ex mode. You almost never want this.
 nmap Q <Nop>
-
-" Prevent bad habits(using the arrow keys for movement)
-"---------------------------------------------------------
-" nnoremap <Left>  :echoe "Use h"<CR>
-" nnoremap <Down>  :echoe "Use j"<CR>
-" nnoremap <Up>    :echoe "Use k"<CR>
-" nnoremap <Right> :echoe "Use l"<CR>
-
-" inoremap <Left>  <Esc>:echoe "Use h"<CR>
-" inoremap <Down>  <Esc>:echoe "Use j"<CR>
-" inoremap <Up>    <Esc>:echoe "Use k"<CR>
-" inoremap <Right> <Esc>:echoe "Use l"<CR>
-
-" vnoremap <Left>  <Esc>:echoe "Use h"<CR>
-" vnoremap <Down>  <Esc>:echoe "Use j"<CR>
-" vnoremap <Up>    <Esc>:echoe "Use k"<CR>
-" vnoremap <Right> <Esc>:echoe "Use l"<CR>

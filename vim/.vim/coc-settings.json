@@ -1,3 +1,66 @@
 {
-  "snippets.ultisnips.pythonPrompt": false
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "coc.preferences.formatOnSave": true,
+    "suggest.completionItemKindLabels": {
+        "class": " ",
+        "color": " ",
+        "constant": "󰏿 ",
+        "constructor": " ",
+        "enum": " ",
+        "enumMember": " ",
+        "event": " ",
+        "field": " ",
+        "file": " ",
+        "folder": " ",
+        "function": "󰊕 ",
+        "interface": " ",
+        "keyword": " ",
+        "method": "󰊕 ",
+        "module": " ",
+        "operator": " ",
+        "property": " ",
+        "reference": " ",
+        "snippet": " ",
+        "struct": "󰆼 ",
+        "text": " ",
+        "typeParameter": " ",
+        "unit": " ",
+        "value": " ",
+        "variable": "󰀫 "
+    },
+    "yank.highlight.enable": true,
+    "yank.highlight.duration": 150,
+    "yank.list.maxsize": 300,
+    "yank.enableCompletion": true,
+    "yank.priority": 90,
+    "yank.limit": 3,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.file.column.indent.indentLine": true,
+    "explorer.git.enable": true,
+    "explorer.git.showIgnored": true,
+    "explorer.keyMappings.global": {
+        "o": [
+            "wait",
+            "expanded?",
+            "collapse",
+            [
+                "expandable?",
+                "expand",
+                "open"
+            ]
+        ],
+        "E": "open:split",
+        "s": "open:vsplit",
+        "d": "delete"
+    }
+    "diagnostic.errorSign": " ",
+    "diagnostic.warningSign": " ",
+    "diagnostic.hintSign": " ",
+    "diagnostic.infoSign": " ",
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+    "diagnostic.virtualText": false,
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/17.0.3/clangd_17.0.3/bin/clangd",
 }
