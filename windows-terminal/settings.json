@@ -81,7 +81,7 @@
         },
         {
             "command": "paste",
-            "keys": "ctrl+alt+v"
+            "keys": "ctrl+v"
         },
         {
             "command": "find",

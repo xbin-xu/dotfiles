@@ -11,7 +11,7 @@ set encoding=utf-8
 
 " Font
 "---------------------------------------------------------
-set guifont=JetBrainsMono\ Nerd\ Font\ 11
+set guifont=JetBrainsMono\ Nerd\ Font
 
 " Colorscheme
 "---------------------------------------------------------
@@ -22,11 +22,11 @@ set guifont=JetBrainsMono\ Nerd\ Font\ 11
 " `cterm` is the color code used in 256-color mode
 " `cterm16` is the color code used in 16-color mode
 if (has("autocmd") && !has("gui_running"))
-  augroup colorset
-    autocmd!
-    let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-    autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-  augroup END
+    augroup colorset
+        autocmd!
+        let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+        autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+    augroup END
 endif
 colorscheme onedark
 
@@ -387,8 +387,8 @@ Plug 'joshdick/onedark.vim'
 " GUI enhancements
 "---------------------------------------------------------
 Plug 'mhinz/vim-startify'           " start screen
-" Plug 'scrooloose/nerdtree'          " file explorer
-" Plug 'Xuyuanp/nerdtree-git-plugin'  " git status for nerdree
+Plug 'scrooloose/nerdtree'          " file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'  " git status for nerdree
 Plug 'ryanoasis/vim-devicons'       " icon for vim plugins
 Plug 'sjl/gundo.vim'                " visualize undo tree
 Plug 'kshenoy/vim-signature'        " show marks in the gutter
@@ -413,7 +413,6 @@ Plug 'airblade/vim-gitgutter'       " git gutter
 
 " Movement
 "---------------------------------------------------------
-" Plug 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 
 " Text manipulation
@@ -429,7 +428,7 @@ Plug 'tpope/vim-repeat'             " enable repeating supported plugin maps wit
 " Markdown
 "---------------------------------------------------------
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'preservim/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'dhruvasagar/vim-table-mode'
@@ -456,41 +455,41 @@ call plug#end()
 " Plugin configuration
 "---------------------
 
-"" nerdtree
+" nerdtree
 "---------------------------------------------------------
-"" nnoremap <C-e> :NERDTreeToggle<CR>
-"" nnoremap <leader>e :NERDTreeFind<CR>
-"nnoremap <leader>e :NERDTreeToggle<CR>
-"nnoremap <leader>E :NERDTreeFind<CR>
+" nnoremap <C-e> :NERDTreeToggle<CR>
+" nnoremap <leader>e :NERDTreeFind<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>E :NERDTreeFind<CR>
 
-"" Show hidden files, but ignore .git, .idea, .history
-"let NERDTreeShowHidden = 1
-"let NERDTreeIgnore=['\.git$', '\.idea$', '\.history$']
+" Show hidden files, but ignore .git, .idea, .history
+let NERDTreeShowHidden = 1
+let NERDTreeIgnore=['\.git$', '\.idea$', '\.history$']
 
-"" Enable liine numbers
-"let NERDTreeShowLineNumbers = 1
-"" Make sure relative line numbers are used
-"autocmd FileType nerdtree setlocal relativenumber
+" Enable liine numbers
+let NERDTreeShowLineNumbers = 1
+" Make sure relative line numbers are used
+autocmd FileType nerdtree setlocal relativenumber
 
-"" Close the tab if NERDTree is the only window remaining in it.
-"autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endi
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endi
 
-"" nerdtree-git-plugin
-""---------------------------------------------------------
-"" Enable nerdfonts
-"let g:NERDTreeGitStatusUseNerdFonts = 1
-"let g:NERDTreeGitStatusIndicatorMapCustom = {
-"                \ 'Modified'  :'✹',
-"                \ 'Staged'    :'✚',
-"                \ 'Untracked' :'✭',
-"                \ 'Renamed'   :'➜',
-"                \ 'Unmerged'  :'═',
-"                \ 'Deleted'   :'✖',
-"                \ 'Dirty'     :'✗',
-"                \ 'Ignored'   :'☒',
-"                \ 'Clean'     :'✔︎',
-"                \ 'Unknown'   :'?',
-"                \ }
+" nerdtree-git-plugin
+"---------------------------------------------------------
+" Enable nerdfonts
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
 
 " gundo
 "---------------------------------------------------------
@@ -499,12 +498,12 @@ if has('python3')
     let g:gundo_prefer_python3 = 1
 endif
 
-" signature
+" vim-signature
 "---------------------------------------------------------
 " Enable confirm while delete all tags
 let g:SignaturePurgeConfirmation = 1
 
-" airline
+" vim-airline
 "---------------------------------------------------------
 " Set theme for airline
 let g:airline_theme = 'onedark'
@@ -549,7 +548,7 @@ nnoremap <leader>sm :Marks<CR>
 
 nnoremap <leader>uc :Colors<CR>
 
-" gitgutter
+" vim-gitgutter
 " notes: can not unstage staged changes
 "---------------------------------------------------------
 nmap <silent> [h :call GitGutterPrevHunkCycle()<CR>
@@ -584,12 +583,7 @@ function! GitGutterPrevHunkCycle()
     endif
 endfunction
 
-" sneak
-"---------------------------------------------------------
-" Enable label-mode to motion(just like easymotion)
-" let g:sneak#label = 1
-
-" easymotion
+" vim-easymotion
 "---------------------------------------------------------
 " Disable default mappings
 let g:EasyMotion_do_mapping = 0 
@@ -612,20 +606,20 @@ map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
 map <leader>l <Plug>(easymotion-lineforward)
 
-" surround
+" vim-surround
 "---------------------------------------------------------
 " None
 
-" paste-easy
+" vim-paste-easy
 "---------------------------------------------------------
 let g:paste_easy_enable = 1
 
-" commentary
+" vim-commentary
 "---------------------------------------------------------
 " C and C++ use "//" to comment, rather than "/**/"
 autocmd FileType c,cpp set commentstring=//\ %s
 
-" easy align
+" vim-easy-align
 "---------------------------------------------------------
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -633,7 +627,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" translator
+" vim-translator
 "---------------------------------------------------------
 let g:translator_target_lang='zh'
 " Available: 'bing', 'google', 'haici', 'sdcv', 'trans', 'youdao'
@@ -650,7 +644,7 @@ nmap <silent> <leader>tr <Plug>TranslateR
 " Translate the text in clipboard
 nmap <silent> <leader>tx <Plug>TranslateX
 
-" visual-multi
+" vim-visual-multi
 "---------------------------------------------------------
 let g:vm_mouse_mappings = 1
 let g:VM_theme = 'iceblue'
@@ -659,7 +653,7 @@ let g:VM_maps = {}
 let g:VM_maps['Undo'] = 'u'
 let g:VM_maps['Redo'] = '<C-r>'
 
-" repeat
+" vmi-repeat
 "---------------------------------------------------------
 " None
 
@@ -691,14 +685,13 @@ nnoremap <leader>cp <Plug>MarkdownPreviewToggle
 "---------------------------------------------------------
 let b:table_mode_corner = '|'
 
-" coc
+" coc.nvim
 "---------------------------------------------------------
 " coc extensions
 let g:coc_global_extensions = [
             \ 'coc-marketplace',
             \ 'coc-highlight',
             \ 'coc-yank',
-            \ 'coc-explorer',
             \ 'coc-diagnostic',
             \ 'coc-gitignore',
             \ 'coc-snippets',
@@ -863,11 +856,6 @@ nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 " nnoremap <silent><nowait> <Space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list
 nnoremap <silent><nowait> <Space>p  :<C-u>CocListResume<CR>
-
-" coc-extention: explorer
-"---------------------------------------------------------
-nnoremap <leader>e :CocCommand explorer<CR>
-" TODO: when last buffer is close, exploer can not quit if explorer is open
 
 " which key
 "---------------------------------------------------------

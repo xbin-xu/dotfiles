@@ -7,7 +7,7 @@ opt.fileencoding = "UTF-8"
 
 -- Font
 -----------------------------------------------------------
-opt.guifont = "JetBrainsMono Nerd Font 11"
+opt.guifont = "JetBrainsMono Nerd Font"
 
 -- UI
 -----------------------------------------------------------

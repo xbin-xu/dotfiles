@@ -82,10 +82,21 @@ bar:
 
 workspaces:
   - name: "1"
+    display_name: "terminal"
+    keep_alive: true
   - name: "2"
+    display_name: "editor"
+    keep_alive: true
   - name: "3"
+    display_name: "browser"
+    keep_alive: true
   - name: "4"
+    display_name: "im"
+    keep_alive: true
   - name: "5"
+    display_name: "other"
+    keep_alive: true
+  - name: "6"
   - name: "6"
   - name: "7"
   - name: "8"
@@ -111,11 +122,24 @@ window_rules:
   - command: "resize borders 0px -7px -7px -7px"
     match_process_name: "steam"
 
+  - command: "move to workspace 1"
+    match_process_name: "WindowsTerminal"
+  - command: "move to workspace 2"
+    match_process_name: "/nvim-qt|neovide|Code/"
+  - command: "move to workspace 3"
+    match_process_name: "/chrome|edge/"
+  - command: "move to workspace 4"
+    match_process_name: "/WeChat/"
+  - command: "move to workspace 5"
+    match_process_name: "/Listary|Snipaste|Clash.*|QQMusic/"
+  - command: "set floating"
+    match_process_name: "/explorer/"
+
 binding_modes:
   - name: "resize"
     keybindings:
-      # Resize focused window by a percentage or pixel amount.
       - command: "resize width -2%"
+      # Resize focused window by a percentage or pixel amount.
         bindings: ["H", "Left"]
       - command: "resize width +2%"
         bindings: ["L", "Right"]
@@ -125,38 +149,28 @@ binding_modes:
         bindings: ["J", "Down"]
       # Press enter/escape to return to default keybindings.
       - command: "binding mode none"
-        bindings: ["Escape", "Enter"]
+        bindings: ["Escape", "Control+OemOpenBrackets", "Enter"]
 
 keybindings:
   # Shift focus in a given direction.
   - command: "focus left"
-    bindings: ["Alt+Shift+H", "Alt+Left"]
+    bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
   - command: "focus right"
-    bindings: ["Alt+Shift+L", "Alt+Right"]
+    bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
   - command: "focus up"
-    bindings: ["Alt+Shift+K", "Alt+Up"]
+    bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
   - command: "focus down"
-    bindings: ["Alt+Shift+J", "Alt+Down"]
+    bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
 
   # Move focused window in a given direction.
-  # - command: "move left"
-  #   bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
-  # - command: "move right"
-  #   bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
-  # - command: "move up"
-  #   bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
-  # - command: "move down"
-  #   bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
-
-  # Resize focused window by a percentage or pixel amount.
-  - command: "resize width -2%"
-    binding: "Alt+U"
-  - command: "resize width +2%"
-    binding: "Alt+P"
-  - command: "resize height +2%"
-    binding: "Alt+O"
-  - command: "resize height -2%"
-    binding: "Alt+I"
+  - command: "move left"
+    bindings: ["Alt+Shift+U", "Alt+Left"]
+  - command: "move right"
+    bindings: ["Alt+Shift+P", "Alt+Right"]
+  - command: "move up"
+    bindings: ["Alt+Shift+O", "Alt+Up"]
+  - command: "move down"
+    bindings: ["Alt+Shift+I", "Alt+Down"]
 
   # As an alternative to the resize keybindings above, resize mode enables resizing via
   # HJKL or arrow keys. The binding mode is defined above with the name "resize".
@@ -205,22 +219,22 @@ keybindings:
     binding: "Alt+Y"
 
   # Focus the next/previous workspace defined in `workspaces` config.
-  # - command: "focus workspace next"
-  #   binding: "Alt+Tab"
-  # - command: "focus workspace prev"
-  #   binding: "Alt+Shift+Tab"
+  - command: "focus workspace next"
+    binding: "Alt+N"
+  - command: "focus workspace prev"
+    binding: "Alt+P"
 
   # Change focus to a workspace defined in `workspaces` config.
   - command: "focus workspace 1"
-    binding: "Alt+1"
+    bindings: ["Alt+1", "Alt+T"]
   - command: "focus workspace 2"
-    binding: "Alt+2"
+    bindings: ["Alt+2", "Alt+E"]
   - command: "focus workspace 3"
-    binding: "Alt+3"
+    bindings: ["Alt+3", "Alt+B"]
   - command: "focus workspace 4"
-    binding: "Alt+4"
+    bindings: ["Alt+4", "Alt+I"]
   - command: "focus workspace 5"
-    binding: "Alt+5"
+    bindings: ["Alt+5", "Alt+O"]
   - command: "focus workspace 6"
     binding: "Alt+6"
   - command: "focus workspace 7"
@@ -242,15 +256,15 @@ keybindings:
 
   # Move focused window to a workspace defined in `workspaces` config.
   - commands: ["move to workspace 1", "focus workspace 1"]
-    binding: "Alt+Shift+1"
+    bindings: ["Alt+Shift+1", "Alt+Shift+T"]
   - commands: ["move to workspace 2", "focus workspace 2"]
-    binding: "Alt+Shift+2"
+    bindings: ["Alt+Shift+2", "Alt+Shift+E"]
   - commands: ["move to workspace 3", "focus workspace 3"]
-    binding: "Alt+Shift+3"
+    bindings: ["Alt+Shift+3", "Alt+Shift+B"]
   - commands: ["move to workspace 4", "focus workspace 4"]
-    binding: "Alt+Shift+4"
+    bindings: ["Alt+Shift+4", "Alt+Shift+I"]
   - commands: ["move to workspace 5", "focus workspace 5"]
-    binding: "Alt+Shift+5"
+    bindings: ["Alt+Shift+5", "Alt+Shift+O"]
   - commands: ["move to workspace 6", "focus workspace 6"]
     binding: "Alt+Shift+6"
   - commands: ["move to workspace 7", "focus workspace 7"]

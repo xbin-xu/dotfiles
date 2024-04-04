@@ -1,6 +1,6 @@
 {
-    // -- Geneal
     //--------------------------------------------------------------------------
+    // -- Geneal {
     "oneDarkPro.italic": false,
     "workbench.colorTheme": "One Dark Pro",
     "window.commandCenter": true,
@@ -24,7 +24,7 @@
     "editor.guides.bracketPairs": true,
     "editor.guides.bracketPairsHorizontal": "active",
     "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas",
-    "editor.fontLigatures": false,
+    "editor.fontLigatures": true,
     "editor.inlayHints.enabled": "offUnlessPressed",
     "diffEditor.renderSideBySide": false,
     "explorer.compactFolders": false,
@@ -39,7 +39,7 @@
     },
     "terminal.integrated.defaultProfile.linux": "fish",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
     "[markdown]": {
         "editor.quickSuggestions": {
             "other": "on",
@@ -50,116 +50,174 @@
     "terminal.integrated.commandsToSkipShell": [
         "-workbench.action.quickOpen"
     ],
-    // -- Markdown
+    // }
     //--------------------------------------------------------------------------
+    // -- Markdown {
     "markdown-preview-enhanced.previewTheme": "atom-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "one-dark.css",
-    // -- Project Manager
+    // }
     //--------------------------------------------------------------------------
+    // -- Project Manager {
     "projectManager.git.baseFolders": [
         "d:/Workbench/"
     ],
     "projectManager.sortList": "Recent",
-    // -- Vim or vscode-neovim
+    // }
     //--------------------------------------------------------------------------
+    // -- Vim {
     "editor.lineNumbers": "relative",
-    // "vscode-neovim.useWSL": true,
-    // "vim.vimrc.enable": true,
-    // "vim.vimrc.path": "$HOME/.vscodevimrc",
-    // "vim.easymotion": true,
-    // // "vim.sneak": true,
-    // "vim.surround": true,
-    // "vim.camelCaseMotion.enable": true,
-    // "vim.useSystemClipboard": true,
-    // "vim.useCtrlKeys": true,
-    // "vim.handleKeys": {
-    //     "<C-c>": false,
-    //     // "<C-v>": false,
-    //     "<C-x>": false,
-    //     // "<C-a>": false,
-    //     "<C-f>": false,
-    //     "<C-s>": false,
-    //     "<C-w>": false,
-    //     "<C-p>": false
-    // },
-    // "vim.foldfix": true,
-    // "vim.hlsearch": true,
-    // "vim.incsearch": true,
-    // "vim.highlightedyank.enable": true,
-    // "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
-    // "vim.visualstar": true,
-    // "vim.timeout": 200,
-    // "vim.leader": "<space>",
-    // "vim.normalModeKeyBindingsNonRecursive": [
-    //     // ---- which key
-    //     // TODO: use `<leader>` to toggle which key will cause easymotion and cameCaseMotion not work
-    //     {
-    //         "before": [" "],
-    //         "commands": ["whichkey.show"]
-    //     },
-    //     // ---- navigate buffer
-    //     {
-    //         "before": ["[", "b"],
-    //         "commands": ["workbench.action.previousEditor"]
-    //     },
-    //     {
-    //         "before": ["]", "b"],
-    //         "commands": ["workbench.action.nextEditor"]
-    //     },
-    //     // ---- navigate git hunk
-    //     {
-    //         "before": ["[", "h"],
-    //         "commands": [
-    //             "workbench.action.editor.previousChange",
-    //             "workbench.action.compareEditor.previousChange"
-    //         ]
-    //     },
-    //     {
-    //         "before": ["]", "h"],
-    //         "commands": [
-    //             "workbench.action.editor.nextChange",
-    //             "workbench.action.compareEditor.nextChange"
-    //         ]
-    //     },
-    //     // ---- navigate diagnostic/problem
-    //     {
-    //         "before": ["[", "d"],
-    //         "commands": ["editor.action.marker.prev"]
-    //     },
-    //     {
-    //         "before": ["]", "d"],
-    //         "commands": ["editor.action.marker.next"]
-    //     },
-    //     // undo & redo
-    //     {
-    //         "before": ["u"],
-    //         "commands": ["undo"]
-    //     },
-    //     {
-    //         "before": ["C-r"],
-    //         "commands": ["redo"]
-    //     }
-    // ],
-    // "vim.visualModeKeyBindingsNonRecursive": [
-    //     {
-    //         "before": [" "],
-    //         "commands": ["whichkey.show"]
-    //     },
-    //     {
-    //         "before": ["<leader>", "c", "f"],
-    //         "commands": ["editor.action.formatSelection"]
-    //     }
-    // ],
-    // "vim.autoSwitchInputMethod.enable": true,
-    // "vim.autoSwitchInputMethod.defaultIM": "1033",
-    // "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe",
-    // "vim.autoSwitchInputMethod.switchIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe {im}",
     "extensions.experimental.affinity": {
-        "vscodevim.vim": 1,
+        "vscodevim.vim": 1
+    },
+    "vim.vimrc.enable": true,
+    "vim.vimrc.path": "$HOME/.vscodevimrc",
+    "vim.easymotion": true,
+    // "vim.sneak": true,
+    "vim.surround": true,
+    "vim.camelCaseMotion.enable": true,
+    "vim.useSystemClpboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.handleKeys": {
+        "<C-c>": false,
+        // "<C-v>": false,
+        "<C-x>": false,
+        // "<C-a>": false,
+        "<C-f>": false,
+        "<C-s>": false,
+        "<C-w>": false,
+        "<C-p>": false
+    },
+    "vim.foldfix": true,
+    "vim.hlsearch": true,
+    "vim.incsearch": true,
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
+    "vim.visualstar": true,
+    "vim.timeout": 200,
+    "vim.leader": " ",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // ---- which key
+        // TODO: use `<leader>` to toggle which key will cause easymotion and cameCaseMotion not work
+        {
+            "before": [
+                " "
+            ],
+            "commands": [
+                "whichkey.show"
+            ]
+        },
+        // ---- navigate buffer
+        {
+            "before": [
+                "[",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "b"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
+        },
+        // ---- navigate git hunk
+        {
+            "before": [
+                "[",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.editor.previousChange",
+                "workbench.action.compareEditor.previousChange"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.editor.nextChange",
+                "workbench.action.compareEditor.nextChange"
+            ]
+        },
+        // ---- navigate diagnostic/problem
+        {
+            "before": [
+                "[",
+                "d"
+            ],
+            "commands": [
+                "editor.action.marker.prev"
+            ]
+        },
+        {
+            "before": [
+                "]",
+                "d"
+            ],
+            "commands": [
+                "editor.action.marker.next"
+            ]
+        },
+        // undo & redo
+        {
+            "before": [
+                "u"
+            ],
+            "commands": [
+                "undo"
+            ]
+        },
+        {
+            "before": [
+                "C-r"
+            ],
+            "commands": [
+                "redo"
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                " "
+            ],
+            "commands": [
+                "whichkey.show"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "c",
+                "f"
+            ],
+            "commands": [
+                "editor.action.formatSelection"
+            ]
+        }
+    ],
+    "vim.autoSwitchInputMethod.enable": true,
+    "vim.autoSwitchInputMethod.defaultIM": "1033",
+    "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe",
+    "vim.autoSwitchInputMethod.switchIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe {im}",
+    // }
+    //--------------------------------------------------------------------------
+    // -- neovim {
+    // "vscode-neovim.useWSL": true,
+    "editor.lineNumbers": "relative",
+    "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
-    // -- Which Key
+    // }
     //--------------------------------------------------------------------------
+    // -- Which Key {
     "whichkey.delay": 0,
     // "whichkey.sortOrder": "alphabetically",
     "whichkey.bindings": [
@@ -170,7 +228,7 @@
             "command": "workbench.action.quickOpen"
         },
         {
-            "key": ";",
+            "key": ":",
             "name": "Commands",
             "type": "command",
             "command": "workbench.action.showCommands"
@@ -182,12 +240,17 @@
             "command": "workbench.action.findInFiles"
         },
         {
+            "key": ",",
+            "name": "Search in buffers",
+            "type": "command",
+            "command": "workbench.action.showAllEditors"
+        },
+        {
             "key": "*",
             "name": "Search selected in file",
             "type": "commands",
             "commands": [
-                "editor.action.addSelectionToNextFindMatch",
-                // "workbench.action.findInFiles",
+                "editor.action.addSelectionToNextFindMatch"
             ]
         },
         {
@@ -224,7 +287,7 @@
                     "name": "Reopen closed editor",
                     "type": "command",
                     "command": "workbench.action.reopenClosedEditor"
-                },
+                }
             ]
         },
         {
@@ -296,7 +359,7 @@
                     "type": "command",
                     // require `outline.toggleVisibility` and move it to auxiliarbar
                     "command": "workbench.action.toggleAuxiliaryBar"
-                },
+                }
             ]
         },
         {
@@ -357,7 +420,7 @@
                     "name": "Clean",
                     "type": "command",
                     "command": "cmake.clean"
-                },
+                }
             ]
         },
         {
@@ -663,9 +726,9 @@
                 },
                 {
                     "key": "e",
-                    "name": "Toggle explorer",
+                    "name": "Toggle file explorer",
                     "type": "command",
-                    "command": "workbench.action.toggleSidebarVisibility"
+                    "command": "workbench.view.explorer"
                 },
                 {
                     "key": "p",
@@ -740,10 +803,11 @@
                     "command": "workbench.debug.action.toggleRepl"
                 }
             ]
-        },
+        }
     ],
-    // -- Better Comments
+    // }
     //--------------------------------------------------------------------------
+    // -- Better Comments {
     "better-comments.tags": [
         {
             "tag": "!",
@@ -791,8 +855,9 @@
             "italic": false
         }
     ],
-    // -- Error Lens
+    // }
     //--------------------------------------------------------------------------
+    // -- Error Lens {
     // "errorLens.gutterIconsEnabled": true,
     "errorLens.enabledDiagnosticLevels": [
         "error",
@@ -800,22 +865,24 @@
         "info"
         // "hint"
     ],
-    // -- Comment Translate
+    // }
     //--------------------------------------------------------------------------
+    // -- Comment Translate {
     "commentTranslate.hover.enabled": true,
     "commentTranslate.hover.content": true,
     "commentTranslate.hover.nearShow": true,
     "commentTranslate.sourceLanguage": "auto",
     "commentTranslate.targetLanguage": "zh-CN",
     "commentTranslate.source": "Google",
-    // -- C/C++
+    // }
     //--------------------------------------------------------------------------
+    // -- C/C++ {
     "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
     "C_Cpp.inlayHints.parameterNames.enabled": true,
     "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true,
     "C_Cpp.inlayHints.referenceOperator.enabled": true,
-    // -- Clangd
     //--------------------------------------------------------------------------
+    // -- Clangd {
     // "C_Cpp.intelliSenseEngine": "disabled",
     "clangd.detectExtensionConflicts": false,
     "clangd.path": "clangd",
@@ -831,22 +898,25 @@
         "--header-insertion=iwyu",
         "-j=6"
     ],
-    // -- CodeLLDB
+    // }
     //--------------------------------------------------------------------------
+    // -- CodeLLDB {
     "lldb.commandCompletions": true,
     "lldb.dereferencePointers": true,
     "lldb.evaluateForHovers": true,
     "lldb.launch.expressions": "native",
     "lldb.showDisassembly": "never",
     "lldb.verboseLogging": true,
-    // -- CMake
+    // }
     //--------------------------------------------------------------------------
+    // -- CMake {
     "cmake.cmakePath": "cmake",
     "cmake.configureOnOpen": false,
     "cmake.generator": "Unix Makefiles", // Unix Makefiles or Ninja
     "cmake.buildDirectory": "${workspaceFolder}/build",
-    // -- ESP-IDF
+    // }
     //--------------------------------------------------------------------------
+    // -- ESP-IDF {
     "idf.gitPathWin": "d:\\Software\\Espressif\\tools\\idf-git\\2.39.2\\cmd\\git.exe",
     "idf.espIdfPathWin": "d:\\Software\\Espressif\\esp-idf",
     "idf.pythonBinPathWin": "d:\\Software\\Espressif\\python_env\\idf5.1_py3.11_env\\Scripts\\python.exe",
@@ -857,4 +927,69 @@
         "IDF_CCACHE_ENABLE": "1",
         "ESP_ROM_ELF_DIR": "d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320/"
     },
+    "accessibility.signals.lineHasError": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.lineHasWarning": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.lineHasFoldedArea": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.lineHasBreakpoint": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.terminalQuickFix": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.onDebugBreak": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.noInlayHints": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.taskCompleted": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.taskFailed": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.terminalCommandFailed": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.terminalBell": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.notebookCellCompleted": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.notebookCellFailed": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.chatRequestSent": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.chatResponsePending": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    "accessibility.signals.clear": {
+        "sound": "auto",
+        "announcement": "off"
+    },
+    // }
 }
