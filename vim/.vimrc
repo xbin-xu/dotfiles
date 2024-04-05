@@ -11,7 +11,7 @@ set encoding=utf-8
 
 " Font
 "---------------------------------------------------------
-set guifont=JetBrainsMono\ Nerd\ Font
+set guifont=JetBrainsMono\ Nerd\ Font\ 11
 
 " Colorscheme
 "---------------------------------------------------------

@@ -13,7 +13,7 @@ opt.updatetime = 200 -- set the updatetime, default is 4000ms
 opt.colorcolumn = "80"
 
 -- Font
-opt.guifont = "JetBrainsMono Nerd Font"
+opt.guifont = "JetBrainsMono Nerd Font 11"
 
 -- Sapece & Tabs
 opt.expandtab = true -- tabs are spaces, mainly because of python

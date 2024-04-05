@@ -66,6 +66,54 @@
             "keys": "ctrl+tab"
         },
         {
+            "command": "unbound",
+            "keys": "alt+f4"
+        },
+        {
+            "command": "unbound",
+            "keys": "alt+enter"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+up"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+c"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+m"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+up"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+down"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+alt+left"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+n"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+a"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+pgdn"
+        },
+        {
+            "command": "unbound",
+            "keys": "ctrl+shift+pgup"
+        },
+        {
             "command": {
                 "action": "copy",
                 "singleLine": false
@@ -81,7 +129,7 @@
         },
         {
             "command": "paste",
-            "keys": "ctrl+v"
+            "keys": "ctrl+alt+v"
         },
         {
             "command": "find",
@@ -94,6 +142,12 @@
                 "splitMode": "duplicate"
             },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": {
+                "action": "scrollDown"
+            },
+            "keys": "ctrl+e"
         },
         {
             "command": {
@@ -129,6 +183,12 @@
         },
         {
             "command": {
+                "action": "scrollUp"
+            },
+            "keys": "ctrl+y"
+        },
+        {
+            "command": {
                 "action": "newTab"
             },
             "keys": "ctrl+alt+t"
@@ -159,6 +219,23 @@
                 "action": "nextTab"
             },
             "keys": "alt+l"
+        },
+        {
+            "command": {
+                "action": "moveFocus",
+                "direction": "previous"
+            },
+            "keys": "ctrl+alt+y"
+        },
+        {
+            "command": {
+                "action": "newWindow"
+            },
+            "keys": "ctrl+alt+n"
+        },
+        {
+            "command": "selectAll",
+            "keys": "ctrl+alt+a"
         }
     ],
     "alwaysShowTabs": true,

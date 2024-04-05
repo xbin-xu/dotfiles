@@ -71,10 +71,12 @@ bar:
     - type: "binding mode"
       background: "#ffffff33"
       margin: "0 4px 0 0"
-    - type: "battery"
-      label_draining: "{battery_level}%"
-      label_power_saver: "{battery_level}%"
-      label_charging: "{battery_level}% <attr ff='Arial' fg='#228B22' fw='400' fs='13px'>(charging)</attr>"
+    - type: "cpu"
+      label: "CPU: {percent_usage}% "
+      refresh_interval_ms: 1000
+    - type: "memory"
+      label: "| Menory: {percent_usage}% "
+      refresh_interval_ms: 1000
     - type: "clock"
       # Documentation on formatting date/time string:
       # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
@@ -82,21 +84,20 @@ bar:
 
 workspaces:
   - name: "1"
-    display_name: "terminal"
+    display_name: "1.terminal"
     keep_alive: true
   - name: "2"
-    display_name: "editor"
+    display_name: "2.editor"
     keep_alive: true
   - name: "3"
-    display_name: "browser"
+    display_name: "3.browser"
     keep_alive: true
   - name: "4"
-    display_name: "im"
+    display_name: "4.im"
     keep_alive: true
   - name: "5"
-    display_name: "other"
+    display_name: "5.other"
     keep_alive: true
-  - name: "6"
   - name: "6"
   - name: "7"
   - name: "8"
@@ -122,84 +123,102 @@ window_rules:
   - command: "resize borders 0px -7px -7px -7px"
     match_process_name: "steam"
 
-  - command: "move to workspace 1"
+  # workspace
+  - commands: ["move to workspace 1", "focus workspace 1"]
     match_process_name: "WindowsTerminal"
-  - command: "move to workspace 2"
+  - commands: ["move to workspace 2", "focus workspace 2"]
     match_process_name: "/nvim-qt|neovide|Code/"
-  - command: "move to workspace 3"
+  - commands: ["move to workspace 3", "focus workspace 3"]
     match_process_name: "/chrome|edge/"
-  - command: "move to workspace 4"
-    match_process_name: "/WeChat/"
-  - command: "move to workspace 5"
-    match_process_name: "/Listary|Snipaste|Clash.*|QQMusic/"
+  - commands: ["move to workspace 4", "focus workspace 4"]
+    match_process_name: "WeChat"
+  - commands: ["set floating", "move to workspace 5", "focus workspace 5"]
+    match_process_name: "/Listary|Clash.*|.*[mM]usic.*/"
   - command: "set floating"
     match_process_name: "/explorer/"
 
 binding_modes:
-  - name: "resize"
+  - name: "focus"
     keybindings:
-      - command: "resize width -2%"
-      # Resize focused window by a percentage or pixel amount.
-        bindings: ["H", "Left"]
-      - command: "resize width +2%"
-        bindings: ["L", "Right"]
-      - command: "resize height +2%"
-        bindings: ["K", "Up"]
-      - command: "resize height -2%"
-        bindings: ["J", "Down"]
-      # Press enter/escape to return to default keybindings.
       - command: "binding mode none"
         bindings: ["Escape", "Control+OemOpenBrackets", "Enter"]
+      # - commands: ["focus left"]
+      #   bindings: ["H", "Left"]
+      # - commands: ["focus down"]
+      #   bindings: ["J", "Down"]
+      # - commands: ["focus up"]
+      #   bindings: ["K", "Up"]
+      # - commands: ["focus right"]
+      #   bindings: ["L", "Right"]
+      - commands: ["focus left", "binding mode none"]
+        bindings: ["H", "Left"]
+      - commands: ["focus down", "binding mode none"]
+        bindings: ["J", "Down"]
+      - commands: ["focus up", "binding mode none"]
+        bindings: ["K", "Up"]
+      - commands: ["focus right", "binding mode none"]
+        bindings: ["L", "Right"]
+  - name: "move"
+    keybindings:
+      - command: "binding mode none"
+        bindings: ["Escape", "Control+OemOpenBrackets", "Enter"]
+      - commands: ["move left", "binding mode none"]
+        bindings: ["H", "Left"]
+      - commands: ["move down", "binding mode none"]
+        bindings: ["J", "Down"]
+      - commands: ["move up", "binding mode none"]
+        bindings: ["K", "Up"]
+      - commands: ["move right", "binding mode none"]
+        bindings: ["L", "Right"]
+  - name: "layout"
+    keybindings:
+      - command: "binding mode none"
+        bindings: ["Escape", "Control+OemOpenBrackets", "Enter"]
+      - command: "resize width -2%"
+        bindings: ["H", "Left"]
+      - command: "resize height -2%"
+        bindings: ["J", "Down"]
+      - command: "resize height +2%"
+        bindings: ["K", "Up"]
+      - command: "resize width +2%"
+        bindings: ["L", "Right"]
+      - command: "set minimized"
+        bindings: ["M"]
+      - command: "toggle maximized"
+        bindings: ["X"]
 
 keybindings:
-  # Shift focus in a given direction.
-  - command: "focus left"
-    bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
-  - command: "focus right"
-    bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
-  - command: "focus up"
-    bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
-  - command: "focus down"
-    bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
+  # Shift focus in a given direction
+  - command: "binding mode focus"
+    binding: "Alt+F"
 
-  # Move focused window in a given direction.
-  - command: "move left"
-    bindings: ["Alt+Shift+U", "Alt+Left"]
-  - command: "move right"
-    bindings: ["Alt+Shift+P", "Alt+Right"]
-  - command: "move up"
-    bindings: ["Alt+Shift+O", "Alt+Up"]
-  - command: "move down"
-    bindings: ["Alt+Shift+I", "Alt+Down"]
+  # Move focused window in a given direction
+  - command: "binding mode move"
+    binding: "Alt+M"
 
-  # As an alternative to the resize keybindings above, resize mode enables resizing via
-  # HJKL or arrow keys. The binding mode is defined above with the name "resize".
-  - command: "binding mode resize"
-    binding: "Alt+R"
+  # Change layout
+  - command: "binding mode layout"
+    binding: "Alt+S"
 
   # Change tiling direction. This determines where new tiling windows will be inserted.
   - command: "tiling direction toggle"
     binding: "Alt+V"
 
-  # Change focus between floating / tiling windows.
-  - command: "focus mode toggle"
-    binding: "Alt+Shift+Space"
-
   # Change the focused window to be floating / tiling.
   - command: "toggle floating"
     binding: "Alt+Space"
+
+  # Change focus between floating / tiling windows.
+  - command: "focus mode toggle"
+    binding: "Alt+Shift+Space"
 
   # Change the focused window to be maximized / unmaximized.
   - command: "toggle maximized"
     binding: "Alt+X"
 
-  # Minimize focused window.
-  - command: "set minimized"
-    binding: "Alt+M"
-
   # Close focused window.
   - command: "close"
-    binding: "Alt+Shift+Q"
+    binding: "Alt+Q"
 
   # Kill GlazeWM process safely.
   - command: "exit wm"
@@ -207,7 +226,7 @@ keybindings:
 
   # Re-evaluate configuration file.
   - command: "reload config"
-    binding: "Alt+Shift+R"
+    binding: "Alt+R"
 
   # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
   # to start Windows Terminal and Git Bash respectively.
@@ -224,6 +243,16 @@ keybindings:
   - command: "focus workspace prev"
     binding: "Alt+P"
 
+  # Move focused workspace to a monitor in a given direction.
+  - command: "move workspace left"
+    binding: "Alt+A"
+  - command: "move workspace right"
+    binding: "Alt+F"
+  - command: "move workspace up"
+    binding: "Alt+D"
+  - command: "move workspace down"
+    binding: "Alt+S"
+
   # Change focus to a workspace defined in `workspaces` config.
   - command: "focus workspace 1"
     bindings: ["Alt+1", "Alt+T"]
@@ -236,35 +265,25 @@ keybindings:
   - command: "focus workspace 5"
     bindings: ["Alt+5", "Alt+O"]
   - command: "focus workspace 6"
-    binding: "Alt+6"
+    bindings: ["Alt+6"]
   - command: "focus workspace 7"
-    binding: "Alt+7"
+    bindings: ["Alt+7"]
   - command: "focus workspace 8"
-    binding: "Alt+8"
+    bindings: ["Alt+8"]
   - command: "focus workspace 9"
-    binding: "Alt+9"
-
-  # Move focused workspace to a monitor in a given direction.
-  - command: "move workspace left"
-    binding: "Alt+A"
-  - command: "move workspace right"
-    binding: "Alt+F"
-  - command: "move workspace up"
-    binding: "Alt+D"
-  - command: "move workspace down"
-    binding: "Alt+S"
+    bindings: ["Alt+9"]
 
   # Move focused window to a workspace defined in `workspaces` config.
   - commands: ["move to workspace 1", "focus workspace 1"]
-    bindings: ["Alt+Shift+1", "Alt+Shift+T"]
+    binding: "Alt+Shift+1"
   - commands: ["move to workspace 2", "focus workspace 2"]
-    bindings: ["Alt+Shift+2", "Alt+Shift+E"]
+    binding: "Alt+Shift+2"
   - commands: ["move to workspace 3", "focus workspace 3"]
-    bindings: ["Alt+Shift+3", "Alt+Shift+B"]
+    binding: "Alt+Shift+3"
   - commands: ["move to workspace 4", "focus workspace 4"]
-    bindings: ["Alt+Shift+4", "Alt+Shift+I"]
+    binding: "Alt+Shift+4"
   - commands: ["move to workspace 5", "focus workspace 5"]
-    bindings: ["Alt+Shift+5", "Alt+Shift+O"]
+    binding: "Alt+Shift+5"
   - commands: ["move to workspace 6", "focus workspace 6"]
     binding: "Alt+Shift+6"
   - commands: ["move to workspace 7", "focus workspace 7"]
