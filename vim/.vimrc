@@ -710,6 +710,11 @@ let g:coc_global_extensions = [
             \ 'coc-docker',
             \ ]
 
+" coc-extention: explorer
+"---------------------------------------------------------
+" TODO: not work in windows, use NERDTree to instead
+" nnoremap <leader>e :CocCommand explorer<CR>
+
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file

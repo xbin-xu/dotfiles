@@ -7,11 +7,34 @@
     "yank.enableCompletion": true,
     "yank.priority": 90,
     "yank.limit": 3,
-    "diagnostic.enableSign": true,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.file.showHiddenFiles": true,
+    "explorer.file.column.indent.indentLine": true,
+    "explorer.git.enable": true,
+    "explorer.git.showIgnored": true,
+    "explorer.keyMappings.global": {
+        "o": [
+            "wait",
+            "expanded?",
+            "collapse",
+            [
+                "expandable?",
+                "expand",
+                "open"
+            ]
+        ],
+        "E": "open:split",
+        "s": "open:vsplit",
+        "d": "delete"
+    },
+    "diagnostic.errorSign": " ",
+    "diagnostic.warningSign": " ",
+    "diagnostic.hintSign": " ",
+    "diagnostic.infoSign": " ",
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.checkCurrentLine": true,
     "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.virtualText": false,
     "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/17.0.3/clangd_17.0.3/bin/clangd",
-    "snippets.ultisnips.pythonPrompt": false
+    "snippets.ultisnips.pythonPrompt": false,
 }

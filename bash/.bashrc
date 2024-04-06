@@ -9,12 +9,15 @@ function alias_if_exists() {
 	fi
 }
 
-alias_if_exists cat bat
+# alias_if_exists cat bat
 alias_if_exists ls exa
 alias_if_exists ls eza
+alias ll="ls -alF"
 # alias_if_exists find fd
 # alias_if_exists vim nvim
 
 # CLI integration
 # zoxide
 eval "$(zoxide init bash)"
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
