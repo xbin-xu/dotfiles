@@ -448,6 +448,7 @@ Plug 'liuchengxu/vim-which-key'     " which key
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'romainl/vim-cool'             " auto enable/disable search highlight
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+Plug 'brglng/vim-im-select'         " auto switch input method
 
 call plug#end()
 
@@ -974,6 +975,13 @@ let g:which_key_map.x = {
 " <C-]> codeium#Accept()
 " <M-Bslash> codeium#Complete()
 imap <script><silent><nowait><expr> <C-l> codeium#Accept()
+
+" im-select
+"---------------------------------------------------------
+" The default value on Windows
+let g:im_select_default = '1033'
+" Set to the im-select program path
+let g:im_select_command = 'im-select'
 
 "---------------------
 " Local customizations
