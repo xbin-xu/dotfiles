@@ -1,10 +1,15 @@
 // 将键绑定放在此文件中以覆盖默认值
 [
-    // -- vim
+    // -- vim or neovim
     //--------------------------------------------------------------------------
     {
         "key": "ctrl+alt+v",
         "command": "toggleVim"
+    },
+    {
+        "key": "ctrl+[",
+        "command": "-markdown.extension.onOutdentLines",
+        "when": "editorTextFocus && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
     },
     // -- which key
     //--------------------------------------------------------------------------
@@ -20,11 +25,11 @@
     },
     // -- expand regin
     //--------------------------------------------------------------------------
-    // {
-    //     "key": "v",
-    //     "command": "expand_region",
-    //     "when": "editorTextFocus && (vim.mode == 'Visual' || vim.mode == 'VisualLine)"
-    // },
+    {
+        "key": "v",
+        "command": "expand_region",
+        "when": "editorTextFocus && !(vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')"
+    },
     {
         "key": "ctrl+=",
         "command": "expand_region",

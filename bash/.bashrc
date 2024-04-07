@@ -21,3 +21,8 @@ alias ll="ls -alF"
 eval "$(zoxide init bash)"
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Export PATH
+# https://github.com/daipeihust/im-select
+IM_SELECT_PATH="/usr/local/bin"
+export PATH=$IM_SELECT_PATH:$PATH

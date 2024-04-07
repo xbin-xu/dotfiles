@@ -136,6 +136,8 @@ window_rules:
     match_process_name: "/Listary|Clash.*|.*[mM]usic.*/"
   - command: "set floating"
     match_process_name: "/explorer/"
+  - command: "ignore"
+    match_process_name: "/[sS]nipaste/"
 
 binding_modes:
   - name: "focus"
@@ -255,15 +257,15 @@ keybindings:
 
   # Change focus to a workspace defined in `workspaces` config.
   - command: "focus workspace 1"
-    bindings: ["Alt+1", "Alt+T"]
+    bindings: ["Alt+1"]
   - command: "focus workspace 2"
-    bindings: ["Alt+2", "Alt+E"]
+    bindings: ["Alt+2"]
   - command: "focus workspace 3"
-    bindings: ["Alt+3", "Alt+B"]
+    bindings: ["Alt+3"]
   - command: "focus workspace 4"
-    bindings: ["Alt+4", "Alt+I"]
+    bindings: ["Alt+4"]
   - command: "focus workspace 5"
-    bindings: ["Alt+5", "Alt+O"]
+    bindings: ["Alt+5"]
   - command: "focus workspace 6"
     bindings: ["Alt+6"]
   - command: "focus workspace 7"
