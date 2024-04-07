@@ -40,6 +40,9 @@ filetype plugin on  " load filetype's plugin file
 filetype indent on  " load filetype's indent file
 set autoindent      " set automatically indented
 set smartindent     " set smart indent
+" Disable ':' to reindenting of the current line
+set cinkeys="0{,0},0),0],0#,!^F,o,O,e"
+set indentkeys="0{,0},0),0],0#,!^F,o,O,e"
 
 " UI
 "---------------------------------------------------------
@@ -221,6 +224,7 @@ nnoremap ]b :bnext<CR>
 nnoremap <leader>y "+y
 nnoremap <leader>d "+d
 nnoremap <leader>p "+p
+
 nnoremap <leader>P "+P
 vnoremap <leader>y "+y
 vnoremap <leader>d "+d
@@ -861,7 +865,7 @@ nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 " " Do default action for previous item
 " nnoremap <silent><nowait> <Space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list
-nnoremap <silent><nowait> <Space>p  :<C-u>CocListResume<CR>
+" nnoremap <silent><nowait> <Space>p  :<C-u>CocListResume<CR>
 
 " which key
 "---------------------------------------------------------

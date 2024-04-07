@@ -9,6 +9,12 @@ opt.fileencoding = "UTF-8"
 -----------------------------------------------------------
 opt.guifont = "JetBrainsMono Nerd Font 11"
 
+-- Indent
+-----------------------------------------------------------
+-- Disable ':' to reindenting of current line
+opt.cinkeys = "0{,0},0),0],0#,!^F,o,O,e"
+opt.indentkeys = "0{,0},0),0],0#,!^F,o,O,e"
+
 -- UI
 -----------------------------------------------------------
 opt.mouse:append("a") -- enable mouse support

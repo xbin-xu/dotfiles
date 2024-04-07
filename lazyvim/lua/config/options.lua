@@ -20,3 +20,7 @@ opt.expandtab = true -- tabs are spaces, mainly because of python
 opt.tabstop = 4 -- number of visual spaces per TAB
 opt.shiftwidth = 4 -- insert 4 spaces on a tab
 opt.softtabstop = 4 -- number of spaces in tab when editing
+
+-- Disable ':' to reindenting of current line
+opt.cinkeys = "0{,0},0),0],0#,!^F,o,O,e"
+opt.indentkeys = "0{,0},0),0],0#,!^F,o,O,e"
