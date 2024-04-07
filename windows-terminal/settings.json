@@ -55,10 +55,6 @@
         },
         {
             "command": "unbound",
-            "keys": "ctrl+v"
-        },
-        {
-            "command": "unbound",
             "keys": "ctrl+shift+tab"
         },
         {
@@ -114,6 +110,10 @@
             "keys": "ctrl+shift+pgup"
         },
         {
+            "command": "unbound",
+            "keys": "ctrl+alt+v"
+        },
+        {
             "command": {
                 "action": "copy",
                 "singleLine": false
@@ -129,7 +129,7 @@
         },
         {
             "command": "paste",
-            "keys": "ctrl+alt+v"
+            "keys": "ctrl+v"
         },
         {
             "command": "find",
@@ -534,7 +534,7 @@
         }
     ],
     "showTabsInTitlebar": true,
-    "startOnUserLogin": false,
+    "startOnUserLogin": true,
     "tabWidthMode": "equal",
     "themes": [],
     "useAcrylicInTabRow": false
