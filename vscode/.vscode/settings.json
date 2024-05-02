@@ -40,6 +40,9 @@
     "terminal.integrated.defaultProfile.linux": "fish",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.enableMultiLinePasteWarning": "never",
+    "terminal.integrated.commandsToSkipShell": [
+        "-workbench.action.quickOpen"
+    ],
     "[markdown]": {
         "editor.quickSuggestions": {
             "other": "on",
@@ -47,8 +50,12 @@
             "strings": "off"
         }
     },
-    "terminal.integrated.commandsToSkipShell": [
-        "-workbench.action.quickOpen"
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "black-formatter.args": [
+        "--skip-string-normalization"
     ],
     // }
     //--------------------------------------------------------------------------
@@ -59,7 +66,7 @@
     //--------------------------------------------------------------------------
     // -- Project Manager {
     "projectManager.git.baseFolders": [
-        "d:/workspace/"
+        "d:/Workbench/"
     ],
     "projectManager.sortList": "Recent",
     // }
@@ -103,8 +110,8 @@
     //     { "before": [ "[", "b" ], "commands": [ "workbench.action.previousEditor" ] },
     //     { "before": [ "]", "b" ], "commands": [ "workbench.action.nextEditor" ] },
     //     // ---- navigate git hunk
-    //     { "before": [ "[", "h" ], "commands": [ "workbench.action.editor.previousChange", "workbench.action.compareEditor.previousChange" ] },
-    //     { "before": [ "]", "h" ], "commands": [ "workbench.action.editor.nextChange", "workbench.action.compareEditor.nextChange" ] },
+    //     { "before": [ "[", "g" ], "commands": [ "workbench.action.editor.previousChange", "workbench.action.compareEditor.previousChange" ] },
+    //     { "before": [ "]", "g" ], "commands": [ "workbench.action.editor.nextChange", "workbench.action.compareEditor.nextChange" ] },
     //     // ---- navigate diagnostic/problem
     //     { "before": [ "[", "d" ], "commands": [ "editor.action.marker.prev" ] },
     //     { "before": [ "]", "d" ], "commands": [ "editor.action.marker.next" ] },
@@ -184,6 +191,30 @@
                     "command": "workbench.action.closeActiveEditor"
                 },
                 {
+                    "key": "h",
+                    "name": "Move editor into left group",
+                    "type": "command",
+                    "command": "workbench.action.moveEditorToLeftGroup"
+                },
+                {
+                    "key": "j",
+                    "name": "Move editor into below group",
+                    "type": "command",
+                    "command": "workbench.action.moveEditorToBelowGroup"
+                },
+                {
+                    "key": "k",
+                    "name": "Move editor into above group",
+                    "type": "command",
+                    "command": "workbench.action.moveEditorToAboveGroup"
+                },
+                {
+                    "key": "l",
+                    "name": "Move editor into right group",
+                    "type": "command",
+                    "command": "workbench.action.moveEditorToRightGroup"
+                },
+                {
                     "key": "n",
                     "name": "New editor",
                     "type": "command",
@@ -194,6 +225,18 @@
                     "name": "Close other editors",
                     "type": "command",
                     "command": "workbench.action.closeOtherEditors"
+                },
+                {
+                    "key": "p",
+                    "name": "Pin editors",
+                    "type": "command",
+                    "command": "workbench.action.pinEditor"
+                },
+                {
+                    "key": "P",
+                    "name": "Unpin editors",
+                    "type": "command",
+                    "command": "workbench.action.unpinEditor"
                 },
                 {
                     "key": "u",
@@ -268,9 +311,9 @@
                 },
                 {
                     "key": "s",
-                    "name": "Symbol outlien",
+                    "name": "Symbol outline",
                     "type": "command",
-                    // require `outline.toggleVisibility` and move it to auxiliarbar
+                    // require `outline.toggleVisibility` and move it to auxiliary bar
                     "command": "workbench.action.toggleAuxiliaryBar"
                 }
             ]
@@ -441,7 +484,7 @@
         },
         {
             "key": "e",
-            "name": "Toggle Explorer",
+            "name": "Toggle explorer",
             "type": "command",
             "command": "workbench.action.toggleSidebarVisibility"
         },
@@ -579,7 +622,7 @@
         },
         {
             "key": "-",
-            "name": "Split Horizontal",
+            "name": "Split horizontal",
             "type": "command",
             "command": "workbench.action.splitEditorDown"
         },
@@ -610,7 +653,7 @@
         },
         {
             "key": "|",
-            "name": "Split Vertical",
+            "name": "Split vertical",
             "type": "command",
             "command": "workbench.action.splitEditor"
         },
@@ -674,6 +717,12 @@
                     "command": "workbench.action.toggleZenMode"
                 },
                 {
+                    "key": "r",
+                    "name": "Toggle reference",
+                    "type": "command",
+                    "command": "workbench.view.extension.references-view"
+                },
+                {
                     "key": "s",
                     "name": "Show search",
                     "type": "command",
@@ -714,6 +763,79 @@
                     "name": "Show console/repl",
                     "type": "command",
                     "command": "workbench.debug.action.toggleRepl"
+                }
+            ]
+        },
+        {
+            "key": "w",
+            "name": "+Window",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "-",
+                    "name": "Split Horizontal",
+                    "type": "command",
+                    "command": "workbench.action.splitEditorDown"
+                },
+                {
+                    "key": "|",
+                    "name": "Split Vertical",
+                    "type": "command",
+                    "command": "workbench.action.splitEditor"
+                },
+                {
+                    "key": "h",
+                    "name": "Move editor group left",
+                    "type": "command",
+                    "command": "workbench.action.moveActiveEditorGroupLeft"
+                },
+                {
+                    "key": "j",
+                    "name": "Move editor group down",
+                    "type": "command",
+                    "command": "workbench.action.moveActiveEditorGroupDown"
+                },
+                {
+                    "key": "k",
+                    "name": "Move editor group up",
+                    "type": "command",
+                    "command": "workbench.action.moveActiveEditorGroupUp"
+                },
+                {
+                    "key": "l",
+                    "name": "Move editor group right",
+                    "type": "command",
+                    "command": "workbench.action.moveActiveEditorGroupRight"
+                },
+                {
+                    "key": "d",
+                    "name": "Close editor group",
+                    "type": "command",
+                    "command": "workbench.action.closeEditorsInGroup"
+                },
+                {
+                    "key": "t",
+                    "name": "Toggle editor group sizes",
+                    "type": "command",
+                    "command": "workbench.action.toggleEditorWidths"
+                },
+                {
+                    "key": "w",
+                    "name": "Focus previous editor group",
+                    "type": "command",
+                    "command": "workbench.action.focusPreviousGroup"
+                },
+                {
+                    "key": "z",
+                    "name": "Combine all editors",
+                    "type": "command",
+                    "command": "workbench.action.joinAllGroups"
+                },
+                {
+                    "key": "x",
+                    "name": "Close all editor groups",
+                    "type": "command",
+                    "command": "workbench.action.closeAllGroups"
                 }
             ]
         }
@@ -840,4 +962,5 @@
         "IDF_CCACHE_ENABLE": "1",
         "ESP_ROM_ELF_DIR": "d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320/"
     },
+    // }
 }

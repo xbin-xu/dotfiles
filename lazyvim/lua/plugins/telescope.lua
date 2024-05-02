@@ -1,11 +1,6 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Grep text" },
-      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
-    },
     opts = {
       defaults = {
         -- default is insert

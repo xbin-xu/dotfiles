@@ -7,13 +7,12 @@ local function augroup(name)
 end
 
 -- Auto close while quit as last buffer
-vim.api.nvim_create_autocmd({ "QuitPre" }, {
-  group = augroup("quit_pre"),
-  callback = function()
-    vim.cmd("Neotree close")
-    -- vim.cmd("CMakeCloseRunner")
-  end,
-})
+-- vim.api.nvim_create_autocmd({ "QuitPre" }, {
+--   group = augroup("quit_pre"),
+--   callback = function()
+--     vim.cmd("CMakeCloseRunner")
+--   end,
+-- })
 
 -- Highlight current line, but only in active window
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {

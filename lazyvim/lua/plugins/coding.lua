@@ -1,7 +1,4 @@
 return {
-  -- better for highlight search
-  { "romainl/vim-cool" },
-
   -- bookmark
   {
     "kshenoy/vim-signature",

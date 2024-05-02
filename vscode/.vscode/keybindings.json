@@ -14,7 +14,7 @@
     // -- which key
     //--------------------------------------------------------------------------
     {
-        "key": " ",
+        "key": "space",
         "command": "whichkey.show",
         "when": "!inputFocus"
     },
@@ -24,12 +24,13 @@
         "when": "whichkeyVisible"
     },
     // -- expand regin
+    // TODO: not compatibility with vscode-neovim
     //--------------------------------------------------------------------------
-    {
-        "key": "v",
-        "command": "expand_region",
-        "when": "editorTextFocus && !(vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')"
-    },
+    // {
+    //     "key": "v",
+    //     "command": "expand_region",
+    //     "when": "editorTextFocus && (vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')"
+    // },
     {
         "key": "ctrl+=",
         "command": "expand_region",
@@ -44,6 +45,116 @@
         "key": "ctrl+w",
         "command": "-expand_region",
         "when": "editorTextFocus"
+    },
+    // -- navigation
+    //--------------------------------------------------------------------------
+    // ---- list focus
+    {
+        "key": "h",
+        "command": "list.collapse",
+        "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
+    },
+    {
+        "key": "j",
+        "command": "list.focusDown",
+        "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
+    },
+    {
+        "key": "k",
+        "command": "list.focusUp",
+        "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
+    },
+    {
+        "key": "l",
+        "command": "list.expand",
+        "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
+    },
+    {
+        "key": "o",
+        "command": "list.select",
+        "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
+    },
+    {
+        "key": "s",
+        "command": "workbench.action.splitEditorRight",
+        "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
+    },
+    {
+        "key": "v",
+        "command": "workbench.action.splitEditorDown",
+        "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
+    },
+    // ---- windows
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight",
+        "when": "!terminalFocus"
+    },
+    // ---- quick open
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.quickOpenSelectNext",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.quickOpenSelectPrevious",
+        "when": "inQuickOpen"
+    },
+    // ---- intelliSense suggestions
+    {
+        "key": "ctrl+j",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    {
+        "key": "tab",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    {
+        "key": "shift+tab",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    // ---- code action
+    {
+        "key": "ctrl+j",
+        "command": "selectNextCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevCodeAction",
+        "when": "codeActionMenuVisible"
+    },
+    // ---- search
+    {
+        "key": "ctrl+j",
+        "command": "search.action.focusSearchList",
+        "when": "searchViewletFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "search.action.focusSearchFromResults",
+        "when": "searchViewletFocus"
     },
     // -- file explorer
     //--------------------------------------------------------------------------
@@ -82,46 +193,6 @@
         "command": "copyFilePath",
         "when": "filesExplorerFocus && !inputFocus"
     },
-    {
-        "key": "h",
-        "command": "list.collapse",
-        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-    },
-    {
-        "key": "j",
-        "command": "list.focusDown",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "k",
-        "command": "list.focusUp",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "l",
-        "command": "list.select",
-        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-    },
-    {
-        "key": "o",
-        "command": "list.toggleExpand",
-        "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-    },
-    {
-        "key": "enter",
-        "command": "list.select",
-        "when": "explorerViewletVisible && filesExplorerFocus"
-    },
-    {
-        "key": "l",
-        "command": "-list.select",
-        "when": "listFocus && !inputFocus"
-    },
-    {
-        "key": "l",
-        "command": "list.expand",
-        "when": "listFocus && !inputFocus"
-    },
     // -- terminal
     //--------------------------------------------------------------------------
     {
@@ -129,130 +200,12 @@
         "command": "workbench.action.terminal.toggleTerminal"
     },
     {
-        "key": "ctrl+n",
-        "command": "workbench.action.terminal.newInActiveWorkspace",
-        "when": "terminalFocus"
-    },
-    {
         "key": "ctrl+m",
         "command": "workbench.action.toggleMaximizedPanel",
         "when": "terminalFocus"
     },
-    {
-        "key": "ctrl+x",
-        "command": "workbench.action.terminal.kill",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+j",
-        "command": "workbench.action.terminal.focusNext",
-        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "workbench.action.terminal.focusPrevious",
-        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-    },
-    // -- navigation
+    // -- move lines 
     //--------------------------------------------------------------------------
-    {
-        "key": "ctrl+j",
-        "command": "workbench.action.navigateDown"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "workbench.action.navigateUp"
-    },
-    {
-        "key": "ctrl+h",
-        "command": "workbench.action.navigateLeft"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.navigateRight",
-        "when": "!panelFocus"
-    },
-    // ---- in quick open
-    {
-        "key": "ctrl+j",
-        "command": "workbench.action.quickOpenSelectNext",
-        "when": "inQuickOpen"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "workbench.action.quickOpenSelectPrevious",
-        "when": "inQuickOpen"
-    },
-    // ---- intelliSense suggestions
-    {
-        "key": "ctrl+j",
-        "command": "selectNextSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "selectPrevSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    },
-    {
-        "key": "tab",
-        "command": "selectNextSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    },
-    {
-        "key": "shift+tab",
-        "command": "selectPrevSuggestion",
-        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
-    },
-    // ---- code action menu
-    {
-        "key": "ctrl+j",
-        "command": "selectNextCodeAction",
-        "when": "codeActionMenuVisible"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "selectPrevCodeAction",
-        "when": "codeActionMenuVisible"
-    },
-    // ---- problems
-    {
-        "key": "ctrl+j",
-        "command": "list.focusDown",
-        "when": "panelFocus && activePanel == 'workbench.panel.markers'"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "list.focusUp",
-        "when": "panelFocus && activePanel == 'workbench.panel.markers'"
-    },
-    // ---- search
-    {
-        "key": "ctrl+j",
-        "command": "search.action.focusNextSearchResult",
-        "when": "searchViewletVisible"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "search.action.focusPreviousSearchResult",
-        "when": "searchViewletVisible"
-    },
-    {
-        "key": "j",
-        "command": "list.focusDown",
-        "when": "searchViewletVisible && listFocus && !inputFocus"
-    },
-    {
-        "key": "k",
-        "command": "list.focusUp",
-        "when": "searchViewletVisible && listFocus && !inputFocus"
-    },
-    {
-        "key": "d",
-        "command": "search.action.remove",
-        "when": "fileMatchOrMatchFocus && searchViewletVisible"
-    },
-    // ---- move lines
     {
         "key": "alt+j",
         "command": "editor.action.moveLinesDownAction",
@@ -262,5 +215,5 @@
         "key": "alt+k",
         "command": "editor.action.moveLinesUpAction",
         "when": "editorTextFocus && !editorReadonly"
-    },
+    }
 ]

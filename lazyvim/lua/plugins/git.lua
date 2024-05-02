@@ -1,17 +1,5 @@
 return {
   {
-    "kdheepak/lazygit.nvim",
-    dependencies = {
-      -- optional for floating window border decoration
-      "nvim-lua/plenary.nvim",
-    },
-    keys = {
-      { "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open lazygit" },
-    },
-    config = function() end,
-  },
-
-  {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     opts = {
@@ -31,8 +19,8 @@ return {
         end
 
         -- Naviation
-        map("n", "]h", gs.next_hunk, "Next hunk")
-        map("n", "[h", gs.prev_hunk, "Prev hunk")
+        map("n", "]g", gs.next_hunk, "Next hunk")
+        map("n", "[g", gs.prev_hunk, "Prev hunk")
         map("n", "<leader>gj", gs.next_hunk, "Next hunk")
         map("n", "<leader>gk", gs.prev_hunk, "Prev hunk")
 
@@ -47,7 +35,6 @@ return {
           gs.blame_line({ full = true })
         end, "Blame line")
         map("n", "<leader>gd", gs.diffthis, "Diff this")
-        -- TODO: not work
         map("n", "<leader>gD", function()
           gs.diffthis("~")
         end, "Diff this ~")

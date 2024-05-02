@@ -110,7 +110,7 @@ window_rules:
     match_process_name: "/Taskmgr|ScreenClippingHost/"
 
   # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
-  - command: "set floating"
+  - command: "ignore"
     match_class_name: "#32770"
 
   # Do not manage picture-in-picture windows for browsers. Note that the default is for
@@ -125,17 +125,17 @@ window_rules:
 
   # workspace
   - commands: ["move to workspace 1", "focus workspace 1"]
-    match_process_name: "WindowsTerminal"
+    match_process_name: "/WindowsTerminal/"
   - commands: ["move to workspace 2", "focus workspace 2"]
     match_process_name: "/nvim-qt|neovide|Code/"
   - commands: ["move to workspace 3", "focus workspace 3"]
-    match_process_name: "/chrome|edge/"
+    match_process_name: "/chrome|.*edge/"
   - commands: ["move to workspace 4", "focus workspace 4"]
-    match_process_name: "WeChat"
+    match_process_name: "/WeChat/"
   - commands: ["set floating", "move to workspace 5", "focus workspace 5"]
     match_process_name: "/Listary|Clash.*|.*[mM]usic.*/"
   - command: "set floating"
-    match_process_name: "/explorer/"
+    match_process_name: "/explorer|notepad[+{2}]/"
   - command: "ignore"
     match_process_name: "/[sS]nipaste/"
 
@@ -193,6 +193,14 @@ keybindings:
   # Shift focus in a given direction
   - command: "binding mode focus"
     binding: "Alt+F"
+  - commands: ["focus left"]
+    bindings: ["Alt+Shift+H", "Alt+Left"]
+  - commands: ["focus down"]
+    bindings: ["Alt+Shift+J", "Alt+Down"]
+  - commands: ["focus up"]
+    bindings: ["Alt+Shift+K", "Alt+Up"]
+  - commands: ["focus right"]
+    bindings: ["Alt+Shift+L", "Alt+Right"]
 
   # Move focused window in a given direction
   - command: "binding mode move"
@@ -244,16 +252,6 @@ keybindings:
     binding: "Alt+N"
   - command: "focus workspace prev"
     binding: "Alt+P"
-
-  # Move focused workspace to a monitor in a given direction.
-  - command: "move workspace left"
-    binding: "Alt+A"
-  - command: "move workspace right"
-    binding: "Alt+F"
-  - command: "move workspace up"
-    binding: "Alt+D"
-  - command: "move workspace down"
-    binding: "Alt+S"
 
   # Change focus to a workspace defined in `workspaces` config.
   - command: "focus workspace 1"

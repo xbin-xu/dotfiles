@@ -18,16 +18,12 @@ xnoremap <C-s> :w<CR><Esc>
 nnoremap <C-s> :w<CR><Esc>
 snoremap <C-s> :w<CR><Esc>
 
-" Navigate window
-tnoremap <C-h> <C-w>h
-tnoremap <C-j> <C-w>j
-tnoremap <C-k> <C-w>k
-tnoremap <C-l> <C-w>l
-
 " Tab
 "---------------------------------------------------------
 nnoremap <leader><tab>n :tabnew<CR>
 nnoremap <leader><tab>d :tabclose<CR>
+nnoremap <leader><tab>l :tablast<CR>
+nnoremap <leader><tab>f :tabfirst<CR>
 
 " Navigate tab
 nnoremap [<tab> :tabprevious<CR>
@@ -35,7 +31,11 @@ nnoremap ]<tab> :tabnext<CR>
 
 " Window
 "---------------------------------------------------------
+" nnoremap <leader>wd <C-w>c
+" nnoremap <leader>ww <C-w>p
 " Split window
+" nnoremap <leader>w- <C-w>s
+" nnoremap <leader>w\| <C-w>v
 nnoremap <leader>- :sp<CR>
 nnoremap <leader>\| :vsp<CR>
 
@@ -46,7 +46,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Resize window
-" TODO: not work
 nnoremap <C-Up> :resize +2<CR>
 nnoremap <C-Down> :resize -2<CR>
 nnoremap <C-Left> :vertial resize -2<CR>
@@ -67,6 +66,8 @@ nnoremap ]b :bnext<CR>
 
 " Clipboard
 "---------------------------------------------------------
+" Replace selected whithout yank it
+vnoremap p "_dP
 " Quick copy paste into system clipboard
 nnoremap <leader>y "+y
 nnoremap <leader>d "+d

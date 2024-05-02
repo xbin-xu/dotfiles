@@ -12,7 +12,7 @@ return {
       options = {
         transparency = true,
       },
-      -- onedar.nvim or tokyonight.nvim
+      -- onedark.nvim or tokyonight.nvim
       -- transparent = true,
     },
   },

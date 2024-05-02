@@ -3,16 +3,18 @@
 -- Add any additional keymaps here
 
 -- This file is automatically loaded by lazyvim.config.init
-local Util = require("lazyvim.util")
+local LazyVim = require("lazyvim.util")
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
-local map = Util.safe_keymap_set
+-- local map = LazyVim.safe_keymap_set
+local map = vim.keymap.set
 
 -- Map jk to <esc> in insert mode
 map("i", "jk", "<esc>", { desc = "<Esc>" })
 
 -- Quit & Save
+-- TODO: conflict keymaps `<leader>d`, `<leader>q` and `<leader>w`
 map("n", "<leader>q", "<cmd>q!<cr>", { desc = "Quit" })
 -- map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Close file" })
 map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Wirte file" })
@@ -20,7 +22,7 @@ map("n", "<leader>W", "<cmd>w !sudo tee % >/dev/null<cr>", { desc = "Write file 
 
 -- Terminal
 local lazyterm = function()
-  Util.terminal(nil, { cwd = Util.root() })
+  LazyVim.terminal(nil, { cwd = LazyVim.root() })
 end
 map("n", "<c-/>", "<Nop>")
 map("t", "<C-/>", "<Nop>")
@@ -31,10 +33,6 @@ map("t", "<C-t>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
 map("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
--- Navigate buffer
--- map("n", "<S-tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
--- map("n", "<tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-
 -- Line head & tail
 map({ "n", "v", "o" }, "H", "^", { desc = "Line head" })
 map({ "n", "v", "o" }, "L", "$", { desc = "Line tail" })
@@ -44,8 +42,9 @@ map({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank" })
 map({ "n", "v" }, "<leader>d", '"+d', { desc = "Delete" })
 map({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste after the cursorr" })
 map({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste before the cursor" })
+map("v", "p", '"_dP', { desc = "Replace selected without yank it" })
 
--- better indenting
+-- Better indenting
 map("v", ">", ">gv", { desc = "Indent left" })
 map("v", "<", "<gv", { desc = "Indent right" })
 map("v", "<Tab>", ">gv", { desc = "Indent left" })

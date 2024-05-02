@@ -118,3 +118,6 @@
 [submodule "vim/.vim/plugged/vim-visual-multi"]
 	path = vim/.vim/plugged/vim-visual-multi
 	url = https://github.com/mg979/vim-visual-multi
+[submodule "vim/.vim/plugged/vim-im-select"]
+	path = vim/.vim/plugged/vim-im-select
+	url = https://github.com/brglng/vim-im-select

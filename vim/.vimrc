@@ -16,6 +16,11 @@ set guifont=JetBrainsMono\ Nerd\ Font\ 11
 " Colorscheme
 "---------------------------------------------------------
 " transparent
+" augroup colorset
+"     autocmd!
+"     autocmd ColorScheme * hi Normal guibg=NONE ctermbg=NONE
+" augroup END
+
 " onedark.vim override: Don't set a background color when running in a terminal;
 " just use the terminal's background color
 " `gui` is the hex color code used in GUI mode/nvim true-color mode
@@ -47,8 +52,8 @@ set indentkeys="0{,0},0),0],0#,!^F,o,O,e"
 " UI
 "---------------------------------------------------------
 set mouse+=a        " enable mouse support
-set timeoutlen=300  " timeout of keystrokes
-set updatetime=100  " set updatetime, default is 4000
+set timeoutlen=200  " timeout of keystrokes
+set updatetime=200  " set updatetime, default is 4000
 
 set number          " show line numbers
 set relativenumber  " show relative numbering
@@ -77,7 +82,7 @@ augroup CursorLineOnlyInActiveWindow
     autocmd WinLeave * setlocal nocursorline
 augroup END
 
-" Disable 'o' and 'O' toogle continue comment, but '<cr>' will
+" Disable 'o' and 'O' toogle continue comment, but '<CR>' will
 augroup ContinueComment
     autocmd!
     autocmd FileType * setlocal formatoptions-=o
@@ -168,19 +173,15 @@ snoremap <C-s> :w<CR><Esc>
 " Terminal
 "---------------------------------------------------------
 " Toggle terminal, default is horizontal, use `:vert term` tp open in vertical
-noremap <C-t> :term ++close<CR>
+noremap <silent> <C-t> :term ++close ++rows=15<CR>
 tnoremap <C-t> <C-w>:q!<CR>
-
-" Navigate window
-tnoremap <C-h> <C-w>h
-tnoremap <C-j> <C-w>j
-tnoremap <C-k> <C-w>k
-tnoremap <C-l> <C-w>l
 
 " Tab
 "---------------------------------------------------------
 nnoremap <leader><tab>n :tabnew<CR>
 nnoremap <leader><tab>d :tabclose<CR>
+nnoremap <leader><tab>l :tablast<CR>
+nnoremap <leader><tab>f :tabfirst<CR>
 
 " Navigate tab
 nnoremap [<tab> :tabprevious<CR>
@@ -188,7 +189,11 @@ nnoremap ]<tab> :tabnext<CR>
 
 " Window
 "---------------------------------------------------------
+" nnoremap <leader>wd <C-w>c
+" nnoremap <leader>ww <C-w>p
 " Split window
+" nnoremap <leader>w- <C-w>s
+" nnoremap <leader>w\| <C-w>v
 nnoremap <leader>- :sp<CR>
 nnoremap <leader>\| :vsp<CR>
 
@@ -199,7 +204,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Resize window
-" Todo: not work
 nnoremap <C-Up> :resize +2<CR>
 nnoremap <C-Down> :resize -2<CR>
 nnoremap <C-Left> :vertical resize -2<CR>
@@ -207,6 +211,7 @@ nnoremap <C-Right> :vertical resize +2<CR>
 
 " Buffer
 "---------------------------------------------------------
+noremap <leader>bb :e #<CR>
 noremap <leader>bn :enew<CR>
 noremap <leader>bd :bdelete<CR>
 
@@ -220,11 +225,12 @@ nnoremap ]b :bnext<CR>
 
 " Clipboard
 "---------------------------------------------------------
+" Replace selected whithout yank it
+vnoremap p "_dP
 " Quick copy paste into system clipboard
 nnoremap <leader>y "+y
 nnoremap <leader>d "+d
 nnoremap <leader>p "+p
-
 nnoremap <leader>P "+P
 vnoremap <leader>y "+y
 vnoremap <leader>d "+d
@@ -244,7 +250,7 @@ xnoremap <silent> <expr> j v:count == 0 ? 'gj' : 'j'
 xnoremap <silent> <expr> k v:count == 0 ? 'gk' : 'k'
 
 " Move line: `<A-j>` and `<M-j>` are not work
-" solve: press <C-v>, then press <Alt-j>
+" Solve: press <C-v>, then press <Alt-j>
 nnoremap j :m .+1<CR>==
 nnoremap k :m .-2<CR>==
 inoremap j <Esc>:m .+1<CR>==gi
@@ -309,12 +315,15 @@ autocmd Filetype markdown inoremap ,l ---<Enter>
 
 " Toggle
 "---------------------------------------------------------
+" Toggle spell
+nnoremap <silent> <leader>us :set spell!<CR>
+
 " Toggle wrap
-nnoremap <leader>uw :set wrap!<CR>
+nnoremap <silent> <leader>uw :set wrap!<CR>
 
 " Toggle line numbers
-nnoremap <leader>ul :set norelativenumber number!<CR>
-nnoremap <leader>uL :set relativenumber!<CR>
+nnoremap <silent> <leader>ul :set norelativenumber number!<CR>
+nnoremap <silent> <leader>uL :set relativenumber!<CR>
 
 " Other
 "---------------------------------------------------------
@@ -324,7 +333,7 @@ nnoremap [F []
 nnoremap ]f ]]
 nnoremap ]F ][
 
-" Scroll cmd-line history
+" Scroll cmd line history
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
 
@@ -392,12 +401,13 @@ Plug 'joshdick/onedark.vim'
 "---------------------------------------------------------
 Plug 'mhinz/vim-startify'           " start screen
 Plug 'scrooloose/nerdtree'          " file explorer
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'  " git status for nerdree
-Plug 'ryanoasis/vim-devicons'       " icon for vim plugins
 Plug 'sjl/gundo.vim'                " visualize undo tree
 Plug 'kshenoy/vim-signature'        " show marks in the gutter
 Plug 'vim-airline/vim-airline'      " beautify statusline
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'       " icon for vim plugins 
 
 " Fuzzy finder
 "---------------------------------------------------------
@@ -444,14 +454,14 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 
 " DAP
 "---------------------------------------------------------
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enable-python'}
+" Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-rust --enable-python'}
 
 " Other
 "---------------------------------------------------------
 Plug 'liuchengxu/vim-which-key'     " which key
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'romainl/vim-cool'             " auto enable/disable search highlight
-" Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'brglng/vim-im-select'         " auto switch input method
 
 call plug#end()
@@ -462,6 +472,11 @@ call plug#end()
 
 " nerdtree
 "---------------------------------------------------------
+" Can be enabled or disabled
+let g:webdevicons_enable_nerdtree = 1
+" Whether or not to show the nerdtree brackets around flags
+let g:webdevicons_conceal_nerdtree_brackets = 1
+
 " nnoremap <C-e> :NERDTreeToggle<CR>
 " nnoremap <leader>e :NERDTreeFind<CR>
 nnoremap <leader>e :NERDTreeToggle<CR>
@@ -473,6 +488,10 @@ let NERDTreeIgnore=['\.git$', '\.idea$', '\.history$']
 
 " Enable liine numbers
 let NERDTreeShowLineNumbers = 1
+
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+
 " Make sure relative line numbers are used
 autocmd FileType nerdtree setlocal relativenumber
 
@@ -481,20 +500,40 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 
 " nerdtree-git-plugin
 "---------------------------------------------------------
+" TODO: not work
+" Force extra padding in NERDTree so that the filetype icons line up vertically
+let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+
 " Enable nerdfonts
 let g:NERDTreeGitStatusUseNerdFonts = 1
+" let g:NERDTreeGitStatusIndicatorMapCustom = {
+"     \ 'Modified'  :'✹',
+"     \ 'Staged'    :'✚',
+"     \ 'Untracked' :'✭',
+"     \ 'Renamed'   :'➜',
+"     \ 'Unmerged'  :'═',
+"     \ 'Deleted'   :'✖',
+"     \ 'Dirty'     :'✗',
+"     \ 'Ignored'   :'☒',
+"     \ 'Clean'     :'✔︎',
+"     \ 'Unknown'   :'?',
+"     \ }
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
+    \ 'Modified'  :'',
+    \ 'Staged'    :'',
+    \ 'Untracked' :'',
+    \ 'Renamed'   :'󰁕',
+    \ 'Unmerged'  :'',
+    \ 'Deleted'   :'✖',
+    \ 'Dirty'     :'✗',
+    \ 'Ignored'   :'',
+    \ 'Clean'     :'✔︎',
+    \ 'Unknown'   :'?',
+    \ }
+
+" vim-nerdtree-syntax-highlight
+"---------------------------------------------------------
+" None
 
 " gundo
 "---------------------------------------------------------
@@ -519,6 +558,18 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " fzf
 "---------------------------------------------------------
+" Default extra key bindings
+let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-x': 'split',
+    \ 'ctrl-v': 'vsplit' }
+
+" Default Layout
+" - Popup window (center of the screen)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+" - down / up / left / right
+" let g:fzf_layout = {'down': '40%'}
+
 " Initialize configuration dictionary
 let g:fzf_vim = {}
 " This is the default option:
@@ -527,43 +578,45 @@ let g:fzf_vim = {}
 " - Note that this array is passed as arguments to fzf#vim#with_preview function.
 " - To learn more about preview window options, see `--preview-window` section of `man fzf`.
 let g:fzf_vim.preview_window = ['right,50%', 'ctrl-/']
-let g:fzf_layout = {'down': '~40%'}
 
 nnoremap <leader>, :Buffers<CR>
 nnoremap <leader>/ :Rg<CR>
 nnoremap <leader>: :History:<CR>
 nnoremap <leader><Space> :Files<CR>
 
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fg :Rg<CR>
 nnoremap <leader>fb :Buffers<CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GFiles<CR>
 nnoremap <leader>fh :Helptags<CR>
 nnoremap <leader>fr :History<CR>
 
 nnoremap <leader>gc :Commit<CR>
 
+nnoremap <leader>sb :Buffers<CR>
 nnoremap <leader>sc :History:<CR>
+nnoremap <leader>sC :Commands<CR>
 nnoremap <leader>sf :Files<CR>
 nnoremap <leader>sg :Rg<CR>
-nnoremap <leader>sb :Buffers<CR>
 nnoremap <leader>sh :Helptags<CR>
 nnoremap <leader>sk :Maps<CR>
-nnoremap <leader>sr :History<CR>
 nnoremap <leader>sm :Marks<CR>
+nnoremap <leader>sr :History<CR>
+nnoremap <leader>ss :BTags<CR>
+nnoremap <leader>sS :Tags<CR>
 
 nnoremap <leader>uc :Colors<CR>
 
 " vim-gitgutter
 " notes: can not unstage staged changes
 "---------------------------------------------------------
-nmap <silent> [h :call GitGutterPrevHunkCycle()<CR>
-nmap <silent> ]h :call GitGutterNextHunkCycle()<CR>
-nmap <silent> <leader>gj :call GitGutterNextHunkCycle()<cr>
-nmap <silent> <leader>gk :call GitGutterPrevHunkCycle()<cr>
+nmap <silent> [g :call GitGutterPrevHunkCycle()<CR>
+nmap <silent> ]g :call GitGutterNextHunkCycle()<CR>
+nmap <silent> <leader>gj :call GitGutterNextHunkCycle()<CR>
+nmap <silent> <leader>gk :call GitGutterPrevHunkCycle()<CR>
 nmap <silent> <leader>gs <plug>(GitGutterStageHunk)
 nmap <silent> <leader>gu <plug>(GitGutterUndoHunk)
 nmap <silent> <leader>gp <plug>(GitGutterPreviewHunk)
-nmap <silent> <leader>gd <plug>(GitGutterDiffOrig)
+nmap <silent> <leader>gd :GitGutterDiffOrig<CR>
 omap ih <Plug>(GitGutterTextObjectInnerPending)
 omap ah <Plug>(GitGutterTextObjectOuterPending)
 xmap ih <Plug>(GitGutterTextObjectInnerVisual)
@@ -600,10 +653,10 @@ let g:EasyMotion_smartcase = 1
 " nmap <leader>f <Plug>(easymotion-overwin-f)
 
 " vim-sneak behaviour through easymotion
-" map s <Plug>(easymotion-f2)
-" nmap s <Plug>(easymotion-overwin-f2)
-map <leader>s <Plug>(easymotion-f2)
-nmap <leader>s <Plug>(easymotion-overwin-f2)
+map s <Plug>(easymotion-f2)
+nmap s <Plug>(easymotion-overwin-f2)
+" map <leader>s <Plug>(easymotion-f2)
+" nmap <leader>s <Plug>(easymotion-overwin-f2)
 
 " JK motions: Line motions
 map <leader>h <Plug>(easymotion-linebackward)
@@ -824,8 +877,8 @@ omap ac <Plug>(coc-classobj-a)
 if has('nvim0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<CR>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<CR>" : "\<Left>"
   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
@@ -851,15 +904,15 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics
-nnoremap <silent><nowait> <leader>cd  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>cd  :<C-u>CocList diagnostics<CR>
 " Manage extensions
-nnoremap <silent><nowait> <leader>ce  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <leader>ce  :<C-u>CocList extensions<CR>
 " " Show commands
-nnoremap <silent><nowait> <Space>cc   :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <Space>cc   :<C-u>CocList commands<CR>
 " Find symbol of current document
-nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<CR>
 " Search workspace symbols
-nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<CR>
 " " Do default action for next item
 " nnoremap <silent><nowait> <Space>j  :<C-u>CocNext<CR>
 " " Do default action for previous item
@@ -874,8 +927,8 @@ nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
 
 " Register the description dictionary for the prefix to pop up the guide menu
-call which_key#register('<Space>', "g:which_key_map", 'n')
-call which_key#register('<Space>', "g:which_key_map_visual", 'v')
+call which_key#register('<Space>', 'g:which_key_map', 'n')
+call which_key#register('<Space>', 'g:which_key_map_visual', 'v')
 
 " Define prefix dictionary
 let g:which_key_map =  {}
@@ -885,14 +938,14 @@ let g:which_key_map_visual =  {}
 " Create menus not based on existing mappings:
 " =======================================================
 let g:which_key_map = {
-    \ '-': 'Split pane below',
-    \ '|': 'Split pane right',
+    \ '-': 'Split window below',
+    \ '|': 'Split window right',
     \ ',': 'Search buffers',
     \ '/': 'Search grep text',
     \ ':': 'Search command history',
     \ 'r': 'Reload $MYVIMRC',
     \ 'q': 'Quit',
-    \ 'w': 'Write file',
+    \ 'w': 'Save file',
     \ 'W': 'Write file by sudo',
     \ 'e': 'Toggle explorer',
     \ 'y': 'Copy',
@@ -902,6 +955,7 @@ let g:which_key_map = {
     \ }
 let g:which_key_map.b = {
     \ 'name': '+buffer',
+    \ 'b': 'Switch to other buffer',
     \ 'd': 'Close buffer',
     \ 'n': 'New buffer',
     \ }
@@ -923,7 +977,7 @@ let g:which_key_map.f = {
     \ 'name': '+file/find',
     \ 'b': 'Buffers',
     \ 'f': 'Files',
-    \ 'g': 'Grep text',
+    \ 'g': 'Git files',
     \ 'h': 'Help tags',
     \ 'r': 'Recent files',
     \ }
@@ -941,12 +995,15 @@ let g:which_key_map.s = {
     \ 'name': '+search',
     \ 'b': 'Buffers',
     \ 'c': 'Command history',
+    \ 'C': 'Commands',
     \ 'f': 'Files',
     \ 'g': 'Grep text',
     \ 'h': 'Help tags',
     \ 'k': 'Key maps',
     \ 'm': 'Marks',
     \ 'r': 'Recent files',
+    \ 's': 'Symbol(buffer)',
+    \ 'S': 'Symbol(workspace)',
     \ }
 let g:which_key_map.t = {
     \ 'name': '+translate',
@@ -961,9 +1018,17 @@ let g:which_key_map.u = {
     \ 'c': 'Preview colorscheme',
     \ 'l': 'Toggle line number', 
     \ 'L': 'Toggle relative line number',
+    \ 's': 'Toggle spell',
     \ 'u': 'Toggle undotree',
     \ 'w': 'Toggle word wrap',
     \ }
+" let g:which_key_map.w = {
+"     \ 'name': '+window',
+"     \ '-': 'Split window below',
+"     \ '|': 'Split window right',
+"     \ 'd': 'Switch to other window',
+"     \ 'w': 'Delete window',
+"     \ }
 let g:which_key_map.x = {
     \ 'name': '+diagnostics/quickfix',
     \ 'q': 'Quickfix',
