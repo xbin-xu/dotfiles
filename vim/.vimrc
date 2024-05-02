@@ -500,24 +500,10 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 
 " nerdtree-git-plugin
 "---------------------------------------------------------
-" TODO: not work
 " Force extra padding in NERDTree so that the filetype icons line up vertically
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 " Enable nerdfonts
-let g:NERDTreeGitStatusUseNerdFonts = 1
-" let g:NERDTreeGitStatusIndicatorMapCustom = {
-"     \ 'Modified'  :'✹',
-"     \ 'Staged'    :'✚',
-"     \ 'Untracked' :'✭',
-"     \ 'Renamed'   :'➜',
-"     \ 'Unmerged'  :'═',
-"     \ 'Deleted'   :'✖',
-"     \ 'Dirty'     :'✗',
-"     \ 'Ignored'   :'☒',
-"     \ 'Clean'     :'✔︎',
-"     \ 'Unknown'   :'?',
-"     \ }
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ 'Modified'  :'',
     \ 'Staged'    :'',
@@ -747,26 +733,26 @@ let b:table_mode_corner = '|'
 "---------------------------------------------------------
 " coc extensions
 let g:coc_global_extensions = [
-            \ 'coc-marketplace',
-            \ 'coc-highlight',
-            \ 'coc-yank',
-            \ 'coc-diagnostic',
-            \ 'coc-gitignore',
-            \ 'coc-snippets',
-            \ 'coc-json',
-            \ 'coc-yaml',
-            \ 'coc-lua',
-            \ 'coc-vimlsp',
-            \ 'coc-markdownlint',
-            \ 'coc-markdown-preview-enhanced',
-            \ 'coc-ci',
-            \ 'coc-sh',
-            \ 'coc-clangd',
-            \ 'coc-cmake',
-            \ 'coc-python',
-            \ 'coc-pyright',
-            \ 'coc-docker',
-            \ ]
+    \ 'coc-marketplace',
+    \ 'coc-highlight',
+    \ 'coc-yank',
+    \ 'coc-diagnostic',
+    \ 'coc-gitignore',
+    \ 'coc-snippets',
+    \ 'coc-json',
+    \ 'coc-yaml',
+    \ 'coc-lua',
+    \ 'coc-vimlsp',
+    \ 'coc-markdownlint',
+    \ 'coc-markdown-preview-enhanced',
+    \ 'coc-ci',
+    \ 'coc-sh',
+    \ 'coc-clangd',
+    \ 'coc-cmake',
+    \ 'coc-python',
+    \ 'coc-pyright',
+    \ 'coc-docker',
+    \ ]
 
 " coc-extention: explorer
 "---------------------------------------------------------

@@ -121,3 +121,6 @@
 [submodule "vim/.vim/plugged/vim-im-select"]
 	path = vim/.vim/plugged/vim-im-select
 	url = https://github.com/brglng/vim-im-select
+[submodule "vim/.vim/plugged/vim-nerdtree-syntax-highlight"]
+	path = vim/.vim/plugged/vim-nerdtree-syntax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
