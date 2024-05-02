@@ -29,7 +29,7 @@ opt.indentkeys = "0{,0},0),0],0#,!^F,o,O,e"
 -- Timeout
 if not vim.g.vscode then
   -- Set the timeout of the escape sequence
-  opt.timeoutlen = 200 -- lower than default (1000) to quickly trigger which-key
+  opt.timeoutlen = 300 -- lower than default (1000) to quickly trigger which-key
   opt.updatetime = 200 -- save swap file and trigger CursorHold
 end
 

@@ -52,9 +52,10 @@ set indentkeys="0{,0},0),0],0#,!^F,o,O,e"
 " UI
 "---------------------------------------------------------
 set mouse+=a        " enable mouse support
-set timeoutlen=200  " timeout of keystrokes
+set timeoutlen=300  " timeout of keystrokes
 set updatetime=200  " set updatetime, default is 4000
 
+" set spell           " enable spell check
 set number          " show line numbers
 set relativenumber  " show relative numbering
 set laststatus=2    " show the status line at the bottom
