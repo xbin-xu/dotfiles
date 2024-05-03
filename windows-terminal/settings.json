@@ -1,15 +1,13 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
-    [
+    "actions": [
         {
             "command": "toggleFocusMode",
             "keys": "ctrl+alt+z"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "nextTab"
             },
             "keys": "alt+l"
@@ -19,8 +17,7 @@
             "keys": "ctrl+alt+t"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "newTab"
             },
             "keys": "ctrl+alt+n"
@@ -30,8 +27,7 @@
             "keys": "ctrl+alt+q"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "prevTab"
             },
             "keys": "alt+h"
@@ -69,16 +65,14 @@
             "keys": "ctrl+shift+down"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "down"
             },
             "keys": "ctrl+alt+minus"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "scrollUp"
             },
             "keys": "ctrl+alt+y"
@@ -88,40 +82,35 @@
             "keys": "ctrl+alt+m"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "down"
             },
             "keys": "ctrl+alt+j"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "splitPane",
                 "split": "right"
             },
             "keys": "ctrl+alt+\\"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "up"
             },
             "keys": "ctrl+alt+k"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "left"
             },
             "keys": "ctrl+alt+h"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "moveFocus",
                 "direction": "right"
             },
@@ -132,16 +121,14 @@
             "keys": "ctrl+v"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "copy",
                 "singleLine": false
             },
             "keys": "ctrl+c"
         },
         {
-            "command": 
-            {
+            "command": {
                 "action": "scrollDown"
             },
             "keys": "ctrl+alt+e"
@@ -151,20 +138,17 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{cbe121fe-8bb1-4d0e-a0f5-a7d5e36befce}",
-    "newTabMenu": 
-    [
+    "launchMode": "focus",
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
-        "defaults": 
-        {
+    "profiles": {
+        "defaults": {
             "adjustIndistinguishableColors": "indexed",
             "colorScheme": "One Half Dark",
-            "font": 
-            {
+            "font": {
                 "face": "JetBrainsMono Nerd Font"
             },
             "opacity": 80,
@@ -172,8 +156,7 @@
             "startingDirectory": "D:\\Workbench",
             "useAcrylic": false
         },
-        "list": 
-        [
+        "list": [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
@@ -213,8 +196,7 @@
             }
         ]
     },
-    "schemes": 
-    [
+    "schemes": [
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",

@@ -77,7 +77,7 @@
     //     "vscodevim.vim": 1
     // },
     // "vim.vimrc.enable": true,
-    // "vim.vimrc.path": "$HOME/.vscodevimrc",
+    // "vim.vimrc.path": "$HOME/.vscode/.vscodevimrc",
     // "vim.easymotion": true,
     // // "vim.sneak": true,
     // "vim.surround": true,

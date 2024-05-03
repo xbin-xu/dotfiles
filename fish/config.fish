@@ -33,3 +33,8 @@ alias_if_exists ls eza
 # CLI integration
 # zoxide
 zoxide init fish | source
+
+# Export PATH
+# https://github.com/daipeihust/im-select
+IM_SELECT_PATH="/usr/local/bin"
+set -x PATH $IM_SELECT_PATH

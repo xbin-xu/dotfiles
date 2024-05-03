@@ -2,6 +2,12 @@
 # set -o vi   # enable vi mode
 # set +o vi   # disable vi mode
 
+# Theme
+if command -v oh-my-posh >/dev/null; then
+	set POSH_THEMES_PATH="$LOCALAPPDATA/Programs/oh-my-posh/themes"
+	eval "$(oh-my-posh init bash --config $POSH_THEMES_PATH/material.omp.json)"
+fi
+
 # Aliases
 function alias_if_exists() {
 	if command -v "$2" >/dev/null; then

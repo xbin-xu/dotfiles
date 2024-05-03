@@ -7,10 +7,10 @@
 
 - link:
     ~/.config/alacritty: alacritty
-    ~/AppData/Roaming/alacritty:
-      alacritty
-      # if: '[ "$(uname)" == "MINGW64_NT-10.0-19045" ]'
-      # path: alacritty
+    $APPDATA/alacritty:
+      path: alacritty
+      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+    ~/.bashrc: bash/.bashrc
     ~/.config/fish: fish
     ~/.fonts: fonts
     ~/.gitconfig: git/.gitconfig
@@ -20,13 +20,16 @@
     ~/.tmux: tmux/.tmux
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.config/nvim: lazyvim
-    ~/AppData/Local/nvim: lazyvim
+    $LOCALAPPDATA/nvim:
+      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+      path: lazyvim
     # ~/.config/nvim: nvim
-    # ~/AppData/Local/nvim: nvim
+    # $LOCALAPPDATA/nvim:
+    #   if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+    #   path: nvim
     ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
-    ~/.vscode: vscode/.vscode
-    ~/.vscodevimrc: vscode/.vscodevimrc
+    ~/.vscode: vscode
     ~/.glaze-wm/config.yaml: glaze-wm/config.yaml
 
 - shell:
