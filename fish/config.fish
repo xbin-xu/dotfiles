@@ -36,5 +36,5 @@ zoxide init fish | source
 
 # Export PATH
 # https://github.com/daipeihust/im-select
-IM_SELECT_PATH="/usr/local/bin"
-set -x PATH $IM_SELECT_PATH
+set IM_SELECT_PATH "/usr/local/bin"
+set -x PATH $IM_SELECT_PATH $PATH
