@@ -36,5 +36,12 @@ zoxide init fish | source
 
 # Export PATH
 # https://github.com/daipeihust/im-select
-set IM_SELECT_PATH "/usr/local/bin"
+set IM_SELECT_PATH /usr/local/bin
 set -x PATH $IM_SELECT_PATH $PATH
+
+# # Proxy
+# set MIXED_PORT 7890
+# # system proxy
+# set -x http_proxy http://127.0.0.1:$MIXED_PORT
+# set -x https_proxy http://127.0.0.1:$MIXED_PORT
+# set -x all_proxy socks5://127.0.0.1:$MIXED_PORT

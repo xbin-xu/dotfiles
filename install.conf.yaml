@@ -7,9 +7,6 @@
 
 - link:
     ~/.config/alacritty: alacritty
-    $APPDATA/alacritty:
-      path: alacritty
-      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
     ~/.bashrc: bash/.bashrc
     ~/.config/fish: fish
     ~/.fonts: fonts
@@ -20,17 +17,37 @@
     ~/.tmux: tmux/.tmux
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.config/nvim: lazyvim
-    $LOCALAPPDATA/nvim:
-      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
-      path: lazyvim
-    # ~/.config/nvim: nvim
-    # $LOCALAPPDATA/nvim:
-    #   if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
-    #   path: nvim
     ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
     ~/.vscode: vscode
-    ~/.glaze-wm/config.yaml: glaze-wm/config.yaml
+    # windows
+    $APPDATA/alacritty:
+      path: alacritty
+      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+    ~/pip/pip.ini:
+      path: pip/pip.conf
+      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+    ~/.glaze-wm/config.yaml:
+      path: glaze-wm/config.yaml
+      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+    $LOCALAPPDATA/nvim:
+      path: lazyvim
+      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+    $APPDATA/listary/UserProfile/Settings/Preferences.json:
+      path: listary/Preferences.json
+      if: python -c "import os; exit(0) if os.system('scoop list listary') == 0 else exit(1)"
+    $SCOOP/apps/vscode/current/data/user-data/User/settings.json:
+      path: vscode/settings.json
+      if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
+    $SCOOP/apps/vscode/current/data/user-data/User/keybindings.json:
+      path: vscode/keybindings.json
+      if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
+    $SCOOP/apps/vscode/current/data/user-data/User/.vscodevimrc:
+      path: vscode/.vscodevimrc
+      if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
+    $SCOOP/apps/windows-terminal/current/settings/settings.json:
+      path: windows-terminal/settings.json
+      if: python -c "import os; exit(0) if os.system('scoop list wt') == 0 else exit(1)"
 
 - shell:
     - git submodule sync --recursive

@@ -1,0 +1,6 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\n# -- Navagate History\nmap <C-i> goBack\nmap <C-o> goForward\n# -- Navagate Tab\nmap [b previousTab\nmap ]b nextTab\nmap <A-h> previousTab\nmap <A-l> nextTab",
+  "grabBackFocus": true,
+  "searchEngines": "b: https://www.bilibili.com/ BiliBili\nbs: https://search.bilibili.com/all?keyword=%s BiliBili\nbaidu: http://www.baidu.com/s?wd=%s Baidu\nbing: https://www.bing.com/search?q=%s Bing\ng: https://www.google.com/search?q=%s Google\ngh: https://github.com/search?q=%s GitHub\ngt: https://translate.google.com/?source=osdd#auto|auto|%s Google Translator\nso: https://stackoverflow.com/search?q=%s StackOverflow\nwiki: https://en.wikipedia.org/wiki/Special:Search/%s Wikipedia\nyt: https://www.youtube.com/results?search_query=%s Youtube",
+  "settingsVersion": "2.1.2"
+}

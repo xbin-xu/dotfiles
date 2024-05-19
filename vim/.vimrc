@@ -52,7 +52,7 @@ set indentkeys="0{,0},0),0],0#,!^F,o,O,e"
 " UI
 "---------------------------------------------------------
 set mouse+=a        " enable mouse support
-set timeoutlen=300  " timeout of keystrokes
+set timeoutlen=200  " timeout of keystrokes
 set updatetime=200  " set updatetime, default is 4000
 
 " set spell           " enable spell check
@@ -408,7 +408,7 @@ Plug 'sjl/gundo.vim'                " visualize undo tree
 Plug 'kshenoy/vim-signature'        " show marks in the gutter
 Plug 'vim-airline/vim-airline'      " beautify statusline
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'       " icon for vim plugins 
+Plug 'ryanoasis/vim-devicons'       " icon for vim plugins
 
 " Fuzzy finder
 "---------------------------------------------------------
@@ -462,7 +462,8 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'liuchengxu/vim-which-key'     " which key
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'romainl/vim-cool'             " auto enable/disable search highlight
-Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+" Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
+Plug 'github/copilot.vim'
 Plug 'brglng/vim-im-select'         " auto switch input method
 
 call plug#end()
@@ -631,7 +632,7 @@ endfunction
 " vim-easymotion
 "---------------------------------------------------------
 " Disable default mappings
-let g:EasyMotion_do_mapping = 0 
+let g:EasyMotion_do_mapping = 0
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 
@@ -725,7 +726,7 @@ nnoremap <leader>cp <Plug>MarkdownPreviewToggle
 " vim-markdown-toc
 "---------------------------------------------------------
 " None
- 
+
 " vim-table-mode
 "---------------------------------------------------------
 let b:table_mode_corner = '|'
@@ -968,7 +969,7 @@ let g:which_key_map.f = {
     \ 'h': 'Help tags',
     \ 'r': 'Recent files',
     \ }
-let g:which_key_map.g = { 
+let g:which_key_map.g = {
     \ 'name': '+git',
     \ 'c': 'Commits',
     \ 'j': 'Next hunk',
@@ -1003,7 +1004,7 @@ let g:which_key_map.t = {
 let g:which_key_map.u = {
     \ 'name': '+UI',
     \ 'c': 'Preview colorscheme',
-    \ 'l': 'Toggle line number', 
+    \ 'l': 'Toggle line number',
     \ 'L': 'Toggle relative line number',
     \ 's': 'Toggle spell',
     \ 'u': 'Toggle undotree',
@@ -1030,7 +1031,11 @@ let g:which_key_map.x = {
 " <M-]> codeium#CycleCompletions(1)
 " <C-]> codeium#Accept()
 " <M-Bslash> codeium#Complete()
-imap <script><silent><nowait><expr> <C-l> codeium#Accept()
+" imap <script><silent><nowait><expr> <C-l> codeium#Accept()
+
+" copilot
+"---------------------------------------------------------
+
 
 " im-select
 "---------------------------------------------------------

@@ -62,25 +62,36 @@ bar:
     - type: "window title"
   components_right:
     # - type: "system tray"
+    - type: "binding mode"
+      background: "#ffffff33"
+      margin: "0 4px 0 0"
     - type: "tiling direction"
       label_horizontal: "⮂"
       label_vertical: "⮁"
       background: "#ffffff33"
       margin: "0 4px"
       padding: "0 8px"
-    - type: "binding mode"
-      background: "#ffffff33"
-      margin: "0 4px 0 0"
+      refresh_interval_ms: 1000
+    - type: "network"
+    # - type: "volume"
+    #   label_low: " |  {volume_level}%"
+    #   label_medium: " |   {volume_level}%"
+    #   label_high: " |   {volume_level}%"
+    #   label_mute: " |   {volume_level}%"
+    - type: "battery"
+      label_draining: " | 󰁹 {battery_level}%"
+      label_charging: " | 󰂄 {battery_level}%"
+      label_power_saver: " | 󰁹 {battery_level}%"
     - type: "cpu"
-      label: "CPU: {percent_usage}% "
+      label: " | : {percent_usage}%"
       refresh_interval_ms: 1000
     - type: "memory"
-      label: "| Menory: {percent_usage}% "
+      label: " | : {percent_usage}%"
       refresh_interval_ms: 1000
     - type: "clock"
       # Documentation on formatting date/time string:
       # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
-      time_formatting: "yy-MM-dd H:mm:ss"
+      time_formatting: " | yy-MM-dd H:mm:ss"
 
 workspaces:
   - name: "1"
@@ -133,11 +144,11 @@ window_rules:
   - commands: ["move to workspace 4", "focus workspace 4"]
     match_process_name: "/WeChat/"
   - commands: ["set floating", "move to workspace 5", "focus workspace 5"]
-    match_process_name: "/Listary|Clash.*|.*[mM]usic.*/"
+    match_process_name: "/Listary.*|Clash.*|.*[mM]usic.*/"
   - command: "set floating"
-    match_process_name: "/explorer|notepad[+{2}]/"
+    match_process_name: "/notepad[+{2}]/"
   - command: "ignore"
-    match_process_name: "/[sS]nipaste/"
+    match_process_name: "/[sS]nipaste|explorer/"
 
 binding_modes:
   - name: "focus"
@@ -241,7 +252,7 @@ keybindings:
   # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
   # to start Windows Terminal and Git Bash respectively.
   - command: "exec wt"
-    binding: "Alt+Enter"
+    binding: "Alt+Shift+Enter"
 
   # Focus the workspace that last had focus.
   - command: "focus workspace recent"

@@ -32,3 +32,10 @@ eval "$(zoxide init bash)"
 # https://github.com/daipeihust/im-select
 IM_SELECT_PATH="/usr/local/bin"
 export PATH=$IM_SELECT_PATH:$PATH
+
+# # Proxy
+# MIXED_PORT=7890
+# # system proxy
+# export http_proxy=http://127.0.0.1:${MIXED_PORT}
+# export https_proxy=http://127.0.0.1:${MIXED_PORT}
+# export all_proxy=socks5://127.0.0.1:${MIXED_PORT}

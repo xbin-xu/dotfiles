@@ -20,12 +20,34 @@
     "editor.mouseWheelZoom": true,
     "editor.minimap.enabled": false,
     "editor.stickyScroll.enabled": true,
+    "editor.cursorSurroundingLines": 5,
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
     "editor.guides.bracketPairsHorizontal": "active",
     "editor.fontFamily": "'JetBrainsMono Nerd Font', Consolas",
     "editor.fontLigatures": true,
     "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    "[c]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[c++]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    },
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "black-formatter.args": [
+        "--skip-string-normalization"
+    ],
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+        }
+    },
     "diffEditor.renderSideBySide": false,
     "explorer.compactFolders": false,
     "terminal.integrated.profiles.windows": {
@@ -42,20 +64,6 @@
     "terminal.integrated.enableMultiLinePasteWarning": "never",
     "terminal.integrated.commandsToSkipShell": [
         "-workbench.action.quickOpen"
-    ],
-    "[markdown]": {
-        "editor.quickSuggestions": {
-            "other": "on",
-            "comments": "off",
-            "strings": "off"
-        }
-    },
-    "[python]": {
-        "editor.formatOnSave": true,
-        "editor.defaultFormatter": "ms-python.black-formatter"
-    },
-    "black-formatter.args": [
-        "--skip-string-normalization"
     ],
     // }
     //--------------------------------------------------------------------------

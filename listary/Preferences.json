@@ -1,0 +1,219 @@
+{
+  "AppConfigs": {
+    "TypeConfigs": {
+      "WindowsExplorer": {},
+      "FileDialog": {},
+      "FolderDialog": {},
+      "Desktop": {},
+      "TotalCommander": {},
+      "DirectoryOpus": {},
+      "FreeCommander": {},
+      "XYplorer": {},
+      "xplorer2": {},
+      "Bandizip": {},
+      "AutoCAD": {},
+      "WinRAR.ExtractDialog": {}
+    },
+    "PathConfigs": {}
+  },
+  "Menus": {
+    "Favorites": {
+      "Deletions": [],
+      "Moves": [],
+      "Insertions": [],
+      "Updates": []
+    }
+  },
+  "DiskSearch": {
+    "FolderPriority": {
+      "Deletions": [],
+      "Moves": [],
+      "Insertions": [],
+      "Updates": []
+    },
+    "FileNamePriority": {
+      "Deletions": [],
+      "Moves": [],
+      "Insertions": [],
+      "Updates": []
+    },
+    "SearchFilter": {
+      "Deletions": [],
+      "Moves": [],
+      "Insertions": [],
+      "Updates": []
+    },
+    "DisabledNtfsVolumes": [],
+    "CustomFolders": []
+  },
+  "Commands": {
+    "Items": {
+      "Deletions": [],
+      "Moves": [],
+      "Insertions": [
+        {
+          "Index": -1,
+          "Info": null,
+          "Item": {
+            "Title": "Edit Env",
+            "Path": "powershell.exe",
+            "Parameter": "rundll32 sysdm.cpl,EditEnvironmentVariables",
+            "RunAsAdmin": true,
+            "Silent": true,
+            "Id": "943a0005-62e9-4cde-9d0c-2d121ec9c3e7",
+            "Keyword": "env",
+            "$customType": "CustomCommand"
+          }
+        }
+      ],
+      "Updates": []
+    }
+  },
+  "WebSearch": {
+    "Items": {
+      "Deletions": [],
+      "Moves": [],
+      "Insertions": [
+        {
+          "Index": -1,
+          "Info": null,
+          "Item": {
+            "Keyword": "b",
+            "Url": "https://www.bilibili.com/",
+            "Title": "BiliBili",
+            "Icon": {
+              "Path": "{user}\\5bd3f61f-bef1-4f74-ae82-1d39d4ab02ba.png",
+              "TypeName": "Path"
+            }
+          }
+        },
+        {
+          "Index": -1,
+          "Info": null,
+          "Item": {
+            "Keyword": "b",
+            "Url": "https://search.bilibili.com/all?keyword={query}",
+            "Title": "BiliBili",
+            "Icon": {
+              "Path": "{user}\\b52037b6-bf23-4f09-b23e-8e7d4a615482.png",
+              "TypeName": "Path"
+            },
+            "SuggestionProvider": "Google"
+          }
+        },
+        {
+          "Index": -1,
+          "Info": null,
+          "Item": {
+            "Keyword": "gh",
+            "Url": "https://github.com/",
+            "Title": "GitHub",
+            "Icon": {
+              "Path": "{user}\\5748c2c8-11af-4e14-9aa0-6f5c6a4bfc0b.png",
+              "TypeName": "Path"
+            },
+            "SuggestionProvider": "Google"
+          }
+        },
+        {
+          "Index": -1,
+          "Info": null,
+          "Item": {
+            "Keyword": "gh",
+            "Url": "https://github.com/search?q={query}",
+            "Title": "GitHub",
+            "Icon": {
+              "Path": "{user}\\063f56e3-d026-4202-af02-f68780597200.png",
+              "TypeName": "Path"
+            },
+            "SuggestionProvider": "Google"
+          }
+        },
+        {
+          "Index": -1,
+          "Info": null,
+          "Item": {
+            "Keyword": "gt",
+            "Url": "https://translate.google.com/?sl=auto&tl=zh-CN&text={query}&op=translate",
+            "Title": "Google Translate",
+            "Icon": {
+              "Path": "{user}\\785464e8-7651-4461-b490-76f1acf73f6d.png",
+              "TypeName": "Path"
+            },
+            "SuggestionProvider": "Google"
+          }
+        },
+        {
+          "Index": -1,
+          "Info": null,
+          "Item": {
+            "Keyword": "icon",
+            "Url": "https://www.iconfont.cn/search/index?searchType=icon&q={query}",
+            "Title": "iconfont",
+            "Icon": {
+              "Path": "{user}\\d481c72c-745b-45cc-b957-34ba832f8893.png",
+              "TypeName": "Path"
+            },
+            "SuggestionProvider": "Google"
+          }
+        }
+      ],
+      "Updates": [
+        {
+          "Id": "b36cf1bb-5527-42d8-bf91-d034bcbf057b",
+          "UpdatedProperties": {
+            "Keyword": "baidu"
+          }
+        },
+        {
+          "Id": "5014b42a-884d-40d3-835d-69079dd9fc51",
+          "UpdatedProperties": {
+            "Keyword": "yt"
+          }
+        }
+      ]
+    }
+  },
+  "Actions": {
+    "Items": {
+      "Deletions": [],
+      "Moves": [],
+      "Insertions": [],
+      "Updates": [
+        {
+          "Id": "284ecbe8-1ef2-49c9-bd93-f7025519402b",
+          "UpdatedProperties": {
+            "Hotkey": 600
+          }
+        },
+        {
+          "Id": "35c0504f-b1a8-4c82-8e32-aa1e68520972",
+          "UpdatedProperties": {
+            "Keyword": "copy file path",
+            "Hotkey": 601
+          }
+        },
+        {
+          "Id": "afc47971-acaa-4731-bd26-0cd85109bee0",
+          "UpdatedProperties": {
+            "Silent": true
+          }
+        }
+      ]
+    }
+  },
+  "AutoUpdate": {},
+  "Settings": {
+    "General.EnableAnalytics": false,
+    "Hotkey.NextItem": 586,
+    "Hotkey.PreviousItem": 587,
+    "Hotkey.OpenPreview": 592,
+    "Tutorial.ShowMainV2": false,
+    "Listary5.SettingsImported": true
+  },
+  "Extensions": {
+    "Extensions": {
+      "1a63ea9d-bf25-431f-96e3-17b80027efab": {}
+    }
+  }
+}
