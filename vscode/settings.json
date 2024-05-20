@@ -719,6 +719,12 @@
                     "command": "workbench.action.toggleMaximizedPanel"
                 },
                 {
+                    "key": "w",
+                    "name": "Toggle word wrap",
+                    "type": "command",
+                    "command": "editor.action.toggleWordWrap"
+                },
+                {
                     "key": "z",
                     "name": "Toggle zen mode",
                     "type": "command",
