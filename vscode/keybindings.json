@@ -24,13 +24,12 @@
         "when": "whichkeyVisible"
     },
     // -- expand regin
-    // TODO: not compatibility with vscode-neovim
     //--------------------------------------------------------------------------
-    // {
-    //     "key": "v",
-    //     "command": "expand_region",
-    //     "when": "editorTextFocus && (vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')"
-    // },
+    {
+        "key": "v",
+        "command": "expand_region",
+        "when": "editorTextFocus && ((vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock') || (neovim.init && neovim.mode == 'visual'))"
+    },
     {
         "key": "ctrl+=",
         "command": "expand_region",
