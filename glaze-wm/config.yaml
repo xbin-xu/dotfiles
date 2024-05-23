@@ -142,13 +142,13 @@ window_rules:
   - commands: ["move to workspace 3", "focus workspace 3"]
     match_process_name: "/chrome|.*edge/"
   - commands: ["move to workspace 4", "focus workspace 4"]
-    match_process_name: "/WeChat/"
+    match_process_name: "/WeChat.*/"
   - commands: ["set floating", "move to workspace 5", "focus workspace 5"]
     match_process_name: "/Listary.*|Clash.*|.*[mM]usic.*/"
   - command: "set floating"
-    match_process_name: "/notepad[+{2}]/"
+    match_process_name: "/notepad[+{2}]|explorer|Ahk2Exe|AutoHotkeyUX/"
   - command: "ignore"
-    match_process_name: "/[sS]nipaste|explorer/"
+    match_process_name: "/[sS]nipaste/"
 
 binding_modes:
   - name: "focus"
