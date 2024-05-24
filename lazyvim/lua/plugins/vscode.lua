@@ -36,6 +36,8 @@ vim.api.nvim_create_autocmd("User", {
     vim.keymap.set("n", "]g", "<cmd>call VSCodeNotify('workbench.action.editor.nextChange')<cr><cmd>call VSCodeNotify('workbench.action.compareEditor.nextChange')<cr>")
     vim.keymap.set("n", "[d", "<cmd>call VSCodeNotify('editor.action.marker.prev')<cr>")
     vim.keymap.set("n", "]d", "<cmd>call VSCodeNotify('editor.action.marker.next')<cr>")
+    vim.keymap.set("n", "[b", "<cmd>call VSCodeNotify('workbench.action.previousEditor')<cr>")
+    vim.keymap.set("n", "]b", "<cmd>call VSCodeNotify('workbench.action.nextEditor')<cr>")
   end,
 })
 
