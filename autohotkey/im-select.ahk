@@ -55,7 +55,7 @@ getKeyboardLayout() {
 ; 切换到对应的输入法
 ; ------------------------------------------------------------------------------
 switchKeyboardLayout(layout) {
-    PostMessage(0x50, 0, layout, , WinGetTitle("A"))
+    PostMessage(0x50, 0, layout, , WinGetID("A"))
 }
 
 ; ------------------------------------------------------------------------------
