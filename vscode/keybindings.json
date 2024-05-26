@@ -6,11 +6,6 @@
         "key": "ctrl+alt+v",
         "command": "toggleVim"
     },
-    {
-        "key": "ctrl+[",
-        "command": "-markdown.extension.onOutdentLines",
-        "when": "editorTextFocus && !suggestWidgetVisible && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
-    },
     // -- which key
     //--------------------------------------------------------------------------
     {
@@ -22,6 +17,15 @@
         "key": "backspace",
         "command": "whichkey.undoKey",
         "when": "whichkeyVisible"
+    },
+    {
+        "key": "e",
+        "command": "whichkey.triggerKey",
+        "args": {
+            "key": "e",
+            "when": "sideBarVisible && explorerViewletVisible"
+        },
+        "when": "whichkeyVisible && sideBarVisible && explorerViewletVisible"
     },
     // -- expand regin
     //--------------------------------------------------------------------------
@@ -75,12 +79,24 @@
     },
     {
         "key": "s",
-        "command": "workbench.action.splitEditorRight",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "list.select",
+                "workbench.action.moveEditorToRightGroup",
+            ]
+        },
         "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
     },
     {
         "key": "v",
-        "command": "workbench.action.splitEditorDown",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "list.select",
+                "workbench.action.moveEditorToBelowGroup",
+            ]
+        },
         "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
     },
     // ---- windows

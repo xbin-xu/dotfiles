@@ -190,7 +190,7 @@
                     "key": "b",
                     "name": "Show all buffers/editors",
                     "type": "command",
-                    "command": "workbench.action.showAllEditors"
+                    "command": "workbench.action.previousEditor"
                 },
                 {
                     "key": "d",
@@ -492,9 +492,22 @@
         },
         {
             "key": "e",
-            "name": "Toggle explorer",
-            "type": "command",
-            "command": "workbench.action.toggleSidebarVisibility"
+            "name": "Toggle file explorer",
+            "type": "conditional",
+            "bindings": [
+                {
+                    "key": "",
+                    "name": "default",
+                    "type": "command",
+                    "command": "workbench.view.explorer"
+                },
+                {
+                    "key": "when:sideBarVisible && explorerViewletVisible",
+                    "name": "Hide explorer",
+                    "type": "command",
+                    "command": "workbench.action.toggleSidebarVisibility"
+                }
+            ]
         },
         {
             "key": "f",
@@ -691,8 +704,21 @@
                 {
                     "key": "e",
                     "name": "Toggle file explorer",
-                    "type": "command",
-                    "command": "workbench.view.explorer"
+                    "type": "conditional",
+                    "bindings": [
+                        {
+                            "key": "",
+                            "name": "default",
+                            "type": "command",
+                            "command": "workbench.view.explorer"
+                        },
+                        {
+                            "key": "when:sideBarVisible && explorerViewletVisible",
+                            "name": "Hide explorer",
+                            "type": "command",
+                            "command": "workbench.action.toggleSidebarVisibility"
+                        }
+                    ]
                 },
                 {
                     "key": "p",
