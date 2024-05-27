@@ -5,7 +5,10 @@
 CapsLock::Ctrl
 
 ; `Ctrl+[` map to `Esc`
-^[::Esc
+^[::{
+    send "{Esc}"
+    setIMEConversionMode("EN")
+}
 
 ; `Esc` to switch IME("EN")
 ~Esc::{
