@@ -41,13 +41,6 @@
     "black-formatter.args": [
         "--skip-string-normalization"
     ],
-    "[markdown]": {
-        "editor.quickSuggestions": {
-            "other": true,
-            "comments": true,
-            "strings": true
-        }
-    },
     "diffEditor.renderSideBySide": false,
     "explorer.compactFolders": false,
     "terminal.integrated.profiles.windows": {
@@ -68,8 +61,17 @@
     // }
     //--------------------------------------------------------------------------
     // -- Markdown {
+    "[markdown]": {
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": true,
+            "strings": true
+        }
+    },
     "markdown-preview-enhanced.previewTheme": "atom-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "one-dark.css",
+    "MarkdownPaste.path": "${workspaceFolder}/imgs",
+    "MarkdownPaste.namePrefix": "img-",
     // }
     //--------------------------------------------------------------------------
     // -- Project Manager {
