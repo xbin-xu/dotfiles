@@ -79,64 +79,6 @@
     "projectManager.sortList": "Recent",
     // }
     //--------------------------------------------------------------------------
-    // -- Vim {
-    // "editor.lineNumbers": "relative",
-    // "extensions.experimental.affinity": {
-    //     "vscodevim.vim": 1
-    // },
-    // "vim.vimrc.enable": true,
-    // "vim.vimrc.path": "$HOME/.vscode/.vscodevimrc",
-    // "vim.easymotion": true,
-    // // "vim.sneak": true,
-    // "vim.surround": true,
-    // "vim.camelCaseMotion.enable": true,
-    // "vim.useSystemClpboard": true,
-    // "vim.useCtrlKeys": true,
-    // "vim.handleKeys": {
-    //     "<C-c>": false,
-    //     // "<C-v>": false,
-    //     "<C-x>": false,
-    //     // "<C-a>": false,
-    //     "<C-f>": false,
-    //     "<C-s>": false,
-    //     "<C-w>": false,
-    //     "<C-p>": false
-    // },
-    // "vim.foldfix": true,
-    // "vim.hlsearch": true,
-    // "vim.incsearch": true,
-    // "vim.highlightedyank.enable": true,
-    // "vim.highlightedyank.color": "rgba(250, 240, 170, 0.5)",
-    // "vim.visualstar": true,
-    // "vim.timeout": 200,
-    // "vim.leader": " ",
-    // "vim.normalModeKeyBindingsNonRecursive": [
-    //     // ---- which key
-    //     // TODO: use `<leader>` to toggle which key will cause easymotion and cameCaseMotion not work
-    //     { "before": [ " " ], "commands": [ "whichkey.show" ] },
-    //     // ---- navigate buffer
-    //     { "before": [ "[", "b" ], "commands": [ "workbench.action.previousEditor" ] },
-    //     { "before": [ "]", "b" ], "commands": [ "workbench.action.nextEditor" ] },
-    //     // ---- navigate git hunk
-    //     { "before": [ "[", "g" ], "commands": [ "workbench.action.editor.previousChange", "workbench.action.compareEditor.previousChange" ] },
-    //     { "before": [ "]", "g" ], "commands": [ "workbench.action.editor.nextChange", "workbench.action.compareEditor.nextChange" ] },
-    //     // ---- navigate diagnostic/problem
-    //     { "before": [ "[", "d" ], "commands": [ "editor.action.marker.prev" ] },
-    //     { "before": [ "]", "d" ], "commands": [ "editor.action.marker.next" ] },
-    //     // undo & redo
-    //     { "before": [ "u" ], "commands": [ "undo" ] },
-    //     { "before": [ "C-r" ], "commands": [ "redo" ] }
-    // ],
-    // "vim.visualModeKeyBindingsNonRecursive": [
-    //     { "before": [ " " ], "commands": [ "whichkey.show" ] },
-    //     { "before": [ "<leader>", "c", "f" ], "commands": [ "editor.action.formatSelection" ] }
-    // ],
-    // "vim.autoSwitchInputMethod.enable": true,
-    // "vim.autoSwitchInputMethod.defaultIM": "1033",
-    // "vim.autoSwitchInputMethod.obtainIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe",
-    // "vim.autoSwitchInputMethod.switchIMCmd": "D:\\Software\\im-select\\win\\out\\x64\\im-select.exe {im}",
-    // }
-    //--------------------------------------------------------------------------
     // -- neovim {
     // "vscode-neovim.useWSL": true,
     "editor.lineNumbers": "relative",
