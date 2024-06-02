@@ -7,18 +7,27 @@ CapsLock::Ctrl
 ; `Ctrl+[` map to `Esc`
 ^[::{
     send "{Esc}"
-    setIMEConversionMode("EN")
+    try {
+        setIMEConversionMode("EN")
+    } catch {
+    }
 }
 
 ; `Esc` to switch IME("EN")
 ~Esc::{
-    setIMEConversionMode("EN")
+    try {
+        setIMEConversionMode("EN")
+    } catch {
+    }
 }
 
 ; `LShift` to switch IME
 ~LShift::{
-    if (getKeyboardLayout() != keyboardLayoutMap["微软拼音"]) {
-        setIMEConversionMode("ZH")
+    try {
+        if (getKeyboardLayout() != keyboardLayoutMap["微软拼音"]) {
+            setIMEConversionMode("ZH")
+        }
+    } catch {
     }
 }
 
