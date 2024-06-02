@@ -165,6 +165,16 @@
         "command": "search.action.focusSearchFromResults",
         "when": "searchViewletFocus"
     },
+    {
+        "key": "ctrl+n",
+        "command": "search.action.focusNextSearchResult",
+        "when": "hasSearchResult && searchViewletVisible"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "search.action.focusPreviousSearchResult",
+        "when": "hasSearchResult && searchViewletVisible"
+    },
     // -- file explorer
     //--------------------------------------------------------------------------
     {

@@ -3,6 +3,7 @@
     // -- Geneal {
     "oneDarkPro.italic": false,
     "workbench.colorTheme": "One Dark Pro",
+    "workbench.activityBar.location": "hidden",
     "window.commandCenter": true,
     "security.workspace.trust.untrustedFiles": "open",
     "files.exclude": {
@@ -10,6 +11,8 @@
     },
     "files.autoGuessEncoding": true,
     "files.autoSave": "onFocusChange",
+    "search.useGlobalIgnoreFiles": true,
+    "search.useParentIgnoreFiles": true,
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "editor.detectIndentation": true,
