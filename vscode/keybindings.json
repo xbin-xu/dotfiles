@@ -165,15 +165,17 @@
         "command": "search.action.focusSearchFromResults",
         "when": "searchViewletFocus"
     },
+    // -- search history
+    //--------------------------------------------------------------------------
     {
         "key": "ctrl+n",
-        "command": "search.action.focusNextSearchResult",
-        "when": "hasSearchResult && searchViewletVisible"
+        "command": "history.showNext",
+        "when": "historyNavigationForwardsEnabled && historyNavigationWidgetFocus && !isComposing && !suggestWidgetVisible"
     },
     {
         "key": "ctrl+p",
-        "command": "search.action.focusPreviousSearchResult",
-        "when": "hasSearchResult && searchViewletVisible"
+        "command": "history.showPrevious",
+        "when": "historyNavigationBackwardsEnabled && historyNavigationWidgetFocus && !isComposing && !suggestWidgetVisible"
     },
     // -- file explorer
     //--------------------------------------------------------------------------
