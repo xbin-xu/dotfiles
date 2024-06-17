@@ -129,6 +129,61 @@
             ]
         },
         {
+            "key": "a",
+            "name": "+AI-copilot",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "a",
+                    "name": "Toggle enable",
+                    "type": "command",
+                    "command": "github.copilot.toggleCopilot"
+                },
+                {
+                    "key": "c",
+                    "name": "Toggle chat",
+                    "type": "command",
+                    "command": "workbench.panel.chat.view.copilot.toggleVisibility"
+                },
+                {
+                    "key": "d",
+                    "name": "Docs",
+                    "type": "command",
+                    "command": "github.copilot.interactiveEditor.generateDocs"
+                },
+                {
+                    "key": "e",
+                    "name": "Explain",
+                    "type": "command",
+                    "command": "github.copilot.interactiveEditor.explain"
+                },
+                {
+                    "key": "f",
+                    "name": "fix",
+                    "type": "command",
+                    "command": "github.copilot.interactiveEditor.fix"
+                },
+                {
+                    "key": "g",
+                    "name": "Generate",
+                    "type": "command",
+                    "command": "github.copilot.interactiveEditor.generate"
+                },
+                {
+                    "key": "t",
+                    "name": "Tests",
+                    "type": "command",
+                    "command": "github.copilot.interactiveEditor.generateTests"
+                },
+                {
+                    "key": "r",
+                    "name": "Review",
+                    "type": "command",
+                    "command": "github.copilot.interactiveEditor.review"
+                }
+            ]
+        },
+        {
             "key": "b",
             "name": "+Buffers/Editors",
             "type": "bindings",
@@ -589,6 +644,43 @@
             ]
         },
         {
+            "key": "m",
+            "name": "+Marks",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "j",
+                    "name": "Next bookmarks",
+                    "type": "command",
+                    "command": "bookmarks.jumpToNext"
+                },
+                {
+                    "key": "k",
+                    "name": "Previous bookmarks",
+                    "type": "command",
+                    "command": "bookmarks.jumpToPrevious"
+                },
+                {
+                    "key": "m",
+                    "name": "Toggle bookmarks",
+                    "type": "command",
+                    "command": "bookmarks.toggle"
+                },
+                {
+                    "key": "M",
+                    "name": "Toggle bookmarks with lable",
+                    "type": "command",
+                    "command": "bookmarks.toggleLabeled"
+                },
+                {
+                    "key": "t",
+                    "name": "Show bookmarks",
+                    "type": "command",
+                    "command": "workbench.view.extension.bookmarks"
+                }
+            ]
+        },
+        {
             "key": "-",
             "name": "Split horizontal",
             "type": "command",
@@ -641,6 +733,12 @@
                     "name": "Toggle auxiliary bar",
                     "type": "command",
                     "command": "workbench.action.toggleAuxiliaryBar"
+                },
+                {
+                    "key": "b",
+                    "name": "Show bookmarks",
+                    "type": "command",
+                    "command": "workbench.view.extension.bookmarks"
                 },
                 {
                     "key": "c",
@@ -948,6 +1046,12 @@
         "OPENOCD_SCRIPTS": "d:\\Software\\Espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230419/openocd-esp32/share/openocd/scripts",
         "IDF_CCACHE_ENABLE": "1",
         "ESP_ROM_ELF_DIR": "d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320/"
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": "true",
+        "scminput": false
     },
     // }
 }

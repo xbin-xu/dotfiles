@@ -19,11 +19,11 @@ return {
             ["<C-f>"] = require("telescope.actions").preview_scrolling_down,
             ["<C-b>"] = require("telescope.actions").preview_scrolling_up,
             ["<C-h>"] = require("telescope.actions").which_key,
-            ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
+            ["<c-t>"] = require("trouble.sources.telescope").open,
           },
           n = {
             ["q"] = require("telescope.actions").close,
-            ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
+            ["<c-t>"] = require("trouble.sources.telescope").open,
           },
         },
       },
