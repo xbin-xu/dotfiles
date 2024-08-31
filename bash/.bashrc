@@ -27,6 +27,15 @@ alias ll="ls -alF"
 eval "$(zoxide init bash)"
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# yazi
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
 
 # Export PATH
 # https://github.com/daipeihust/im-select

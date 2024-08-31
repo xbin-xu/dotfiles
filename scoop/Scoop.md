@@ -109,6 +109,9 @@ scoop install \
 #     raresoft/BeyondComparePro \
 #     raresoft/QQMusic \
 #     raresoft/YoudaoDict
+
+# yazi(install the optional dependencies)
+scoop install yazi 7zip jq poppler fd ripgrep fzf zoxide imagemagick
 ```
 
 ### 1.1 添加到右键菜单：找到对应的安装目录，然后运行 `install-context.reg`

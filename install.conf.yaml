@@ -20,6 +20,7 @@
     ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
     ~/.vscode: vscode
+    ~/.config/yazi: yazi
     # windows
     $APPDATA/alacritty:
       path: alacritty
@@ -48,6 +49,9 @@
     $SCOOP/apps/windows-terminal/current/settings/settings.json:
       path: windows-terminal/settings.json
       if: python -c "import os; exit(0) if os.system('scoop list wt') == 0 else exit(1)"
+    $APPDATA/yazi/config:
+      path: yazi
+      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
 
 - shell:
     - git submodule sync --recursive
