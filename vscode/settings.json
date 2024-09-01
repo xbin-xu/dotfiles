@@ -225,6 +225,12 @@
                     "command": "workbench.action.moveEditorToRightGroup"
                 },
                 {
+                    "key": "L",
+                    "name": "Toggle editor group lock",
+                    "type": "command",
+                    "command": "workbench.action.toggleEditorGroupLock"
+                },
+                {
                     "key": "n",
                     "name": "New editor",
                     "type": "command",
