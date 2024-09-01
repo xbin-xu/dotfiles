@@ -203,6 +203,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+tnoremap <C-h> <C-w>h
+tnoremap <C-j> <C-w>j
+tnoremap <C-k> <C-w>k
+tnoremap <C-l> <C-w>l
 
 " Resize window
 nnoremap <C-Up> :resize +2<CR>
@@ -464,7 +468,7 @@ Plug 'liuchengxu/vim-which-key'     " which key
 Plug 'romainl/vim-cool'             " auto enable/disable search highlight
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
 Plug 'github/copilot.vim'
-Plug 'brglng/vim-im-select'         " auto switch input method
+" Plug 'brglng/vim-im-select'         " auto switch input method
 
 call plug#end()
 
@@ -1039,10 +1043,10 @@ let g:which_key_map.x = {
 
 " im-select
 "---------------------------------------------------------
-" The default value on Windows
-let g:im_select_default = '1033'
-" Set to the im-select program path
-let g:im_select_command = 'im-select'
+" " The default value on Windows
+" let g:im_select_default = '1033'
+" " Set to the im-select program path
+" let g:im_select_command = 'im-select'
 
 "---------------------
 " Local customizations
