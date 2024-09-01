@@ -11,7 +11,11 @@
 	st = status
 	sts = status -s
 	ci = commit
+    ca = commit --amend
+    cane = commit --amend --no-edit
+    co = checkout
 	br = branch -vv
+    unstage = reset HEAD --
 	di = diff                       # stage --> workspace
 	diw = diff --color-words
 	dc = diff --cached              # HEAD --> stage: `git add`
