@@ -217,7 +217,7 @@
     // -- terminal
     //--------------------------------------------------------------------------
     {
-        "key": "ctrl+t",
+        "key": "ctrl+/",
         "command": "workbench.action.terminal.toggleTerminal"
     },
     {

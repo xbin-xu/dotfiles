@@ -20,14 +20,7 @@ map("n", "<leader>q", "<cmd>q!<cr>", { desc = "Quit" })
 map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Wirte file" })
 map("n", "<leader>W", "<cmd>w !sudo tee % >/dev/null<cr>", { desc = "Write file by sudo" })
 
--- Terminal
-local lazyterm = function()
-  LazyVim.terminal(nil, { cwd = LazyVim.root() })
-end
-map("n", "<c-/>", "<Nop>")
-map("t", "<C-/>", "<Nop>")
-map("n", "<c-t>", lazyterm, { desc = "Terminal (root dir)" })
-map("t", "<C-t>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+-- Terminal(use lazyvim default keybins <C-/>)
 
 -- Navigate tab
 map("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
