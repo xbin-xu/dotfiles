@@ -9,7 +9,7 @@ sort_sensitive = false
 sort_reverse   = false
 sort_dir_first = true
 sort_translit  = false
-linemode       = "mtime"
+linemode       = "none"
 show_hidden    = false
 show_symlink   = true
 scrolloff      = 5
@@ -88,6 +88,12 @@ image_bound      = [ 0, 0 ]
 suppress_preload = false
 
 [plugin]
+
+prepend_fetchers = [
+    # git
+    {id = "git", name = "*", run = "git" },
+    {id = "git", name = "*/", run = "git" },
+]
 
 fetchers = [
 	# Mimetype

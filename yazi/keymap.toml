@@ -4,6 +4,32 @@
 
 [manager]
 
+prepend_keymap = [
+    # open explorer
+    { on = "<C-e>", run = 'shell "explorer ." --confirm', desc = "Open explorer for windows" },
+    # TODO: windows git-bash use $SHELL not work
+    { on = "<C-s>", run = 'shell "bash" --block --confirm', desc = "Open shell here" },
+    # close input by once Esc press
+    { on = "<C-c>", run = "close", desc = "Cancel input" },
+    # copy selected files to the system clipboard while yanking
+    { on = "y", run = [ ''' shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm
+    ''', "yank" ], desc = "Paste into the hovered directory or CWD" },
+    # smart-enter
+    { on = "l", run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
+    { on = "<Enter>", run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
+    # smart-paste
+    { on = "p", run = "plugin --sync smart-paste", desc = "Paste into the hovered directory or CWD" },
+    # file navigation wraparound
+    { on = "j", run = "plugin --sync arrow --args=1", desc = "Move cursor up" },
+    { on = "k", run = "plugin --sync arrow --args=-1", desc = "Move cursor down" },
+    # maximize or restore the preview pane
+    { on = "T", run = "plugin --sync max-preview", desc = "Maximize or restore preview" },
+    # lazygit
+    { on = [ "g", "i" ], run = "plugin lazygit", desc = "run lazygit" },
+    # compress(archive)
+    { on = [ "c", "a" ], run = "plugin compress", desc = "Archive selected files" },
+]
+
 keymap = [
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
 	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selected, or cancel search" },
@@ -194,6 +220,11 @@ keymap = [
 
 [input]
 
+prepend_keymap = [
+    # close input by once Esc press
+    { on = "<Esc>", run = "close", desc = "Cancel input" },
+]
+
 keymap = [
 	{ on = "<C-c>",   run = "close",          desc = "Cancel input" },
 	{ on = "<Enter>", run = "close --submit", desc = "Submit input" },
@@ -322,66 +353,4 @@ keymap = [
 	# Filtering
 	{ on = "f", run = "filter", desc = "Apply a filter for the help items" },
 ]
-
-# close input by once Esc press
-[[input.prepend_keymap]]
-on   = "<Esc>"
-run  = "close"
-desc = "Cancel input"
-
-# TODO: not work-open explorer
-[[manager.prepend_keymap]]
-on   = "<C-e>"
-run  = 'shell "explorer ." --confirm'
-desc = "Open explorer for windows"
-
-
-# TODO: not work-dropping to the shell
-[[manager.prepend_keymap]]
-on   = "<C-s>"
-run  = 'shell "$SHELL" --block --confirm'
-desc = "Open shell here"
-
-# smart-enter
-[[manager.prepend_keymap]]
-on   = "l"
-run  = "plugin --sync smart-enter"
-desc = "Enter the child directory, or open the file"
-[[manager.prepend_keymap]]
-on   = "<Enter>"
-run  = "plugin --sync smart-enter"
-desc = "Enter the child directory, or open the file"
-
-# smart-paste
-[[manager.prepend_keymap]]
-on   = "p"
-run  = "plugin --sync smart-paste"
-desc = "Paste into the hovered directory or CWD"
-
-# copy selected files to the system clipboard while yanking
-[[manager.prepend_keymap]]
-on  = "y"
-run = [ '''
-	shell 'echo "$@" | xclip -i -selection clipboard -t text/uri-list' --confirm
-''', "yank" ]
-
-# file navigation wraparound
-[[manager.prepend_keymap]]
-on  = "j"
-run = "plugin --sync arrow --args=1"
-[[manager.prepend_keymap]]
-on  = "k"
-run = "plugin --sync arrow --args=-1"
-
-# maximize or restore the preview pane.
-[[manager.prepend_keymap]]
-on   = "T"
-run  = "plugin --sync max-preview"
-desc = "Maximize or restore preview"
-
-# lazygit
-[[manager.prepend_keymap]]
-on   = [ "g", "i" ]
-run  = "plugin lazygit"
-desc = "run lazygit"
 
