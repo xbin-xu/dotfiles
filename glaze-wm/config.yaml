@@ -247,7 +247,7 @@ keybindings:
 
   # Re-evaluate configuration file.
   - command: "reload config"
-    binding: "Alt+R"
+    binding: "Alt+Shift+R"
 
   # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
   # to start Windows Terminal and Git Bash respectively.
