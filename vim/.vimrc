@@ -75,6 +75,9 @@ set completeopt=menu,menuone,noselect   " completion for insert mode
 set noerrorbells visualbell t_vb=
 " Make backspace behave in a more intuitive way
 set backspace=indent,eol,start
+" Make jumplist(<C-o>) like stack
+" https://vi.stackexchange.com/questions/18344/how-to-change-jumplist-behavior
+set jumpoptions+=stack
 
 " Highlight current line, but only in active window
 augroup CursorLineOnlyInActiveWindow
