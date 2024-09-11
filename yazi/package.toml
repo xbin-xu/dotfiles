@@ -1,5 +1,5 @@
 [plugin]
-deps = [{ use = "KKV9/compress", rev = "60b24af" }, { use = "yazi-rs/plugins:git", rev = "2b001d2" }, { use = "Lil-Dank/lazygit", rev = "c82794f" }, { use = "yazi-rs/plugins:max-preview", rev = "2b001d2" }]
+deps = [{ use = "KKV9/compress", rev = "60b24af" }, { use = "yazi-rs/plugins:git", rev = "2b001d2" }, { use = "Lil-Dank/lazygit", rev = "c82794f" }, { use = "yazi-rs/plugins:max-preview", rev = "2b001d2" }, { use = "yazi-rs/plugins:jump-to-char", rev = "d9bfa0b" }]
 
 [flavor]
 deps = []
