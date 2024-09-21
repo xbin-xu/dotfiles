@@ -23,38 +23,15 @@ function alias_if_exists() {
     fi
 }
 
-# Convert Linux-style path to Windows-style
-function linux_to_windows_path() {
-    local windows_paths=()
-
-    for path in "$@"; do
-        # Remove trailing '/'
-        path="${path%/}"
-
-        # Convert absolute path to drive letter
-        if [[ $path == /* ]]; then
-            # Extract the first character after the leading '/'
-            local drive_letter="${path:1:1}"
-            # Replace the leading '/' and the next character with 'X:'
-            path="${drive_letter}:${path:2}"
-        fi
-
-        # Replace all '/' with '\'
-        path="${path//\//\\}"
-
-        # Append to windows_paths
-        windows_paths+=("$path")
-    done
-
-    # Return the converted paths
-    printf "%s\n" "${windows_paths[@]}"
-}
-
 # Allow pass Linux-style path to Windows commands in git-bash
 function cmd_deal_path() {
     local -r cmd="$1"
     shift
-    $cmd "$(linux_to_windows_path "$@")"
+    if command -v cygpath >/dev/null; then
+        $cmd "$(cygpath -w "$@")"
+    else
+        $cmd "$@"
+    fi
 }
 
 # alias_if_exists cat bat
