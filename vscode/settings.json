@@ -541,6 +541,12 @@
                     "command": "projectManager.listProjects"
                 },
                 {
+                    "key": "P",
+                    "name": "Projects in new window",
+                    "type": "command",
+                    "command": "projectManager.listProjectsNewWindow"
+                },
+                {
                     "key": "r",
                     "name": "Recent open",
                     "type": "command",
@@ -1056,8 +1062,9 @@
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
-        "markdown": "true",
+        "markdown": true,
         "scminput": false
-    },
+    }
     // }
 }
+

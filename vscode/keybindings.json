@@ -77,7 +77,7 @@
         "args": {
             "commands": [
                 "list.select",
-                "workbench.action.moveEditorToRightGroup",
+                "workbench.action.moveEditorToRightGroup"
             ]
         },
         "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
@@ -88,7 +88,7 @@
         "args": {
             "commands": [
                 "list.select",
-                "workbench.action.moveEditorToBelowGroup",
+                "workbench.action.moveEditorToBelowGroup"
             ]
         },
         "when": "listFocus && !inputFocus || panelFocus && activePanel == 'workbench.panel.markers'"
@@ -200,18 +200,18 @@
         "when": "filesExplorerFocus && !inputFocus"
     },
     {
-        "key": "c",
+        "key": "y",
         "command": "filesExplorer.copy",
+        "when": "filesExplorerFocus && !inputFocus"
+    },
+    {
+        "key": "shift+y",
+        "command": "copyFilePath",
         "when": "filesExplorerFocus && !inputFocus"
     },
     {
         "key": "p",
         "command": "filesExplorer.paste",
-        "when": "filesExplorerFocus && !inputFocus"
-    },
-    {
-        "key": "y",
-        "command": "copyFilePath",
         "when": "filesExplorerFocus && !inputFocus"
     },
     // -- terminal
