@@ -37,11 +37,12 @@ function cmd_deal_path() {
 # alias_if_exists cat bat
 alias_if_exists ls exa
 alias_if_exists ls eza
-alias ll="ls -alF"
+alias ll='ls -alF'
 # alias_if_exists find fd
 # alias_if_exists vim nvim
-alias er="cmd_deal_path explorer"
-alias code="cmd_deal_path code"
+alias_if_exists lg lazygit
+alias er='cmd_deal_path explorer'
+alias code='cmd_deal_path code'
 
 # CLI integration
 # zoxide
