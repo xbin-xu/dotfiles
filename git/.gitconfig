@@ -14,6 +14,7 @@
     ca = commit --amend
     cane = commit --amend --no-edit
     co = checkout
+    cp = cherry-pick
 	br = branch -vv
     unstage = reset HEAD --
 	di = diff                       # stage --> workspace
