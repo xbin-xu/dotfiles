@@ -30,6 +30,8 @@ alias_if_exists ls eza
 # alias_if_exists find fd
 # alias_if_exists vim nvim
 alias_if_exists lg lazygit
+alias_if_exists py python
+alias_if_exists ipy ipython
 
 # CLI integration
 # zoxide

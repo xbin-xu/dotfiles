@@ -41,6 +41,8 @@ alias ll='ls -alF'
 # alias_if_exists find fd
 # alias_if_exists vim nvim
 alias_if_exists lg lazygit
+alias_if_exists py python
+alias_if_exists ipy ipython
 alias er='cmd_deal_path explorer'
 alias code='cmd_deal_path code'
 
