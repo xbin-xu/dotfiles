@@ -151,26 +151,6 @@ window_rules:
     match_process_name: "/[sS]nipaste/"
 
 binding_modes:
-  - name: "focus"
-    keybindings:
-      - command: "binding mode none"
-        bindings: ["Escape", "Control+OemOpenBrackets", "Enter"]
-      # - commands: ["focus left"]
-      #   bindings: ["H", "Left"]
-      # - commands: ["focus down"]
-      #   bindings: ["J", "Down"]
-      # - commands: ["focus up"]
-      #   bindings: ["K", "Up"]
-      # - commands: ["focus right"]
-      #   bindings: ["L", "Right"]
-      - commands: ["focus left", "binding mode none"]
-        bindings: ["H", "Left"]
-      - commands: ["focus down", "binding mode none"]
-        bindings: ["J", "Down"]
-      - commands: ["focus up", "binding mode none"]
-        bindings: ["K", "Up"]
-      - commands: ["focus right", "binding mode none"]
-        bindings: ["L", "Right"]
   - name: "move"
     keybindings:
       - command: "binding mode none"
@@ -202,8 +182,6 @@ binding_modes:
 
 keybindings:
   # Shift focus in a given direction
-  - command: "binding mode focus"
-    binding: "Alt+F"
   - commands: ["focus left"]
     bindings: ["Alt+Shift+H", "Alt+Left"]
   - commands: ["focus down"]
