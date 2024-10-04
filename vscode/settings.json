@@ -1048,6 +1048,13 @@
     "cmake.buildDirectory": "${workspaceFolder}/build",
     // }
     //--------------------------------------------------------------------------
+    // -- Doxygen {
+    "doxdocgen.generic.commandSuggestion": true,
+    "doxdocgen.generic.authorName": "bin",
+    "doxdocgen.generic.authorEmail": "xbin.xu@qq.com",
+    "doxdocgen.c.triggerSequence": "/**",
+    // }
+    //--------------------------------------------------------------------------
     // -- ESP-IDF {
     "idf.gitPathWin": "d:\\Software\\Espressif\\tools\\idf-git\\2.39.2\\cmd\\git.exe",
     "idf.espIdfPathWin": "d:\\Software\\Espressif\\esp-idf",
