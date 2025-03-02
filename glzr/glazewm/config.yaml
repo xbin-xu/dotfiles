@@ -164,6 +164,7 @@ window_rules:
   # Floating
   - commands: ['set-floating']
     match:
+      - window_process: { equals: 'explorer' }
       - window_process: { regex: 'WeChat.*' }
       - window_process: { regex: 'Listary.*' }
       - window_process: { regex: 'Clash.*' }
