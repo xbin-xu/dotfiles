@@ -45,6 +45,8 @@ alias_if_exists py python
 alias_if_exists ipy ipython
 alias er='cmd_deal_path explorer'
 alias code='cmd_deal_path code'
+alias tmux='wsl tmux'
+alias fish='wsl fish'
 
 # CLI integration
 # zoxide
