@@ -28,7 +28,7 @@
     ~/pip/pip.ini:
       path: pip/pip.conf
       if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
-    ~/.glaze-wm/config.yaml:
+    ~/.glzr/glazewm/config.yaml:
       path: glaze-wm/config.yaml
       if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
     $LOCALAPPDATA/nvim:

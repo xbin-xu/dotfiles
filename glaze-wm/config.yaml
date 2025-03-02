@@ -1,283 +1,317 @@
 general:
+  # Commands to run when the WM has started. This is useful for running a
+  # script or launching another application.
+  # Example: The below command launches Zebar.
+  startup_commands: ['shell-exec zebar']
+
+  # Commands to run just before the WM is shutdown.
+  # Example: The below command kills Zebar.
+  shutdown_commands: ['shell-exec taskkill /IM zebar.exe /F']
+
+  # Commands to run after the WM config is reloaded.
+  config_reload_commands: []
+
   # Whether to automatically focus windows underneath the cursor.
   focus_follows_cursor: false
 
-  # Whether to jump the cursor between windows focused by the WM.
-  cursor_follows_focus: false
+  # Whether to switch back and forth between the previously focused
+  # workspace when focusing the current workspace.
+  toggle_workspace_on_refocus: false
 
-  # Whether to switch back and forth between the previously focused workspace
-  # when focusing the current workspace.
-  toggle_workspace_on_refocus: true
+  cursor_jump:
+    # Whether to automatically move the cursor on the specified trigger.
+    enabled: true
 
-  # Whether to show floating windows as always on top.
-  show_floating_on_top: false
+    # Trigger for cursor jump:
+    # - 'monitor_focus': Jump when focus changes between monitors.
+    # - 'window_focus': Jump when focus changes between windows.
+    trigger: 'monitor_focus'
 
-  # Amount to move floating windows by (eg. when using `alt+<hjkl>` on a floating window)
-  floating_window_move_amount: "5%"
+  # How windows should be hidden when switching workspaces.
+  # - 'cloak': Recommended. Hides windows with no animation.
+  # - 'hide': Legacy method (v3.5 and earlier) that has a brief animation,
+  # but has stability issues with some apps.
+  hide_method: 'cloak'
 
-  # Whether to center new floating windows.
-  center_new_floating_windows: true
-
-  # *Strongly* recommended to set to 'false'. Whether to globally enable/disable
-  # window transition animations (on minimize, close, etc). Set to 'unchanged'
-  # to make no setting changes.
-  window_animations: "unchanged"
+  # Affects which windows get shown in the native Windows taskbar. Has no
+  # effect if `hide_method: 'hide'`.
+  # - 'true': Show all windows (regardless of workspace).
+  # - 'false': Only show windows from the currently shown workspaces.
+  show_all_in_taskbar: false
 
 gaps:
+  # Whether to scale the gaps with the DPI of the monitor.
+  scale_with_dpi: true
+
   # Gap between adjacent windows.
-  inner_gap: "0px"
+  inner_gap: '20px'
 
   # Gap between windows and the screen edge.
-  outer_gap: "0px"
+  outer_gap:
+    top: '60px'
+    right: '20px'
+    bottom: '20px'
+    left: '20px'
 
-# Highlight active/inactive windows with a colored border.
-# ** Exclusive to Windows 11 due to API limitations.
-focus_borders:
-  active:
-    enabled: true
-    color: "#0000ff"
+window_effects:
+  # Visual effects to apply to the focused window.
+  focused_window:
+    # Highlight the window with a colored border.
+    # ** Exclusive to Windows 11 due to API limitations.
+    border:
+      enabled: true
+      color: '#8dbcff'
 
-  inactive:
-    enabled: false
-    color: "#ff0000"
+    # Remove the title bar from the window's frame. Note that this can
+    # cause rendering issues for some applications.
+    hide_title_bar:
+      enabled: false
 
-bar:
-  height: "25px"
-  position: "top"
-  opacity: 1.0
-  background: "#20242cc4"
-  foreground: "#ffffff"
-  font_family: "JetBrainsMono Nerd Font"
-  font_size: "13px"
-  padding: "4px 6px"
-  offset_x: "0"
-  offset_y: "0"
-  border_radius: "0"
-  components_left:
-    - type: "workspaces"
-      focused_workspace_background: "#ffffff33"
-      displayed_workspace_background: "#00000033"
-      default_workspace_background: "transparent"
-  components_center:
-    - type: "window title"
-  components_right:
-    # - type: "system tray"
-    - type: "binding mode"
-      background: "#ffffff33"
-      margin: "0 4px 0 0"
-    - type: "tiling direction"
-      label_horizontal: "⮂"
-      label_vertical: "⮁"
-      background: "#ffffff33"
-      margin: "0 4px"
-      padding: "0 8px"
-      refresh_interval_ms: 1000
-    - type: "network"
-    # - type: "volume"
-    #   label_low: " |  {volume_level}%"
-    #   label_medium: " |   {volume_level}%"
-    #   label_high: " |   {volume_level}%"
-    #   label_mute: " |   {volume_level}%"
-    - type: "battery"
-      label_draining: " | 󰁹 {battery_level}%"
-      label_charging: " | 󰂄 {battery_level}%"
-      label_power_saver: " | 󰁹 {battery_level}%"
-    - type: "cpu"
-      label: " | : {percent_usage}%"
-      refresh_interval_ms: 1000
-    - type: "memory"
-      label: " | : {percent_usage}%"
-      refresh_interval_ms: 1000
-    - type: "clock"
-      # Documentation on formatting date/time string:
-      # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
-      time_formatting: " |   yy-MM-dd H:mm:ss"
+    # Change the corner style of the window's frame.
+    # ** Exclusive to Windows 11 due to API limitations.
+    corner_style:
+      enabled: false
+      # Allowed values: 'square', 'rounded', 'small_rounded'.
+      style: 'square'
+
+    # Change the transparency of the window.
+    transparency:
+      enabled: false
+      # Can be something like '95%' or '0.95' for slightly transparent windows.
+      # '0' or '0%' is fully transparent (and, by consequence, unfocusable).
+      opacity: '95%'
+
+  # Visual effects to apply to non-focused windows.
+  other_windows:
+    border:
+      enabled: true
+      color: '#a1a1a1'
+    hide_title_bar:
+      enabled: false
+    corner_style:
+      enabled: false
+      style: 'square'
+    transparency:
+      enabled: false
+      opacity: '0%'
+
+window_behavior:
+  # New windows are created in this state whenever possible.
+  # Allowed values: 'tiling', 'floating'.
+  initial_state: 'tiling'
+
+  # Sets the default options for when a new window is created. This also
+  # changes the defaults for when the state change commands, like
+  # `set-floating`, are used without any flags.
+  state_defaults:
+    floating:
+      # Whether to center floating windows by default.
+      centered: true
+
+      # Whether to show floating windows as always on top.
+      shown_on_top: false
+
+    fullscreen:
+      # Maximize the window if possible. If the window doesn't have a
+      # maximize button, then it'll be fullscreen'ed normally instead.
+      maximized: false
+
+      # Whether to show fullscreen windows as always on top.
+      shown_on_top: false
 
 workspaces:
-  - name: "1"
-    display_name: "1.terminal"
-    keep_alive: true
-  - name: "2"
-    display_name: "2.editor"
-    keep_alive: true
-  - name: "3"
-    display_name: "3.browser"
-    keep_alive: true
-  - name: "4"
-    display_name: "4.im"
-    keep_alive: true
-  - name: "5"
-    display_name: "5.other"
-    keep_alive: true
-  - name: "6"
-  - name: "7"
-  - name: "8"
-  - name: "9"
+  - name: '1'
+  - name: '2'
+  - name: '3'
+  - name: '4'
+  - name: '5'
+  - name: '6'
+  - name: '7'
+  - name: '8'
+  - name: '9'
 
 window_rules:
-  # Task Manager requires admin privileges to manage and should be ignored unless running
-  # the WM as admin.
-  - command: "ignore"
-    match_process_name: "/Taskmgr|ScreenClippingHost/"
+  - commands: ['ignore']
+    match:
+      # Ignores any Zebar windows.
+      - window_process: { equals: 'zebar' }
 
-  # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
-  - command: "ignore"
-    match_class_name: "#32770"
+      # Ignores picture-in-picture windows for browsers.
+      - window_title: { regex: '[Pp]icture.in.[Pp]icture' }
+        window_class: { regex: 'Chrome_WidgetWin_1|MozillaDialogClass' }
 
-  # Do not manage picture-in-picture windows for browsers. Note that the default is for
-  # English; change `match_title` to the window's title if you use another language.
-  - command: "ignore"
-    match_title: "[Pp]icture.in.[Pp]icture"
-    match_class_name: "Chrome_WidgetWin_1|MozillaDialogClass"
-
-  # Some applications (eg. Steam) have borders that extend past the normal border size.
-  - command: "resize borders 0px -7px -7px -7px"
-    match_process_name: "steam"
-
-  # workspace
-  - commands: ["move to workspace 1", "focus workspace 1"]
-    match_process_name: "/WindowsTerminal/"
-  - commands: ["move to workspace 2", "focus workspace 2"]
-    match_process_name: "/nvim-qt|neovide|Code/"
-  - commands: ["move to workspace 3", "focus workspace 3"]
-    match_process_name: "/chrome|.*edge/"
-  - commands: ["set floating", "move to workspace 4", "focus workspace 4"]
-    match_process_name: "/WeChat.*/"
-  - commands: ["set floating", "move to workspace 5", "focus workspace 5"]
-    match_process_name: "/Listary.*|Clash.*|.*[mM]usic.*/"
-  - command: "set floating"
-    match_process_name: "/notepad[+{2}]|explorer|Ahk2Exe|AutoHotkeyUX/"
-  - command: "ignore"
-    match_process_name: "/[sS]nipaste/"
+      # Ignore rules for various 3rd-party apps.
+      - window_process: { equals: 'PowerToys' }
+        window_class: { regex: 'HwndWrapper\[PowerToys\.PowerAccent.*?\]' }
+      - window_process: { equals: 'PowerToys' }
+        window_title: { regex: '.*? - Peek' }
+      - window_process: { equals: 'Lively' }
+        window_class: { regex: 'HwndWrapper' }
 
 binding_modes:
-  - name: "move"
+  # When enabled, the focused window can be resized via arrow keys or HJKL.
+  - name: 'resize'
     keybindings:
-      - command: "binding mode none"
-        bindings: ["Escape", "Control+OemOpenBrackets", "Enter"]
-      - commands: ["move left", "binding mode none"]
-        bindings: ["H", "Left"]
-      - commands: ["move down", "binding mode none"]
-        bindings: ["J", "Down"]
-      - commands: ["move up", "binding mode none"]
-        bindings: ["K", "Up"]
-      - commands: ["move right", "binding mode none"]
-        bindings: ["L", "Right"]
-  - name: "layout"
-    keybindings:
-      - command: "binding mode none"
-        bindings: ["Escape", "Control+OemOpenBrackets", "Enter"]
-      - command: "resize width -2%"
-        bindings: ["H", "Left"]
-      - command: "resize height -2%"
-        bindings: ["J", "Down"]
-      - command: "resize height +2%"
-        bindings: ["K", "Up"]
-      - command: "resize width +2%"
-        bindings: ["L", "Right"]
-      - command: "set minimized"
-        bindings: ["M"]
-      - command: "toggle maximized"
-        bindings: ["X"]
+      - commands: ['resize --width -2%']
+        bindings: ['h', 'left']
+      - commands: ['resize --width +2%']
+        bindings: ['l', 'right']
+      - commands: ['resize --height +2%']
+        bindings: ['k', 'up']
+      - commands: ['resize --height -2%']
+        bindings: ['j', 'down']
+      # Press enter/escape to return to default keybindings.
+      - commands: ['wm-disable-binding-mode --name resize']
+        bindings: ['escape', 'enter']
 
 keybindings:
-  # Shift focus in a given direction
-  - commands: ["focus left"]
-    bindings: ["Alt+Shift+H", "Alt+Left"]
-  - commands: ["focus down"]
-    bindings: ["Alt+Shift+J", "Alt+Down"]
-  - commands: ["focus up"]
-    bindings: ["Alt+Shift+K", "Alt+Up"]
-  - commands: ["focus right"]
-    bindings: ["Alt+Shift+L", "Alt+Right"]
+  # Shift focus in a given direction.
+  - commands: ['focus --direction left']
+    bindings: ['alt+h', 'alt+left']
+  - commands: ['focus --direction right']
+    bindings: ['alt+l', 'alt+right']
+  - commands: ['focus --direction up']
+    bindings: ['alt+k', 'alt+up']
+  - commands: ['focus --direction down']
+    bindings: ['alt+j', 'alt+down']
 
-  # Move focused window in a given direction
-  - command: "binding mode move"
-    binding: "Alt+M"
+  # Move focused window in a given direction.
+  - commands: ['move --direction left']
+    bindings: ['alt+shift+h', 'alt+shift+left']
+  - commands: ['move --direction right']
+    bindings: ['alt+shift+l', 'alt+shift+right']
+  - commands: ['move --direction up']
+    bindings: ['alt+shift+k', 'alt+shift+up']
+  - commands: ['move --direction down']
+    bindings: ['alt+shift+j', 'alt+shift+down']
 
-  # Change layout
-  - command: "binding mode layout"
-    binding: "Alt+S"
+  # Resize focused window by a percentage or pixel amount.
+  - commands: ['resize --width -2%']
+    bindings: ['alt+u']
+  - commands: ['resize --width +2%']
+    bindings: ['alt+p']
+  - commands: ['resize --height +2%']
+    bindings: ['alt+o']
+  - commands: ['resize --height -2%']
+    bindings: ['alt+i']
 
-  # Change tiling direction. This determines where new tiling windows will be inserted.
-  - command: "tiling direction toggle"
-    binding: "Alt+V"
+  # As an alternative to the resize keybindings above, resize mode enables
+  # resizing via arrow keys or HJKL. The binding mode is defined above with
+  # the name 'resize'.
+  - commands: ['wm-enable-binding-mode --name resize']
+    bindings: ['alt+r']
 
-  # Change the focused window to be floating / tiling.
-  - command: "toggle floating"
-    binding: "Alt+Space"
+  # Disables window management and all other keybindings until alt+shift+p
+  # is pressed again.
+  - commands: ['wm-toggle-pause']
+    bindings: ['alt+shift+p']
 
-  # Change focus between floating / tiling windows.
-  - command: "focus mode toggle"
-    binding: "Alt+Shift+Space"
+  # Change tiling direction. This determines where new tiling windows will
+  # be inserted.
+  - commands: ['toggle-tiling-direction']
+    bindings: ['alt+v']
 
-  # Change the focused window to be maximized / unmaximized.
-  - command: "toggle maximized"
-    binding: "Alt+X"
+  # Change focus from tiling windows -> floating -> fullscreen.
+  - commands: ['wm-cycle-focus']
+    bindings: ['alt+space']
+
+  # Change the focused window to be floating.
+  - commands: ['toggle-floating --centered']
+    bindings: ['alt+shift+space']
+
+  # Change the focused window to be tiling.
+  - commands: ['toggle-tiling']
+    bindings: ['alt+t']
+
+  # Change the focused window to be fullscreen.
+  - commands: ['toggle-fullscreen']
+    bindings: ['alt+f']
+
+  # Minimize focused window.
+  - commands: ['toggle-minimized']
+    bindings: ['alt+m']
 
   # Close focused window.
-  - command: "close"
-    binding: "Alt+Q"
+  - commands: ['close']
+    bindings: ['alt+shift+q']
 
   # Kill GlazeWM process safely.
-  - command: "exit wm"
-    binding: "Alt+Shift+E"
+  - commands: ['wm-exit']
+    bindings: ['alt+shift+e']
 
   # Re-evaluate configuration file.
-  - command: "reload config"
-    binding: "Alt+Shift+R"
+  - commands: ['wm-reload-config']
+    bindings: ['alt+shift+r']
 
-  # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
-  # to start Windows Terminal and Git Bash respectively.
-  - command: "exec wt"
-    binding: "Alt+Shift+Enter"
+  # Redraw all windows.
+  - commands: ['wm-redraw']
+    bindings: ['alt+shift+w']
+
+  # Launch CMD terminal. Alternatively, use `shell-exec wt` or
+  # `shell-exec %ProgramFiles%/Git/git-bash.exe` to start Windows
+  # Terminal and Git Bash respectively.
+  - commands: ['shell-exec cmd']
+    bindings: ['alt+enter']
+
+  # Focus the next/previous active workspace defined in `workspaces` config.
+  - commands: ['focus --next-active-workspace']
+    bindings: ['alt+s']
+  - commands: ['focus --prev-active-workspace']
+    bindings: ['alt+a']
 
   # Focus the workspace that last had focus.
-  - command: "focus workspace recent"
-    binding: "Alt+Y"
-
-  # # Focus the next/previous workspace defined in `workspaces` config.
-  # - command: "focus workspace next"
-  #   binding: "Alt+N"
-  # - command: "focus workspace prev"
-  #   binding: "Alt+P"
+  - commands: ['focus --recent-workspace']
+    bindings: ['alt+d']
 
   # Change focus to a workspace defined in `workspaces` config.
-  - command: "focus workspace 1"
-    bindings: ["Alt+1"]
-  - command: "focus workspace 2"
-    bindings: ["Alt+2"]
-  - command: "focus workspace 3"
-    bindings: ["Alt+3"]
-  - command: "focus workspace 4"
-    bindings: ["Alt+4"]
-  - command: "focus workspace 5"
-    bindings: ["Alt+5"]
-  - command: "focus workspace 6"
-    bindings: ["Alt+6"]
-  - command: "focus workspace 7"
-    bindings: ["Alt+7"]
-  - command: "focus workspace 8"
-    bindings: ["Alt+8"]
-  - command: "focus workspace 9"
-    bindings: ["Alt+9"]
+  - commands: ['focus --workspace 1']
+    bindings: ['alt+1']
+  - commands: ['focus --workspace 2']
+    bindings: ['alt+2']
+  - commands: ['focus --workspace 3']
+    bindings: ['alt+3']
+  - commands: ['focus --workspace 4']
+    bindings: ['alt+4']
+  - commands: ['focus --workspace 5']
+    bindings: ['alt+5']
+  - commands: ['focus --workspace 6']
+    bindings: ['alt+6']
+  - commands: ['focus --workspace 7']
+    bindings: ['alt+7']
+  - commands: ['focus --workspace 8']
+    bindings: ['alt+8']
+  - commands: ['focus --workspace 9']
+    bindings: ['alt+9']
+
+  # Move the focused window's parent workspace to a monitor in a given
+  # direction.
+  - commands: ['move-workspace --direction left']
+    bindings: ['alt+shift+a']
+  - commands: ['move-workspace --direction right']
+    bindings: ['alt+shift+f']
+  - commands: ['move-workspace --direction up']
+    bindings: ['alt+shift+d']
+  - commands: ['move-workspace --direction down']
+    bindings: ['alt+shift+s']
 
   # Move focused window to a workspace defined in `workspaces` config.
-  - commands: ["move to workspace 1", "focus workspace 1"]
-    binding: "Alt+Shift+1"
-  - commands: ["move to workspace 2", "focus workspace 2"]
-    binding: "Alt+Shift+2"
-  - commands: ["move to workspace 3", "focus workspace 3"]
-    binding: "Alt+Shift+3"
-  - commands: ["move to workspace 4", "focus workspace 4"]
-    binding: "Alt+Shift+4"
-  - commands: ["move to workspace 5", "focus workspace 5"]
-    binding: "Alt+Shift+5"
-  - commands: ["move to workspace 6", "focus workspace 6"]
-    binding: "Alt+Shift+6"
-  - commands: ["move to workspace 7", "focus workspace 7"]
-    binding: "Alt+Shift+7"
-  - commands: ["move to workspace 8", "focus workspace 8"]
-    binding: "Alt+Shift+8"
-  - commands: ["move to workspace 9", "focus workspace 9"]
-    bindings: ["Alt+Shift+9"]
+  - commands: ['move --workspace 1', 'focus --workspace 1']
+    bindings: ['alt+shift+1']
+  - commands: ['move --workspace 2', 'focus --workspace 2']
+    bindings: ['alt+shift+2']
+  - commands: ['move --workspace 3', 'focus --workspace 3']
+    bindings: ['alt+shift+3']
+  - commands: ['move --workspace 4', 'focus --workspace 4']
+    bindings: ['alt+shift+4']
+  - commands: ['move --workspace 5', 'focus --workspace 5']
+    bindings: ['alt+shift+5']
+  - commands: ['move --workspace 6', 'focus --workspace 6']
+    bindings: ['alt+shift+6']
+  - commands: ['move --workspace 7', 'focus --workspace 7']
+    bindings: ['alt+shift+7']
+  - commands: ['move --workspace 8', 'focus --workspace 8']
+    bindings: ['alt+shift+8']
+  - commands: ['move --workspace 9', 'focus --workspace 9']
+    bindings: ['alt+shift+9']
+
+
