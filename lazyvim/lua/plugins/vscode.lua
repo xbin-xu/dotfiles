@@ -47,6 +47,7 @@ vim.api.nvim_create_autocmd("User", {
     vim.keymap.set("n", "]d", "<cmd>call VSCodeNotify('editor.action.marker.next')<cr>")
     vim.keymap.set("n", "[b", "<cmd>call VSCodeNotify('workbench.action.previousEditor')<cr>")
     vim.keymap.set("n", "]b", "<cmd>call VSCodeNotify('workbench.action.nextEditor')<cr>")
+    vim.keymap.set({ "n", "x" }, "gx", "<cmd>call VSCodeNotify('editor.action.openLink')<cr>")
   end,
 })
 

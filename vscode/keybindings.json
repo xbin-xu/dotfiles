@@ -214,6 +214,11 @@
         "command": "filesExplorer.paste",
         "when": "filesExplorerFocus && !inputFocus"
     },
+    {
+        "key": "ctrl+e",
+        "command": "revealFileInOS",
+        "when": "!editorFocus"
+    },
     // -- terminal
     //--------------------------------------------------------------------------
     {

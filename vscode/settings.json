@@ -201,6 +201,12 @@
                     "command": "workbench.action.closeActiveEditor"
                 },
                 {
+                    "key": "e",
+                    "name": "Change editor encoding",
+                    "type": "command",
+                    "command": "workbench.action.editor.changeEncoding"
+                },
+                {
                     "key": "h",
                     "name": "Move editor into left group",
                     "type": "command",
@@ -680,7 +686,7 @@
                 },
                 {
                     "key": "M",
-                    "name": "Toggle bookmarks with lable",
+                    "name": "Toggle bookmarks with label",
                     "type": "command",
                     "command": "bookmarks.toggleLabeled"
                 },
@@ -1071,7 +1077,17 @@
         "plaintext": false,
         "markdown": true,
         "scminput": false
-    }
+    },
+    "EIDE.ARM.ARMCC5.InstallDirectory": "D:\\Software\\Keil_v5\\ARM\\ARMCC",
+    "diffEditor.maxComputationTime": 0,
+    "cSpell.userWords": [
+        "pyocd"
+    ],
+    "workbench.editorAssociations": {
+        "*.copilotmd": "vscode.markdown.preview.editor",
+        "*.bin": "hexEditor.hexedit"
+    },
+    "EIDE.ARM.Option.AxfToElf": true,
+    "EIDE.OpenOCD.ExePath": "${userRoot}/.eide/tools/openocd_7a1adfbec_mingw32/bin/openocd.exe"
     // }
 }
-
