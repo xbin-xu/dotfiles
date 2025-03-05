@@ -208,7 +208,7 @@ binding_modes:
         bindings: ['m']
       # Press enter/escape to return to default keybindings.
       - commands: ['wm-disable-binding-mode --name resize']
-        bindings: ['escape', 'enter']
+        bindings: ['escape', 'enter', 'ctrl+oem_open_brackets']
 
   - name: 'focus'
     keybindings:
@@ -221,7 +221,7 @@ binding_modes:
       - commands: ['focus --direction right']
         bindings: ['l', 'right']
       - commands: ['wm-disable-binding-mode --name focus']
-        bindings: ['escape', 'enter']
+        bindings: ['escape', 'enter', 'ctrl+oem_open_brackets']
 
   - name: 'move'
     keybindings:
@@ -234,7 +234,7 @@ binding_modes:
       - commands: ['move --direction right']
         bindings: ['l', 'right']
       - commands: ['wm-disable-binding-mode --name move']
-        bindings: ['escape', 'enter']
+        bindings: ['escape', 'enter', 'ctrl+oem_open_brackets']
 
 keybindings:
   # Shift focus in a given direction.
