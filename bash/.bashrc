@@ -4,7 +4,7 @@
 
 # Theme
 if command -v oh-my-posh >/dev/null; then
-    POSH_THEMES_PATH="$LOCALAPPDATA/Programs/oh-my-posh/themes"
+    set POSH_THEMES_PATH "$LOCALAPPDATA/Programs/oh-my-posh/themes"
     eval "$(oh-my-posh init bash --config "$POSH_THEMES_PATH"/material.omp.json)"
 fi
 
