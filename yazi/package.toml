@@ -1,5 +1,32 @@
-[plugin]
-deps = [{ use = "KKV9/compress", rev = "60b24af" }, { use = "yazi-rs/plugins:git", rev = "2b001d2" }, { use = "Lil-Dank/lazygit", rev = "c82794f" }, { use = "yazi-rs/plugins:max-preview", rev = "2b001d2" }, { use = "yazi-rs/plugins:jump-to-char", rev = "d9bfa0b" }]
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "60b24af"
+hash = "4808a9f0e7aec3b7c0cfadcd0ba8c1f0"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "2b001d2"
+hash = "6e7117584db7e110353dd6266bd0f9a2"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "c82794f"
+hash = "d93946717cb5f0edd8fad839078e2195"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:max-preview"
+rev = "2b001d2"
+hash = "5b372bfe72c02e4825b6ae3cb72e9d6e"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "d9bfa0b"
+hash = "674920aa8344b32879a2819dc7fe572b"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "2bf70d8"
+hash = "2d3c17251b47e9e59535247ad8013814"
 
 [flavor]
 deps = []
