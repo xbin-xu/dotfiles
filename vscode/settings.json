@@ -667,6 +667,24 @@
             "type": "bindings",
             "bindings": [
                 {
+                    "key": "c",
+                    "name": "Clear bookmarks",
+                    "type": "command",
+                    "command": "bookmarks.clear"
+                },
+                {
+                    "key": "C",
+                    "name": "Clear bookmarks from all files",
+                    "type": "command",
+                    "command": "bookmarks.clearFromAllFiles"
+                },
+                {
+                    "key": "e",
+                    "name": "Show bookmarks explorer",
+                    "type": "command",
+                    "command": "workbench.view.extension.bookmarks"
+                },
+                {
                     "key": "j",
                     "name": "Next bookmarks",
                     "type": "command",
@@ -679,22 +697,28 @@
                     "command": "bookmarks.jumpToPrevious"
                 },
                 {
-                    "key": "m",
+                    "key": "l",
+                    "name": "List bookmarks",
+                    "type": "command",
+                    "command": "bookmarks.list"
+                },
+                {
+                    "key": "L",
+                    "name": "List bookmarks from all files",
+                    "type": "command",
+                    "command": "bookmarks.listFromAllFiles"
+                },
+                {
+                    "key": "t",
                     "name": "Toggle bookmarks",
                     "type": "command",
                     "command": "bookmarks.toggle"
                 },
                 {
-                    "key": "M",
+                    "key": "T",
                     "name": "Toggle bookmarks with label",
                     "type": "command",
                     "command": "bookmarks.toggleLabeled"
-                },
-                {
-                    "key": "t",
-                    "name": "Show bookmarks",
-                    "type": "command",
-                    "command": "workbench.view.extension.bookmarks"
                 }
             ]
         },
