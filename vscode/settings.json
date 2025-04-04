@@ -513,7 +513,7 @@
                     "command": "workbench.view.explorer"
                 },
                 {
-                    "key": "when:sideBarVisible && explorerViewletVisible",
+                    "key": "when:sideBarVisible",
                     "name": "Hide explorer",
                     "type": "command",
                     "command": "workbench.action.toggleSidebarVisibility"
@@ -834,7 +834,7 @@
                             "command": "workbench.view.explorer"
                         },
                         {
-                            "key": "when:sideBarVisible && explorerViewletVisible",
+                            "key": "when:sideBarVisible",
                             "name": "Hide explorer",
                             "type": "command",
                             "command": "workbench.action.toggleSidebarVisibility"

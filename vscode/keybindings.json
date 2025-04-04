@@ -17,9 +17,9 @@
         "command": "whichkey.triggerKey",
         "args": {
             "key": "e",
-            "when": "sideBarVisible && explorerViewletVisible"
+            "when": "sideBarVisible"
         },
-        "when": "whichkeyVisible && sideBarVisible && explorerViewletVisible"
+        "when": "whichkeyVisible && sideBarVisible"
     },
     // -- expand regin
     //--------------------------------------------------------------------------
