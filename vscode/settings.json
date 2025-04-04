@@ -1113,10 +1113,10 @@
     // }
     //--------------------------------------------------------------------------
     // -- Doxygen {
-    "doxdocgen.generic.commandSuggestion": true,
-    "doxdocgen.generic.authorName": "bin",
-    "doxdocgen.generic.authorEmail": "xbin.xu@qq.com",
     "doxdocgen.c.triggerSequence": "/**",
+    "doxdocgen.generic.useGitUserEmail": true,
+    "doxdocgen.generic.useGitUserName": true,
+    "doxdocgen.generic.commandSuggestion": true,
     // }
     //--------------------------------------------------------------------------
     // -- ESP-IDF {
