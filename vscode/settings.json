@@ -64,8 +64,14 @@
     },
     "markdown-preview-enhanced.previewTheme": "atom-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "one-dark.css",
+    "markdown-preview-enhanced.plantumlJarPath": "D:/Software/Scoop/persist/vscode/data/extensions/jebbs.plantuml-2.18.1/plantuml.jar",
     "MarkdownPaste.path": "${workspaceFolder}/imgs",
     "MarkdownPaste.namePrefix": "img-",
+    // }
+    //--------------------------------------------------------------------------
+    // -- Plantuml {
+    "plantuml.diagramsRoot": "docs/diagram/src",
+    "plantuml.exportOutDir": "docs/diagram/out",
     // }
     //--------------------------------------------------------------------------
     // -- Project Manager {
@@ -711,6 +717,43 @@
                     "type": "command",
                     "command": "bookmarks.toggleLabeled"
                 }
+            ]
+        },
+        {
+            "key": "p",
+            "name": "+Plantuml",
+            "type": "bindings",
+            "bindings": [
+                {
+                    "key": "p",
+                    "name": "Preview",
+                    "type": "command",
+                    "command": "plantuml.preview"
+                },
+                {
+                    "key": "c",
+                    "name": "Export Current",
+                    "type": "command",
+                    "command": "plantuml.exportCurrent"
+                },
+                {
+                    "key": "d",
+                    "name": "Export Document",
+                    "type": "command",
+                    "command": "plantuml.exportDocument"
+                },
+                {
+                    "key": "w",
+                    "name": "Export Workspace",
+                    "type": "command",
+                    "command": "plantuml.exportWorkspace"
+                },
+                {
+                    "key": "s",
+                    "name": "Extract Source",
+                    "type": "command",
+                    "command": "plantuml.extractSource"
+                },
             ]
         },
         {
