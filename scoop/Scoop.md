@@ -53,7 +53,6 @@ scoop bucket add extras
 scoop bucket add versions
 scoop bucket add nerd-fonts
 scoop bucket add spc https://ghproxy.com/github.com/lzwme/scoop-proxy-cn
-scoop bucket add raresoft https://github.com/L-Trump/scoop-raresoft
 scoop update
 
 # 5. Aria2 加速下载
@@ -64,54 +63,8 @@ scoop config aria2-min-split-size 1M                # 设置每个分块的最�
 scoop config aria2-enabled true                     # 启用 Aria2 下载，默认启用
 
 # 6. 安装应用 git-bash
-# scoop-search: `scoop-search act`
-# scoop-completion: use `tab` to completion
-scoop install scoop-search scoop-completion
-# Fonts
-scoop install nerd-fonts/JetBrainsMono-NF
-# Editor/IDE
-scoop install \
-    extras/vscode \
-    extras/notepadplusplus
-# CLI Tool
-scoop install \
-    main/sudo main/busybox main/vim main/neovim extras/neovide \
-    main/gcc main/gdb main/clangd main/cmake main/ninja main/vcpkg \
-    versions/mingw-winlibs-llvm-ucrt extras/gcc-arm-none-eabi \
-    main/python main/nodejs main/rust \
-    main/neofetch main/oh-my-posh spc/trash main/tldr main/fzf extras/lazygit \
-    main/ripgrep main/fd main/bat main/eza main/zoxide
-# Software Tool
-scoop install \
-    extras/autohotkey \
-    extras/everything \
-    extras/geekuninstaller \
-    extras/glazewm \
-    extras/googlechrome \
-    extras/listary \
-    extras/potplayer \
-    extras/sumatrapdf \
-    extras/vcredist \
-    extras/windows-terminal \
-    spc/Snipaste-Portable \
-    spc/qqmusic
-# IM
-scoop install \
-    extras/qq \
-    extras/wechat
-# Download
-scoop install \
-    spc/idm \
-    extras/qbittorrent
-# raresoft
-# scoop isntall \
-#     raresoft/IDM \
-#     raresoft/BeyondComparePro \
-#     raresoft/QQMusic \
-#     raresoft/YoudaoDict
-
-# yazi(install the optional dependencies)
-scoop install yazi 7zip jq poppler fd ripgrep fzf zoxide imagemagick
+# scoop export > scoop_apps.json
+scoop install scoop_apps.json
 ```
 
 ### 1.1 添加到右键菜单：找到对应的安装目录，然后运行 `install-context.reg`
@@ -141,7 +94,7 @@ oh-my-posh --init --shell pwsh --config $env:POSH_THEMES_PATH\material.omp.json 
 
 ```bash
 # 将下来两行添加到 ~/.bashrc
-set POSH_THEMES_PATH = "~/AppData/Local/Programs/oh-my-posh/themes"
+set POSH_THEMES_PATH "~/AppData/Local/Programs/oh-my-posh/themes"
 eval "$(oh-my-posh init bash --config $POSH_THEMES_PATH/material.omp.json)"
 ```
 
@@ -173,14 +126,14 @@ wsl --unregister Ubuntu
 # 重新导入系统 `wsl --import <Distro> <InstallLocation> <FileName> [Options]`
 wsl --import Ubuntu D:/WSL/Ubuntu D:/WSL/Ubuntu.tar
 # 进入 wsl 创建一个用户
-sudo addusr acwbin
+sudo addusr xbin
 # 添加到 sudo 用户组
-usermode -aG sudo acwbin
+usermode -aG sudo xbin
 # [option] sudo 免密: 在 /etc/sudoers 最后添加下面命令
 sudo vim /etc/sudoers
-acwbin ALL=(ALL) NOPASSWD:ALL
+xbin ALL=(ALL) NOPASSWD:ALL
 # 设置默认用户名 `ubuntu config --default-user <usrname>`
-ubuntu config --default-user acwbin
+ubuntu config --default-user xbin
 ```
 
 ### 2.2 必要工具
