@@ -6,7 +6,6 @@
 - clean: ["~", "~/.config"]
 
 - link:
-    ~/.config/alacritty: alacritty
     ~/.bashrc: bash/.bashrc
     ~/.config/fish: fish
     ~/.fonts: fonts
@@ -22,9 +21,6 @@
     ~/.vscode: vscode
     ~/.config/yazi: yazi
     # windows
-    $APPDATA/alacritty:
-      path: alacritty
-      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
     ~/pip/pip.ini:
       path: pip/pip.conf
       if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
