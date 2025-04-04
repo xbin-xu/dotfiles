@@ -27,6 +27,12 @@ prepend_keymap = [
     { on = [ "g", "i" ], run = "plugin lazygit", desc = "run lazygit" },
     # compress(archive)
     { on = [ "c", "a" ], run = "plugin compress", desc = "Archive selected files" },
+    # file navigation wraparound
+    { on = "k", run = "plugin arrow -1", desc = "Move cursor up"},
+    { on = "j", run = "plugin arrow 1", desc = "Move cursor down"},
+    # file navigation wraparound
+    { on = "K", run = "plugin parent-arrow -1", desc = "Move parent up" },
+    { on = "J", run = "plugin parent-arrow 1", desc = "Move parent down" },
 ]
 
 keymap = [

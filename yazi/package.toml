@@ -5,28 +5,23 @@ hash = "4808a9f0e7aec3b7c0cfadcd0ba8c1f0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "2b001d2"
-hash = "6e7117584db7e110353dd6266bd0f9a2"
+rev = "2730199"
+hash = "9ae0a91da29b29721679c64bb23a378"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "c82794f"
-hash = "d93946717cb5f0edd8fad839078e2195"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:max-preview"
-rev = "2b001d2"
-hash = "5b372bfe72c02e4825b6ae3cb72e9d6e"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:jump-to-char"
-rev = "d9bfa0b"
-hash = "674920aa8344b32879a2819dc7fe572b"
+rev = "7a08a09"
+hash = "5249d156940fa0ee9f00ca148e574eeb"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "2bf70d8"
+rev = "2730199"
 hash = "2d3c17251b47e9e59535247ad8013814"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mime-ext"
+rev = "2730199"
+hash = "403ee6c7cb1298bd56289d48ac752d4f"
 
 [flavor]
 deps = []
