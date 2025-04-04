@@ -3,7 +3,6 @@
     // -- Geneal {
     "oneDarkPro.italic": false,
     "workbench.colorTheme": "One Dark Pro",
-    "workbench.activityBar.location": "hidden",
     "window.commandCenter": true,
     "security.workspace.trust.untrustedFiles": "open",
     "files.exclude": {
@@ -118,12 +117,16 @@
             "command": "workbench.action.showAllEditors"
         },
         {
-            "key": "*",
-            "name": "Search selected in file",
-            "type": "commands",
-            "commands": [
-                "editor.action.addSelectionToNextFindMatch"
-            ]
+            "key": "-",
+            "name": "Split horizontal",
+            "type": "command",
+            "command": "workbench.action.splitEditorDown"
+        },
+        {
+            "key": "|",
+            "name": "Split vertical",
+            "type": "command",
+            "command": "workbench.action.splitEditor"
         },
         {
             "key": "a",
@@ -132,51 +135,45 @@
             "bindings": [
                 {
                     "key": "a",
-                    "name": "Toggle enable",
+                    "name": "Toggle copilot editor",
                     "type": "command",
-                    "command": "github.copilot.toggleCopilot"
-                },
-                {
-                    "key": "c",
-                    "name": "Toggle chat",
-                    "type": "command",
-                    "command": "workbench.panel.chat.view.copilot.toggleVisibility"
+                    "command": "workbench.panel.chatEditing"
                 },
                 {
                     "key": "d",
                     "name": "Docs",
                     "type": "command",
-                    "command": "github.copilot.interactiveEditor.generateDocs"
+                    "command": "github.copilot.chat.generateDocs"
                 },
                 {
                     "key": "e",
                     "name": "Explain",
                     "type": "command",
-                    "command": "github.copilot.interactiveEditor.explain"
+                    "command": "github.copilot.chat.explain"
                 },
                 {
                     "key": "f",
                     "name": "fix",
                     "type": "command",
-                    "command": "github.copilot.interactiveEditor.fix"
+                    "command": "github.copilot.chat.fix"
                 },
                 {
                     "key": "g",
                     "name": "Generate",
                     "type": "command",
-                    "command": "github.copilot.interactiveEditor.generate"
+                    "command": "github.copilot.chat.generate"
                 },
                 {
                     "key": "t",
                     "name": "Tests",
                     "type": "command",
-                    "command": "github.copilot.interactiveEditor.generateTests"
+                    "command": "github.copilot.chat.generateTests"
                 },
                 {
                     "key": "r",
                     "name": "Review",
                     "type": "command",
-                    "command": "github.copilot.interactiveEditor.review"
+                    "command": "github.copilot.chat.review"
                 }
             ]
         },
@@ -753,14 +750,8 @@
                     "name": "Extract Source",
                     "type": "command",
                     "command": "plantuml.extractSource"
-                },
+                }
             ]
-        },
-        {
-            "key": "-",
-            "name": "Split horizontal",
-            "type": "command",
-            "command": "workbench.action.splitEditorDown"
         },
         {
             "key": "s",
@@ -786,12 +777,6 @@
                     "command": "search.action.openEditor"
                 }
             ]
-        },
-        {
-            "key": "|",
-            "name": "Split vertical",
-            "type": "command",
-            "command": "workbench.action.splitEditor"
         },
         {
             "key": "u",
@@ -1119,6 +1104,10 @@
     "doxdocgen.generic.commandSuggestion": true,
     // }
     //--------------------------------------------------------------------------
+    // -- EIDE {
+    "EIDE.ARM.Option.AxfToElf": true,
+    // }
+    //--------------------------------------------------------------------------
     // -- ESP-IDF {
     "idf.gitPathWin": "d:\\Software\\Espressif\\tools\\idf-git\\2.39.2\\cmd\\git.exe",
     "idf.espIdfPathWin": "d:\\Software\\Espressif\\esp-idf",
@@ -1130,22 +1119,12 @@
         "IDF_CCACHE_ENABLE": "1",
         "ESP_ROM_ELF_DIR": "d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320/"
     },
+    //--------------------------------------------------------------------------
+    // -- Misc {
     "github.copilot.enable": {
         "*": true,
         "plaintext": false,
         "markdown": true,
         "scminput": false
-    },
-    "EIDE.ARM.ARMCC5.InstallDirectory": "D:\\Software\\Keil_v5\\ARM\\ARMCC",
-    "diffEditor.maxComputationTime": 0,
-    "cSpell.userWords": [
-        "pyocd"
-    ],
-    "workbench.editorAssociations": {
-        "*.copilotmd": "vscode.markdown.preview.editor",
-        "*.bin": "hexEditor.hexedit"
-    },
-    "EIDE.ARM.Option.AxfToElf": true,
-    "EIDE.OpenOCD.ExePath": "${userRoot}/.eide/tools/openocd_7a1adfbec_mingw32/bin/openocd.exe"
-    // }
+    }
 }
