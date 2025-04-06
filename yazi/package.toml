@@ -23,5 +23,10 @@ use = "yazi-rs/plugins:mime-ext"
 rev = "2730199"
 hash = "403ee6c7cb1298bd56289d48ac752d4f"
 
+[[plugin.deps]]
+use = "boydaihungst/mediainfo"
+rev = "436cb5f"
+hash = "46412d92748c7d05b8e04c44913ce046"
+
 [flavor]
 deps = []
