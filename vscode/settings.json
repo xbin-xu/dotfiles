@@ -918,18 +918,6 @@
             "type": "bindings",
             "bindings": [
                 {
-                    "key": "-",
-                    "name": "Split Horizontal",
-                    "type": "command",
-                    "command": "workbench.action.splitEditorDown"
-                },
-                {
-                    "key": "|",
-                    "name": "Split Vertical",
-                    "type": "command",
-                    "command": "workbench.action.splitEditor"
-                },
-                {
                     "key": "h",
                     "name": "Move editor group left",
                     "type": "command",
@@ -982,6 +970,31 @@
                     "name": "Close all editor groups",
                     "type": "command",
                     "command": "workbench.action.closeAllGroups"
+                },
+                {
+                    "key": "<",
+                    "command": "workbench.action.decreaseViewWidth",
+                    "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
+                },
+                {
+                    "key": ">",
+                    "command": "workbench.action.increaseViewWidth",
+                    "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
+                },
+                {
+                    "key": "-",
+                    "command": "workbench.action.decreaseViewHeight",
+                    "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
+                },
+                {
+                    "key": "+",
+                    "command": "workbench.action.increaseViewHeight",
+                    "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
+                },
+                {
+                    "key": "=",
+                    "command": "workbench.action.evenEditorWidths",
+                    "when": "!editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
                 }
             ]
         }
