@@ -167,6 +167,18 @@ window_rules:
       # Ignore PotPlayer
       - window_class: { regex: "PotShadowWnd|Afx:.*;" }
 
+      # Ignore Listary
+      - window_process: { equals: "Listary" }
+        window_title: { regex: "SearchBarWindow|LauncherSearchWindow" }
+        window_class: { regex: 'HwndWrapper\[Listary\.exe;;.*?\]' }
+
+      # Ignore Python matplotlib.pyplot
+      - window_class: { regex: "TkTopLevel" }
+
+      # Ignore Qt Designer
+      - window_process: { equals: "dsigner" }
+      - window_class: { regex: ".*Qt69.*" }
+
   # Floating
   - commands: ["set-floating"]
     match:
