@@ -176,8 +176,7 @@ window_rules:
       - window_class: { regex: "TkTopLevel" }
 
       # Ignore Qt Designer
-      - window_process: { equals: "dsigner" }
-      - window_class: { regex: ".*Qt69.*" }
+      - window_process: { equals: "designer" }
 
   # Floating
   - commands: ["set-floating"]
