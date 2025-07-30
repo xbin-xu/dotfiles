@@ -3,70 +3,71 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     opts = {
-      signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "" },
-        topdelete = { text = "" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
-      },
-      on_attach = function(buffer)
-        local gs = package.loaded.gitsigns
+      on_attach = function(bufnr)
+        local gitsigns = require("gitsigns")
 
-        local function map(mode, l, r, desc)
-          vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
         end
 
-        -- Naviation
-        map("n", "]g", gs.next_hunk, "Next hunk")
-        map("n", "[g", gs.prev_hunk, "Prev hunk")
-        map("n", "<leader>gj", gs.next_hunk, "Next hunk")
-        map("n", "<leader>gk", gs.prev_hunk, "Prev hunk")
+        -- Navigation
+        map("n", "]g", function()
+          if vim.wo.diff then
+            vim.cmd.normal({ "]g", bang = true })
+          else
+            gitsigns.nav_hunk("next")
+          end
+        end)
+
+        map("n", "[g", function()
+          if vim.wo.diff then
+            vim.cmd.normal({ "[g", bang = true })
+          else
+            gitsigns.nav_hunk("prev")
+          end
+        end)
 
         -- Actions
-        map({ "n", "v" }, "<leader>gs", ":Gitsigns stage_hunk<cr>", "Stage hunk")
-        map({ "n", "v" }, "<leader>gr", ":Gitsigns reset_hunk<cr>", "Reset hunk")
-        map("n", "<leader>gu", gs.undo_stage_hunk, "Undo stage hunk")
-        map("n", "<leader>gS", gs.stage_buffer, "Stage buffer")
-        map("n", "<leader>gR", gs.reset_buffer, "Reset buffer")
-        map("n", "<leader>gp", gs.preview_hunk, "Preview hunk")
-        map("n", "<leader>gl", function()
-          gs.blame_line({ full = true })
-        end, "Blame line")
-        map("n", "<leader>gd", gs.diffthis, "Diff this")
+        map("n", "<leader>gs", gitsigns.stage_hunk)
+        map("n", "<leader>gr", gitsigns.reset_hunk)
+
+        map("v", "<leader>gs", function()
+          gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end)
+
+        map("v", "<leader>gr", function()
+          gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+        end)
+
+        map("n", "<leader>gS", gitsigns.stage_buffer)
+        map("n", "<leader>gR", gitsigns.reset_buffer)
+        map("n", "<leader>gp", gitsigns.preview_hunk)
+        map("n", "<leader>gi", gitsigns.preview_hunk_inline)
+
+        map("n", "<leader>gb", function()
+          gitsigns.blame_line({ full = true })
+        end)
+
+        map("n", "<leader>gd", gitsigns.diffthis)
+
         map("n", "<leader>gD", function()
-          gs.diffthis("~")
-        end, "Diff this ~")
+          gitsigns.diffthis("~")
+        end)
+
+        map("n", "<leader>gQ", function()
+          gitsigns.setqflist("all")
+        end)
+        map("n", "<leader>gq", gitsigns.setqflist)
+
+        -- Toggles
+        map("n", "<leader>tb", gitsigns.toggle_current_line_blame)
+        map("n", "<leader>tw", gitsigns.toggle_word_diff)
 
         -- Text object
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<cr>", "GitSigns select hunk")
+        map({ "o", "x" }, "ih", gitsigns.select_hunk)
       end,
     },
-  },
-
-  {
-    "rhysd/conflict-marker.vim",
-    event = "VeryLazy",
-    config = function()
-      vim.cmd([[
-        " `[x` to previous conflict, `]x` to next conflict
-        " `ct` for theirs, `co` for ours, `cn` for none and `cb` for both
-        let g:conflict_marker_enable_mappings = 1
-
-        " disable the default highlight group
-        let g:conflict_marker_highlight_group = ''
-
-        " Include text after begin and end markers
-        let g:conflict_marker_begin = '^<<<<<<< .*$'
-        let g:conflict_marker_end   = '^>>>>>>> .*$'
-
-        highlight ConflictMarkerBegin guibg=#2f7366
-        highlight ConflictMarkerOurs guibg=#2e5049
-        highlight ConflictMarkerTheirs guibg=#344f69
-        highlight ConflictMarkerEnd guibg=#2f628e
-        highlight ConflictMarkerCommonAncestorsHunk guibg=#754a81
-      ]])
-    end,
   },
 }

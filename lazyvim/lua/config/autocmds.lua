@@ -35,3 +35,13 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
     vim.opt.formatoptions = vim.opt.formatoptions - "o" + "r"
   end,
 })
+
+-- disable spell check in text filetypes
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("disable_spell_check"),
+  pattern = { "text", "plaintex", "typst", "gitcommit", "markdown" },
+  callback = function()
+    vim.opt_local.spell = false
+    vim.opt_local.spelllang = "en_us,cjk"
+  end,
+})

@@ -27,7 +27,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>C", group = "+cmake" }, 
+        { "<leader>C", group = "+cmake" },
       },
     },
   },

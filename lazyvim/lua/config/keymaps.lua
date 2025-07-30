@@ -7,11 +7,11 @@ local LazyVim = require("lazyvim.util")
 
 -- DO NOT USE THIS IN YOU OWN CONFIG!!
 -- use `vim.keymap.set` instead
--- local map = LazyVim.safe_keymap_set
-local map = vim.keymap.set
+local map = LazyVim.safe_keymap_set
+-- local map = vim.keymap.set
 
 -- Map jk to <esc> in insert mode
-map("i", "jk", "<esc>", { desc = "<Esc>" })
+-- map("i", "jk", "<esc>", { desc = "<Esc>" })
 
 -- Quit & Save
 -- TODO: conflict keymaps `<leader>d`, `<leader>q` and `<leader>w`
@@ -30,16 +30,7 @@ map("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 map({ "n", "v", "o" }, "H", "^", { desc = "Line head" })
 map({ "n", "v", "o" }, "L", "$", { desc = "Line tail" })
 
--- Quick copy paste into system clipboard
-map({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank" })
-map({ "n", "v" }, "<leader>d", '"+d', { desc = "Delete" })
-map({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste after the cursorr" })
-map({ "n", "v" }, "<leader>P", '"+P', { desc = "Paste before the cursor" })
-map("v", "p", '"_dP', { desc = "Replace selected without yank it" })
-
 -- Better indenting
-map("v", ">", ">gv", { desc = "Indent left" })
-map("v", "<", "<gv", { desc = "Indent right" })
 map("v", "<Tab>", ">gv", { desc = "Indent left" })
 map("v", "<S-Tab>", "<gv", { desc = "Indent right" })
 
