@@ -78,7 +78,7 @@ rules = [
 	# Empty file
 	{ mime = "inode/empty", use = [ "edit", "reveal" ] },
 	# Fallback
-	{ name = "*", use = [ "open", "reveal" ] },
+	{ name = "*", use = [ "edit", "open", "reveal" ] },
 ]
 
 [tasks]
@@ -157,6 +157,10 @@ previewers = [
 	{ mime = "inode/empty", run = "empty" },
 	# Fallback
 	{ name = "*", run = "file" },
+]
+
+prepend_previewers = [
+    {name = "*", run = 'piper -- bat -p --color=always --theme ansi "$1"'}, 
 ]
 
 [input]
