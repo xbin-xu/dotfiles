@@ -9,16 +9,26 @@ if command -v oh-my-posh >/dev/null; then
 fi
 
 # Aliases: creates an alias if the command exists
+# Usage: alias_if_exists <alias_name> <command> [args...]
 function alias_if_exists() {
-    if [ "$#" -ne 2 ]; then
-        echo "Usage: alias_if_exists <alias> <command>"
+    if [ "$#" -lt 2 ]; then
+        echo "Usage: alias_if_exists <alias_name> <command> [args...]"
         return 1
     fi
 
-    if command -v "$2" >/dev/null; then
-        alias "$1"="$2"
+    local alias_name="$1"
+    shift
+
+    local cmd_name="$1"
+    shift
+
+    if command -v "$cmd_name" >/dev/null; then
+        local command_args="$@"
+
+        # echo "$alias_name -> $cmd_name $command_args"
+        alias "$alias_name"="$cmd_name $command_args"
     else
-        echo "Command '$2' not found, alias '$1' not created."
+        # echo "Command '$cmd_name' not found, alias '$alias_name' not created."
         return 1
     fi
 }
@@ -27,7 +37,10 @@ function alias_if_exists() {
 function cmd_deal_path() {
     local -r cmd="$1"
     shift
-    if command -v cygpath >/dev/null; then
+
+    if [ $# -eq 0 ]; then
+        $cmd
+    elif command -v cygpath >/dev/null; then
         $cmd "$(cygpath -w "$@")"
     else
         $cmd "$@"
@@ -37,16 +50,17 @@ function cmd_deal_path() {
 # alias_if_exists cat bat
 alias_if_exists ls exa
 alias_if_exists ls eza
-alias ll='ls -alF'
+alias_if_exists ll ls '-alF'
 # alias_if_exists find fd
 # alias_if_exists vim nvim
 alias_if_exists lg lazygit
 alias_if_exists py python
 alias_if_exists ipy ipython
-alias er='cmd_deal_path explorer'
-alias code='cmd_deal_path code'
-alias tmux='wsl tmux'
-alias fish='wsl fish'
+alias_if_exists er cmd_deal_path explorer
+alias_if_exists code cmd_deal_path code
+alias_if_exists tmux wsl tmux
+alias_if_exists fish wsl fish
+alias_if_exists tree eza '-T'
 
 # CLI integration
 # zoxide
