@@ -1,6 +1,10 @@
-BasedOnStyle: Google
+---
+BasedOnStyle: llvm
+---
+Language:	Cpp
+UseTab: Never
+TabWidth: 4
 IndentWidth: 4
-DerivePointerAlignment: false
-PointerAlignment: Right
 ColumnLimit: 80
-
+IndentCaseLabels: true
+BreakBeforeBraces: Linux
