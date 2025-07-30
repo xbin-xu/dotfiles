@@ -5,6 +5,8 @@
 [mgr]
 
 prepend_keymap = [
+    # open editor here
+    { on = "<C-o>", run = 'shell "code ." --confirm', desc = "Open EDITOR(CWD)" },
     # open explorer
     { on = "<C-e>", run = 'shell "explorer ." --confirm', desc = "Open explorer for windows" },
     # TODO: windows git-bash use $SHELL not work
