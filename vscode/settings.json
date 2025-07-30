@@ -34,7 +34,7 @@
     "[c]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
-    "[c++]": {
+    "[cpp]": {
         "editor.defaultFormatter": "xaver.clang-format"
     },
     "[python]": {
