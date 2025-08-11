@@ -1,0 +1,26 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$git_branch\
+$time\
+$character
+"""
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+[directory]
+truncation_length = 1
+format = "[$path]($style) "
+
+[time]
+disabled = false
+time_format = "%R"
+utc_time_offset = "local"
+format = "[$time]($style) "
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true

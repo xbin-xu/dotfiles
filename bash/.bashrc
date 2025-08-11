@@ -5,10 +5,7 @@
 # set +o vi   # disable vi mode
 
 # Theme
-if command -v oh-my-posh >/dev/null; then
-    set POSH_THEMES_PATH "$LOCALAPPDATA/Programs/oh-my-posh/themes"
-    eval "$(oh-my-posh init bash --config "$POSH_THEMES_PATH"/material.omp.json)"
-fi
+eval "$(starship init bash)"
 
 # Aliases: creates an alias if the command exists
 # Usage: alias_if_exists <alias_name> <command> [args...]

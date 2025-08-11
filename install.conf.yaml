@@ -7,6 +7,7 @@
 
 - link:
     ~/.bashrc: bash/.bashrc
+    ~/.config/starship.toml: starship/starship.toml
     ~/.config/fish: fish
     ~/.fonts: fonts
     ~/.gitconfig: git/.gitconfig
