@@ -1,3 +1,5 @@
+# shellcheck disable=SC2148
+
 # Vi mode
 # set -o vi   # enable vi mode
 # set +o vi   # disable vi mode
@@ -23,9 +25,10 @@ function alias_if_exists() {
     shift
 
     if command -v "$cmd_name" >/dev/null; then
-        local command_args="$@"
+        local command_args="$*"
 
         # echo "$alias_name -> $cmd_name $command_args"
+        # shellcheck disable=SC2139
         alias "$alias_name"="$cmd_name $command_args"
     else
         # echo "Command '$cmd_name' not found, alias '$alias_name' not created."
@@ -134,6 +137,7 @@ alias_if_exists keil keil_helper
 # zoxide
 eval "$(zoxide init bash)"
 # fzf
+# shellcheck disable=SC1090
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # yazi
 function yy() {
