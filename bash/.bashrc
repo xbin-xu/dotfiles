@@ -47,6 +47,73 @@ function cmd_deal_path() {
     fi
 }
 
+function keil_helper() {
+    local build_mode=
+    local project_path="."
+
+    local uv4_cmd_opt=""
+    local uv4_log_dir="build"
+    local uv4_log="${uv4_log_dir}/uv4.log"
+    local uv4_post_cmd=""
+
+    # 解析命令行选项
+    if args=$(getopt -o b -- "$@"); then
+        eval set -- "$args"
+    else
+        echo "Usage: keil_helper [-b] [project_path]"
+        echo "  -b            Build the project"
+        echo "  project_path  Path to the keil project directory (default: .)"
+        return 1
+    fi
+
+    # 解析选项
+    while true; do
+        case "$1" in
+            -b) build_mode=1; shift ;;
+            --) shift; break ;;
+            *) echo "Invalid argument: $1"; return 1 ;;
+        esac
+    done
+
+    # 解析位置参数
+    if [[ $# -gt 0 ]]; then
+        project_path=$(realpath "$1" 2>/dev/null) || {
+            echo "Invalid project path: $1"
+            return 1
+        }
+    fi
+
+    # 设置构建相关参数
+    if [[ -n "$build_mode" ]]; then
+        uv4_cmd_opt="-j0 -l $uv4_log -cr"
+
+        uv4_post_cmd="tr -cd '[:print:]\n\t\r' < \"$uv4_log\""
+
+        if [[ ! -d "$uv4_log_dir" ]]; then
+            mkdir -p "$uv4_log_dir"
+        fi
+    fi
+
+    # 查找 .uvproj 文件
+    project_file=$(find "${project_path}" -maxdepth 1 -name "*.uvproj" -o -name "*.uvprojx" -type f -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2-)
+    if [[ -z "$project_file" ]]; then
+        echo "No found *.uvproj/*.uvprojx in $project_path"
+        return 1
+    fi
+
+    # 执行 Keil 命令
+    local uv4_cmd="uv4 $uv4_cmd_opt \"$project_file\" &"
+    eval "$uv4_cmd"
+    uv4_pid=$!
+
+    # 构建后执行日志输出
+    if [[ -n "$uv4_post_cmd" ]]; then
+        # 等待子进程完成
+        wait $uv4_pid
+        eval "$uv4_post_cmd"
+    fi
+}
+
 # alias_if_exists cat bat
 alias_if_exists ls exa
 alias_if_exists ls eza
@@ -61,6 +128,7 @@ alias_if_exists code cmd_deal_path code
 alias_if_exists tmux wsl tmux
 alias_if_exists fish wsl fish
 alias_if_exists tree eza '-T'
+alias_if_exists keil keil_helper
 
 # CLI integration
 # zoxide
