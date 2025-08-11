@@ -69,9 +69,18 @@ function keil_helper() {
     # 解析选项
     while true; do
         case "$1" in
-            -b) build_mode=1; shift ;;
-            --) shift; break ;;
-            *) echo "Invalid argument: $1"; return 1 ;;
+        -b)
+            build_mode=1
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            echo "Invalid argument: $1"
+            return 1
+            ;;
         esac
     done
 
@@ -95,7 +104,7 @@ function keil_helper() {
     fi
 
     # 查找 .uvproj 文件
-    project_file=$(find "${project_path}" -maxdepth 1 -name "*.uvproj" -o -name "*.uvprojx" -type f -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2-)
+    project_file=$(find "${project_path}" -maxdepth 1 \( -name "*.uvproj" -o -name "*.uvprojx" \) -type f -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2-)
     if [[ -z "$project_file" ]]; then
         echo "No found *.uvproj/*.uvprojx in $project_path"
         return 1
