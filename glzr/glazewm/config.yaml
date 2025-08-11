@@ -183,6 +183,7 @@ window_rules:
     match:
       - window_process: { equals: "explorer" }
       - window_process: { regex: "WeChat.*" }
+      - window_process: { equals: "Weixin" }
       - window_process: { equals: "Listary" }
       - window_process: { regex: "clash.*" }
       - window_process: { regex: ".*[Mm]usic.*" }
