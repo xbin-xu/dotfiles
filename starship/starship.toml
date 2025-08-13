@@ -19,7 +19,7 @@ format = "[$path]($style) "
 disabled = false
 time_format = "%R"
 utc_time_offset = "local"
-format = "[$time]($style) "
+format = "[$time](green) "
 
 # Disable the package module, hiding it from the prompt completely
 [package]
