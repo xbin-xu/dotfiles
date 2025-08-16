@@ -31,6 +31,9 @@ opt.indentkeys = "0{,0},0),0],0#,!^F,o,O,e"
 opt.timeoutlen = vim.g.vscode and 200 or 200 -- lower than default (1000) to quickly trigger which-key
 opt.updatetime = 200 -- save swap file and trigger CursorHold
 
+-- Shell
+vim.opt.shell = "bash"
+
 -- GUI
 if vim.fn.has("gui_running") then
   if vim.g.neovide then
@@ -43,8 +46,5 @@ if vim.fn.has("gui_running") then
     vim.g.transparency = 0.8
     vim.g.neovide_opacity = 0.8
     vim.g.neovide_background_color = "#0f1117" .. alpha()
-
-    -- Shell
-    vim.opt.shell = "bash"
   end
 end
