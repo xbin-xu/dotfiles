@@ -40,6 +40,6 @@ map("c", "<C-k>", "<Up>", { desc = "Prev cmd-line history" })
 map("n", "gV", "`[v`]", { desc = "Switch to VISUAL using last inserted" })
 
 -- Increment / Decrement
-map("n", "<C-a>", "ggVG", { desc = "Select all" })
+-- map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map({ "n", "x" }, "+", "<C-a>", { desc = "Increase number" })
 map({ "n", "x" }, "-", "<C-x>", { desc = "Decrease number" })
