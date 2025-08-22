@@ -1,7 +1,7 @@
 # Yazi
 
-+ [yazi](https://yazi-rs.github.io/)
-+ [awesome-yazi](https://github.com/sachinsenal0x64/awesome-yazi)
++ [yazi]
++ [awesome-yazi]
 
 ## Plugin
 
@@ -22,3 +22,6 @@ ya pack -a llanosrocas/yaziline
 | `T`     | Maximize or restore preview |
 | `gi`    | run lazygit                 |
 | `ca`    | archive selected files      |
+
+[yazi]: https://yazi-rs.github.io/
+[awesome-yazi]: https://github.com/sachinsenal0x64/awesome-yazi

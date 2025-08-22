@@ -34,7 +34,7 @@ You can make local customizations by editing these files:
 
 ```bash
 # ubuntu
-sudo apt install -y bat eza fd-find ripgrep zoxide 
+sudo apt install -y bat eza fd-find ripgrep zoxide
 # windows: install by scoop
 scoop install bat eza fd lazygit ripgrep zoxide
 

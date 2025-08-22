@@ -17,10 +17,8 @@ local map = LazyVim.safe_keymap_set
 -- TODO: conflict keymaps `<leader>d`, `<leader>q` and `<leader>w`
 map("n", "<leader>q", "<cmd>q!<cr>", { desc = "Quit" })
 -- map("n", "<leader>q", "<cmd>bdelete<cr>", { desc = "Close file" })
-map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Wirte file" })
+map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "Write file" })
 map("n", "<leader>W", "<cmd>w !sudo tee % >/dev/null<cr>", { desc = "Write file by sudo" })
-
--- Terminal(use lazyvim default keybins <C-/>)
 
 -- Navigate tab
 map("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
@@ -39,7 +37,7 @@ map("c", "<C-j>", "<Down>", { desc = "Next cmd-line history" })
 map("c", "<C-k>", "<Up>", { desc = "Prev cmd-line history" })
 
 -- Select last inserted
-map("n", "gV", "`[v`]", { desc = "Swith to VISUAL using last inserted" })
+map("n", "gV", "`[v`]", { desc = "Switch to VISUAL using last inserted" })
 
 -- Increment / Decrement
 map("n", "<C-a>", "ggVG", { desc = "Select all" })

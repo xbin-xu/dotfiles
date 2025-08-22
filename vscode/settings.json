@@ -5,6 +5,10 @@
     "workbench.colorTheme": "One Dark Pro",
     "window.commandCenter": true,
     "security.workspace.trust.untrustedFiles": "open",
+    "files.associations": {
+        ".clang-format": "yaml",
+        ".clang-tidy": "yaml"
+    },
     "files.exclude": {
         "**/*.exe": true
     },
@@ -59,7 +63,8 @@
             "other": true,
             "comments": true,
             "strings": true
-        }
+        },
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "markdown-preview-enhanced.previewTheme": "atom-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "one-dark.css",

@@ -8,5 +8,5 @@ require("config.lazy")
 -- vscode
 if vim.g.vscode then
   -- VSCode Neovim
-  require "user.vscode"
+  require("user.vscode")
 end

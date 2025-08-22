@@ -6,7 +6,7 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{cbe121fe-8bb1-4d0e-a0f5-a7d5e36befce}",
-    "keybindings": 
+    "keybindings":
     [
         {
             "id": "Terminal.ToggleFocusMode",
@@ -18,19 +18,19 @@
         },
         {
             "id": null,
-            "keys": "ctrl+shift+tab"
-        },
-        {
-            "id": "Terminal.CopyToClipboard",
-            "keys": "ctrl+c"
-        },
-        {
-            "id": null,
             "keys": "ctrl+tab"
         },
         {
             "id": "Terminal.NextTab",
             "keys": "ctrl+alt+n"
+        },
+        {
+            "id": null,
+            "keys": "ctrl+shift+tab"
+        },
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
         },
         {
             "id": "Terminal.ClosePane",
@@ -46,23 +46,27 @@
         },
         {
             "id": null,
-            "keys": "ctrl+shift+t"
-        },
-        {
-            "id": "Terminal.MoveFocusRight",
-            "keys": "ctrl+alt+l"
+            "keys": "alt+down"
         },
         {
             "id": "Terminal.MoveFocusUp",
             "keys": "ctrl+alt+k"
         },
         {
+            "id": "Terminal.MoveFocusRight",
+            "keys": "ctrl+alt+l"
+        },
+        {
             "id": null,
-            "keys": "alt+down"
+            "keys": "ctrl+shift+t"
         },
         {
             "id": null,
             "keys": "alt+left"
+        },
+        {
+            "id": null,
+            "keys": "alt+right"
         },
         {
             "id": "Terminal.PrevTab",
@@ -70,19 +74,15 @@
         },
         {
             "id": null,
-            "keys": "alt+right"
-        },
-        {
-            "id": null,
             "keys": "ctrl+shift+up"
-        },
-        {
-            "id": "Terminal.SplitPaneDown",
-            "keys": "ctrl+alt+minus"
         },
         {
             "id": null,
             "keys": "ctrl+shift+down"
+        },
+        {
+            "id": "Terminal.SplitPaneDown",
+            "keys": "ctrl+alt+minus"
         },
         {
             "id": "Terminal.ScrollUp",
@@ -118,19 +118,19 @@
         }
     ],
     "launchMode": "focus",
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "adjustIndistinguishableColors": "indexed",
             "colorScheme": "One Half Dark",
-            "font": 
+            "font":
             {
                 "face": "JetBrainsMono Nerd Font"
             },
@@ -139,7 +139,7 @@
             "startingDirectory": "D:\\Workbench",
             "useAcrylic": false
         },
-        "list": 
+        "list":
         [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
@@ -180,32 +180,7 @@
             }
         ]
     },
-    "schemes": 
-    [
-        {
-            "background": "#300A24",
-            "black": "#171421",
-            "blue": "#0037DA",
-            "brightBlack": "#767676",
-            "brightBlue": "#08458F",
-            "brightCyan": "#2C9FB3",
-            "brightGreen": "#26A269",
-            "brightPurple": "#A347BA",
-            "brightRed": "#C01C28",
-            "brightWhite": "#F2F2F2",
-            "brightYellow": "#A2734C",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#3A96DD",
-            "foreground": "#FFFFFF",
-            "green": "#26A269",
-            "name": "Ubuntu-ColorScheme",
-            "purple": "#881798",
-            "red": "#C21A23",
-            "selectionBackground": "#FFFFFF",
-            "white": "#CCCCCC",
-            "yellow": "#A2734C"
-        }
-    ],
+    "schemes": [],
     "startOnUserLogin": true,
     "tabSwitcherMode": "inOrder",
     "themes": [],

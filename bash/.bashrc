@@ -56,7 +56,7 @@ function keil_helper() {
     local uv4_log="${uv4_log_dir}/uv4.log"
     local uv4_post_cmd=""
 
-    # 解析命令行选项
+    # parse options
     if args=$(getopt -o b -- "$@"); then
         eval set -- "$args"
     else
@@ -66,7 +66,6 @@ function keil_helper() {
         return 1
     fi
 
-    # 解析选项
     while true; do
         case "$1" in
         -b)
@@ -84,7 +83,7 @@ function keil_helper() {
         esac
     done
 
-    # 解析位置参数
+    # parser position arg
     if [[ $# -gt 0 ]]; then
         project_path=$(realpath "$1" 2>/dev/null) || {
             echo "Invalid project path: $1"
@@ -92,7 +91,7 @@ function keil_helper() {
         }
     fi
 
-    # 设置构建相关参数
+    # deal option
     if [[ -n "$build_mode" ]]; then
         uv4_cmd_opt="-j0 -l $uv4_log -cr"
 
@@ -103,21 +102,21 @@ function keil_helper() {
         fi
     fi
 
-    # 查找 .uvproj 文件
+    # find .uvproj/*.uvprojx
     project_file=$(find "${project_path}" -maxdepth 1 \( -name "*.uvproj" -o -name "*.uvprojx" \) -type f -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2-)
     if [[ -z "$project_file" ]]; then
         echo "No found *.uvproj/*.uvprojx in $project_path"
         return 1
     fi
 
-    # 执行 Keil 命令
+    # exec keil command
     local uv4_cmd="uv4 $uv4_cmd_opt \"$project_file\" &"
     eval "$uv4_cmd"
     uv4_pid=$!
 
-    # 构建后执行日志输出
+    # echo build log
     if [[ -n "$uv4_post_cmd" ]]; then
-        # 等待子进程完成
+        # wait subprocess
         wait $uv4_pid
         eval "$uv4_post_cmd"
     fi

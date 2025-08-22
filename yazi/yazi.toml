@@ -160,8 +160,8 @@ previewers = [
 ]
 
 append_previewers  = [
-    {name = "*.{bin,exe}", run = 'piper -- hexdump -C "$1"'}, 
-    {name = "*", run = 'piper -- bat -p --color=always --theme ansi "$1"'}, 
+    {name = "*.{bin,exe}", run = 'piper -- hexdump -C "$1"'},
+    {name = "*", run = 'piper -- bat -p --color=always --theme ansi "$1"'},
 ]
 
 [input]

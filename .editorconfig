@@ -1,0 +1,54 @@
+# EditorConfig is awesome: https://editorconfig.org
+
+# top-most EditorConfig file
+root = true
+
+# All (Defaults)
+[*]
+charset = utf-8
+indent_size = 4
+indent_style = space
+max_line_length = 80
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Clangd
+[**{.clangd,.clang-format,.clang-tidy}]
+indent_size = 2
+indent_style = space
+
+# Makefile
+[Makefile]
+indent_size = 4
+indent_style = tab
+
+# Kconfig
+[Kconfig*]
+indent_size = 4
+indent_style = tab
+
+# Shell Script
+[{**.bashrc,*.{sh,fish}}]
+end_of_line = lf
+indent_size = 4
+indent_style = space
+
+# Python
+[*.py]
+indent_size = 4
+indent_style = space
+
+# Lua
+[*.lua]
+indent_size = 2
+indent_style = space
+
+# Json
+[lazyvim/*.json]
+indent_size = 2
+indent_style = space
+
+# YAML
+[*.{yml,yaml}]
+indent_size = 2
+indent_style = space

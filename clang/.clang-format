@@ -1,7 +1,7 @@
 ---
 BasedOnStyle: llvm
 ---
-Language:	Cpp
+Language: Cpp
 UseTab: Never
 TabWidth: 4
 IndentWidth: 4

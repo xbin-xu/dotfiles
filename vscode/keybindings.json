@@ -285,7 +285,7 @@
         "command": "workbench.action.terminal.focusNext",
         "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
     },
-    // -- move lines 
+    // -- move lines
     //--------------------------------------------------------------------------
     {
         "key": "alt+j",

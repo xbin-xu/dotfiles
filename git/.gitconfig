@@ -1,115 +1,115 @@
 [user]
-	name = xbin
-	email = xbin.xu@qq.com
+    name = xbin
+    email = xbin.xu@qq.com
 
 [credential]
-	# Store credentials
-	# helper = cache --timeout=3600   # 缓存 1h
-	helper = store
+    # Store credentials
+    # helper = cache --timeout=3600   # 缓存 1h
+    helper = store
 
 [alias]
-	st = status
-	sts = status -s
-	ci = commit
+    st = status
+    sts = status -s
+    ci = commit
     ca = commit --amend
     cane = commit --amend --no-edit
     co = checkout
     cp = cherry-pick
-	br = branch -vv
+    br = branch -vv
     unstage = reset HEAD --
-	di = diff                       # stage --> workspace
-	diw = diff --color-words
-	dc = diff --cached              # HEAD --> stage: `git add`
-	dcw = diff --cached --color-words
-	dh = diff HEAD                  # HEAD --> worksapce
-	dhw = diff HEAD --color-words
+    di = diff                       # stage --> workspace
+    diw = diff --color-words
+    dc = diff --cached              # HEAD --> stage: `git add`
+    dcw = diff --cached --color-words
+    dh = diff HEAD                  # HEAD --> workspace
+    dhw = diff HEAD --color-words
 
-	# View history graph
-	graph = log --graph --decorate --oneline --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%an, %ar)'
+    # View history graph
+    graph = log --graph --decorate --oneline --pretty=format:'%C(auto)%h%C(auto)%d %s %C(dim white)(%an, %ar)'
 
-	# Show verbose output about tags, branches, remotes or stashs
-	tags = tag -l
-	branches = branch --all
-	remotes = remote --verbose
-	stashs = stash list
+    # Show verbose output about tags, branches, remotes or stashs
+    tags = tag -l
+    branches = branch --all
+    remotes = remote --verbose
+    stashs = stash list
 
-	# List aliases
-	aliases = config --get-regexp alias
+    # List aliases
+    aliases = config --get-regexp alias
 
-	# Show the user email for the current repository
-	whoami = config user.email
+    # Show the user email for the current repository
+    whoami = config user.email
 
 [core]
-	editor = vim
+    editor = vim
 
-	# Use custom `.gitignore_global`
-	excludesfile = ~/.gitignore_global
+    # Use custom `.gitignore_global`
+    excludesfile = ~/.gitignore_global
 
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+    # Treat spaces before tabs and all kinds of trailing whitespace as an error
+    # [default] trailing-space: looks for spaces at the end of a line
+    # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+    whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [help]
-	# Automatically correct and execute mistyped commands.
-	autocorrect = 1
+    # Automatically correct and execute mistyped commands.
+    autocorrect = 1
 
 [color]
-	# Use colors in Git commands that are capable of colored output when
-	# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = auto
+    # Use colors in Git commands that are capable of colored output when
+    # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+    ui = auto
 
 [commit]
-	# Configure commit template
-	template = ~/.git-commit-template.txt
+    # Configure commit template
+    template = ~/.git-commit-template.txt
 
 [push]
-	# https://git-scm.com/docs/git-config#git-config-pushdefault
-	default = simple
+    # https://git-scm.com/docs/git-config#git-config-pushdefault
+    default = simple
 
-	# Make `git push` push relevant annotated tags when pushing branches out
-	followTags = true
+    # Make `git push` push relevant annotated tags when pushing branches out
+    followTags = true
 
 [pull]
-	rebase = false
+    rebase = false
 
 [apply]
-	# Detect whitespace errors when applying a patch
-	whitespace = fix
+    # Detect whitespace errors when applying a patch
+    whitespace = fix
 
 [merge]
-	tool = vimdiff
-	# Include summaries of merged commits in newly created merge commit messages
-	log = true
+    tool = vimdiff
+    # Include summaries of merged commits in newly created merge commit messages
+    log = true
 
 [diff]
-	tool=vimdiff
-	# Detect copies as well as renames
-	renames = copies
+    tool=vimdiff
+    # Detect copies as well as renames
+    renames = copies
 
 [difftool "vimdiff"]
-	cmd = vimdiff -b \"$LOCAL\" \"$REMOTE\"
+    cmd = vimdiff -b \"$LOCAL\" \"$REMOTE\"
 
 [diff "bin"]
-	# Use `hexdump` to diff binary files
-	textconv = hexdump -v -C
+    # Use `hexdump` to diff binary files
+    textconv = hexdump -v -C
 
 # URL shortcuts
 [url "https://github.com/"]
-	# Use "gh:" or "github:" instead of "https://github.com/"
-	insteadOf = "gh:"
-	insteadOf = "github:"
+    # Use "gh:" or "github:" instead of "https://github.com/"
+    insteadOf = "gh:"
+    insteadOf = "github:"
 
-	# Use https to pull ssh url
-	insteadOf = "git@github.com:"
+    # Use https to pull ssh url
+    insteadOf = "git@github.com:"
 
 #[url "http://github.com/"]
-#	# Use http to pull https url
-#	insteadOf = "https://github.com/"
+#   # Use http to pull https url
+#   insteadOf = "https://github.com/"
 
 # Allow local customizations in the .gitconfig_local file
 [include]
-	path = ~/.gitconfig_local
+    path = ~/.gitconfig_local

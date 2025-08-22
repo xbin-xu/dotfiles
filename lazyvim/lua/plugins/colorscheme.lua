@@ -9,9 +9,9 @@ return {
     priority = 1000,
     opts = {
       -- onedarkpro.nvim
-      options = {
-        transparency = true,
-      },
+      -- options = {
+      --   transparency = true,
+      -- },
       -- onedark.nvim or tokyonight.nvim
       -- transparent = true,
     },
