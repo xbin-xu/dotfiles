@@ -35,16 +35,16 @@ opt.updatetime = 200 -- save swap file and trigger CursorHold
 vim.opt.shell = "bash"
 
 -- GUI
-if vim.fn.has("gui_running") then
-  if vim.g.neovide then
-    -- Put anything you want to happen only in Neovide here
-    -- Helper function for transparency formatting
-    local alpha = function()
-      return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
-    end
-    -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-    vim.g.transparency = 0.8
-    vim.g.neovide_opacity = 0.8
-    vim.g.neovide_background_color = "#0f1117" .. alpha()
-  end
-end
+-- if vim.fn.has("gui_running") then
+--   if vim.g.neovide then
+--     -- Put anything you want to happen only in Neovide here
+--     -- Helper function for transparency formatting
+--     local alpha = function()
+--       return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+--     end
+--     -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+--     vim.g.transparency = 0.8
+--     vim.g.neovide_opacity = 0.8
+--     vim.g.neovide_background_color = "#0f1117" .. alpha()
+--   end
+-- end
