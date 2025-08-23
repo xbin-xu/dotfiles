@@ -12,6 +12,10 @@ max_line_length = 80
 insert_final_newline = true
 trim_trailing_whitespace = true
 
+[.gitmodules]
+indent_size = 4
+indent_style = tab
+
 # Clangd
 [**{.clangd,.clang-format,.clang-tidy}]
 indent_size = 2

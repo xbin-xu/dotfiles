@@ -1,4 +1,11 @@
-vim/.vim/undo
-undo
+vim/.vim/*
+!vim/.vim/vimspector_config
+!vim/.vim/coc-settings.json
 *.un~
+
 glzr/zebar
+!glzr/zebar/starter/styles.css
+!glzr/zebar/starter/with-glazewm.html
+!glzr/zebar/starter/with-glazewm.zebar.json
+
+!git/.git-commit-template.txt
