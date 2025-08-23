@@ -8,6 +8,7 @@
 - link:
     ~/.bashrc: bash/.bashrc
     ~/.config/bash/functions: bash/functions
+    ~/.config/clangd: clangd
     ~/.config/starship.toml: starship/starship.toml
     ~/.config/fish: fish
     ~/.fonts: fonts
@@ -27,6 +28,9 @@
       if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
     ~/.glzr:
       path: glzr
+      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+    $LOCALAPPDATA/clangd/config.yaml:
+      path: clangd/config.yaml
       if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
     $LOCALAPPDATA/nvim:
       path: lazyvim
