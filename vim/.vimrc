@@ -177,8 +177,9 @@ snoremap <C-s> :w<CR><Esc>
 " Terminal
 "---------------------------------------------------------
 " Toggle terminal, default is horizontal, use `:vert term` tp open in vertical
-noremap <silent> <C-t> :term ++close ++rows=15<CR>
-tnoremap <C-t> <C-w>:q!<CR>
+" <C-/> not work, need sue (pres <C-/>)
+noremap <silent>  :term ++close ++rows=15<CR>
+tnoremap  <C-w>:q!<CR>
 
 " Tab
 "---------------------------------------------------------
