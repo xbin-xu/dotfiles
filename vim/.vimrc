@@ -355,7 +355,9 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 " Increment / Decrement
-nnoremap <C-a> ggVG
+" nnoremap <C-a> ggVG
+nnoremap vag ggVG
+nnoremap yag ggVGy<C-o><C-o>
 nnoremap + <C-a>
 xnoremap + <C-a>
 nnoremap - <C-x>
@@ -404,6 +406,12 @@ call plug#begin('~/.vim/plugged')
 " Colorschemes
 "---------------------------------------------------------
 Plug 'joshdick/onedark.vim'
+" if empty(glob('~/.vim/colors/onedark.vim'))
+"     call system('cp ~/.vim/plugged/onedark.vim/colors/onedark.vim ~/.vim/colors/onedark.vim')
+" endif
+" if empty(glob('~/.vim/autoload/onedark.vim'))
+"     call system('cp ~/.vim/plugged/onedark.vim/autoload/onedark.vim ~/.vim/autoload/onedark.vim')
+" endif
 
 " GUI enhancements
 "---------------------------------------------------------
@@ -470,7 +478,7 @@ Plug 'liuchengxu/vim-which-key'     " which key
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 Plug 'romainl/vim-cool'             " auto enable/disable search highlight
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
 " Plug 'brglng/vim-im-select'         " auto switch input method
 
 call plug#end()
