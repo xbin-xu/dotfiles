@@ -2,6 +2,11 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+# Theme
+# TODO: wsl run vscode, the fish terminal prompt input in next line
+# windows run `wsl fish` or vscode run `wsl fish` not in next line
+# starship init fish | source
+
 # Async prompt
 set -g async_prompt_functions _pure_prompt_git
 
@@ -50,10 +55,3 @@ end
 # https://github.com/daipeihust/im-select
 set IM_SELECT_PATH /usr/local/bin
 set -x PATH $IM_SELECT_PATH $PATH
-
-# set MIXED_PORT 7897
-# # Proxy
-# # system proxy
-# set -x http_proxy http://127.0.0.1:$MIXED_PORT
-# set -x https_proxy http://127.0.0.1:$MIXED_PORT
-# set -x all_proxy socks5://127.0.0.1:$MIXED_PORT
