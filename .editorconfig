@@ -28,7 +28,7 @@ indent_size = 4
 indent_style = tab
 
 # Shell Script
-[{**.bashrc,*.{sh,fish}}]
+[{**.bashrc,**.*sh}]
 end_of_line = lf
 indent_size = 4
 indent_style = space
