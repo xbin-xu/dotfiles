@@ -3,6 +3,9 @@ vim/.vim/*
 !vim/.vim/coc-settings.json
 *.un~
 
+tmux/.tmux/plugins/*
+!tmux/.tmux/plugins/tpm
+
 glzr/zebar
 !glzr/zebar/starter/styles.css
 !glzr/zebar/starter/with-glazewm.html
