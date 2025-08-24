@@ -18,6 +18,7 @@ vim.api.nvim_create_autocmd("User", {
     vscode_map("n", "<leader>,", "workbench.action.showAllEditors")
     vscode_map("n", "<leader>q", "workbench.action.closeActiveEditor")
     vscode_map("n", "<leader>w", "workbench.action.files.save")
+    vscode_map("n", "<leader>e", "workbench.action.toggleSidebarVisibility")
 
     -- Open link
     vscode_map({ "n", "x" }, "gx", "editor.action.openLink")
