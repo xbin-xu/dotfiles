@@ -24,15 +24,26 @@ vim.api.nvim_create_autocmd("User", {
     vscode_map({ "n", "x" }, "gx", "editor.action.openLink")
 
     -- Navigation
-    -- stylua: ignore
-    vim.keymap.set("n", "j",
-      "<cmd>call VSCodeNotify('cursorMove', { 'to': 'down', 'by': 'wrappedLine', 'value': v:count1 })<cr>")
-    vim.keymap.set("n", "k",
-      "<cmd>call VSCodeNotify('cursorMove', { 'to': 'up', 'by': 'wrappedLine', 'value': v:count1 })<cr>")
-    vim.keymap.set("n", "[g",
-      "<cmd>call VSCodeNotify('workbench.action.editor.previousChange')<cr><cmd>call VSCodeNotify('workbench.action.compareEditor.previousChange')<cr>")
-    vim.keymap.set("n", "]g",
-      "<cmd>call VSCodeNotify('workbench.action.editor.nextChange')<cr><cmd>call VSCodeNotify('workbench.action.compareEditor.nextChange')<cr>")
+    vim.keymap.set(
+      "n",
+      "j",
+      "<cmd>call VSCodeNotify('cursorMove', { 'to': 'down', 'by': 'wrappedLine', 'value': v:count1 })<cr>"
+    )
+    vim.keymap.set(
+      "n",
+      "k",
+      "<cmd>call VSCodeNotify('cursorMove', { 'to': 'up', 'by': 'wrappedLine', 'value': v:count1 })<cr>"
+    )
+    vim.keymap.set(
+      "n",
+      "[g",
+      "<cmd>call VSCodeNotify('workbench.action.editor.previousChange')<cr><cmd>call VSCodeNotify('workbench.action.compareEditor.previousChange')<cr>"
+    )
+    vim.keymap.set(
+      "n",
+      "]g",
+      "<cmd>call VSCodeNotify('workbench.action.editor.nextChange')<cr><cmd>call VSCodeNotify('workbench.action.compareEditor.nextChange')<cr>"
+    )
     vscode_map("n", "[d", "editor.action.marker.prev")
     vscode_map("n", "]d", "editor.action.marker.next")
     vscode_map("n", "[c", "merge-conflict.previous")
