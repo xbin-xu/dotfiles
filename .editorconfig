@@ -17,22 +17,12 @@ indent_size = 4
 indent_style = tab
 
 # Clangd
-[**{.clangd,.clang-format,.clang-tidy}]
+[*.{clangd,clang-format,clang-tidy}]
 indent_size = 2
 indent_style = space
 
-# Makefile
-[Makefile]
-indent_size = 4
-indent_style = tab
-
-# Kconfig
-[Kconfig*]
-indent_size = 4
-indent_style = tab
-
-# Shell Script
-[{**.bashrc,**.*sh}]
+# Shell
+[*.{bashrc,*sh}]
 end_of_line = lf
 indent_size = 4
 indent_style = space
