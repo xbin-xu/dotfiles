@@ -26,13 +26,13 @@ set guifont=JetBrainsMono\ Nerd\ Font\ 11
 " `gui` is the hex color code used in GUI mode/nvim true-color mode
 " `cterm` is the color code used in 256-color mode
 " `cterm16` is the color code used in 16-color mode
-if (has("autocmd") && !has("gui_running"))
-    augroup colorset
-        autocmd!
-        let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
-        autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
-    augroup END
-endif
+" if (has("autocmd") && !has("gui_running"))
+"     augroup colorset
+"         autocmd!
+"         let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+"         autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+"     augroup END
+" endif
 colorscheme onedark
 
 " Syntax
