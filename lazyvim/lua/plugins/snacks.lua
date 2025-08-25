@@ -10,6 +10,16 @@ return {
         -- refer to the configuration section below
       },
       picker = {
+        win = {
+          input = {
+            keys = {
+              ["<C-n>"] = { "history_forward", mode = { "i", "n" } },
+              ["<C-p>"] = { "history_back", mode = { "i", "n" } },
+              ["<c-s>"] = { "edit_vsplit", mode = { "i", "n" } },
+              ["<c-x>"] = { "edit_split", mode = { "i", "n" } },
+            },
+          },
+        },
         sources = {
           explorer = {
             -- your explorer picker configuration comes here
@@ -24,6 +34,12 @@ return {
                 },
               },
             },
+          },
+          files = {
+            hidden = true,
+          },
+          grep = {
+            hidden = false,
           },
         },
       },
