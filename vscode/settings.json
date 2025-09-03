@@ -986,26 +986,31 @@
                 },
                 {
                     "key": "<",
+                    "name": "Decrease width",
                     "command": "workbench.action.decreaseViewWidth",
                     "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
                 },
                 {
                     "key": ">",
+                    "name": "Increase width",
                     "command": "workbench.action.increaseViewWidth",
                     "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
                 },
                 {
                     "key": "-",
+                    "name": "Decrease height",
                     "command": "workbench.action.decreaseViewHeight",
                     "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
                 },
                 {
                     "key": "+",
+                    "name": "Increase height",
                     "command": "workbench.action.increaseViewHeight",
                     "when": "!editorTextFocus && !isAuxiliaryWindowFocusedContext && !terminalFocus && neovim.mode != 'cmdline'"
                 },
                 {
                     "key": "=",
+                    "name": "Equally high and wide",
                     "command": "workbench.action.evenEditorWidths",
                     "when": "!editorTextFocus && !terminalFocus && neovim.mode != 'cmdline'"
                 }
@@ -1084,6 +1089,8 @@
     // }
     //--------------------------------------------------------------------------
     // -- C/C++ {
+    "C_Cpp.doxygen.generatedStyle": "/**",
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
     "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
     "C_Cpp.inlayHints.parameterNames.enabled": true,
     "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true,
