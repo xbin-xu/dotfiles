@@ -15,8 +15,9 @@ return {
             keys = {
               ["<C-n>"] = { "history_forward", mode = { "i", "n" } },
               ["<C-p>"] = { "history_back", mode = { "i", "n" } },
-              ["<c-s>"] = { "edit_vsplit", mode = { "i", "n" } },
-              ["<c-x>"] = { "edit_split", mode = { "i", "n" } },
+              ["<c-x>"] = { "edit_vsplit", mode = { "i", "n" } },
+              ["-"] = { "edit_split", mode = { "n" } },
+              ["|"] = { "edit_vsplit", mode = { "n" } },
             },
           },
         },
@@ -24,6 +25,7 @@ return {
           explorer = {
             -- your explorer picker configuration comes here
             -- or leave it empty to use the default settings
+            auto_close = true,
             hidden = true,
             watch = false,
             win = {
@@ -31,6 +33,9 @@ return {
                 keys = {
                   -- ["o"] = "explorer_open", -- open with system application
                   ["o"] = "confirm",
+                  ["O"] = { { "pick_win", "jump" }, mode = { "i", "n" } },
+                  ["-"] = { "edit_split", mode = { "i", "n" } },
+                  ["|"] = { "edit_vsplit", mode = { "i", "n" } },
                 },
               },
             },

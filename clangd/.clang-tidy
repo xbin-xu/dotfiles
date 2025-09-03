@@ -1,22 +1,21 @@
-Checks: "
-  -*,
-  clang-diagnostic-*,
-  clang-analyzer-*,
-  bugprone-*,
-  -bugprone-branch-clone,
-  -bugprone-reserved-identifier,
-  -bugprone-easily-swappable-parameters,
-  portability-*,
-  readability-*,
-  -readability-magic-numbers,
-  -readability-identifier-length,
-  -readability-function-cognitive-complexity,
-  misc-*,
-  performance-*,
-  -performance-no-int-to-ptr,
-  modernize-*,
-  cppcoreguidelines-*,
-  -cppcoreguidelines-init-variables,
-  -cppcoreguidelines-avoid-magic-numbers,
-  -cppcoreguidelines-avoid-non-const-global-variables,
-  "
+Checks:
+  - -*
+  - clang-diagnostic-*
+  - clang-analyzer-*
+  - bugprone-*
+  - -bugprone-branch-clone
+  - -bugprone-reserved-identifier
+  - -bugprone-easily-swappable-parameters
+  - portability-*
+  - readability-*
+  - -readability-magic-numbers
+  - -readability-identifier-length
+  - -readability-function-cognitive-complexity
+  - misc-*
+  - performance-*
+  - -performance-no-int-to-ptr
+  - modernize-*
+  - cppcoreguidelines-*
+  - -cppcoreguidelines-init-variables
+  - -cppcoreguidelines-avoid-magic-numbers
+  - -cppcoreguidelines-avoid-non-const-global-variables

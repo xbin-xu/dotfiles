@@ -1,9 +1,6 @@
 CompileFlags:
-  Add: [
-      # Add -isystem<directory> to fix can’t find standard library headers
-      # -isystemD:/software/scoop/apps/gcc/current/x86_64-w64-mingw32/include,
-      # -isystemD:/software/scoop/apps/gcc-arm-none-eabi/current/arm-none-eabi/include,
-  ]
+  # Compiler: clang++
+  Add: []
   Remove: []
 
 Diagnostics:
