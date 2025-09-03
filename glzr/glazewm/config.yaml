@@ -175,7 +175,9 @@ window_rules:
       # Ignore Python matplotlib.pyplot
       - window_class: { regex: "TkTopLevel" }
 
-      # Ignore Qt Designer
+      # Ignore Qt [creator, design stdio, designer]
+      - window_process: { equals: "qtcreator" }
+      - window_process: { equals: "qtdesignstudio" }
       - window_process: { equals: "designer" }
 
   # Floating
