@@ -68,6 +68,8 @@ function yy() {
     fi
     rm -f -- "$tmp"
 }
+# proxy
+proxy_set &>/dev/null
 
 # Export EDITOR
 export EDITOR=nvim
