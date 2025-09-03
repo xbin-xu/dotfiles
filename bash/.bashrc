@@ -69,6 +69,9 @@ function yy() {
     rm -f -- "$tmp"
 }
 
+# Export EDITOR
+export EDITOR=nvim
+
 # Export PATH
 # https://github.com/daipeihust/im-select
 IM_SELECT_PATH="/usr/local/bin"
