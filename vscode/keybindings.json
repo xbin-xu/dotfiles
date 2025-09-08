@@ -21,6 +21,15 @@
         },
         "when": "whichkeyVisible && sideBarVisible"
     },
+    {
+        "key": "p",
+        "command": "whichkey.triggerKey",
+        "args": {
+            "key": "p",
+            "when": "activeEditorIsPinned"
+        },
+        "when": "whichkeyVisible && activeEditorIsPinned"
+    },
     // -- expand regin
     //--------------------------------------------------------------------------
     {

@@ -257,15 +257,22 @@
                 },
                 {
                     "key": "p",
-                    "name": "Pin editors",
-                    "type": "command",
-                    "command": "workbench.action.pinEditor"
-                },
-                {
-                    "key": "P",
-                    "name": "Unpin editors",
-                    "type": "command",
-                    "command": "workbench.action.unpinEditor"
+                    "name": "Toggle pin editor",
+                    "type": "conditional",
+                    "bindings": [
+                        {
+                            "key": "",
+                            "name": "Pin editor",
+                            "type": "command",
+                            "command": "workbench.action.pinEditor",
+                        },
+                        {
+                            "key": "when:activeEditorIsPinned",
+                            "name": "Unpin editor",
+                            "type": "command",
+                            "command": "workbench.action.unpinEditor",
+                        }
+                    ]
                 },
                 {
                     "key": "u",
