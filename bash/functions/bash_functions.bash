@@ -17,25 +17,17 @@ function cmd_deal_path() {
 
 # Keil helper
 # Usage: keil_helper [-b] [project_path]
-function keil_helper() {
-    local build_mode=
-    local project_path="."
-
-    local uv4_cmd_opt=""
-    local uv4_log_dir="build"
-    local uv4_log="${uv4_log_dir}/uv4.log"
-    local uv4_post_cmd=""
-
-    # parse options
-    if args=$(getopt -o b -- "$@"); then
-        eval set -- "$args"
-    else
-        echo "Usage: keil_helper [-b] [project_path]"
-        echo "  -b            Build the project"
-        echo "  project_path  Path to the keil project directory (default: .)"
+keil_helper() {
+    local args
+    if ! args=$(getopt -o b -- "$@"); then
+        echo "Usage: keil_helper [-b] [project_path [project_path]]" >&2
+        echo "  -b            Build the project" >&2
+        echo "  project_path  Path to the keil project directory (default: .)" >&2
         return 1
     fi
+    eval "set -- $args"
 
+    local build_mode=0
     while true; do
         case "$1" in
         -b)
@@ -47,48 +39,34 @@ function keil_helper() {
             break
             ;;
         *)
-            echo "Invalid argument: $1"
+            echo "Invalid argument: $1" >&2
             return 1
             ;;
         esac
     done
 
-    # parser position arg
-    if [[ $# -gt 0 ]]; then
-        project_path=$(realpath "$1" 2>/dev/null) || {
-            echo "Invalid project path: $1"
-            return 1
-        }
-    fi
-
-    # deal option
-    if [[ -n "$build_mode" ]]; then
-        uv4_cmd_opt="-j0 -l $uv4_log -cr"
-
-        uv4_post_cmd="tr -cd '[:print:]\n\t\r' < \"$uv4_log\""
-
-        if [[ ! -d "$uv4_log_dir" ]]; then
-            mkdir -p "$uv4_log_dir"
-        fi
-    fi
-
-    # find .uvproj/*.uvprojx
-    project_file=$(find "${project_path}" -maxdepth 1 \( -name "*.uvproj" -o -name "*.uvprojx" \) -type f -printf '%T+ %p\n' | sort -r | head -n 1 | cut -d' ' -f2-)
-    if [[ -z "$project_file" ]]; then
-        echo "No found *.uvproj/*.uvprojx in $project_path"
+    project_paths="${*:-"."}"
+    local project_file
+    project_file=$(fd '\.uvprojx?$' $project_paths |
+        fzf --select-1 --exit-0 --preview='bat --color=always {}')
+    case $? in
+    1)
+        echo "Not found *.uvproj[x] in $project_paths" >&2
         return 1
-    fi
+        ;;
+    130) return 0 ;;
+    esac
 
-    # exec keil command
-    local uv4_cmd="uv4 $uv4_cmd_opt \"$project_file\" &"
-    eval "$uv4_cmd"
-    uv4_pid=$!
-
-    # echo build log
-    if [[ -n "$uv4_post_cmd" ]]; then
-        # wait subprocess
+    if [[ $build_mode -eq 1 ]]; then
+        local log_dir
+        log_dir=$(dirname "$project_file")
+        local log_path="$log_dir/uv4.log"
+        uv4 -j0 -l "$log_path" -cr "$project_file" &
+        local uv4_pid=$!
         wait $uv4_pid
-        eval "$uv4_post_cmd"
+        strings -n 1 "$log_path" | tee "$log_path"
+    else
+        uv4 "$project_file" &
     fi
 }
 
