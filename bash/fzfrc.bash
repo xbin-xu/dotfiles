@@ -17,10 +17,15 @@ export FZF_DEFAULT_OPTS="
     --bind 'alt-p:change-preview-window(down|hidden|)'
     --bind 'ctrl-y:execute-silent(echo -n {} | clip)+abort'
 "
-FZF_DEFAULT_PREVIEW_OPTS="
-    --preview '(bat -pn --color=always {} 2> /dev/null || tree {}) 2> /dev/null | head -200'
-"
-FZF_DEFAULT_OPTS+="$FZF_DEFAULT_PREVIEW_OPTS"
+FZF_DEFAULT_PREVIEW_OPTS="--preview
+    'case \"\$(file --mime {})\" in
+        *inode/directory*) tree -C {} ;;
+        *image/* | *video/*) mediainfo {} ;;
+        *application/octet-stream*) xxd -C {} ;;
+        *) bat -pn --color=always {} 2> /dev/null
+     esac'
+ "
+# FZF_DEFAULT_OPTS="$FZF_DEFAULT_PREVIEW_OPTS"
 
 # ALT-C(find . -type f | fzf)
 export FZF_ALT_C_COMMAND="fd --type d ."
