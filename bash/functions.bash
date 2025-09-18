@@ -16,7 +16,7 @@ function cmd_deal_path() {
 }
 
 # Keil helper
-# Usage: keil_helper [-b] [project_path]
+# Usage: keil_helper [-b] [project_path [project_path]]
 keil_helper() {
     local args
     if ! args=$(getopt -o b -- "$@"); then
@@ -47,8 +47,9 @@ keil_helper() {
 
     project_paths="${*:-"."}"
     local project_file
+    # shellcheck disable=SC2086
     project_file=$(fd '\.uvprojx?$' $project_paths |
-        fzf --select-1 --exit-0 --preview='bat --color=always {}')
+        fzf --select-1 --exit-0 --preview='bat -pn --color=always {}')
     case $? in
     1)
         echo "Not found *.uvproj[x] in $project_paths" >&2

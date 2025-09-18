@@ -1,85 +1,81 @@
 # shellcheck disable=SC2148
 
-# Vi mode
-# set -o vi   # enable vi mode
-# set +o vi   # disable vi mode
-
-# Theme
-eval "$(starship init bash)"
-
-# Aliases: creates an alias if the command exists
-# Usage: alias_if_exists <alias_name> <command> [args...]
-function alias_if_exists() {
-    if [ "$#" -lt 2 ]; then
-        echo "Usage: alias_if_exists <alias_name> <command> [args...]"
-        return 1
-    fi
-
-    local alias_name="$1"
-    shift
-
-    local cmd_name="$1"
-    shift
-
-    if command -v "$cmd_name" >/dev/null; then
-        local command_args="$*"
-
-        # echo "$alias_name -> $cmd_name $command_args"
-        # shellcheck disable=SC2139
-        alias "$alias_name"="$cmd_name $command_args"
-    else
-        # echo "Command '$cmd_name' not found, alias '$alias_name' not created."
-        return 1
-    fi
+# Functions
+# ------------------------------------------------------------------------------
+# exist_cmd: test command if exist
+# Usage: exist_cmd <command>
+function exist_cmd() {
+    command -v "$1" >/dev/null
 }
 
-if [ -f ~/.config/bash/functions/bash_functions.bash ]; then
+# source_file: source file if readable
+# Usage: source_file <file>
+function source_file() {
     # shellcheck disable=SC1090
-    . ~/.config/bash/functions/bash_functions.bash
-fi
+    [[ -r "$1" ]] && . "$1"
+}
 
-# alias_if_exists cat bat
-alias_if_exists ls exa
-alias_if_exists ls eza
-alias_if_exists ll ls '-alF'
-# alias_if_exists find fd
-# alias_if_exists vim nvim
-alias_if_exists lg lazygit
-alias_if_exists py python
-alias_if_exists ipy ipython
-alias_if_exists er cmd_deal_path explorer
-alias_if_exists code cmd_deal_path code
-alias_if_exists tmux wsl tmux
-alias_if_exists fish wsl fish
-alias_if_exists tree eza '-T'
-alias_if_exists keil keil_helper
+# Source
+# ------------------------------------------------------------------------------
+source_file ~/.config/bash/functions.bash
 
 # CLI integration
+# ------------------------------------------------------------------------------
+# starship
+exist_cmd starship && eval "$(starship init bash)"
+
 # zoxide
-eval "$(zoxide init bash)"
+exist_cmd zoxide && eval "$(zoxide init bash)"
+
 # fzf
-eval "$(fzf --bash)"
-if [ -r ~/.config/bash/functions/fzfrc.bash ]; then
-    # shellcheck disable=SC1090
-    source ~/.config/bash/functions/fzfrc.bash
-fi
+exist_cmd fzf && {
+    eval "$(fzf --bash)"
+    source_file ~/.config/bash/fzfrc.bash
+}
 
 # yazi
-function yy() {
-    local -r tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-    yazi "$@" --cwd-file="$tmp"
-    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-        builtin cd -- "$cwd" || exit
-    fi
-    rm -f -- "$tmp"
+exist_cmd yazi && {
+    function yy() {
+        local -r tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+        yazi "$@" --cwd-file="$tmp"
+        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+            builtin cd -- "$cwd" || exit
+        fi
+        rm -f -- "$tmp"
+    }
 }
-# proxy
+
+# Alias
+# ------------------------------------------------------------------------------
+# exist_cmd bat && alias cat='bat'
+# exist_cmd fd && alias find='fd'
+# exist_cmd nvim && alias vim='nvim'
+exist_cmd eza && {
+    alias ls='eza'
+    alias tree='eza -T'
+}
+exist_cmd lazygit && alias lg='lazygit'
+exist_cmd python && alias py='python'
+exist_cmd ipython && alias ipy='ipython'
+exist_cmd explorer && exist_cmd cmd_deal_path && alias er='cmd_deal_path explorer'
+exist_cmd wsl && {
+    alias tmux='wsl tmux'
+    alias fish='wsl fish'
+}
+exist_cmd keil_helper && alias keil='keil_helper'
+
+# Set/Export
+# ------------------------------------------------------------------------------
+# Edit mode: emacs(default)/vi
+# set -o vi   # enable vi mode
+# set +o vi   # disable vi mode
+# Proxy
 proxy_set &>/dev/null
 
-# Export EDITOR
+# EDITOR
 export EDITOR=nvim
 
-# Export PATH
+# PATH
 # https://github.com/daipeihust/im-select
 IM_SELECT_PATH="/usr/local/bin"
-export PATH=$IM_SELECT_PATH:$PATH
+export PATH="$IM_SELECT_PATH:$PATH"
