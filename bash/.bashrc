@@ -59,6 +59,11 @@ alias_if_exists keil keil_helper
 eval "$(zoxide init bash)"
 # fzf
 eval "$(fzf --bash)"
+if [ -r ~/.config/bash/functions/fzfrc.bash ]; then
+    # shellcheck disable=SC1090
+    source ~/.config/bash/functions/fzfrc.bash
+fi
+
 # yazi
 function yy() {
     local -r tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
