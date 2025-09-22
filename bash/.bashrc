@@ -52,7 +52,7 @@ exist_cmd yazi && {
 # exist_cmd nvim && alias vim='nvim'
 exist_cmd eza && {
     alias ls='eza'
-    alias tree='eza -T'
+    alias tree='eza --tree --color=always'
 }
 exist_cmd lazygit && alias lg='lazygit'
 exist_cmd python && alias py='python'

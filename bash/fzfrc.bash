@@ -19,7 +19,7 @@ export FZF_DEFAULT_OPTS="
 "
 FZF_DEFAULT_PREVIEW_OPTS="--preview
     'case \"\$(file --mime {})\" in
-        *inode/directory*) tree -C {} ;;
+        *inode/directory*) eza --tree --color=always {} ;;
         *image/* | *video/*) mediainfo {} ;;
         *application/octet-stream*) xxd -C {} ;;
         *) bat -pn --color=always {} 2> /dev/null
@@ -30,7 +30,7 @@ FZF_DEFAULT_PREVIEW_OPTS="--preview
 # ALT-C(find . -type f | fzf)
 export FZF_ALT_C_COMMAND="fd --type d ."
 export FZF_ALT_C_OPTS="
-    --preview 'tree -C {}'
+    --preview 'eza --tree --color=always {}'
 "
 
 # CTRL-R(cat ~/.bash_history | fzf)
