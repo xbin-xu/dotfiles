@@ -72,7 +72,7 @@ keil_helper() {
 
         uv4 "$command" "$project_file" -j0 -l "$log_path"
         uv4_status=$?
-        strings -n 1 "$log_path" | tee "$log_path"
+        strings -n 1 "$log_path"
     fi
 
     if [[ $uv4_status -le 1 && $flash_mode -eq 1 ]]; then
