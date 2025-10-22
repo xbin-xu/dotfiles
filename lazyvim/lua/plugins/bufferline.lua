@@ -34,10 +34,8 @@ function M.close_other_unpinned()
     commands.close_in_direction("right")
   elseif index < first_unppinned_index then
     commands.go_to(first_unppinned_index - 1, true)
-    index = commands.get_current_element_index(state)
     commands.close_in_direction("right")
     commands.go_to(index, true)
-    index = commands.get_current_element_index(state)
   end
 end
 
