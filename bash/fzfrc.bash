@@ -21,7 +21,7 @@ FZF_DEFAULT_PREVIEW_OPTS="--preview
     'case \"\$(file --mime {})\" in
         *inode/directory*) eza --tree --color=always {} ;;
         *image/* | *video/*) mediainfo {} ;;
-        *application/octet-stream*) xxd -C {} ;;
+        *application/octet-stream*) xxd {} ;;
         *) bat -pn --color=always {} 2> /dev/null
      esac'
  "
