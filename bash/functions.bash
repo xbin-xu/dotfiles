@@ -47,7 +47,7 @@ keil_helper() {
         shift
     done
 
-    project_paths="${*:-"."}"
+    local project_paths=${*:-"."}
     local project_file
     # shellcheck disable=SC2086
     project_file=$(fd '\.uvprojx?$' $project_paths | uniq |
@@ -79,7 +79,7 @@ keil_helper() {
         echo "Flashing..."
         uv4 -f "$project_file" -j0
         case $? in
-        0 | 1) echo "Flashd OK" ;;
+        0 | 1) echo "Flashed OK" ;;
         *) echo "Flashed Error" >&2 && return 1 ;;
         esac
     fi
