@@ -107,3 +107,24 @@ function proxy_unset() {
     unset no_proxy
     echo "[Proxy] off"
 }
+
+# Usage: claude_settings_fzf [path]
+function claude_settings_fzf() {
+    local search_path=${*:-"$HOME/.claude"}
+
+    local settings_file
+    # shellcheck disable=SC2086
+    # find $search_path -maxdepth 1 -name 'settings-*.json' -type f 2>/dev/null
+    settings_file=$(fd -e json --max-depth 1 'settings-' $search_path 2>/dev/null |
+        fzf --select-1 --exit-0 --preview="bat -pn --color=always {}")
+    case $? in
+    1)
+        echo "Not found settings-*.json in $search_path" >&2
+        return 1
+        ;;
+    130) return 0 ;;
+    esac
+
+    # claude --settings "$settings_file"
+    echo "$settings_file"
+}

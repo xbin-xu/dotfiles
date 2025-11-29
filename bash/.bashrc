@@ -64,6 +64,13 @@ exist_cmd wsl && {
     alias fish='wsl fish'
 }
 exist_cmd keil_helper && alias keil='keil_helper'
+exist_cmd claude && {
+    alias cc='command claude --dangerously-skip-permissions'
+    exist_cmd claude_settings_fzf && {
+        alias ccs='CLAUDE_SETTINGS_CLI=$(claude_settings_fzf) && [ -n "$CLAUDE_SETTINGS_CLI" ] && cc --settings "$CLAUDE_SETTINGS_CLI" || cc'
+        alias claude='CLAUDE_SETTINGS_CLI=$(claude_settings_fzf) && [ -n "$CLAUDE_SETTINGS_CLI" ] && command claude --settings "$CLAUDE_SETTINGS_CLI"'
+    }
+}
 
 # Set/Export
 # ------------------------------------------------------------------------------
