@@ -5,7 +5,7 @@
     {
         "key": "space",
         "command": "whichkey.show",
-        "when": "!inputFocus"
+        "when": "!inputFocus && (editorTextFocus || sideBarFocus)"
     },
     {
         "key": "backspace",
