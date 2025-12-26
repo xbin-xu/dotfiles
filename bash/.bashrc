@@ -74,6 +74,9 @@ exist_cmd claude && {
 
 # Set/Export
 # ------------------------------------------------------------------------------
+# LC_ALL
+export LC_ALL=C
+
 # Edit mode: emacs(default)/vi
 # set -o vi   # enable vi mode
 # set +o vi   # disable vi mode
