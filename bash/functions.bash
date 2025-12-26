@@ -16,42 +16,64 @@ function cmd_deal_path() {
 }
 
 # Keil helper
-# Usage: keil_helper [-b] [project_path [project_path]]
+# Usage: keil_helper [-c] [-b] [-r] [-f] [-t [TARGET]] [project_path [project_path]]
 # See: https://developer.arm.com/documentation/101407/0543/Command-Line
-keil_helper() {
+function keil_helper() {
     local args
-    if ! args=$(getopt -o cbrf -- "$@"); then
-        echo "Usage: keil_helper [-c] [-b] [-r] [-f] [project_path [project_path]]" >&2
+    if ! args=$(getopt -o "cbrft::" -- "$@"); then
+        echo "Usage: keil_helper [-c] [-b] [-r] [-f] [-t [TARGET]] [project_path [project_path]]" >&2
         echo "  -c            Clean the project" >&2
         echo "  -b            Build the project" >&2
         echo "  -r            Rebuild the project" >&2
         echo "  -f            Flash program" >&2
+        echo "  -t [TARGET]   Select build target" >&2
         echo "  project_path  Path to the keil project directory (default: .)" >&2
         return 1
     fi
     eval "set -- $args"
 
-    local clean_mode=0 build_mode=0 rebuild_mode=0 flash_mode=0
+    local clean_mode=0 build_mode=0 rebuild_mode=0 flash_mode=0 target_mode=0 target_query
     while [[ $# -gt 0 ]]; do
         case "$1" in
-        -c) clean_mode=1 ;;
-        -b) build_mode=1 ;;
-        -r) rebuild_mode=1 ;;
-        -f) flash_mode=1 ;;
+        -t)
+            target_mode=1
+            case "$2" in
+            "") shift 2 ;;
+            *)
+                target_query=$2
+                shift 2
+                ;;
+            esac
+            ;;
+        -c)
+            clean_mode=1
+            shift
+            ;;
+        -b)
+            build_mode=1
+            shift
+            ;;
+        -r)
+            rebuild_mode=1
+            shift
+            ;;
+        -f)
+            flash_mode=1
+            shift
+            ;;
         --)
             shift
             break
             ;;
         *) echo "Invalid option: $1" >&2 && return 1 ;;
         esac
-        shift
     done
 
     local project_paths=${*:-"."}
     local project_file
     # shellcheck disable=SC2086
     project_file=$(fd '\.uvprojx?$' $project_paths | uniq |
-        fzf --select-1 --exit-0 --preview='bat -pn --color=always {}')
+        fzf --select-1 --exit-0 --prompt="Select project> " --preview='bat -pn --color=always {}')
     case $? in
     1)
         echo "Not found *.uvproj[x] in $project_paths" >&2
@@ -65,19 +87,35 @@ keil_helper() {
     [[ $build_mode -eq 1 ]] && command+="-b"
     [[ $rebuild_mode -eq 1 ]] && command+="-r"
 
+    local target_command
+    if [[ $target_mode -eq 1 ]]; then
+        local selected_target
+        selected_target=$(grep -o '<TargetName>[^<]*' "$project_file" |
+            sed 's/<TargetName>//' |
+            fzf --select-1 --exit-0 --prompt="Select target> " ${target_query:+-q "$target_query"})
+        case $? in
+        1)
+            echo "Not grep target in $project_file" >&2
+            return 1
+            ;;
+        130) return 0 ;;
+        esac
+        target_command+="-t${selected_target}"
+    fi
+
     local uv4_status=0
     if [[ -n $command ]]; then
         # shellcheck disable=SC2155
         local log_path="$(dirname "$project_file")/uv4.log"
 
-        uv4 "$command" "$project_file" -j0 -l "$log_path"
+        uv4 "$command" "$target_command" "$project_file" -j0 -l "$log_path"
         uv4_status=$?
         strings -n 1 "$log_path"
     fi
 
     if [[ $uv4_status -le 1 && $flash_mode -eq 1 ]]; then
         echo "Flashing..."
-        uv4 -f "$project_file" -j0
+        uv4 -f "$target_command" "$project_file" -j0
         case $? in
         0 | 1) echo "Flashed OK" ;;
         *) echo "Flashed Error" >&2 && return 1 ;;
@@ -85,7 +123,7 @@ keil_helper() {
     fi
 
     if [[ -z $command && $flash_mode -ne 1 ]]; then
-        uv4 "$project_file" &
+        uv4 "$project_file" "$target_command" &
     fi
 }
 
