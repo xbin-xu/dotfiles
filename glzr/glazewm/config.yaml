@@ -192,6 +192,8 @@ window_rules:
       - window_process: { regex: "notepad[+{2}]" }
       - window_process: { regex: "Ahk2Exe|AutoHotkeyUX" }
       - window_process: { regex: "PotPlayer" }
+      # Ghidra
+      - window_class: { regex: "SunAwt.*" }
 
   # Workspace
   - commands: ["move --workspace 1", "focus --workspace 1"]

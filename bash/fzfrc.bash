@@ -34,7 +34,9 @@ export FZF_ALT_C_OPTS="
 "
 
 # CTRL-R(cat ~/.bash_history | fzf)
-export FZF_CTRL_R_COMMAND="rg --files ~/.bash_history | fzf"
+# fix warning: FZF_CTRL_R_COMMAND is set to a custom command,
+# but custom commands are not yet supported for CTRL-R
+# export FZF_CTRL_R_COMMAND="rg --files ~/.bash_history | fzf"
 export FZF_CTRL_R_OPTS="
     --bind 'ctrl-y:execute-silent(echo -n {2..} | clip)+abort'
 "
