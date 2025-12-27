@@ -77,6 +77,7 @@
     "markdown-preview-enhanced.previewTheme": "atom-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "one-dark.css",
     "markdown-preview-enhanced.plantumlJarPath": "D:/Software/Scoop/persist/vscode/data/extensions/jebbs.plantuml-2.18.1/plantuml.jar",
+    "markdown-preview-enhanced.chromePath": "D:/Software/Scoop/apps/googlechrome/current/chrome.exe",
     "MarkdownPaste.path": "${workspaceFolder}/imgs",
     "MarkdownPaste.namePrefix": "img-",
     // }
@@ -1159,6 +1160,12 @@
         "IDF_CCACHE_ENABLE": "1",
         "ESP_ROM_ELF_DIR": "d:\\Software\\Espressif\\tools\\esp-rom-elfs\\20230320/"
     },
+    // }
+    //--------------------------------------------------------------------------
+    // -- Claude Code {
+    "claudeCode.disableLoginPrompt": true,
+    "claudeCode.preferredLocation": "panel"
+    // }
     //--------------------------------------------------------------------------
     // -- Misc {
     "github.copilot.enable": {
