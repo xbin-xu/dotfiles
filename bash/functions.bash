@@ -123,7 +123,7 @@ function keil_helper() {
     fi
 
     if [[ -z $command && $flash_mode -ne 1 ]]; then
-        uv4 "$project_file" "$target_command" &
+        uv4 "$target_command" "$project_file" &
     fi
 }
 
