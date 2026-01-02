@@ -72,7 +72,7 @@
             "comments": true,
             "strings": true
         },
-        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one"
     },
     "markdown-preview-enhanced.previewTheme": "atom-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "one-dark.css",
@@ -1164,7 +1164,7 @@
     //--------------------------------------------------------------------------
     // -- Claude Code {
     "claudeCode.disableLoginPrompt": true,
-    "claudeCode.preferredLocation": "panel"
+    "claudeCode.preferredLocation": "panel",
     // }
     //--------------------------------------------------------------------------
     // -- Misc {
