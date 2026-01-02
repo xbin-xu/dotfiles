@@ -5,18 +5,20 @@
 
 # DEFAULT
 export FZF_DEFAULT_COMMAND="fd --type f"
-export FZF_DEFAULT_OPTS="
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
     --cycle
     --height 90%
     --style=minimal
+    --marker=">"
+    --pointer=">"
     --layout reverse
     --info inline-right
-    --bind 'ctrl-a:select-all'
-    --bind 'ctrl-b:preview-half-page-up'
-    --bind 'ctrl-f:preview-half-page-down'
-    --bind 'alt-p:change-preview-window(down|hidden|)'
-    --bind 'ctrl-y:execute-silent(echo -n {} | clip)+abort'
-"
+    --bind "ctrl-a:toggle-all"
+    --bind "ctrl-b:preview-half-page-up"
+    --bind "ctrl-f:preview-half-page-down"
+    --bind "ctrl-/:change-preview-window(down|hidden|)"
+    --bind "ctrl-y:execute-silent(echo -n {} | clip)+abort"
+'
 FZF_DEFAULT_PREVIEW_OPTS="--preview
     'case \"\$(file --mime {})\" in
         *inode/directory*) eza --tree --color=always {} ;;
@@ -24,7 +26,7 @@ FZF_DEFAULT_PREVIEW_OPTS="--preview
         *application/octet-stream*) xxd {} ;;
         *) bat -pn --color=always {} 2> /dev/null
      esac'
- "
+"
 # FZF_DEFAULT_OPTS="$FZF_DEFAULT_PREVIEW_OPTS"
 
 # ALT-C(find . -type f | fzf)
