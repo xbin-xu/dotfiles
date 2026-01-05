@@ -1,6 +1,5 @@
 ---
 BasedOnStyle: llvm
----
 Language: Cpp
 UseTab: Never
 TabWidth: 4
@@ -9,3 +8,4 @@ ColumnLimit: 80
 IndentCaseLabels: true
 BreakBeforeBraces: Linux
 BreakBeforeBinaryOperators: NonAssignment
+AllowShortFunctionsOnASingleLine: None
