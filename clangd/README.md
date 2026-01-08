@@ -15,6 +15,8 @@
 ```yaml
 # config.yaml
 CompileFlags:
+  # Compiler: gcc
+  # Compiler: arm-noen-eabi-gcc
   # Compiler: clang++
   Add:
     # Add -isystem<directory> to fix can’t find standard library headers
@@ -25,18 +27,25 @@ CompileFlags:
     - -Wall
     - -Wextra
     - -Wpedantic
+    - -Wundef
     - -Wshadow
+    - -Wformat=2
+    - -Wformat-overflow=2
+    - -Wformat-truncation=2
     - -Wpadded
     - -Wconversion
     - -Wfloat-equal
     - -Wunreachable-code
     - -Wmissing-declarations
     - -Wdouble-promotion
-    # - -Wundef
     # - -Wno-unused-variable
     # - -Wno-unused-parameter
     - -Wno-unused-function
     - -Wno-empty-translation-unit
+    # - -Wno-override-init # for override init while use designated initializer
+    # - -fno-common
+    # - -fno-short-enums
+    # - -fno-builtin
   Remove: []
 
 Diagnostics:
