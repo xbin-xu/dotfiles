@@ -1,37 +1,37 @@
 [[plugin.deps]]
 use = "KKV9/compress"
-rev = "9fc8fe0"
-hash = "8621ef7eaab39e3cec4249b4f6261623"
+rev = "cb6e8ec"
+hash = "25845f484b8d52149132dad1c440333c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "de53d90"
-hash = "e65e6528de15012b5ccdead4ed26b8bd"
+rev = "de33976"
+hash = "5a87b143d719f768227a0ae0f8a42e08"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "7a08a09"
-hash = "5249d156940fa0ee9f00ca148e574eeb"
+rev = "0e56060"
+hash = "9ccd90bbd535b521439af1f504df25c"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "de53d90"
+rev = "de33976"
 hash = "c3f5c63722344045822f121efe2d2553"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mime-ext"
-rev = "de53d90"
-hash = "4ef4a397532572dfbe4e3138c2d5a4b2"
+rev = "de33976"
+hash = "e72607671ad2a4d3f300c055da73e597"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "f89605c"
-hash = "8450ddc10853919844b9d65ab8efe511"
+rev = "e76d6df"
+hash = "da05f94fdb17aa1d7cfd61b8ca0c01ad"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "de53d90"
-hash = "99010fbcbfa7dd1cc4c2dece198e2f09"
+rev = "de33976"
+hash = "719b1a6a330e9b4dafe7ff5ef09292bc"
 
 [flavor]
 deps = []
