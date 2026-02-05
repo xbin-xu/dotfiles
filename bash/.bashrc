@@ -82,11 +82,24 @@ export LANG=en_US.UTF-8
 # Edit mode: emacs(default)/vi
 # set -o vi   # enable vi mode
 # set +o vi   # disable vi mode
+
 # Proxy
 proxy_set &>/dev/null
 
 # EDITOR
 export EDITOR=nvim
+
+# History
+bind space:magic-space  # Enable history expansion with space
+shopt -s histappend     # Append instead of overwrite
+export HISTSIZE=2000
+export HISTFILESIZE=2000
+# export HISTFILE=${HOME}/.bash_history
+# export HISTTIMEFORMAT="%F %T "
+export HISTCONTROL=ignoredups:erasedups # Remove duplicate
+# export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+# Sync history before echo prompt
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # PATH
 # https://github.com/daipeihust/im-select
