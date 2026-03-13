@@ -10,9 +10,9 @@ config.default_cwd = "D:/workbench"
 config.default_prog = { "bash", "-l" }
 -- Launch Menu
 config.launch_menu = {
-	{ label = "bash", args = { "bash", "-l" } },
-	{ label = "cmd", args = { "cmd" } },
-	{ label = "powershell", args = { "powershell" } },
+  { label = "bash", args = { "bash", "-l" } },
+  { label = "cmd", args = { "cmd" } },
+  { label = "powershell", args = { "powershell" } },
 }
 
 config.automatically_reload_config = false
