@@ -17,8 +17,6 @@ local function window_mode(window)
     return nerdfonts.cod_server_process
   elseif key_table == "resize" then
     return nerdfonts.md_resize
-  elseif key_table == "rename" then
-    return nerdfonts.md_rename_box
   elseif key_table == "copy_mode" then
     return nerdfonts.cod_copy
   elseif key_table == "tab" then
@@ -30,19 +28,22 @@ local function window_mode(window)
   return nerdfonts.fa_terminal
 end
 
-local function tab_title(tab, max_width)
-  local title =
-    string.gsub(tab.active_pane.foreground_process_name, "(.*[/\\])(.*)", "%2")
+local function tab_title(tabinfo, max_width)
+  local title = tabinfo.tab_title
   if not title or #title <= 0 then
-    title = tab.tab_title
+    title = string.gsub(
+      tabinfo.active_pane.foreground_process_name,
+      "(.*[/\\])(.*)",
+      "%2"
+    )
   end
   if not title or #title <= 0 then
-    title = tab.active_pane.title
+    title = tabinfo.active_pane.title
   end
 
-  local left_str = tab.tab_index .. ":"
+  local left_str = tabinfo.tab_index .. ":"
   local right_str = (
-    tab.active_pane.is_zoomed and (" " .. SOLID_SCREEN_FULL .. " ") or ""
+    tabinfo.active_pane.is_zoomed and (" " .. SOLID_SCREEN_FULL .. " ") or ""
   )
   local available_width = math.max(max_width - #left_str - #right_str, 0)
 
