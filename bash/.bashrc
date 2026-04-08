@@ -25,7 +25,11 @@ source_file ~/.config/bash/functions.bash
 exist_cmd starship && eval "$(starship init bash)"
 
 # zoxide
-exist_cmd zoxide && eval "$(zoxide init bash)"
+exist_cmd zoxide && {
+    eval "$(zoxide init bash)"
+    # Avoid zoxide "invalid path" error for UNC paths (e.g. //wsl$/Ubuntu)
+    eval "$(declare -f __zoxide_hook | sed '/zoxide add/s|;$| 2>/dev/null;|')"
+}
 
 # fzf
 exist_cmd fzf && {
@@ -61,8 +65,12 @@ exist_cmd python && alias py='python'
 exist_cmd ipython && alias ipy='ipython'
 exist_cmd explorer && exist_cmd cmd_deal_path && alias er='cmd_deal_path explorer'
 exist_cmd wsl && {
+    export WSL="//wsl$/Ubuntu"
     alias tmux='wsl tmux'
     alias fish='wsl fish'
+    function cdw() {
+        builtin cd -- "${WSL}/$*" || exit
+    }
 }
 exist_cmd keil_helper && alias keil='keil_helper'
 exist_cmd claude && {
