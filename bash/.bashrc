@@ -99,7 +99,7 @@ proxy_set &>/dev/null
 export EDITOR=nvim
 
 # History
-shopt -s histappend     # Append instead of overwrite
+shopt -s histappend # Append instead of overwrite
 export HISTSIZE=2000
 export HISTFILESIZE=2000
 # export HISTFILE=${HOME}/.bash_history
