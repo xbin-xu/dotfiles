@@ -50,6 +50,7 @@ exist_cmd yazi && {
 # exist_cmd bat && alias cat='bat'
 # exist_cmd fd && alias find='fd'
 # exist_cmd nvim && alias vim='nvim'
+exist_cmd nvim && alias v='nvim'
 exist_cmd eza && {
     alias ls='eza'
     alias ll='eza -al'
@@ -90,7 +91,6 @@ proxy_set &>/dev/null
 export EDITOR=nvim
 
 # History
-bind space:magic-space  # Enable history expansion with space
 shopt -s histappend     # Append instead of overwrite
 export HISTSIZE=2000
 export HISTFILESIZE=2000
