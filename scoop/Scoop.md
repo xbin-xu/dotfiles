@@ -102,6 +102,7 @@ eval "$(oh-my-posh init bash --config $POSH_THEMES_PATH/material.omp.json)"
 
 > [如何使用 WSL 在 Windows 上安装 Linux](https://learn.microsoft.com/zh-cn/windows/wsl/install)
 > [设置 WSL 开发环境](https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment)
+> [WSL2使用宿主机代理访问网络](https://shirolin.github.io/posts/e41dabd5/index.html)
 
 ```powershell
 # 启用 “适用于 Linux 的 Windows 子系统”
