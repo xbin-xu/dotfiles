@@ -15,6 +15,24 @@ function source_file() {
     [[ -r "$1" ]] && . "$1"
 }
 
+# command_not_found_handle hook for WSL
+# allow WSL call Windows exe programs without adding '.exe'
+if uname -r | grep -qi wsl; then
+    function command_not_found_handle() {
+        if command -v "$1.exe" >/dev/null 2>&1; then
+            "$1.exe" "${@:2}"
+        else
+            if [ -x /usr/lib/command-not-found ]; then
+                /usr/lib/command-not-found -- "$1"
+                return $?
+            else
+                printf "%s: command not found\n" "$1" 1>&2
+                return 127
+            fi
+        fi
+    }
+fi
+
 # Source
 # ------------------------------------------------------------------------------
 source_file ~/.config/bash/functions.bash
