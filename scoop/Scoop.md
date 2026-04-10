@@ -6,19 +6,18 @@
     - [1.1 添加到右键菜单：找到对应的安装目录，然后运行 `install-context.reg`](#11-添加到右键菜单找到对应的安装目录然后运行-install-contextreg)
     - [1.2 IDM](#12-idm)
     - [1.3 Chrome 更改个人资料路径](#13-chrome-更改个人资料路径)
-    - [1.4 oh-my-posh](#14-oh-my-posh)
   - [2. WSL](#2-wsl)
     - [2.1 迁移至非系统盘符](#21-迁移至非系统盘符)
     - [2.2 必要工具](#22-必要工具)
 <!--toc:end-->
 
-> 激活[HEU_KMS_Activator](https://zhizhi.lanzoue.com/b00qgpgc)
+> 激活[HEU_KMS_Activator]
 
 ## 1. Scoop
 
-> Scoop：[Scoop](https://scoop.sh/) | [GitHub](https://github.com/ScoopInstaller/Install) | [Gitee](https://gitee.com/glsnames/scoop-installer)
-> 代理：[scoop-proxy-cn](https://github.com/lzwme/scoop-proxy-cn)
-> 参考：[Scoop 包管理器](https://blog.csdn.net/omaidb/article/details/129286772) | [Scoop 的安装与使用&常用软件推荐](https://blog.xqh.ma/posts/2020-03-09-Windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8-Scoop%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8&%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/)
+> Scoop：[Scoop] | [ScoopInstaller-GitHub] | [ScoopInstaller-Gitee]
+> 代理：[scoop-proxy-cn]
+> 参考：[Scoop 包管理器] | [Scoop 的安装与使用&常用软件推荐]
 
 ```powershell
 # 0. 更改执行策略
@@ -71,42 +70,26 @@ scoop install scoop_apps.json
 
 ### 1.2 IDM
 
-[破解 IDM](https://github.com/lstprjct/IDM-Activation-Script)
+[破解 IDM]
 
 ### 1.3 Chrome 更改个人资料路径
 
 ```cmd
 # chrome://version/
-mklink /d "C:\Users\Bin\AppData\Local\Google\Chrome\User Data" "D:\Software\Scoop\persist\googlechrome\User Data"
-```
-
-### 1.4 oh-my-posh
-
-```powershell
-# 安装 oh-my-posh
-scoop install oh-my-posh
-# 查看所有主题
-Get-PoshThemes
-
-# 将下面一行添加到 $PROFILE, `notepad $PROFILE`
-oh-my-posh --init --shell pwsh --config $env:POSH_THEMES_PATH\material.omp.json | Invoke-Expression
-```
-
-```bash
-# 将下来两行添加到 ~/.bashrc
-set POSH_THEMES_PATH "~/AppData/Local/Programs/oh-my-posh/themes"
-eval "$(oh-my-posh init bash --config $POSH_THEMES_PATH/material.omp.json)"
+mklink /d "C:\Users\Bin\AppData\Local\Google\Chrome\User Data" \
+    "D:\Software\Scoop\persist\googlechrome\User Data"
 ```
 
 ## 2. WSL
 
-> [如何使用 WSL 在 Windows 上安装 Linux](https://learn.microsoft.com/zh-cn/windows/wsl/install)
-> [设置 WSL 开发环境](https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment)
-> [WSL2使用宿主机代理访问网络](https://shirolin.github.io/posts/e41dabd5/index.html)
+> [如何使用 WSL 在 Windows 上安装 Linux]
+> [设置 WSL 开发环境]
+> [WSL2使用宿主机代理访问网络]
 
 ```powershell
 # 启用 “适用于 Linux 的 Windows 子系统”
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature \
+    /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 # 启用 “虚拟机平台”
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 # 安装 WSL 命令
@@ -177,3 +160,14 @@ sudo snap install lazygit
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
+
+[HEU_KMS_Activator]: https://zhizhi.lanzoue.com/b00qgpgc
+[Scoop]: https://scoop.sh/
+[ScoopInstaller-GitHub]: https://github.com/ScoopInstaller/Install
+[scoop-proxy-cn]: https://github.com/lzwme/scoop-proxy-cn
+[Scoop 包管理器]: https://blog.csdn.net/omaidb/article/details/129286772
+[Scoop 的安装与使用&常用软件推荐]: https://blog.xqh.ma/posts/2020-03-09-Windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8-Scoop%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8&%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/
+[破解 IDM]: https://github.com/lstprjct/IDM-Activation-Script
+[如何使用 WSL 在 Windows 上安装 Linux]: https://learn.microsoft.com/zh-cn/windows/wsl/install
+[设置 WSL 开发环境]: https://learn.microsoft.com/zh-cn/windows/wsl/setup/environment
+[WSL2使用宿主机代理访问网络]: https://shirolin.github.io/posts/e41dabd5/index.html
