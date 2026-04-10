@@ -113,6 +113,9 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 wsl --install
 # 安装指定的 Linux 发行版 `wsl --install -d <Distro>`
 # wsl --install -d Ubuntu
+# 打开 22 端口
+New-NetFirewallRule -Name sshd -DisplayName 'OpenSSH Server (sshd) for WSL' \
+    -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
 ```
 
 ### 2.1 迁移至非系统盘符
