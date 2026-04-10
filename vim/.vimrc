@@ -127,8 +127,15 @@ set foldmethod=indent   " fold based on indent level
 " Clipboard
 "---------------------------------------------------------
 " Use the sys clipboard by default (on versions compiled with `+clipboard`)
-" [Vim 使用系统剪切板](https://harttle.land/2020/09/04/vim-clipboard.html)
 set clipboard=unnamed
+" WSL yank support
+" let s:clip='clip.exe'
+" if (has("autocmd") && executable(s:clip))
+"     augroup WSLYank
+"         autocmd!
+"         autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+"     augroup END
+" endif
 
 " Undo
 "---------------------------------------------------------
