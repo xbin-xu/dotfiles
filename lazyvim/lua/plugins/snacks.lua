@@ -49,5 +49,32 @@ return {
         },
       },
     },
+    -- Fix duplicate projects in Windows(case insensitive)
+    config = function(_, opts)
+      require("snacks").setup(opts)
+
+      if not LazyVim.is_win() then
+        return
+      end
+      local source = require("snacks.picker.source.recent")
+      local orig = source.projects
+      ---@diagnostic disable-next-line: duplicate-set-field
+      source.projects = function(...)
+        local finder = orig(...)
+        local seen = {}
+        return function(cb)
+          finder(function(item)
+            if not (item and item.file) then
+              return cb(item)
+            end
+            local file = item.file:lower()
+            if not seen[file] then
+              seen[file] = true
+              cb(item)
+            end
+          end)
+        end
+      end
+    end,
   },
 }
