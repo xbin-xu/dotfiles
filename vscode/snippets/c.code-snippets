@@ -25,10 +25,10 @@
 	// 	"exclude": ["**/temp/*.ts"],
 	// 	"description": "Insert test block"
 	// }
-	"include once": {
+	"Header guard": {
 		"scope": "c,cpp",
 		"prefix": [
-			"#once",
+			"#hg",
 		],
 		"body": [
 			"#ifndef __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__",
@@ -38,13 +38,12 @@
 			"#endif /* __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__ */",
 			"",
 		],
-		"description": "Code snippet for include guard"
+		"description": "Header guard"
 	},
-	"extern c": {
+	"Extern C": {
 		"scope": "c,cpp",
 		"prefix": [
 			"#ec",
-			"#nocpp",
 		],
 		"body": [
 			"#ifdef __cplusplus",
@@ -56,12 +55,12 @@
 			"}",
 			"#endif",
 		],
-		"description": "Code snippet for extern \"C\""
+		"description": "extern \"C\""
 	},
-	"include once extern": {
+	"Header guard and extern C": {
 		"scope": "c,cpp",
 		"prefix": [
-			"#oncepp",
+			"#hge",
 		],
 		"body": [
 			"#ifndef __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__",
@@ -80,6 +79,6 @@
 			"#endif /* __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__ */",
 			"",
 		],
-		"description": "Code snippet for include guard with extern \"C\""
+		"description": "Header guard and extern \"C\""
 	},
 }
