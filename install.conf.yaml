@@ -10,7 +10,7 @@
     ~/.config/bash:
       glob: true
       path: bash/*
-      exclude: [ bash/.bashrc ]
+      exclude: [bash/.bashrc]
     ~/.config/clangd: clangd
     ~/.config/starship.toml: starship/starship.toml
     ~/.config/fish: fish
