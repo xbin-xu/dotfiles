@@ -3,8 +3,16 @@ return {
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
     "L3MON4D3/LuaSnip",
+    build = "make install_jsregexp",
     keys = function()
       return {}
+    end,
+    config = function()
+      local real_config = vim.loop.fs_realpath(vim.fn.stdpath("config"))
+      local snippets_dir = vim.fn.fnamemodify(real_config, ":h") .. "/vscode/snippets"
+      for _, file in ipairs(vim.fn.glob(snippets_dir .. "/*.code-snippets", true, true)) do
+        require("luasnip.loaders.from_vscode").load_standalone({ path = file })
+      end
     end,
   },
 

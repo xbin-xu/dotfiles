@@ -49,6 +49,9 @@
     $SCOOP/apps/vscode/current/data/user-data/User/keybindings.json:
       path: vscode/keybindings.json
       if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
+    $SCOOP/apps/vscode/current/data/user-data/User/snippets:
+      path: vscode/snippets
+      if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
     $SCOOP/apps/vscode/current/data/user-data/User/.vscodevimrc:
       path: vscode/.vscodevimrc
       if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
