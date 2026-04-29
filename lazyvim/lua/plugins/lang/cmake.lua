@@ -1,7 +1,6 @@
 return {
   {
     "Civitasv/cmake-tools.nvim",
-    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     keys = {
       { "<leader>Ck", "<cmd>CMakeSelectKit<cr>", desc = "Select kit" },
       { "<leader>Cv", "<cmd>CMakeSelectBuildType<cr>", desc = "Select build type" },
