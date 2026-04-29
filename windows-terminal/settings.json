@@ -6,7 +6,7 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{cbe121fe-8bb1-4d0e-a0f5-a7d5e36befce}",
-    "keybindings":
+    "keybindings": 
     [
         {
             "id": "Terminal.ToggleFocusMode",
@@ -17,8 +17,12 @@
             "keys": "ctrl+alt+t"
         },
         {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
+        },
+        {
             "id": null,
-            "keys": "ctrl+tab"
+            "keys": "ctrl+shift+tab"
         },
         {
             "id": "Terminal.NextTab",
@@ -26,19 +30,15 @@
         },
         {
             "id": null,
-            "keys": "ctrl+shift+tab"
-        },
-        {
-            "id": "Terminal.CopyToClipboard",
-            "keys": "ctrl+c"
-        },
-        {
-            "id": "Terminal.ClosePane",
-            "keys": "ctrl+alt+q"
+            "keys": "ctrl+tab"
         },
         {
             "id": "Terminal.OpenNewTab",
             "keys": "ctrl+alt+c"
+        },
+        {
+            "id": "Terminal.ClosePane",
+            "keys": "ctrl+alt+q"
         },
         {
             "id": null,
@@ -105,10 +105,6 @@
             "keys": "ctrl+alt+h"
         },
         {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
-        },
-        {
             "id": "Terminal.ScrollDown",
             "keys": "ctrl+alt+e"
         },
@@ -118,19 +114,19 @@
         }
     ],
     "launchMode": "focus",
-    "newTabMenu":
+    "newTabMenu": 
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles":
+    "profiles": 
     {
-        "defaults":
+        "defaults": 
         {
             "adjustIndistinguishableColors": "indexed",
             "colorScheme": "One Half Dark",
-            "font":
+            "font": 
             {
                 "face": "JetBrainsMono Nerd Font"
             },
@@ -139,7 +135,7 @@
             "startingDirectory": "D:\\Workbench",
             "useAcrylic": false
         },
-        "list":
+        "list": 
         [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
@@ -181,7 +177,6 @@
         ]
     },
     "schemes": [],
-    "startOnUserLogin": true,
     "tabSwitcherMode": "inOrder",
     "themes": [],
     "useAcrylicInTabRow": false
