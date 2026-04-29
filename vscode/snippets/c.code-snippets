@@ -25,26 +25,25 @@
 	// 	"exclude": ["**/temp/*.ts"],
 	// 	"description": "Insert test block"
 	// }
-	"include once": {
+	"Include guard": {
 		"scope": "c,cpp",
 		"prefix": [
-			"#once",
+			"#ig",
 		],
 		"body": [
-			"#ifndef __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__",
-			"#define __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__",
+			"#ifndef ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+			"#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
 			"$1",
             "",
-			"#endif /* __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__ */",
+			"#endif /* ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H */",
 			"",
 		],
-		"description": "Code snippet for include guard"
+		"description": "Include guard"
 	},
-	"extern c": {
+	"Extern C": {
 		"scope": "c,cpp",
 		"prefix": [
 			"#ec",
-			"#nocpp",
 		],
 		"body": [
 			"#ifdef __cplusplus",
@@ -56,16 +55,16 @@
 			"}",
 			"#endif",
 		],
-		"description": "Code snippet for extern \"C\""
+		"description": "extern \"C\""
 	},
-	"include once extern": {
+	"Include guard and extern C": {
 		"scope": "c,cpp",
 		"prefix": [
-			"#oncepp",
+			"#ige",
 		],
 		"body": [
-			"#ifndef __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__",
-			"#define __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__",
+			"#ifndef ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
+			"#define ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H",
 			"$1",
             "",
 			"#ifdef __cplusplus",
@@ -76,10 +75,9 @@
 			"#ifdef __cplusplus",
 			"}",
 			"#endif",
-			"",
-			"#endif /* __${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H__ */",
+			"#endif /* ${TM_FILENAME_BASE/(.*)/${1:/upcase}/}_H */",
 			"",
 		],
-		"description": "Code snippet for include guard with extern \"C\""
+		"description": "Include guard and extern \"C\""
 	},
 }
