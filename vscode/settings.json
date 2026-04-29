@@ -42,11 +42,8 @@
         "editor.defaultFormatter": "xaver.clang-format"
     },
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "charliermarsh.ruff"
     },
-    "black-formatter.args": [
-        "--skip-string-normalization"
-    ],
     "diffEditor.renderSideBySide": false,
     "explorer.compactFolders": false,
     "terminal.integrated.profiles.windows": {
@@ -1096,12 +1093,21 @@
     "commentTranslate.source": "Google",
     // }
     //--------------------------------------------------------------------------
+    // -- Python {
+    "ty.configuration": {
+        "rules": {
+            "unresolved-import": "ignore"
+        }
+    },
+    // }
+    //--------------------------------------------------------------------------
     // -- C/C++ {
     "C_Cpp.doxygen.generatedStyle": "/**",
     "C_Cpp.codeAnalysis.clangTidy.enabled": true,
     "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
     "C_Cpp.inlayHints.parameterNames.enabled": true,
     "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true,
+    // }
     "C_Cpp.inlayHints.referenceOperator.enabled": true,
     //--------------------------------------------------------------------------
     // -- Clangd {
