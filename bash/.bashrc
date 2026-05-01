@@ -75,7 +75,10 @@ exist_cmd claude && {
 # Set/Export
 # ------------------------------------------------------------------------------
 # LC_ALL
-export LC_ALL=C
+# "LC_ALL=C" will caused starship can't wrap command in a new line
+# see: https://github.com/starship/starship/issues/5881
+# export LC_ALL=C
+export LANG=en_US.UTF-8
 
 # Edit mode: emacs(default)/vi
 # set -o vi   # enable vi mode
