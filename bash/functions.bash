@@ -128,11 +128,17 @@ function keil_helper() {
 }
 
 # Usage: proxy_set [proxy_port]
+# see: https://gist.github.com/libChan/3a804a46b532cc326a2ee55b27e8ac19
 function proxy_set() {
     local proxy_port=${1:-7897}
-    export http_proxy="http://127.0.0.1:${proxy_port}"
-    export https_proxy="http://127.0.0.1:${proxy_port}"
-    export all_proxy="socks5://127.0.0.1:${proxy_port}"
+    local hostip="127.0.0.1"
+
+    if uname -r | grep -qi wsl; then
+        hostip=$(ip route show | grep -i default | awk '{print $3}')
+    fi
+    export http_proxy="http://${hostip}:${proxy_port}"
+    export https_proxy="http://${hostip}:${proxy_port}"
+    export all_proxy="socks5://${hostip}:${proxy_port}"
     export no_proxy="localhost,127.0.0.1"
     echo "[Proxy] on ${proxy_port}"
 }
