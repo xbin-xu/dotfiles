@@ -67,6 +67,12 @@ exist_cmd yazi && {
     }
 }
 
+# trashy
+exist_cmd trash && {
+    eval "$(trash completions bash)"
+    exist_cmd trash && alias rm='trash'
+}
+
 # Alias
 # ------------------------------------------------------------------------------
 # exist_cmd bat && alias cat='bat'
