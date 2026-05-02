@@ -65,3 +65,12 @@ vim.api.nvim_create_autocmd({ "VimLeavePre" }, {
   end,
   desc = "Delete empty temp ShaDa files",
 })
+
+-- clnagd: switch C/C++ source/header
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("lsp_clangd_switch_source_header"),
+  pattern = { "c", "cpp" },
+  callback = function()
+    vim.keymap.set("n", "<M-o>", "<cmd>LspClangdSwitchSourceHeader<cr>", { desc = "Switch Source/Header" })
+  end,
+})
