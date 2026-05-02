@@ -43,3 +43,10 @@ map("n", "gV", "`[v`]", { desc = "Switch to VISUAL using last inserted" })
 -- map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map({ "n", "x" }, "+", "<C-a>", { desc = "Increase number" })
 map({ "n", "x" }, "-", "<C-x>", { desc = "Decrease number" })
+
+-- Paste from clipboard
+-- NOTE: <C-v> not supported in other modes, recommend use <C-S-v>
+map("i", "<C-v>", "<C-r>+", { desc = "Paste from clipboard" })
+map("t", "<C-v>", function()
+  vim.api.nvim_chan_send(vim.b.terminal_job_id, vim.fn.getreg("+"))
+end, { desc = "Paste from clipboard" })
