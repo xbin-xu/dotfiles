@@ -70,7 +70,8 @@ exist_cmd yazi && {
 # trashy
 exist_cmd trash && {
     eval "$(trash completions bash)"
-    exist_cmd trash && alias rm='trash'
+    # yazi need use `rm -f`
+    # exist_cmd trash && alias rm='trash'
 }
 
 # Alias
