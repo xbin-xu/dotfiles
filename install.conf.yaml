@@ -40,6 +40,9 @@
     $LOCALAPPDATA/nvim:
       path: lazyvim
       if: bash -c "uname -s | grep -iqE 'msys|mingw'"
+    $APPDATA/Microsoft/Windows/Start Menu/Programs/Startup/keymaps.ahk:
+      path: autohotkey/keymaps.ahk
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     $APPDATA/listary/UserProfile/Settings/Preferences.json:
       path: listary/Preferences.json
       if: bash -c "scoop list listary | grep -q 'Version'"
