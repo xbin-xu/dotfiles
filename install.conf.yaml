@@ -30,37 +30,37 @@
     # windows
     ~/pip/pip.ini:
       path: pip/pip.conf
-      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     ~/.glzr:
       path: glzr
-      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     $LOCALAPPDATA/clangd/config.yaml:
       path: clangd/config.yaml
-      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     $LOCALAPPDATA/nvim:
       path: lazyvim
-      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     $APPDATA/listary/UserProfile/Settings/Preferences.json:
       path: listary/Preferences.json
-      if: python -c "import os; exit(0) if os.system('scoop list listary') == 0 else exit(1)"
+      if: bash -c "scoop list listary | grep -q 'Version'"
     $SCOOP/apps/vscode/current/data/user-data/User/settings.json:
       path: vscode/settings.json
-      if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
+      if: bash -c "scoop list vscode | grep -q 'Version'"
     $SCOOP/apps/vscode/current/data/user-data/User/keybindings.json:
       path: vscode/keybindings.json
-      if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
+      if: bash -c "scoop list vscode | grep -q 'Version'"
     $SCOOP/apps/vscode/current/data/user-data/User/snippets:
       path: vscode/snippets
-      if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
+      if: bash -c "scoop list vscode | grep -q 'Version'"
     $SCOOP/apps/vscode/current/data/user-data/User/.vscodevimrc:
       path: vscode/.vscodevimrc
-      if: python -c "import os; exit(0) if os.system('scoop list vscode') == 0 else exit(1)"
+      if: bash -c "scoop list vscode | grep -q 'Version'"
     $SCOOP/apps/windows-terminal/current/settings/settings.json:
       path: windows-terminal/settings.json
-      if: python -c "import os; exit(0) if os.system('scoop list wt') == 0 else exit(1)"
+      if: bash -c "scoop list windows-terminal | grep -q 'Version'"
     $APPDATA/yazi/config:
       path: yazi
-      if: python -c "import platform; exit(0) if platform.system().lower() == 'windows' else exit(1)"
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
 
 - shell:
     - git submodule sync --recursive
