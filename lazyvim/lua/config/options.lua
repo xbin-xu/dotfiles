@@ -8,7 +8,7 @@ local opt = vim.opt
 -- vim.g.autoformat = false
 
 -- Font
-opt.guifont = "JetBrainsMono Nerd Font:h11"
+opt.guifont = "JetBrainsMono Nerd Font:h12"
 
 -- Set the anchor line at 80 characters
 opt.colorcolumn = "80"
@@ -32,7 +32,10 @@ opt.timeoutlen = vim.g.vscode and 200 or 200 -- lower than default (1000) to qui
 opt.updatetime = 200 -- save swap file and trigger CursorHold
 
 -- Shell
-vim.opt.shell = "bash"
+opt.shell = "bash"
+
+-- Modeline
+opt.modeline = false
 
 -- GUI
 if vim.fn.has("gui_running") then

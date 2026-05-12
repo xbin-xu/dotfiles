@@ -55,3 +55,11 @@ end, { desc = "Paste from clipboard" })
 map({ "n", "v", "s", "x", "o", "i", "l", "c", "t" }, "<C-S-v>", function()
   vim.api.nvim_paste(vim.fn.getreg("+"), true, -1)
 end, { desc = "Paste from clipboard" })
+
+-- Center after navigation
+map({ "n", "x", "o" }, "n", "nzz")
+map({ "n", "x", "o" }, "N", "Nzz")
+map({ "n", "x", "o" }, "}", "}zz")
+map({ "n", "x", "o" }, "{", "{zz")
+map({ "n", "x", "o" }, "*", "*zz")
+map({ "n", "x", "o" }, "#", "#zz")
