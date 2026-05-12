@@ -165,7 +165,7 @@ function M.keil()
 end
 
 vim.keymap.set("n", "<leader>mb", M.make, { desc = "Make build" })
-vim.keymap.set("n", "<leader>mK", M.keil, { desc = "Make keil" })
+vim.keymap.set("n", "<leader>mk", M.keil, { desc = "Make keil" })
 
 return {
   {
@@ -173,7 +173,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>m", group = "make" },
+        { "<leader>m", icon = { icon = "", color = "cyan" }, group = "make" },
       },
     },
   },

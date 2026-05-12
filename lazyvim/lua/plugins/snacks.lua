@@ -18,7 +18,7 @@ return {
             keys = {
               ["<C-n>"] = { "history_forward", mode = { "i", "n" } },
               ["<C-p>"] = { "history_back", mode = { "i", "n" } },
-              ["<c-x>"] = { "edit_vsplit", mode = { "i", "n" } },
+              -- ["<c-x>"] = { "edit_vsplit", mode = { "i", "n" } },
               ["<C-v>"] = { "edit_split", mode = { "n" } },
               ["-"] = { "edit_split", mode = { "n" } },
               ["|"] = { "edit_vsplit", mode = { "n" } },

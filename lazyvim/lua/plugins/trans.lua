@@ -10,9 +10,8 @@ return {
       require("Trans").install()
     end,
     keys = {
-      { "<leader>mi", "<cmd>TranslateInput<cr>", desc = "󰊿 Translate From Input" },
-      { "<leader>mm", "<cmd>Translate<cr>", desc = "󰊿 Translate", mode = { "n", "x" } },
-      { "<leader>mk", "<cmd>TransPlay<cr>", desc = " Auto Play", mode = { "n", "x" } },
+      { "<leader>ti", "<cmd>TranslateInput<cr>", desc = "󰊿 Translate From Input" },
+      { "<leader>tz", "<cmd>Translate<cr>", desc = "󰊿 Translate", mode = { "n", "x" } },
     },
     opts = {
       -- your configuration there
