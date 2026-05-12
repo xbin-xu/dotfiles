@@ -45,8 +45,13 @@ map({ "n", "x" }, "+", "<C-a>", { desc = "Increase number" })
 map({ "n", "x" }, "-", "<C-x>", { desc = "Decrease number" })
 
 -- Paste from clipboard
--- NOTE: <C-v> not supported in other modes, recommend use <C-S-v>
+-- NOTE: <C-v> not supported in other modes, recommend use <C-S-v> or <C-r>
+-- https://github.com/neovide/neovide/issues/2680#issuecomment-2204900647
 map("i", "<C-v>", "<C-r>+", { desc = "Paste from clipboard" })
 map("t", "<C-v>", function()
-  vim.api.nvim_chan_send(vim.b.terminal_job_id, vim.fn.getreg("+"))
+  -- vim.api.nvim_chan_send(vim.b.terminal_job_id, vim.fn.getreg("+"))
+  vim.api.nvim_paste(vim.fn.getreg("+"), true, -1)
+end, { desc = "Paste from clipboard" })
+map({ "n", "v", "s", "x", "o", "i", "l", "c", "t" }, "<C-S-v>", function()
+  vim.api.nvim_paste(vim.fn.getreg("+"), true, -1)
 end, { desc = "Paste from clipboard" })
