@@ -31,23 +31,24 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    -- Install without yarn or npm
     build = function()
-      vim.fn["mkdp#util#install"]()
+      require("lazy").load({ plugins = { "markdown-preview.nvim" } })
+      local need_restore = vim.fn.has("win32") == 1 and vim.o.shell ~= "cmd.exe"
+      if need_restore then
+        local saved_shell = vim.o.shell
+        vim.o.shell = "cmd.exe"
+        vim.fn["mkdp#util#install"]()
+        vim.o.shell = saved_shell
+      else
+        vim.fn["mkdp#util#install"]()
+      end
     end,
-    keys = {
-      { "<leader>cp", ft = "markdown", "<cmd>MarkdownPreviewToggle<cr>", desc = "Markdown Preview" },
-    },
-    config = function()
-      vim.cmd([[
-                " specify browser to open preview page
-                let g:mkdp_browser = ''
-                " use a custom location for images
-                let g:mkdp_images_path = '$HOME/.markdown_images'
-                " set default theme (dark or light)
-                let g:mkdp_theme = 'dark'
-                do FileType
-          ]])
-    end,
+    -- Install with yarn or npm
+    -- build = "cd app && npm install",
+    -- init = function()
+    --   vim.g.mkdp_filetypes = { "markdown" }
+    -- end,
   },
 
   {
@@ -62,11 +63,6 @@ return {
     keys = {
       { "<leader>tm", ft = "markdown", "<cmd>TableModeToggle<cr>", desc = "Toggle Markdown Table Mode" },
     },
-    config = function()
-      vim.cmd([[
-                let b:table_mode_corner = '|'
-            ]])
-    end,
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
