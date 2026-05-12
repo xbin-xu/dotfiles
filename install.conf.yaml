@@ -23,6 +23,7 @@
     ~/.tmux: tmux/.tmux
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.config/nvim: lazyvim
+    ~/.config/neovide: neovide
     ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
     ~/.vscode: vscode
@@ -39,6 +40,9 @@
       if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     $LOCALAPPDATA/nvim:
       path: lazyvim
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
+    $APPDATA/neovide:
+      path: neovide
       if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     $APPDATA/Microsoft/Windows/Start Menu/Programs/Startup/keymaps.ahk:
       path: autohotkey/keymaps.ahk
