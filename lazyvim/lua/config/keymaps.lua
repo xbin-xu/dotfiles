@@ -63,3 +63,22 @@ map({ "n", "x", "o" }, "}", "}zz")
 map({ "n", "x", "o" }, "{", "{zz")
 map({ "n", "x", "o" }, "*", "*zz")
 map({ "n", "x", "o" }, "#", "#zz")
+
+-- Neovide
+if vim.g.neovide then
+  -- change scale factor
+  -- see: https://neovide.dev/faq.html#how-can-i-dynamically-change-the-scale-at-runtime
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  end
+
+  map("n", "<C-=>", function()
+    change_scale_factor(1.1)
+  end, { desc = "Zoom in" })
+  map("n", "<C-->", function()
+    change_scale_factor(1 / 1.1)
+  end, { desc = "Zoom out" })
+  map("n", "<C-0>", function()
+    vim.g.neovide_scale_factor = 1.0
+  end, { desc = "Zoom reset" })
+end

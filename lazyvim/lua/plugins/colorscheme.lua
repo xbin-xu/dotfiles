@@ -64,6 +64,15 @@ local function apply_neovide(state)
   vim.g.neovide_normal_opacity = v
 end
 
+-- see: https://neovide.dev/faq.html#how-can-i-dynamically-change-the-transparency-at-runtime-macos
+local function change_transparency(delta)
+  local next_value = (vim.g.neovide_opacity or 1) + delta
+  M.opacity = math.min(1, math.max(0, next_value))
+  vim.g.transparency = M.opacity ~= 1
+  vim.g.neovide_opacity = M.opacity
+  vim.g.neovide_normal_opacity = M.opacity
+end
+
 local group = vim.api.nvim_create_augroup("lazyvim_color_scheme_transparency", { clear = true })
 -- Plugin themes: configure before colorscheme loads
 vim.api.nvim_create_autocmd("ColorSchemePre", {
@@ -112,6 +121,14 @@ vim.api.nvim_create_autocmd("User", {
         end
       end,
     }):map("<leader>uo")
+    if vim.g.neovide then
+      vim.keymap.set({ "n", "v", "o" }, "<D-[>", function()
+        change_transparency(-0.01)
+      end, { desc = "Decrease opacity" })
+      vim.keymap.set({ "n", "v", "o" }, "<D-]>", function()
+        change_transparency(0.01)
+      end, { desc = "Increase opacity" })
+    end
   end,
 })
 
