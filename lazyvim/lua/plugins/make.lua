@@ -11,7 +11,7 @@ M.opts = {
       parse_targets = function(content)
         local targets = {}
         for _, line in ipairs(vim.split(content, "\n")) do
-          local t = line:match("^(%a[%w_.-]-)%s*:[^=]")
+          local t = line:match("^(%a[%w_.-]-)%s*:[^=]-$")
           if t then
             targets[#targets + 1] = t
           end
