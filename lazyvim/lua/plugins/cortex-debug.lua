@@ -1,6 +1,7 @@
 return {
   {
     "jedrzejboczar/nvim-dap-cortex-debug",
+    lazy = true,
     config = true,
     opts = {
       debug = false, -- log debug messages
@@ -20,6 +21,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     dependencies = {
+      "jedrzejboczar/nvim-dap-cortex-debug",
       -- Ensure cortex-debug is installed
       "mason-org/mason.nvim",
       optional = true,

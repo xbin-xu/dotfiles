@@ -53,13 +53,12 @@ return {
 
   {
     "mzlogin/vim-markdown-toc",
-    event = "VeryLazy",
+    ft = { "markdown" },
     config = function() end,
   },
 
   {
     "dhruvasagar/vim-table-mode",
-    event = "VeryLazy",
     keys = {
       { "<leader>tm", ft = "markdown", "<cmd>TableModeToggle<cr>", desc = "Toggle Markdown Table Mode" },
     },
