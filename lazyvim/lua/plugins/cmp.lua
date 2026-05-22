@@ -19,11 +19,19 @@ return {
   -- then: setup supertab in cmp
   {
     "saghen/blink.cmp",
-    opts = function(_, opts)
-      opts.keymap = vim.tbl_extend("force", opts.keymap, {
+    opts = {
+      keymap = {
         ["<C-k>"] = { "select_prev", "fallback_to_mappings" },
         ["<C-j>"] = { "select_next", "fallback_to_mappings" },
-      })
-    end,
+      },
+      completion = {
+        accept = {
+          create_undo_point = false,
+          auto_brackets = {
+            enabled = false,
+          },
+        },
+      },
+    },
   },
 }
