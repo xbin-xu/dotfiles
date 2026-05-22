@@ -25,8 +25,10 @@ map("n", "[<tab>", "<cmd>tabprevious<cr>", { desc = "Prev tab" })
 map("n", "]<tab>", "<cmd>tabnext<cr>", { desc = "Next tab" })
 
 -- Line head & tail
-map({ "n", "v", "o" }, "H", "^", { desc = "Line head" })
-map({ "n", "v", "o" }, "L", "$", { desc = "Line tail" })
+-- Use vim.keymap.set instead of `map` (safe_keymap_set) which force noremap
+-- and will not work in vim-visual-multi
+vim.keymap.set({ "n", "v", "o" }, "H", "^", { desc = "Line head", remap = true })
+vim.keymap.set({ "n", "v", "o" }, "L", "$", { desc = "Line tail", remap = true })
 
 -- Better indenting
 map("v", "<Tab>", ">gv", { desc = "Indent left" })
