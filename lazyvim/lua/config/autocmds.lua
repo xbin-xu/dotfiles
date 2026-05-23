@@ -68,3 +68,14 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set("n", "<M-o>", "<cmd>LspClangdSwitchSourceHeader<cr>", { desc = "Switch Source/Header" })
   end,
 })
+
+-- Relaod project-specific .lazy.lua on DirChanged
+vim.api.nvim_create_autocmd("DirChanged", {
+  group = augroup("reload_lazy_lua"),
+  callback = function()
+    local data = vim.secure.read(vim.fn.fnamemodify(".lazy.lua", ":p"))
+    if type(data) == "string" then
+      load(data, ".lazy.lua")()
+    end
+  end,
+})
