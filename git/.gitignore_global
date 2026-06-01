@@ -14,8 +14,8 @@
 
 # C/C++
 #-----------------------------
-*.cache/            # Clangd
-!CMakeLists.txt     # CMake
+**/.cache/
+!CMakeLists.txt
 
 # Executables
 *.exe
