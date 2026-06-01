@@ -16,6 +16,7 @@
 #-----------------------------
 **/.cache/
 !CMakeLists.txt
+compile_commands.json
 
 # Executables
 *.exe
@@ -40,3 +41,7 @@
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+# Claude Code
+#-----------------------------
+**/.claude/settings.local.json
