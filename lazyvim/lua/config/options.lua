@@ -46,8 +46,5 @@ if vim.fn.has("gui_running") then
     -- -- Put anything you want to happen only in Neovide here
     -- -- Helper function for transparency formatting
     opt.guifont = "JetBrainsMono Nerd Font,微软雅黑:h11.5"
-
-    -- Neovide launches from installation dir, fix CWD so session restore works
-    vim.fn.chdir(vim.fn.expand("~"))
   end
 end
