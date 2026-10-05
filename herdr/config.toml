@@ -10,7 +10,7 @@ onboarding = false
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
 #                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
 #                  vesper
-# name = "catppuccin"
+name = "terminal"
 
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
@@ -41,7 +41,7 @@ onboarding = false
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
-# default_shell = ""
+default_shell = "bash"
 
 # Startup mode for new interactive pane shells: "auto", "login", or "non_login".
 # "auto" uses login shells on macOS and keeps the current behavior elsewhere.
@@ -76,12 +76,12 @@ onboarding = false
 # Named punctuation such as minus, comma, ampersand, plus, and backtick is also accepted.
 # Most reliable direct bindings are ctrl+letter, function keys, and explicit modified chords.
 # alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
-# prefix = "ctrl+b"
+prefix = "ctrl+a"
 
 # Prefix-mode actions
 # help = "prefix+?"
 # settings = "prefix+s"
-# detach = "prefix+q"
+detach = ["prefix+q", "prefix+d"]
 # reload_config = "prefix+shift+r"
 # open_notification_target = "prefix+o"
 # workspace_picker = "prefix+w"
@@ -90,18 +90,18 @@ onboarding = false
 # new_worktree = "prefix+shift+g"
 # open_worktree = ""    # optional, unset by default
 # remove_worktree = ""  # optional, unset by default; opens confirmation
-# rename_workspace = "prefix+shift+w"
+rename_workspace = ["prefix+shift+w", "prefix+$"]
 # close_workspace = "prefix+shift+d"
-# previous_workspace = "" # optional, unset by default
-# next_workspace = ""     # optional, unset by default
+previous_workspace = ["prefix+("] # optional, unset by default
+next_workspace = ["prefix+)"]     # optional, unset by default
 # previous_agent = ""     # optional, unset by default
 # next_agent = ""         # optional, unset by default
 # focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
 # remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
 # new_tab = "prefix+c"
-# rename_tab = "prefix+shift+t"
-# previous_tab = "prefix+p"
-# next_tab = "prefix+n"
+rename_tab = ["prefix+shift+t", "prefix+,"]
+previous_tab = ["prefix+p", "alt+h"]
+next_tab = ["prefix+n", "alt+l"]
 # move_tab_previous = ""   # optional, e.g. "alt+shift+left" moves the tab toward the front
 # move_tab_next = ""       # optional, e.g. "alt+shift+right" moves the tab toward the back
 # switch_tab = "prefix+1..9"
@@ -117,8 +117,8 @@ onboarding = false
 # cycle_pane_next = "prefix+tab"
 # cycle_pane_previous = "prefix+shift+tab"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
-# split_vertical = "prefix+v"
-# split_horizontal = "prefix+minus"
+split_vertical = ["prefix+v", "prefix+|"]
+split_horizontal = "prefix+minus"
 # close_pane = "prefix+x"
 # zoom = "prefix+z"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
@@ -130,8 +130,8 @@ onboarding = false
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
-# navigate_workspace_up = "up"
-# navigate_workspace_down = "down"
+navigate_workspace_up = ["up", "k"]
+navigate_workspace_down = ["down", "j"]
 # navigate_pane_left = "h"      # left arrow always focuses the pane to the left
 # navigate_pane_down = "j"
 # navigate_pane_up = "k"
@@ -199,7 +199,7 @@ onboarding = false
 # Host cursor policy: "auto", "native", or "drawn".
 # "auto" draws Herdr's own cursor on native Windows builds and WSL to avoid ConPTY cursor flicker, and uses the native terminal cursor elsewhere.
 # "native" always uses the outer terminal cursor. "drawn" always draws Herdr's cursor as terminal cell content.
-# host_cursor = "auto"
+host_cursor = "native"
 
 # Optional modifier that forwards right-click hold/drag gestures to pane apps instead of opening Herdr's pane menu.
 # Empty/off disables this. Shift is intentionally unsupported because terminals commonly reserve Shift+mouse.
