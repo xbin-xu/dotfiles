@@ -77,6 +77,12 @@ exist_cmd trash && {
 # herdr
 exist_cmd herdr && {
     eval "$(herdr completions bash)"
+
+    # herdr can't see Git Bash's cd, so report the real cwd via OSC 7
+    if [ -n "${HERDR_PANE_ID:-}" ] && exist_cmd cygpath; then
+        __herdr_osc7() { printf '\e]7;file:///%s\a' "$(cygpath -m "$PWD")"; }
+        export PROMPT_COMMAND="__herdr_osc7${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+    fi
 }
 
 # Alias
