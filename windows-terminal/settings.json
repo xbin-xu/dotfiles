@@ -1,14 +1,14 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": 
+    "actions":
     [
         {
             "command": "openTabRenamer",
             "id": "User.openTabRenamer"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "swapPane",
                 "direction": "previousInOrder"
@@ -16,7 +16,7 @@
             "id": "User.swapPane.787314EB"
         },
         {
-            "command": 
+            "command":
             {
                 "action": "swapPane",
                 "direction": "nextInOrder"
@@ -28,7 +28,7 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{cbe121fe-8bb1-4d0e-a0f5-a7d5e36befce}",
-    "keybindings": 
+    "keybindings":
     [
         {
             "id": "Terminal.ToggleFocusMode",
@@ -127,32 +127,24 @@
             "keys": "ctrl+shift+n"
         },
         {
-            "id": "Terminal.PrevTab",
-            "keys": "alt+h"
-        },
-        {
             "id": "User.openTabRenamer",
             "keys": "ctrl+alt+comma"
-        },
-        {
-            "id": "Terminal.NextTab",
-            "keys": "alt+l"
         }
     ],
     "launchMode": "focus",
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "adjustIndistinguishableColors": "indexed",
             "colorScheme": "One Half Dark",
-            "font": 
+            "font":
             {
                 "face": "JetBrainsMono Nerd Font"
             },
@@ -161,7 +153,7 @@
             "startingDirectory": "D:\\Workbench",
             "useAcrylic": false
         },
-        "list": 
+        "list":
         [
             {
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
