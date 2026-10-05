@@ -74,6 +74,11 @@ exist_cmd trash && {
     # exist_cmd trash && alias rm='trash'
 }
 
+# herdr
+exist_cmd herdr && {
+    eval "$(herdr completions bash)"
+}
+
 # Alias
 # ------------------------------------------------------------------------------
 # exist_cmd bat && alias cat='bat'

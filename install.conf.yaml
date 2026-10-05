@@ -15,6 +15,7 @@
     ~/.config/starship.toml: starship/starship.toml
     ~/.config/fish: fish
     ~/.config/wezterm: wezterm
+    ~/.config/herdr/config.toml: herdr/config.toml
     ~/.fonts: fonts
     ~/.gitconfig: git/.gitconfig
     ~/.gitignore_global: git/.gitignore_global
@@ -43,6 +44,9 @@
       if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     $APPDATA/neovide:
       path: neovide
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
+    $APPDATA/herdr/config.toml:
+      path: herdr/config.toml
       if: bash -c "uname -s | grep -iqE 'msys|mingw'"
     $APPDATA/Microsoft/Windows/Start Menu/Programs/Startup/keymaps.ahk:
       path: autohotkey/keymaps.ahk
