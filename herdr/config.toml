@@ -143,12 +143,12 @@ navigate_workspace_down = ["down", "j"]
 # type = "popup" opens a session-modal terminal without changing the tab layout.
 # Popup width and height accept terminal cells or percentages such as "80%".
 # On Windows, command strings run through cmd.exe /d /c.
-# [[keys.command]]
-# key = "prefix+alt+g"
-# type = "popup"
-# command = "lazygit"
-# width = "80%"
-# height = "80%"
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+width = "90%"
+height = "90%"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
