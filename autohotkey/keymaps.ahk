@@ -102,3 +102,40 @@ setIMEConversionMode(language, layout := "微软拼音") {
 ^k::UP      ; Ctrl+k -> Up
 ^l::Right   ; Ctrl+l -> Right
 #HotIf
+
+; ==============================================================================
+; 3. Herdr: Simulate switch_ascii_input_source_in_prefix
+; ==============================================================================
+; Press prefix in Herdr (a default window_title "<hostname>: ...")
+; -> pass prefix through + switchIME("EN").
+; Double press prefix within timeout (ms) means: herdr sends a literal prefix
+; ->  restore the IME recorded by the first press.
+
+global herdrIMEWasZh := false       ; IME was ZH when Ctrl+a was pressed
+global herdrPrefixTimeout := 600    ; double-press window in ms
+global herdrPrefixPrevTick := 0     ; tick of that first press
+global herdrAwaitingDouble := false ; a first press is pending
+
+#HotIf WinActive(A_ComputerName ": ")
+~^a:: {
+	global herdrIMEWasZh, herdrAwaitingDouble, herdrPrefixPrevTick, herdrPrefixTimeout
+
+	try {
+		if (herdrAwaitingDouble && A_TickCount - herdrPrefixPrevTick < herdrPrefixTimeout) {
+			; double press within timeout: restore the IME state
+			if (herdrIMEWasZh) {
+				switchIME("ZH")
+			}
+			herdrIMEWasZh := false
+			herdrAwaitingDouble := false
+		} else {
+			; first press: record the IME state, switch to EN
+			herdrIMEWasZh := isMicrosoftPinyinLayout() && getIMEConversionMode() = 1025
+			switchIME("EN")
+			herdrAwaitingDouble := true
+			herdrPrefixPrevTick := A_TickCount
+		}
+	} catch {
+	}
+}
+#HotIf

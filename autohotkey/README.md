@@ -23,6 +23,13 @@
 | `Ctrl+k` | `Up`     | navigation up    |
 | `Ctrl+l` | `Right`  | navigation right |
 
+## 3. Herdr: Simulate switch_ascii_input_source_in_prefix
+
+| Key                    | Map to                      |
+| ---                    | ------                      |
+| `Ctrl+a`               | `Ctrl+a` && switchIME("EN") |
+| `Ctrl+a` twice (600ms) | restore previous IME mode   |
+
 [AHK]: https://www.autohotkey.com/
 [AHK v2 中文文档]: https://wyagd001.github.io/v2/docs/
 [使用 AHK 在 VS Code 中根据上下文自动切换输入法状态]: https://www.cnblogs.com/yf-zhao/p/16018481.html
