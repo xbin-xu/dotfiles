@@ -6,12 +6,12 @@
 
 ## im-select
 
-| Key        | Map to                                    |
-| ---------- | ----------------------------------------- |
-| `CapsLock` | `Ctrl`                                    |
-| `Ctrl+[`   | `Esc`                                     |
-| `Esc`      | `Esc` && switchIMEConversionMode("EN")    |
-| `LShift`   | `LShift` && switchIMEConversionMode("ZH") |
+| Key        | Map to                      |
+| ---        | ------                      |
+| `CapsLock` | `Ctrl`                      |
+| `Ctrl+[`   | `Esc`                       |
+| `Esc`      | `Esc` && switchIME("EN")    |
+| `LShift`   | `LShift` && switchIME("ZH") |
 
 ## 2. Raycast Navigation binding
 
