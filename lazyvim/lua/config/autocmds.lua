@@ -79,3 +79,43 @@ vim.api.nvim_create_autocmd("DirChanged", {
     end
   end,
 })
+
+-- Clean Claude Code prompt scratch
+local function is_claude_prompt(path)
+  return path ~= nil and path:lower():find("claude%-prompt%-[%w%-]+%.md$") ~= nil
+end
+
+vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
+  group = augroup("claude_prompt_scratch"),
+  pattern = "*claude-prompt-*.md",
+  callback = function(args)
+    vim.bo[args.buf].swapfile = false
+  end,
+  desc = "No swap files for Claude prompt scratch files",
+})
+
+vim.api.nvim_create_autocmd("User", {
+  group = augroup("clean_session_pollution"),
+  pattern = "PersistenceSavePre",
+  callback = function()
+    -- Drop prompt scratch files from the argument list. Handles the case
+    -- where the buffer was already :bdelete'd but its arg entry remains.
+    pcall(vim.cmd.argdelete, "*claude-prompt-*")
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      local name = vim.api.nvim_buf_get_name(buf)
+      if is_claude_prompt(name) then
+        pcall(vim.api.nvim_buf_delete, buf, { force = true })
+      end
+    end
+    local ok, paths = pcall(vim.json.decode, vim.g.BufferlinePositions or "")
+    if ok and type(paths) == "table" then
+      local filtered = vim.tbl_filter(function(p)
+        return not is_claude_prompt(p)
+      end, paths)
+      if #filtered ~= #paths then
+        vim.g.BufferlinePositions = vim.json.encode(filtered)
+      end
+    end
+  end,
+  desc = "Drop Claude prompt scratch files before saving sessions",
+})
