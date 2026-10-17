@@ -150,6 +150,54 @@ command = "lazygit"
 width = "90%"
 height = "90%"
 
+# herdr-splits
+# `herdr plugin link /path/to/herdr-splits.nvim`
+# `herdr plugin install xbin-xu/herdr-splits.nvim --ref feat/windows-support -y`
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "herdr-splits.nav-left"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "herdr-splits.nav-down"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "herdr-splits.nav-up"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "herdr-splits.nav-right"
+
+# Passthrough
+[[keys.command]]
+key = "prefix+ctrl+h"
+type = "shell"
+command = "%HERDR_BIN_PATH% pane send-keys %HERDR_ACTIVE_PANE_ID% ctrl+h"
+description = "Forward ctrl+h"
+
+[[keys.command]]
+key = "prefix+ctrl+j"
+type = "shell"
+command = "%HERDR_BIN_PATH% pane send-keys %HERDR_ACTIVE_PANE_ID% ctrl+j"
+description = "Forward ctrl+j"
+
+[[keys.command]]
+key = "prefix+ctrl+k"
+type = "shell"
+command = "%HERDR_BIN_PATH% pane send-keys %HERDR_ACTIVE_PANE_ID% ctrl+k"
+description = "Forward ctrl+k"
+
+[[keys.command]]
+key = "prefix+ctrl+l"
+type = "shell"
+command = "%HERDR_BIN_PATH% pane send-keys %HERDR_ACTIVE_PANE_ID% ctrl+l"
+description = "Forward ctrl+l"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]
