@@ -444,6 +444,14 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'christoomey/vim-tmux-navigator'
 
+" Herdr
+"---------------------------------------------------------
+if $HERDR_ENV ==# '1'
+  let g:tmux_navigator_no_mappings = 1
+  let g:herdr_splits_most_recently_focused = 1
+endif
+Plug 'xbin-xu/herdr-splits.nvim', { 'branch': 'feat/windows-support' }
+
 " Git GUI
 "---------------------------------------------------------
 Plug 'tpope/vim-fugitive'           " git interface
