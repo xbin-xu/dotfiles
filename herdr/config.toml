@@ -10,7 +10,7 @@ onboarding = false
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
 #                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
 #                  vesper
-name = "terminal"
+name = "one-dark"
 
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
@@ -53,7 +53,8 @@ default_shell = "bash"
 # new_cwd = "follow"
 
 # Render pane images in Kitty graphics-compatible outer terminals.
-# kitty_graphics = true
+# NOTE: Windows Terminal does not support it; keep this false.
+kitty_graphics = false
 
 [update]
 # Update channel used by background version checks and `herdr update`.
@@ -149,6 +150,7 @@ type = "popup"
 command = "lazygit"
 width = "90%"
 height = "90%"
+description = "run lazygit"
 
 # herdr-splits
 # `herdr plugin link /path/to/herdr-splits.nvim`
@@ -157,21 +159,25 @@ height = "90%"
 key = "ctrl+h"
 type = "plugin_action"
 command = "herdr-splits.nav-left"
+description = "herdr-splits nav left"
 
 [[keys.command]]
 key = "ctrl+j"
 type = "plugin_action"
 command = "herdr-splits.nav-down"
+description = "herdr-splits nav down"
 
 [[keys.command]]
 key = "ctrl+k"
 type = "plugin_action"
 command = "herdr-splits.nav-up"
+description = "herdr-splits nav up"
 
 [[keys.command]]
 key = "ctrl+l"
 type = "plugin_action"
 command = "herdr-splits.nav-right"
+description = "herdr-splits nav right"
 
 # Passthrough
 [[keys.command]]
