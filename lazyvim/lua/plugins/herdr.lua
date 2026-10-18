@@ -4,6 +4,7 @@ return {
     branch = "feat/windows-support",
     cond = vim.env.HERDR_ENV == "1",
     event = "VeryLazy",
+    build = "make build",
     opts = {
       at_edge = "wrap", -- 'wrap' | 'stop' | 'split' | function
       nav_at_edge = "wrap", -- 'wrap' | 'stop'

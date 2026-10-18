@@ -450,7 +450,7 @@ if $HERDR_ENV ==# '1'
   let g:tmux_navigator_no_mappings = 1
   let g:herdr_splits_most_recently_focused = 1
 endif
-Plug 'xbin-xu/herdr-splits.nvim', { 'branch': 'feat/windows-support' }
+Plug 'xbin-xu/herdr-splits.nvim', { 'branch': 'feat/windows-support' , 'do': 'make build' }
 
 " Git GUI
 "---------------------------------------------------------
