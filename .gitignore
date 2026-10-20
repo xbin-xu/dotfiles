@@ -6,9 +6,12 @@ vim/.vim/*
 tmux/.tmux/plugins/*
 !tmux/.tmux/plugins/tpm
 
-glzr/zebar
+glzr/zebar/*
+!glzr/zebar/settings.json
+!glzr/zebar/starter/
+glzr/zebar/starter/*
 !glzr/zebar/starter/styles.css
 !glzr/zebar/starter/with-glazewm.html
-!glzr/zebar/starter/with-glazewm.zebar.json
+!glzr/zebar/starter/zpack.json
 
 !git/.git-commit-template.txt
