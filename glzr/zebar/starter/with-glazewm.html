@@ -8,13 +8,15 @@
   <!-- Custom styles. -->
   <link rel="stylesheet" type="text/css" href="./styles.css" />
 
-  <!-- Allows React to be run buildless via "text/babel" script below. -->
-  <script src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"
-    integrity="sha256-aS0B0wnsaDByLfE16h4MDCP1fQFccysd1YWOcV+gbBo=" crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <div id="root"></div>
+    <!-- Allows React to be run buildless via "text/babel" script below. -->
+    <script
+      src="https://unpkg.com/@babel/standalone@7.25.6/babel.min.js"
+      integrity="sha256-aS0B0wnsaDByLfE16h4MDCP1fQFccysd1YWOcV+gbBo="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
 
   <script type="text/babel" data-type="module">
     import React, {
@@ -22,7 +24,7 @@
       useEffect,
     } from 'https://esm.sh/react@18?dev';
     import { createRoot } from 'https://esm.sh/react-dom@18/client?dev';
-    import * as zebar from 'https://esm.sh/zebar@2';
+    import * as zebar from 'https://esm.sh/zebar@3.3';
 
     const providers = zebar.createProviderGroup({
       network: { type: 'network' },
@@ -31,7 +33,6 @@
       date: { type: 'date', formatting: 'F' },
       battery: { type: 'battery' },
       memory: { type: 'memory' },
-      weather: { type: 'weather' },
     });
 
     createRoot(document.getElementById('root')).render(<App />);
@@ -48,6 +49,8 @@
         switch (networkOutput.defaultInterface?.type) {
           case 'ethernet':
             return <i className="nf nf-md-ethernet_cable"></i>;
+            case 'proprietary_virtual':
+              return <i className="nf nf-md-shield_lock_outline"></i>;
           case 'wifi':
             if (networkOutput.defaultGateway?.signalStrength >= 80) {
               return <i className="nf nf-md-wifi_strength_4"></i>;
@@ -86,36 +89,6 @@
         return <i className="nf nf-fa-battery_0"></i>;
       }
 
-      // Get icon to show for current weather status.
-      function getWeatherIcon(weatherOutput) {
-        switch (weatherOutput.status) {
-          case 'clear_day':
-            return <i className="nf nf-weather-day_sunny"></i>;
-          case 'clear_night':
-            return <i className="nf nf-weather-night_clear"></i>;
-          case 'cloudy_day':
-            return <i className="nf nf-weather-day_cloudy"></i>;
-          case 'cloudy_night':
-            return <i className="nf nf-weather-night_alt_cloudy"></i>;
-          case 'light_rain_day':
-            return <i className="nf nf-weather-day_sprinkle"></i>;
-          case 'light_rain_night':
-            return <i className="nf nf-weather-night_alt_sprinkle"></i>;
-          case 'heavy_rain_day':
-            return <i className="nf nf-weather-day_rain"></i>;
-          case 'heavy_rain_night':
-            return <i className="nf nf-weather-night_alt_rain"></i>;
-          case 'snow_day':
-            return <i className="nf nf-weather-day_snow"></i>;
-          case 'snow_night':
-            return <i className="nf nf-weather-night_alt_snow"></i>;
-          case 'thunder_day':
-            return <i className="nf nf-weather-day_lightning"></i>;
-          case 'thunder_night':
-            return <i className="nf nf-weather-night_alt_lightning"></i>;
-        }
-      }
-
       return (
         <div className="app">
           <div className="left">
@@ -147,7 +120,9 @@
                 {output.glazewm.isPaused && (
                   <button
                     className="paused-button"
-                    onClick={() => glazewm.runCommand('wm-toggle-pause')}
+                      onClick={() =>
+                        output.glazewm.runCommand('wm-toggle-pause')
+                      }
                   >
                     PAUSED
                   </button>
@@ -167,7 +142,11 @@
                 ))}
 
                 <button
-                  className={`tiling-direction nf ${output.glazewm.tilingDirection === 'horizontal' ? 'nf-md-swap_horizontal' : 'nf-md-swap_vertical'}`}
+                    className={`tiling-direction nf ${
+                      output.glazewm.tilingDirection === 'horizontal'
+                        ? 'nf-md-swap_horizontal'
+                        : 'nf-md-swap_vertical'
+                    }`}
                   onClick={() =>
                     output.glazewm.runCommand('toggle-tiling-direction')
                   }
@@ -210,13 +189,6 @@
                 )}
                 {getBatteryIcon(output.battery)}
                 {Math.round(output.battery.chargePercent)}%
-              </div>
-            )}
-
-            {output.weather && (
-              <div className="weather">
-                {getWeatherIcon(output.weather)}
-                {Math.round(output.weather.celsiusTemp)}°C
               </div>
             )}
           </div>
