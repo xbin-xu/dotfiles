@@ -15,3 +15,6 @@ glzr/zebar/starter/*
 !glzr/zebar/starter/zpack.json
 
 !git/.git-commit-template.txt
+
+yazi/plugins/*
+
