@@ -28,7 +28,13 @@
     ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
     ~/.vscode: vscode
-    ~/.config/yazi: yazi
+    ~/.config/yazi/yazi.toml: yazi/yazi.toml
+    ~/.config/yazi/keymap.toml: yazi/keymap.toml
+    ~/.config/yazi/init.lua: yazi/init.lua
+    ~/.config/yazi/package.toml: yazi/package.toml
+    ~/.config/yazi/plugins:
+      glob: true
+      path: yazi/plugins/*
     # windows
     ~/pip/pip.ini:
       path: pip/pip.conf
@@ -69,8 +75,21 @@
     $SCOOP/apps/windows-terminal/current/settings/settings.json:
       path: windows-terminal/settings.json
       if: bash -c "scoop list windows-terminal | grep -q 'Version'"
-    $APPDATA/yazi/config:
-      path: yazi
+    $APPDATA/yazi/config/yazi.toml:
+      path: yazi/yazi.toml
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
+    $APPDATA/yazi/config/keymap.toml:
+      path: yazi/keymap.toml
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
+    $APPDATA/yazi/config/init.lua:
+      path: yazi/init.lua
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
+    $APPDATA/yazi/config/package.toml:
+      path: yazi/package.toml
+      if: bash -c "uname -s | grep -iqE 'msys|mingw'"
+    $APPDATA/yazi/config/plugins:
+      glob: true
+      path: yazi/plugins/*
       if: bash -c "uname -s | grep -iqE 'msys|mingw'"
 
 - shell:
@@ -78,3 +97,4 @@
     - git submodule update --init --recursive
     - >
       git clean -fdx tmux/.tmux/plugins/
+    - bash -c "command -v ya >/dev/null && ya pkg install"

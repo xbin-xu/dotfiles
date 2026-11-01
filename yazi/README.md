@@ -6,22 +6,21 @@
 ## Plugin
 
 ```shell
-ya pack -a KKV9/compress
-ya pack -a yazi-rs/plugins:git
-ya pack -a Lil-Dank/lazygit
-ya pack -a yazi-rs/plugins:max-preview
-ya pack -a llanosrocas/yaziline
+ya pkg add yazi-rs/plugins:diff
+ya pkg add yazi-rs/plugins:git
+ya pkg add yazi-rs/plugins:mime-ext
+ya pkg add yazi-rs/plugins:piper
+ya pkg add yazi-rs/plugins:smart-enter
+ya pkg add yazi-rs/plugins:smart-paste
+ya pkg add yazi-rs/plugins:term-cwd
+ya pkg add yazi-rs/plugins:toggle-pane
+ya pkg add yazi-rs/plugins:vcs-files
+ya pkg add yazi-rs/plugins:zoom
+ya pkg add KKV9/compress
+ya pkg add Lil-Dank/lazygit
+ya pkg add llanosrocas/yaziline
+ya pkg add boydaihungst/mediainfo
 ```
-
-## User Keymap
-
-| Key     | Desc                        |
-| `<C-e>` | open explorer for windows   |
-| `<C-s>` | open $SHELL                 |
-| `<C-c>` | Cancel input                |
-| `T`     | Maximize or restore preview |
-| `gi`    | run lazygit                 |
-| `ca`    | archive selected files      |
 
 [yazi]: https://yazi-rs.github.io/
 [awesome-yazi]: https://github.com/sachinsenal0x64/awesome-yazi
