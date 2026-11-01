@@ -1,5 +1,5 @@
 --- Transparency + colorscheme configuration
-local M = { opacity = 0.85 }
+local M = { opacity = 0.90 }
 
 -- Theme registry: colorscheme-name pattern -> { module_name, opts_builder }
 local themes = {
