@@ -2,12 +2,6 @@
 
 # Functions
 # ------------------------------------------------------------------------------
-# exist_cmd: test command if exist
-# Usage: exist_cmd <command>
-function exist_cmd() {
-    command -v "$1" >/dev/null
-}
-
 # source_file: source file if readable
 # Usage: source_file <file>
 function source_file() {
@@ -33,9 +27,9 @@ if uname -r | grep -qi wsl; then
     }
 fi
 
-# Source
+# Source alias
 # ------------------------------------------------------------------------------
-source_file ~/.config/bash/functions.bash
+source_file "$HOME/.bash_aliases"
 
 # CLI integration
 # ------------------------------------------------------------------------------
@@ -52,26 +46,19 @@ exist_cmd zoxide && {
 # fzf
 exist_cmd fzf && {
     eval "$(fzf --bash)"
-    source_file ~/.config/bash/fzfrc.bash
+    source_file "$HOME/.config/bash/fzfrc.bash"
 }
 
 # yazi
 exist_cmd yazi && {
     function yy() {
-        local -r tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-        yazi "$@" --cwd-file="$tmp"
-        if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-            builtin cd -- "$cwd" || exit
-        fi
-        rm -f -- "$tmp"
+        local tmp cwd
+        tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+        command yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d '' cwd <"$tmp"
+        [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+        command rm -f -- "$tmp"
     }
-}
-
-# trashy
-exist_cmd trash && {
-    eval "$(trash completions bash)"
-    # yazi need use `rm -f`
-    # exist_cmd trash && alias rm='trash'
 }
 
 # herdr
@@ -83,37 +70,6 @@ exist_cmd herdr && {
         __herdr_osc7() { printf '\e]7;file:///%s\a' "$(cygpath -m "$PWD")"; }
         export PROMPT_COMMAND="__herdr_osc7${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
     fi
-}
-
-# Alias
-# ------------------------------------------------------------------------------
-# exist_cmd bat && alias cat='bat'
-# exist_cmd fd && alias find='fd'
-# exist_cmd nvim && alias vim='nvim'
-exist_cmd nvim && alias v='nvim'
-exist_cmd eza && {
-    alias ls='eza'
-    alias ll='eza -al'
-    alias tree='eza --tree --color=always'
-}
-exist_cmd lazygit && alias lg='lazygit'
-exist_cmd python && alias py='python'
-exist_cmd ipython && alias ipy='ipython'
-exist_cmd explorer && exist_cmd cmd_deal_path && alias er='cmd_deal_path explorer'
-exist_cmd wsl && {
-    export WSL="//wsl$/Ubuntu"
-    alias tmux='wsl tmux'
-    alias fish='wsl fish'
-    function cdw() {
-        builtin cd -- "${WSL}/$*" || exit
-    }
-}
-exist_cmd keil_helper && alias keil='keil_helper'
-exist_cmd claude && {
-    alias cc='command claude --dangerously-skip-permissions'
-    exist_cmd claude_settings_fzf && {
-        alias ccs='CLAUDE_SETTINGS_CLI=$(claude_settings_fzf) && [ -n "$CLAUDE_SETTINGS_CLI" ] && cc --settings "$CLAUDE_SETTINGS_CLI" || cc'
-    }
 }
 
 # Set/Export
@@ -149,3 +105,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # https://github.com/daipeihust/im-select
 IM_SELECT_PATH="/usr/local/bin"
 export PATH="$IM_SELECT_PATH:$PATH"
+
+# Source local file
+# ------------------------------------------------------------------------------
+source_file "$HOME/.bashrc_local"

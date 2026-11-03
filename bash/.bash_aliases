@@ -1,4 +1,12 @@
-#!/usr/bin/env bash
+# shellcheck disable=SC2148
+
+# Functions
+# ------------------------------------------------------------------------------
+# exist_cmd: test command if exist
+# Usage: exist_cmd <command>
+function exist_cmd() {
+    command -v "$1" >/dev/null
+}
 
 # Allow pass Linux-style path to Windows commands in git-bash
 # Usage: cmd_deal_path <cmd> [<path>]
@@ -15,26 +23,36 @@ function cmd_deal_path() {
     fi
 }
 
-# Keil helper
-# Usage: keil_helper [-c] [-b] [-r] [-f] [-t [TARGET]] [project_path [project_path]]
+# Keil
+# Usage: keil [-hcbrf] [-t[TARGET]] [project_dir...]
 # See: https://developer.arm.com/documentation/101407/0543/Command-Line
-function keil_helper() {
+function keil() {
+    local usage=(
+        "Usage: keil [-cbrfh] [-t[TARGET]] [project_dir...]"
+        "  -h               Show this help"
+        "  -c               Clean the project"
+        "  -b               Build the project"
+        "  -r               Rebuild the project"
+        "  -f               Flash program"
+        "  -t[TARGET]       Select build target (attached, e.g. -tRel)"
+        "  project_dir...   Keil project dir(s) to search (default: .)"
+    )
+
     local args
-    if ! args=$(getopt -o "cbrft::" -- "$@"); then
-        echo "Usage: keil_helper [-c] [-b] [-r] [-f] [-t [TARGET]] [project_path [project_path]]" >&2
-        echo "  -c            Clean the project" >&2
-        echo "  -b            Build the project" >&2
-        echo "  -r            Rebuild the project" >&2
-        echo "  -f            Flash program" >&2
-        echo "  -t [TARGET]   Select build target" >&2
-        echo "  project_path  Path to the keil project directory (default: .)" >&2
+    if ! args=$(getopt -o "cbrfht::" -l "help" -- "$@"); then
+        printf '%s\n' "${usage[@]}" >&2
         return 1
     fi
     eval "set -- $args"
 
-    local clean_mode=0 build_mode=0 rebuild_mode=0 flash_mode=0 target_mode=0 target_query
+    local clean_mode=0 build_mode=0 rebuild_mode=0 flash_mode=0
+    local target_mode=0 target_query
     while [[ $# -gt 0 ]]; do
         case "$1" in
+        -h | --help)
+            printf '%s\n' "${usage[@]}"
+            return 0
+            ;;
         -t)
             target_mode=1
             case "$2" in
@@ -69,18 +87,20 @@ function keil_helper() {
         esac
     done
 
-    local project_paths=${*:-"."}
+    local project_dirs=${*:-"."}
     local project_file
+    local preview="bat -pn --color=always {}"
     # shellcheck disable=SC2086
-    project_file=$(fd '\.uvprojx?$' $project_paths | uniq |
-        fzf --select-1 --exit-0 --prompt="Select project> " --preview='bat -pn --color=always {}')
+    project_file=$(fd '\.uvprojx?$' $project_dirs | uniq |
+        fzf --select-1 --exit-0 --prompt="Project> " --preview="$preview")
     case $? in
     1)
-        echo "Not found *.uvproj[x] in $project_paths" >&2
+        echo "Not found *.uvproj[x] in $project_dirs" >&2
         return 1
         ;;
     130) return 0 ;;
     esac
+    [ -n "$project_file" ] || return 1
 
     local command
     [[ $clean_mode -eq 1 ]] && command+="-c"
@@ -92,7 +112,7 @@ function keil_helper() {
         local selected_target
         selected_target=$(grep -o '<TargetName>[^<]*' "$project_file" |
             sed 's/<TargetName>//' |
-            fzf --select-1 --exit-0 --prompt="Select target> " ${target_query:+-q "$target_query"})
+            fzf --select-1 --exit-0 --prompt="Target> " -q "$target_query")
         case $? in
         1)
             echo "Not grep target in $project_file" >&2
@@ -100,6 +120,7 @@ function keil_helper() {
             ;;
         130) return 0 ;;
         esac
+        [ -n "$selected_target" ] || return 1
         target_command+="-t${selected_target}"
     fi
 
@@ -138,7 +159,7 @@ function proxy_set() {
     fi
     export http_proxy="http://${hostip}:${proxy_port}"
     export https_proxy="http://${hostip}:${proxy_port}"
-    export all_proxy="socks5://${hostip}:${proxy_port}"
+    export all_proxy="socks5h://${hostip}:${proxy_port}"
     export no_proxy="localhost,127.0.0.1"
     echo "[Proxy] on ${proxy_port}"
 }
@@ -157,10 +178,10 @@ function claude_settings_fzf() {
     local search_path=${*:-"$HOME/.claude"}
 
     local settings_file
-    # shellcheck disable=SC2086
-    # find $search_path -maxdepth 1 -name 'settings-*.json' -type f 2>/dev/null
-    settings_file=$(fd -e json --max-depth 1 'settings-' $search_path 2>/dev/null |
-        fzf --select-1 --exit-0 --preview="bat -pn --color=always {}")
+    local jq_filter='.env.ANTHROPIC_AUTH_TOKEN = "<<secret>>"'
+    local preview="jq -C '$jq_filter' {} 2>/dev/null || echo '(not valid json)'"
+    settings_file=$(fd -e json -d 1 'settings-' "$search_path" 2>/dev/null |
+        fzf --select-1 --exit-0 --preview "$preview")
     case $? in
     1)
         echo "Not found settings-*.json in $search_path" >&2
@@ -171,4 +192,43 @@ function claude_settings_fzf() {
 
     # claude --settings "$settings_file"
     echo "$settings_file"
+}
+
+# Alias
+# ------------------------------------------------------------------------------
+shopt -s expand_aliases 2>/dev/null || true
+
+# exist_cmd bat && alias cat='bat'
+# exist_cmd fd && alias find='fd'
+# exist_cmd nvim && alias vim='nvim'
+exist_cmd nvim && alias v='nvim'
+exist_cmd eza && {
+    alias ls='eza'
+    alias ll='eza -al'
+    alias tree='eza --tree --color=always'
+}
+exist_cmd lazygit && alias lg='lazygit'
+exist_cmd python && alias py='python'
+exist_cmd ipython && alias ipy='ipython'
+exist_cmd explorer && exist_cmd cmd_deal_path && {
+    alias er='cmd_deal_path explorer'
+}
+exist_cmd wsl && {
+    export WSL="//wsl$/Ubuntu"
+    alias tmux='wsl tmux'
+    alias fish='wsl fish'
+    function cdw() {
+        builtin cd -- "${WSL}/$*" || return
+    }
+}
+exist_cmd claude && {
+    alias cc='command claude --dangerously-skip-permissions'
+    exist_cmd claude_settings_fzf && {
+        function ccs() {
+            local settings
+            settings=$(claude_settings_fzf) || return
+            [ -n "$settings" ] || return
+            command claude --settings "$settings"
+        }
+    }
 }

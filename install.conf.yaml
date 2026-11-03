@@ -7,10 +7,11 @@
 
 - link:
     ~/.bashrc: bash/.bashrc
+    ~/.bash_aliases: bash/.bash_aliases
     ~/.config/bash:
       glob: true
       path: bash/*
-      exclude: [bash/.bashrc]
+      exclude: [bash/.bashrc, bash/.bash_aliases]
     ~/.config/clangd: clangd
     ~/.config/fish: fish
     ~/.config/herdr/config.toml: herdr/config.toml
