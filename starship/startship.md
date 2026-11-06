@@ -21,3 +21,4 @@ starship init fish | source
 ```
 
 [Starship]: https://github.com/starship/starship
+

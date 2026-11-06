@@ -1,6 +1,7 @@
 # Windows 重装系统
 
 <!--toc:start-->
+
 - [Windows 重装系统](#windows-重装系统)
   - [1. Scoop](#1-scoop)
     - [1.1 添加到右键菜单：找到对应的安装目录，然后运行 `install-context.reg`](#11-添加到右键菜单找到对应的安装目录然后运行-install-contextreg)
@@ -9,6 +10,7 @@
   - [2. WSL](#2-wsl)
     - [2.1 迁移至非系统盘符](#21-迁移至非系统盘符)
     - [2.2 必要工具](#22-必要工具)
+
 <!--toc:end-->
 
 > 激活[HEU_KMS_Activator]

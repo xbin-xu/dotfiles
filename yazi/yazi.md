@@ -1,7 +1,7 @@
 # Yazi
 
-+ [yazi]
-+ [awesome-yazi]
+- [yazi]
+- [awesome-yazi]
 
 ## Plugin
 

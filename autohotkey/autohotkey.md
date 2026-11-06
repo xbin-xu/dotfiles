@@ -1,13 +1,13 @@
 # AutoHotKey
 
-> + [AHK] | [AHK v2 中文文档]
-> + [使用 AHK 在 VS Code 中根据上下文自动切换输入法状态]
-> + [AutoHotKey v2 实现自动切换输入法,添加输入法切换快捷键]
+> - [AHK] | [AHK v2 中文文档]
+> - [使用 AHK 在 VS Code 中根据上下文自动切换输入法状态]
+> - [AutoHotKey v2 实现自动切换输入法,添加输入法切换快捷键]
 
 ## im-select
 
 | Key        | Map to                      |
-| ---        | ------                      |
+| ---------- | --------------------------- |
 | `CapsLock` | `Ctrl`                      |
 | `Ctrl+[`   | `Esc`                       |
 | `Esc`      | `Esc` && switchIME("EN")    |
@@ -26,7 +26,7 @@
 ## 3. Herdr: Simulate switch_ascii_input_source_in_prefix
 
 | Key            | Map to                      |
-| ---            | ------                      |
+| -------------- | --------------------------- |
 | `Ctrl+a`       | `Ctrl+a` && switchIME("EN") |
 | `Ctrl+a` twice | restore previous IME mode   |
 
