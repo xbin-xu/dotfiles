@@ -1,14 +1,21 @@
 return {
   {
     "xbin-xu/herdr-splits.nvim",
+    -- dir = "/path/to/herdr-splits.nvim",
     branch = "feat/windows-support",
     cond = vim.env.HERDR_ENV == "1",
     event = "VeryLazy",
     build = "make build",
     opts = {
-      at_edge = "wrap", -- 'wrap' | 'stop' | 'split' | function
-      nav_at_edge = "wrap", -- 'wrap' | 'stop'
+      -- nvim
+      at_edge = "stop", -- 'wrap' | 'stop' | 'split' | function
+      move_cursor_same_row = false,
+      -- t-mode nav in snacks terminals
+      terminal_nav = { filetypes = { "snacks_terminal" } },
+      -- herdr
+      overwrite_conf = false,
       unzoom_on_nav = false,
+      nav_at_edge = "wrap", -- 'wrap' | 'stop'
       most_recently_focused = true,
     },
     -- stylua: ignore

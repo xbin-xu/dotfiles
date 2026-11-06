@@ -447,9 +447,12 @@ Plug 'christoomey/vim-tmux-navigator'
 " Herdr
 "---------------------------------------------------------
 if $HERDR_ENV ==# '1'
-  let g:tmux_navigator_no_mappings = 1
-  let g:herdr_splits_most_recently_focused = 1
+    let g:tmux_navigator_no_mappings = 1
+    let g:herdr_splits_unzoom_on_nav = 0
+    let g:herdr_splits_nav_at_edge = 'wrap'
+    let g:herdr_splits_most_recently_focused = 1
 endif
+" 'dir': '/path/to/herdr-splits.nvim'
 Plug 'xbin-xu/herdr-splits.nvim', { 'branch': 'feat/windows-support' , 'do': 'make build' }
 
 " Git GUI
