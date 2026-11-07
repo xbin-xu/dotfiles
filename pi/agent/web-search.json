@@ -1,0 +1,19 @@
+{
+  "deepseekApiKey": "!secrets get deepseek",
+  "zaiEndpoint": "china",
+  "zaiApiKey": "!secrets get zai_coding_cn",
+  "searchRouting": {
+    "providers": [
+      "zai",
+      "deepseek"
+    ],
+    "fallbackOn": [
+      "quota",
+      "transient",
+      "network",
+      "invalid-response",
+      "unsupported",
+      "empty"
+    ]
+  }
+}

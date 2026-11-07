@@ -6,6 +6,7 @@
 - clean: ["~", "~/.config"]
 
 - link:
+    ~/.local/bin/secrets: bin/secrets.py
     ~/.bashrc: bash/.bashrc
     ~/.bash_aliases: bash/.bash_aliases
     ~/.config/bash:
@@ -33,6 +34,13 @@
     ~/.glzr:
       path: glzr
       if: bash -c "uname -s | grep -iqE 'msys|mingw'"
+    ~/.pi/agent:
+      glob: true
+      path: pi/agent/*
+      exclude: [pi/agent/extensions]
+    ~/.pi/agent/extensions:
+      glob: true
+      path: pi/agent/extensions/*
     ~/.pip: pip
     ~/.tmux: tmux/.tmux
     ~/.tmux.conf: tmux/.tmux.conf

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://pi.dev/schemas/settings.schema.json",
+  "defaultProvider": "deepseek",
+  "defaultModel": "deepseek-flash",
+  "defaultThinkingLevel": "medium",
+  "hideThinkingBlock": true,
+  "defaultTools": [
+    "+codemode"
+  ],
+  "theme": "system",
+  "quietStartup": true,
+  "tuiMode": "fullscreen",
+  "fullscreenExitOutput": "resume-hint",
+  "fullscreenScrollbar": "hidden",
+  "fullscreenCopyOnSelect": true,
+  "shellPath": "D:/Software/Scoop/apps/git/current/bin/bash.exe",
+  "shellCommandPrefix": "source ~/.bash_aliases",
+  "packages": [
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@narumitw/pi-usage",
+    "npm:pi-cc-extensions"
+  ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0",
+    "{\"source\":\"npm:@narumitw/pi-usage\",\"scope\":\"user\"}": "0.69.2"
+  },
+  "lastChangelogVersion": "1.5.0"
+}

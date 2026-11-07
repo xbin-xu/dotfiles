@@ -1,0 +1,26 @@
+{
+  "mode": "on",
+  "transcriptOpenKey": "ctrl+o",
+  "scrollButtonMode": "native",
+  "enableCustomFooter": true,
+  "footerTokenRate": true,
+  "footerTokenRateMode": "average",
+  "footerTokenRateTtft": true,
+  "footerSessionTokens": true,
+  "footerCurrency": "CNY",
+  "footerCurrencyRate": "6.7",
+  "footerLine1Keys": [
+    "cwd",
+    "git",
+    "usage",
+    "pi-usage"
+  ],
+  "footerLine2Keys": [
+    "model",
+    "tokens",
+    "cache",
+    "cost",
+    "context",
+    "rate"
+  ]
+}
